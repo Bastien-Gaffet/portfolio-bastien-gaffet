@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
+}
+nav a {
+  color: var(--dim); text-decoration: none;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+nav a:hover { color: var(--white); }
+nav .nav-active { color: var(--white); }
+
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 5rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); }
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ BIO ══ */
+.bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .bio-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+.bio-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  line-height: 1.65;
+  color: var(--white);
+  border-left: 1px solid var(--violet);
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* ══ VALUES ══ */
+.value-list { display: flex; flex-direction: column; }
+.value-row {
+  display: grid; grid-template-columns: 160px 1fr; gap: 2rem;
+  align-items: baseline; padding: 1.6rem 0;
+  border-bottom: 1px solid var(--glass-border);
+}
+.value-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .value-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.value-name { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
+.value-desc { font-size: 0.83rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ NOW ══ */
+.now-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+@media(max-width:700px){ .now-grid { grid-template-columns: 1fr; } }
+.now-card {
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+  border-radius: 20px; padding: 2rem 1.8rem;
+  transition: border-color 0.3s;
+}
+.now-card:hover { border-color: rgba(255,255,255,0.15); }
+.now-card-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.8rem; }
+.now-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.6rem; }
+.now-card-body { font-size: 0.78rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ SUPPORT ══ */
+#support { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.support-wrap {
+  display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
+}
+@media(max-width:700px){ .support-wrap { grid-template-columns: 1fr; gap: 2.5rem; } }
+.support-text .section-label { margin-bottom: 1.2rem; }
+.support-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400; line-height: 1.25; margin-bottom: 1rem;
+}
+.support-title em { font-style: italic; }
+.support-desc { font-size: 0.83rem; color: var(--dim); line-height: 1.8; max-width: 440px; }
+.support-thank { font-size: 0.75rem; color: var(--dim); margin-top: 1rem; font-style: italic; opacity: 0.7; }
+
+.kofi-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--violet);
+  border-radius: 30px;
+  background: var(--violet-glow);
+  color: var(--white);
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: background 0.3s, box-shadow 0.3s;
+  white-space: nowrap;
+}
+.kofi-btn:hover {
+  background: hsl(265 75% 60% / 0.3);
+  box-shadow: 0 0 28px hsl(265 75% 60% / 0.2);
+}
+.kofi-icon { width: 16px; height: 16px; fill: currentColor; }
+
+/* ══ CONTACT ══ */
+#contact { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+.contact-links { display: flex; flex-direction: column; gap: 0; }
+.contact-link {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 1.4rem 0; border-bottom: 1px solid var(--glass-border);
+  text-decoration: none; color: var(--dim);
+  font-size: 0.83rem; transition: color 0.3s;
+}
+.contact-link:first-child { border-top: 1px solid var(--glass-border); }
+.contact-link:hover { color: var(--white); }
+.contact-link-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet); }
+.contact-arrow { font-size: 0.75rem; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateX(-4px); }
+.contact-link:hover .contact-arrow { opacity: 1; transform: translateX(0); }
+
+/* ══ FOOTER ══ */
+#page-footer { border-top: 1px solid var(--glass-border); position: relative; z-index: 1; padding: 4rem 0; }
+#page-footer .inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.btn-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; color: var(--dim); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--glass-border); border-radius: 30px;
+  padding: 0.5rem 1.3rem; transition: color 0.3s, border-color 0.3s;
+}
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html" class="nav-active">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal">About</p>
+      <h1 class="hero-title">
+        <span class="reveal">Bastien</span><br>
+        <em class="reveal d1">Gaffet</em>
+      </h1>
+      <p class="hero-desc reveal d2">
+        Building systems at the intersection of engineering, curiosity and creativity.
+      </p>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Who I am</p>
+      <div class="bio-grid">
+        <div>
+          <p class="bio-quote reveal">
+            "I explore ideas through code, design, and a fascination for the universe."
+          </p>
+          <p class="body-text reveal d1">
+            I'm a student in CPGE PCSI, currently studying continuum mechanics and the mathematics of physical systems. Engineering is not just a discipline for me; it's a way of reading the world.
+          </p>
+          <p class="body-text reveal d2">
+            Outside of engineering, I explore the world through photography, capturing light, patterns and moments. I also enjoy video games, reading and playing guitar, different ways of understanding systems, stories and creativity.
+          </p>
+        </div>
+        <div>
+          <p class="body-text reveal d1" style="color: var(--dim); font-size: 0.8rem; line-height: 1.9; margin-bottom: 2rem;">
+            My work lives at the edge between technical rigour and creative intent. I build things that think, move, or tell a story. Sometimes all three at once.
+          </p>
+          <p class="body-text reveal d2" style="color: var(--dim); font-size: 0.8rem; line-height: 1.9;">
+            I am drawn to projects where elegance matters as much as functionality. Where the system works, and the experience of using it feels right.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">How I work</p>
+      <div class="value-list">
+        <div class="value-row reveal">
+          <span class="value-name">Curiosity first</span>
+          <span class="value-desc">I start by understanding the problem deeply before writing a single line of code. The best solutions come from asking the right questions.</span>
+        </div>
+        <div class="value-row reveal d1">
+          <span class="value-name">Systems thinking</span>
+          <span class="value-desc">I look for structure and patterns. Whether it's software architecture or a mechanical design, I want to understand how all the parts connect.</span>
+        </div>
+        <div class="value-row reveal d2">
+          <span class="value-name">Craft over speed</span>
+          <span class="value-desc">I care about the details: naming, readability, visual coherence. A project worth building is worth building properly.</span>
+        </div>
+        <div class="value-row reveal d3">
+          <span class="value-name">Always learning</span>
+          <span class="value-desc">Every project is an opportunity to go deeper. I am not afraid to start from scratch if it means understanding something fully.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Right now</p>
+      <h2 class="section-title reveal">What I am <em>building and studying</em></h2>
+      <div class="now-grid reveal d1" style="margin-top: 3rem;">
+        <div class="now-card">
+          <p class="now-card-label">Studies</p>
+          <p class="now-card-title">CPGE PCSI</p>
+          <p class="now-card-body">Preparatory classes for engineering schools. Physics, mathematics, mechanics and the science of systems.</p>
+        </div>
+        <div class="now-card">
+          <p class="now-card-label">Research</p>
+          <p class="now-card-title">TIPE / Epoxy Resin</p>
+          <p class="now-card-body">Mechanical analysis of composite structures. Exploring how materials behave under stress at a fundamental level.</p>
+        </div>
+        <div class="now-card">
+          <p class="now-card-label">Project</p>
+          <p class="now-card-title">Robot J4</p>
+          <p class="now-card-body">Continuing development of the Connect Four robotic arm. EUCYS Latvia participant, CERN European Prize recipient.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support">
+    <div class="inner">
+      <div class="support-wrap">
+        <div class="support-text">
+          <p class="section-label reveal">Support</p>
+          <h2 class="support-title reveal d1">If my work <em>means something to you</em></h2>
+          <p class="support-desc reveal d2">
+            This site, these projects and the ideas behind them take real time and care to build. If you enjoy what you find here, a small gesture goes a long way, and means more than you think.
+          </p>
+          <p class="support-thank reveal d3">Every coffee is a quiet thank you I will carry into the next project.</p>
+        </div>
+        <div class="reveal d2">
+          <a href="https://ko-fi.com/YOUR_KOFI_USERNAME" target="_blank" rel="noopener" class="kofi-btn">
+            <svg class="kofi-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.483-2.662 2.483-2.662l.246-4.309h.062c2.49.28 4.84-1.361 4.84-3.679v-.018zm-10.65 3.562c.294-.292.492-.67.528-1.093.084-.922.071-3.08.071-3.08l4.295.01s.576-.021.576.757c0 .768-.576.768-.576.768h-2.088l-.005 2.638c-.088 1.713-2.814 1.653-2.801 0zm6.67 1.372a1.983 1.983 0 0 1-1.986 1.98h-.286a1.98 1.98 0 0 1-1.985-1.98v-1.981h4.257v1.981z"/>
+            </svg>
+            Support on Ko-fi
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="inner">
+      <div class="contact-grid">
+        <div>
+          <p class="section-label reveal">Contact</p>
+          <h2 class="section-title reveal d1">Let's build <em>something together</em></h2>
+          <p class="body-text reveal d2">
+            Whether you have a project in mind, a question about my work, or just want to connect. I am always open to a conversation.
+          </p>
+        </div>
+        <div class="contact-links reveal d1">
+          <a href="mailto:your@email.com" class="contact-link">
+            <span>
+              <span class="contact-link-label">Email</span><br>
+              your@email.com
+            </span>
+            <span class="contact-arrow">→</span>
+          </a>
+          <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener" class="contact-link">
+            <span>
+              <span class="contact-link-label">GitHub</span><br>
+              github.com/YOUR_GITHUB
+            </span>
+            <span class="contact-arrow">→</span>
+          </a>
+          <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener" class="contact-link">
+            <span>
+              <span class="contact-link-label">LinkedIn</span><br>
+              linkedin.com/in/YOUR_LINKEDIN
+            </span>
+            <span class="contact-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="page-footer">
+  <div class="inner">
+    <a href="work-v4.html" class="btn-pill">← Work</a>
+    <span class="footer-sig">Bastien Gaffet</span>
+    <a href="story-v6.html" class="btn-pill">Story →</a>
+  </div>
+</footer>
+
+<script>
+/* ── COSMOS (identical to site) ── */
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+const NUM_STARS = 220;
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', () => { resize(); initStars(); });
+resize();
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < NUM_STARS; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * Math.max(W, H) * 0.65;
+    stars.push({ x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius, r:Math.random()*1.1+0.15, alpha:Math.random()*0.5+0.08, twinkle:Math.random()*Math.PI*2, speed:(Math.random()*0.3+0.05)*0.00008, angle, radius });
+  }
+}
+initStars();
+
+function draw(t) {
+  ctx.clearRect(0, 0, W, H);
+  const bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
+  bg.addColorStop(0,'rgba(14,10,30,1)'); bg.addColorStop(0.3,'rgba(8,6,18,1)'); bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  const cx=W/2, cy=H/2;
+  // Violet nebula glow (stronger on work page)
+  const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.5);
+  g1.addColorStop(0,'rgba(100,50,200,0.0)'); g1.addColorStop(0.3,'rgba(100,50,200,0.06)'); g1.addColorStop(0.7,'rgba(60,20,140,0.09)'); g1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+  stars.forEach(s => {
+    s.angle += s.speed; s.x = cx+Math.cos(s.angle)*s.radius; s.y = cy+Math.sin(s.angle)*s.radius;
+    const a = Math.max(0, Math.min(1, s.alpha+Math.sin(s.twinkle+t*0.001)*0.25));
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fillStyle=`rgba(220,210,255,${a})`; ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+
+resize(); initStars(); requestAnimationFrame(draw);
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+/* ── REVEAL ── */
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+</body>
+</html>

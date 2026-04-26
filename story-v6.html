@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --void:         #080b14;
+  --violet:       hsl(265 75% 60%);       /* Lovable violet */
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── CANVAS COSMOS ── */
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
+}
+nav a {
+  color: var(--dim); text-decoration: none;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+nav a:hover { color: var(--white); }
+nav .nav-active { color: var(--white); }
+
+/* ── MAIN ── */
+main { position: relative; z-index: 1; }
+
+/* ── ACTS ── */
+.act {
+  min-height: 100vh; display: flex; align-items: center;
+  justify-content: center; padding: 8rem 2rem; position: relative;
+}
+
+/* ── REVEAL ANIMATIONS (v1 timings preserved exactly) ── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.5s; }
+.reveal-delay-4 { transition-delay: 0.7s; }
+.reveal-delay-5 { transition-delay: 0.9s; }
+
+/* ── ACT 01 — HERO ── */
+#act-01 { flex-direction: column; text-align: center; min-height: 100vh; }
+.hero-name {
+  font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--white) 30%, hsl(265 75% 80%));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem); letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--dim); margin-bottom: 3rem;
+}
+.hero-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: hsl(265 60% 80%); max-width: 600px; line-height: 1.5;
+}
+.scroll-cue {
+  position: absolute; bottom: 3rem; left: 0; right: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: var(--dim); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--dim));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
+
+/* ── NARROW / QUOTES ── */
+.narrow { max-width: 620px; width: 100%; text-align: center; }
+.act-quote {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.55; color: var(--white); margin-bottom: 2rem;
+}
+.act-label {
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 1rem;
+}
+
+/* ── ACT 03 — PATTERNS / CONSTELLATION ── */
+#act-03 { gap: 6rem; flex-wrap: wrap; }
+.patterns-text { flex: 1; min-width: 280px; max-width: 480px; }
+.patterns-nodes {
+  flex: 1; min-width: 280px; max-width: 400px; height: 280px; position: relative;
+  overflow: visible;
+}
+.node-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--violet); box-shadow: 0 0 12px var(--violet);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  cursor: default;
+  will-change: transform;
+}
+.node {
+  position: absolute; display: flex; flex-direction: column;
+  align-items: center; gap: 6px; opacity: 0; transition: opacity 1s;
+  transform: translate(-50%, -50%);
+}
+.node.visible { opacity: 1; }
+.node-label {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--dim); white-space: nowrap;
+  transition: none;
+}
+.node:nth-child(2) { top: 10%; left: 50%; }
+.node:nth-child(3) { top: 40%; left: 5%;  }
+.node:nth-child(4) { top: 70%; left: 30%; }
+.node:nth-child(5) { top: 55%; left: 70%; }
+.node:nth-child(6) { top: 20%; left: 82%; }
+.node:nth-child(7) { top: 88%; left: 60%; }
+.node:nth-child(8) { top: 15%; left: 18%; }
+.node-connector { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.node-connector svg, svg.node-connector { overflow: visible; }
+.c-line { stroke: hsl(265 75% 60% / 0.28); stroke-width: 1; fill: none; opacity: 0; transition: opacity 1.2s ease; }
+.c-line.lit-line { opacity: 1; }
+
+/* ── PROJECT CARDS ── */
+.cards-wrap { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; max-width: 800px; }
+.proj-card {
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px; padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: flex-start;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; cursor: default;
+}
+.proj-card:hover {
+  border-color: rgba(255,255,255,0.16);
+  box-shadow: 0 0 40px hsl(265 75% 60% / 0.08); transform: translateY(-3px);
+}
+.proj-num { font-family: 'Playfair Display', serif; font-size: 3rem; line-height: 1; color: hsl(265 40% 30%); min-width: 3.5rem; }
+.proj-content { flex: 1; }
+.proj-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--white); }
+.proj-narrative { font-size: 0.8rem; font-style: italic; color: var(--dim); margin-bottom: 0.8rem; line-height: 1.5; }
+.proj-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--glass-border); border-radius: 20px; color: var(--dim); }
+.proj-card.tourny   { border-left: 2px solid hsl(245 75% 65%); }
+.proj-card.glacify  { border-left: 2px solid hsl(190 75% 55%); }
+.proj-card.hopetime { border-left: 2px solid hsl(320 65% 60%); }
+
+/* ── ACT 05 — IDENTITY ── */
+#act-05 { flex-direction: column; }
+.identity-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; width: 100%; max-width: 640px; margin-top: 2rem; }
+.id-block { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.2rem 1.5rem; }
+.id-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.4rem; }
+.id-value { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--white); }
+
+/* ── ACT 06 — REAL WORLD ── */
+#act-06 { flex-direction: column; }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(2,160px); grid-auto-rows: 160px;
+  gap: 1rem; max-width: 720px; width: 100%; margin-top: 2rem;
+}
+.gallery-item {
+  border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border);
+  position: relative; background: var(--glass-bg);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.35s, border-color 0.3s;
+}
+.gallery-item:hover { transform: scale(1.03); border-color: rgba(255,255,255,0.15); }
+.gallery-item:nth-child(1) { grid-column: span 2; }
+.gallery-item:nth-child(4) { grid-column: span 2; }
+.gallery-item:nth-child(5) { grid-column: span 3; } /* full width bottom strip */
+.gallery-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); text-align: center; }
+.gallery-stripe { position: absolute; inset: 0; background: repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(255,255,255,0.015) 6px,rgba(255,255,255,0.015) 12px); }
+
+/* ── ACT 07 — NOW ── */
+#act-07 { flex-direction: column; }
+.terminal {
+  background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 2rem; width: 100%; max-width: 600px;
+  font-family: 'SF Mono','Fira Code',monospace; font-size: 0.8rem;
+}
+.terminal-bar { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r{background:#ff5f56} .dot-y{background:#ffbd2e} .dot-g{background:#27c93f}
+.terminal-line { color: oklch(70% 0.12 150); margin-bottom: 0.5rem; line-height: 1.7; }
+.terminal-line span { color: var(--dim); }
+.terminal-cursor { display:inline-block; width:8px; height:14px; background:oklch(70% 0.12 150); animation:blink 1.1s step-end infinite; vertical-align:text-bottom; margin-left:2px; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ── DISSOLUTION ── */
+#act-dissolution { min-height: 60vh; flex-direction: column; text-align: center; }
+.dissolution-text {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 1.8rem); line-height: 1.7;
+  color: hsl(265 30% 75%); max-width: 560px;
+}
+.dissolution-text .em { color: var(--white); }
+
+/* ── REALITY SHIFT (Lovable-style — only this section changed) ── */
+#act-reality {
+  flex-direction: column; text-align: center;
+  min-height: 80vh; position: relative;
+}
+.grid-arch {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-attachment: fixed;
+  background-position: 0 0;
+  opacity: 0; transition: opacity 2s ease;
+}
+#act-reality.grid-on .grid-arch { opacity: 1; }
+.reality-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(5,6,10,0.75) 0%, rgba(5,6,10,0.2) 60%, rgba(5,6,10,0) 100%);
+}
+.memory-words { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.mem-word {
+  position: absolute; top: 28%;
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: transparent; user-select: none;
+}
+.mem-word.play { animation: memFloat 6s ease-in-out forwards; }
+@keyframes memFloat {
+  0%   { color: hsl(265 60% 80% / 0);   transform: translateY(40px); }
+  20%  { color: hsl(265 60% 80% / 0.28); }
+  75%  { color: hsl(265 60% 80% / 0.28); }
+  100% { color: hsl(265 60% 80% / 0);   transform: translateY(-70px); }
+}
+.reality-content { position: relative; z-index: 10; }
+.reality-eyebrow {
+  font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
+  color: hsl(265 50% 70% / 0.5); margin-bottom: 1.5rem;
+}
+.reality-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.02em;
+  color: var(--white); margin-bottom: 1.2rem; line-height: 1.1;
+}
+.reality-sub {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.4rem); color: hsl(265 40% 75% / 0.7);
+}
+.blur-reveal { opacity: 0; filter: blur(20px); transition: opacity 1.8s ease, filter 1.8s ease; }
+.blur-reveal.visible { opacity: 1; filter: blur(0); }
+.br-d1 { transition-delay: 0.6s; }
+.br-d2 { transition-delay: 1s; }
+.br-d3 { transition-delay: 1.8s; }
+
+/* ── PORTAL ── */
+#act-portal { flex-direction: column; text-align: center; min-height: 80vh; position: relative; }
+#act-portal::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size: 60px 60px; background-attachment: fixed; background-position: 0 0; pointer-events: none; opacity: 0; transition: opacity 1.5s;
+}
+#act-portal.visible::before { opacity: 1; }
+.portal-card {
+  background: linear-gradient(135deg, hsl(265 75% 60% / 0.10), hsl(190 90% 60% / 0.06));
+  border: 1px solid hsl(265 75% 60% / 0.25);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px; padding: 3.5rem 5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+  box-shadow: 0 0 60px hsl(265 75% 60% / 0.15);
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s; cursor: pointer; text-decoration: none;
+}
+.portal-card:hover {
+  border-color: hsl(265 75% 60% / 0.45);
+  box-shadow: 0 0 100px hsl(265 75% 60% / 0.28), 0 0 30px hsl(265 75% 60% / 0.15);
+  transform: scale(1.015);
+}
+.portal-title { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 0.05em; color: var(--white); }
+.portal-sub { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim); }
+.portal-cta {
+  margin-top: 1rem; padding: 0.7rem 2rem; border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 40px; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--white); transition: background 0.3s, border-color 0.3s;
+}
+.portal-card:hover .portal-cta { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+.portal-micro { font-size: 0.65rem; color: oklch(40% 0.01 250); letter-spacing: 0.1em; margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav>
+  <a href="story-v6.html" class="nav-active">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<main>
+
+  <!-- ACT 01 — HERO -->
+  <section class="act" id="act-01" data-screen-label="01 Hero">
+    <div class="narrow">
+      <p class="act-label reveal">CPGE PCSI · Future Engineer</p>
+      <h1 class="hero-name reveal reveal-delay-1">Bastien<br>Gaffet</h1>
+      <p class="hero-sub reveal reveal-delay-2">Future Engineer &nbsp;•&nbsp; Creative Builder &nbsp;•&nbsp; System Explorer</p>
+      <p class="hero-tagline reveal reveal-delay-3">"I design systems where engineering meets curiosity."</p>
+    </div>
+    <div class="scroll-cue reveal reveal-delay-4">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ACT 02 — ORIGINS -->
+  <section class="act" id="act-02" data-screen-label="02 Origins">
+    <div class="narrow">
+      <p class="act-label reveal">Act I / Origins</p>
+      <p class="act-quote reveal reveal-delay-1">"Before I became a builder, I was a curious observer of systems."</p>
+    </div>
+  </section>
+
+  <!-- ACT 03 — PATTERNS (constellation fixed) -->
+  <section class="act" id="act-03" data-screen-label="03 Patterns">
+    <div class="patterns-text">
+      <p class="act-label reveal">Act II / Discovery</p>
+      <p class="act-quote reveal reveal-delay-1" style="text-align:left;">"I started seeing patterns everywhere: in logic, in games, in time, in people."</p>
+    </div>
+    <div class="patterns-nodes" id="nodes-wrap">
+      <!-- Static SVG lines: endpoints match node CSS top/left + translate(-50%,-50%) -->
+      <svg class="node-connector" id="node-svg">
+        <line class="c-line" x1="50%" y1="10%" x2="5%"  y2="40%"/>
+        <line class="c-line" x1="5%"  y1="40%" x2="30%" y2="70%"/>
+        <line class="c-line" x1="30%" y1="70%" x2="70%" y2="55%"/>
+        <line class="c-line" x1="70%" y1="55%" x2="50%" y2="10%"/>
+        <line class="c-line" x1="50%" y1="10%" x2="30%" y2="70%"/>
+      </svg>
+      <div class="node" id="n0"><div class="node-dot"></div><span class="node-label">Astronomy</span></div>
+      <div class="node" id="n1"><div class="node-dot"></div><span class="node-label">Music</span></div>
+      <div class="node" id="n2"><div class="node-dot"></div><span class="node-label">Photography</span></div>
+      <div class="node" id="n3"><div class="node-dot"></div><span class="node-label">Volleyball</span></div>
+      <div class="node" id="n4"><div class="node-dot"></div><span class="node-label">Video Games</span></div>
+      <div class="node" id="n5"><div class="node-dot"></div><span class="node-label">Reading</span></div>
+      <div class="node" id="n6"><div class="node-dot"></div><span class="node-label">Developer</span></div>
+    </div>
+  </section>
+
+  <!-- ACT 04 — PROJECTS -->
+  <section class="act" id="act-04" data-screen-label="04 Systems" style="flex-direction:column;align-items:center;">
+    <div class="narrow" style="margin-bottom:3rem;">
+      <p class="act-label reveal">Act III / Creation</p>
+      <p class="act-quote reveal reveal-delay-1">"Then I started building systems."</p>
+    </div>
+    <div class="cards-wrap">
+      <div class="proj-card tourny reveal reveal-delay-1">
+        <span class="proj-num">01</span>
+        <div class="proj-content">
+          <h3 class="proj-name">Tourny</h3>
+          <p class="proj-narrative">"My first attempt to organize chaos into structure."</p>
+          <div class="proj-tags">
+            <span class="tag">Sport Tournament System</span>
+            <span class="tag">Data Architecture</span>
+            <span class="tag">Dashboard UI</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card glacify reveal reveal-delay-2">
+        <span class="proj-num">02</span>
+        <div class="proj-content">
+          <h3 class="proj-name">Glacify</h3>
+          <p class="proj-narrative">"Then I tried to design something more human, something felt, not just calculated."</p>
+          <div class="proj-tags">
+            <span class="tag">Ice Cream App</span>
+            <span class="tag">UX Design</span>
+            <span class="tag">Playful Interface</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card hopetime reveal reveal-delay-3">
+        <span class="proj-num">03</span>
+        <div class="proj-content">
+          <h3 class="proj-name">HopeTime</h3>
+          <p class="proj-narrative">"And I started exploring meaning inside time itself: 12:12, 08:08."</p>
+          <div class="proj-tags">
+            <span class="tag">Conceptual App</span>
+            <span class="tag">Philosophical UI</span>
+            <span class="tag">Experimental</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 05 — IDENTITY -->
+  <section class="act" id="act-05" data-screen-label="05 Identity" style="flex-direction:column;">
+    <div class="narrow">
+      <p class="act-label reveal">Act IV / Identity</p>
+      <p class="act-quote reveal reveal-delay-1">"I am not just building applications. I am building ways to understand systems."</p>
+    </div>
+    <div class="identity-grid">
+      <div class="id-block reveal reveal-delay-2"><p class="id-title">Education</p><p class="id-value">CPGE PCSI</p></div>
+      <div class="id-block reveal reveal-delay-2"><p class="id-title">Mindset</p><p class="id-value">Curiosity-driven</p></div>
+      <div class="id-block reveal reveal-delay-3"><p class="id-title">Approach</p><p class="id-value">Builder &amp; Explorer</p></div>
+      <div class="id-block reveal reveal-delay-3"><p class="id-title">Thinking</p><p class="id-value">Structured &amp; Creative</p></div>
+    </div>
+  </section>
+
+  <!-- ACT 06 — REAL WORLD -->
+  <section class="act" id="act-06" data-screen-label="06 Real World" style="flex-direction:column;">
+    <div class="narrow" style="margin-bottom:2.5rem;">
+      <p class="act-label reveal">Act V / The Outside</p>
+      <p class="act-quote reveal reveal-delay-1">"I also observe the world, not just the systems I create."</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal reveal-delay-1"><div class="gallery-stripe"></div><span class="gallery-label">Mobile Photography</span></div>
+      <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label">Guitar</span></div>
+      <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label">Volleyball</span></div>
+      <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label">Astronomy</span></div>
+      <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label">Exploration</span></div>
+    </div>
+  </section>
+
+  <!-- ACT 07 — NOW -->
+  <section class="act" id="act-07" data-screen-label="07 Now" style="flex-direction:column;">
+    <div class="narrow" style="margin-bottom:2rem;">
+      <p class="act-label reveal">Act VI / Current State</p>
+      <p class="act-quote reveal reveal-delay-1">"Right now, I explore how matter, logic and systems interact."</p>
+    </div>
+    <div class="terminal reveal reveal-delay-2">
+      <div class="terminal-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <div class="terminal-line">$ <span>whoami</span></div>
+      <div class="terminal-line">→ Bastien Gaffet, CPGE PCSI</div>
+      <div class="terminal-line" style="margin-top:.8rem">$ <span>current_project</span></div>
+      <div class="terminal-line">→ TIPE / epoxy resin research</div>
+      <div class="terminal-line">→ Mechanical analysis of composite structures</div>
+      <div class="terminal-line" style="margin-top:.8rem">$ <span>learning</span></div>
+      <div class="terminal-line">→ Continuum mechanics</div>
+      <div class="terminal-line">→ Systems application development</div>
+      <div class="terminal-line" style="margin-top:.8rem">$ <span>status</span><span class="terminal-cursor"></span></div>
+    </div>
+  </section>
+
+  <!-- DISSOLUTION -->
+  <section class="act" id="act-dissolution" data-screen-label="08 Dissolution" style="flex-direction:column;min-height:60vh;">
+    <div class="narrow">
+      <p class="dissolution-text reveal">
+        "This is not the end of the story."
+        <br><br>
+        <span class="em">"It is where it becomes real."</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- REALITY SHIFT — Lovable style -->
+  <section class="act" id="act-reality" data-screen-label="09 Reality Shift">
+    <div class="grid-arch"></div>
+    <div class="reality-overlay"></div>
+    <div class="memory-words">
+      <span class="mem-word" style="left:12%">Tourny</span>
+      <span class="mem-word" style="left:52%">Glacify</span>
+      <span class="mem-word" style="left:74%">HopeTime</span>
+    </div>
+    <div class="reality-content">
+      <p class="reality-eyebrow blur-reveal">Reality Shift</p>
+      <h2 class="reality-heading blur-reveal br-d1">From story to systems</h2>
+      <p class="reality-sub blur-reveal br-d2">Ideas become implementations.</p>
+    </div>
+  </section>
+
+  <!-- PORTAL -->
+  <section class="act" id="act-portal" data-screen-label="10 Portal" style="flex-direction:column;min-height:80vh;">
+    <div class="reveal">
+      <a class="portal-card" id="portal-link" href="work-v4.html">
+        <p class="portal-sub">Enter</p>
+        <p class="portal-title">WORK</p>
+        <p class="portal-sub">Projects &nbsp;·&nbsp; Systems &nbsp;·&nbsp; Engineering</p>
+        <div class="portal-cta">View Portfolio</div>
+      </a>
+      <p class="portal-micro">A structured view of what I build.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* ══ CANVAS COSMOS (identical to v1) ══ */
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+const CENTER_DRIFT_X = 0.05, CENTER_DRIFT_Y = -0.05;
+const NUM_STARS = 280;
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < NUM_STARS; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * Math.max(W, H) * 0.65;
+    stars.push({ x: W/2+Math.cos(angle)*radius, y: H/2+Math.sin(angle)*radius, r: Math.random()*1.2+0.2, alpha: Math.random()*0.6+0.1, twinkle: Math.random()*Math.PI*2, speed: (Math.random()*0.3+0.05)*0.00008, angle, radius });
+  }
+}
+initStars();
+
+function drawCosmos(t) {
+  ctx.clearRect(0, 0, W, H);
+  const bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
+  bg.addColorStop(0,'rgba(14,10,30,1)'); bg.addColorStop(0.3,'rgba(8,6,18,1)'); bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  const cx=W/2+Math.sin(t*0.00008)*W*CENTER_DRIFT_X, cy=H/2+Math.cos(t*0.00006)*H*CENTER_DRIFT_Y;
+  const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.45);
+  g1.addColorStop(0,'rgba(100,50,200,0)'); g1.addColorStop(0.3,'rgba(100,50,200,0.08)'); g1.addColorStop(0.7,'rgba(60,20,140,0.10)'); g1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+  const ring=ctx.createRadialGradient(cx,cy,Math.min(W,H)*0.04,cx,cy,Math.min(W,H)*0.18);
+  ring.addColorStop(0,'rgba(0,0,0,0)'); ring.addColorStop(0.3,'rgba(30,80,160,0.05)'); ring.addColorStop(0.6,'rgba(80,40,180,0.08)'); ring.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=ring; ctx.fillRect(0,0,W,H);
+  const vd=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.05);
+  vd.addColorStop(0,'rgba(0,0,0,0.9)'); vd.addColorStop(0.5,'rgba(0,0,0,0.5)'); vd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=vd; ctx.fillRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.angle+=s.speed; s.x=cx+Math.cos(s.angle)*s.radius; s.y=cy+Math.sin(s.angle)*s.radius;
+    const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*0.001)*0.3));
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fillStyle=`rgba(220,210,255,${a})`; ctx.fill();
+  });
+}
+function loop(t) { drawCosmos(t); requestAnimationFrame(loop); }
+requestAnimationFrame(loop);
+
+/* ══ SCROLL REVEALS (v1 timings) ══ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      const sec = e.target.closest('.act');
+      if (sec) sec.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.act').forEach(s => obs.observe(s));
+
+/* ══ CONSTELLATION — nœuds puis lignes une par une ══ */
+const CONST_IDS   = ['n0','n1','n2','n3','n4','n5','n6'];
+const CONST_EDGES = [[6,0],[0,4],[1,6],[1,2],[0,3],[3,5],[2,6]];
+// Forme : Developer→Astronomy→VideoGames  /  Music→Developer→(haut)
+//         Music→Photography               /  Astronomy→Volleyball→Reading←Photography
+
+function buildConstellationLines() {
+  const svg     = document.getElementById('node-svg');
+  const svgRect = svg.getBoundingClientRect();
+  const pts = CONST_IDS.map(id => {
+    const dot = document.querySelector(`#${id} .node-dot`);
+    const r   = dot.getBoundingClientRect();
+    return { x: r.left + r.width/2 - svgRect.left, y: r.top + r.height/2 - svgRect.top };
+  });
+
+  svg.innerHTML = '';
+  CONST_EDGES.forEach(([a, b]) => {
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', pts[a].x); line.setAttribute('y1', pts[a].y);
+    line.setAttribute('x2', pts[b].x); line.setAttribute('y2', pts[b].y);
+    line.setAttribute('stroke-width','1'); line.setAttribute('fill','none');
+    line.classList.add('c-line');
+    svg.appendChild(line);
+    const delay = Math.max(a, b) * 350 + 600;
+    setTimeout(() => line.classList.add('lit-line'), delay);
+  });
+}
+
+const constellationObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    constellationObs.disconnect();
+    document.querySelectorAll('.node').forEach((n, i) => {
+      setTimeout(() => n.classList.add('visible'), i * 350);
+    });
+    setTimeout(() => buildConstellationLines(), 100);
+  }
+}, { threshold: 0.3 });
+constellationObs.observe(document.getElementById('nodes-wrap'));
+
+/* ══ CONSTELLATION — mouse follow on hover ══ */
+const nodesWrap = document.getElementById('nodes-wrap');
+const nodeEls   = Array.from(document.querySelectorAll('.node'));
+const MAGNETIC_RADIUS = 80;
+const MAX_DRIFT = 7;
+
+const nodeState = nodeEls.map(() => ({ cx:0, cy:0, cs:1, tx:0, ty:0, ts:1, sl:0 }));
+
+nodesWrap.addEventListener('mousemove', e => {
+  nodeEls.forEach((node, i) => {
+    const dot = node.querySelector('.node-dot');
+    const r   = dot.getBoundingClientRect();
+    const dx  = e.clientX - (r.left + r.width/2);
+    const dy  = e.clientY - (r.top  + r.height/2);
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist < MAGNETIC_RADIUS) {
+      const str = 1 - dist / MAGNETIC_RADIUS;
+      nodeState[i].tx = Math.max(-MAX_DRIFT, Math.min(MAX_DRIFT, dx * str * 0.45));
+      nodeState[i].ty = Math.max(-MAX_DRIFT, Math.min(MAX_DRIFT, dy * str * 0.45));
+      nodeState[i].ts = 1 + str * 0.7;
+    } else {
+      nodeState[i].tx = 0; nodeState[i].ty = 0; nodeState[i].ts = 1;
+    }
+  });
+});
+nodesWrap.addEventListener('mouseleave', () => {
+  nodeState.forEach(s => { s.tx=0; s.ty=0; s.ts=1; });
+});
+
+/* Un seul RAF pour tous les nœuds + les lignes */
+function animateConstellation() {
+  const svg = document.getElementById('node-svg');
+
+  nodeEls.forEach((node, i) => {
+    const dot = node.querySelector('.node-dot');
+    const s   = nodeState[i];
+    s.cx += (s.tx - s.cx) * 0.10;
+    s.cy += (s.ty - s.cy) * 0.10;
+    s.cs += (s.ts - s.cs) * 0.10;
+    const targetStr = (s.ts - 1) / 0.7;
+    s.sl += (targetStr - s.sl) * 0.10;
+
+    node.style.transform = `translate(calc(-50% + ${s.cx}px), calc(-50% + ${s.cy}px))`;
+    dot.style.transform  = `scale(${s.cs})`;
+
+    /* Glow progressif selon proximité */
+    const str = Math.max(0, (s.cs - 1) / 0.7);
+    if (str > 0.01) {
+      dot.style.background = `hsl(265 ${75 + str*15}% ${60 + str*20}%)`;
+      dot.style.boxShadow  = `0 0 ${12 + str*12}px hsl(265 75% 60%), 0 0 ${str*40}px hsl(265 75% 60% / 0.4)`;
+    } else {
+      dot.style.background = '';
+      dot.style.boxShadow  = '';
+    }
+    /* Couleur label lerpée */
+    const label = node.querySelector('.node-label');
+    const r = Math.round(96  + s.sl * (255 - 96));
+    const g = Math.round(96  + s.sl * (255 - 96));
+    const b = Math.round(108 + s.sl * (255 - 108));
+    label.style.color = `rgb(${r},${g},${b})`;
+  });
+
+  /* Mise à jour des lignes — une seule fois par frame */
+  if (svg && svg.children.length) {
+    const svgRect = svg.getBoundingClientRect();
+    const pts = CONST_IDS.map(id => {
+      const dot = document.querySelector(`#${id} .node-dot`);
+      if (!dot) return { x:0, y:0 };
+      const r = dot.getBoundingClientRect();
+      return { x: r.left + r.width/2 - svgRect.left, y: r.top + r.height/2 - svgRect.top };
+    });
+    Array.from(svg.children).forEach((line, i) => {
+      const edge = CONST_EDGES[i];
+      if (!edge) return;
+      line.setAttribute('x1', pts[edge[0]].x); line.setAttribute('y1', pts[edge[0]].y);
+      line.setAttribute('x2', pts[edge[1]].x); line.setAttribute('y2', pts[edge[1]].y);
+    });
+  }
+
+  requestAnimationFrame(animateConstellation);
+}
+animateConstellation();
+new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    const sec = document.getElementById('act-reality');
+    sec.classList.add('grid-on');
+    sec.querySelectorAll('.blur-reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.mem-word').forEach((el, i) => {
+      setTimeout(() => el.classList.add('play'), i * 1200);
+    });
+  }
+}, { threshold: 0.25 }).observe(document.getElementById('act-reality'));
+
+/* ══ HERO IMMEDIATE REVEAL ══ */
+window.addEventListener('load', () => {
+  document.querySelectorAll('#act-01 .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 300 + i * 200);
+  });
+});
+
+/* ══ PORTAL TRANSITION ══ */
+document.getElementById('portal-link').addEventListener('click', e => {
+  e.preventDefault();
+  const target = e.currentTarget.href;
+  document.body.style.transition = 'opacity 0.6s ease';
+  document.body.style.opacity = '0';
+  setTimeout(() => {
+    window.location.href = target;
+    setTimeout(() => { document.body.style.opacity = '1'; }, 1000);
+  }, 600);
+});
+</script>
+</body>
+</html>

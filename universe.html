@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universe / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
+}
+nav a {
+  color: var(--dim); text-decoration: none;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+nav a:hover { color: var(--white); }
+nav .nav-active { color: var(--white); }
+
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .15s; } .d2 { transition-delay: .3s; }
+.d3 { transition-delay: .45s; } .d4 { transition-delay: .6s; }
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 5rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); }
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ PASSION ENTRIES ══ */
+.passion-list { display: flex; flex-direction: column; }
+.passion-entry {
+  display: grid; grid-template-columns: 220px 1fr; gap: 5rem;
+  padding: 3.5rem 0; border-bottom: 1px solid var(--glass-border);
+  align-items: start;
+}
+.passion-entry:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:700px) { .passion-entry { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.5rem 0; } }
+
+.passion-meta { padding-top: 0.15rem; }
+.passion-index { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.5rem; opacity: 0.5; }
+.passion-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 400; line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.passion-name em { font-style: italic; color: hsl(265 60% 80%); }
+.passion-tag {
+  display: inline-block; padding: 0.28rem 0.8rem;
+  border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+.passion-body { font-size: 0.85rem; line-height: 1.95; color: var(--dim); }
+.passion-body p + p { margin-top: 1rem; }
+.passion-pull {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.05rem; color: oklch(75% 0.01 250); line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+/* ══ DREAM ══ */
+#dream {
+  padding: 8rem 0 10rem;
+  border-top: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind the dream section */
+#dream::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, hsl(265 60% 40% / 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#dream .inner { position: relative; z-index: 1; }
+
+.dream-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 3rem; }
+
+.dream-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 400; line-height: 1.15; letter-spacing: -0.02em;
+  margin-bottom: 3.5rem; max-width: 720px;
+}
+.dream-heading em { font-style: italic; color: hsl(265 60% 80%); }
+
+.dream-lines { display: flex; flex-direction: column; gap: 0; max-width: 620px; }
+.dream-line {
+  display: flex; align-items: baseline; gap: 1.5rem;
+  padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border);
+}
+.dream-line:first-child { border-top: 1px solid var(--glass-border); }
+.dream-line-marker {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 0.95rem; color: var(--violet); opacity: 0.6; flex-shrink: 0; width: 16px;
+}
+.dream-line-text { font-size: 0.85rem; color: var(--dim); line-height: 1.85; }
+.dream-line-text strong { color: var(--white); font-weight: 400; }
+
+.dream-close {
+  margin-top: 4rem;
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem); color: oklch(55% 0.01 250);
+  line-height: 1.7; max-width: 500px;
+}
+
+/* ══ FOOTER ══ */
+#page-footer { border-top: 1px solid var(--glass-border); position: relative; z-index: 1; padding: 4rem 0; }
+#page-footer .inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.btn-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; color: var(--dim); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--glass-border); border-radius: 30px;
+  padding: 0.5rem 1.3rem; transition: color 0.3s, border-color 0.3s;
+}
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html" class="nav-active">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal">Universe</p>
+      <h1 class="hero-title">
+        <span class="reveal">What I</span><br>
+        <em class="reveal d1">carry with me</em>
+      </h1>
+      <p class="hero-desc reveal d2">
+        Beyond engineering, there is a world I explore through lenses, strings, controllers and pages.
+        This is not a list of hobbies. It is a map of what shapes the way I think.
+      </p>
+    </div>
+  </section>
+
+  <!-- PASSIONS -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Passions</p>
+      <div class="passion-list">
+
+        <!-- Photography -->
+        <div class="passion-entry reveal">
+          <div class="passion-meta">
+            <p class="passion-index">01</p>
+            <h2 class="passion-name"><em>Photography</em></h2>
+            <span class="passion-tag">Visual</span>
+          </div>
+          <div class="passion-body">
+            <p class="passion-pull">"Light does not wait."</p>
+            <p>I photograph with what I have for now. Not because the phone is the point, but because the eye is. What I am learning is how to see: the angle of a shadow, the symmetry of a structure, the way a colour shifts at the edge of a frame.</p>
+            <p>Photography is somewhere I want to go further. Better gear, darker rooms, more time. The phone is a starting point, not the destination.</p>
+          </div>
+        </div>
+
+        <!-- Guitar -->
+        <div class="passion-entry reveal">
+          <div class="passion-meta">
+            <p class="passion-index">02</p>
+            <h2 class="passion-name">Guitar &<br><em>Music</em></h2>
+            <span class="passion-tag">Sound</span>
+          </div>
+          <div class="passion-body">
+            <p class="passion-pull">"A system with infinite outputs from finite inputs."</p>
+            <p>Six strings. Twelve frets. An almost absurd amount of combinations. I came to guitar the same way I come to most things: by wanting to understand how it works, then losing track of time actually playing it.</p>
+            <p>Music is the one space where being wrong sounds interesting. A missed note becomes a different note. That relationship with error is one I try to carry into everything else I build.</p>
+          </div>
+        </div>
+
+        <!-- Astronomy -->
+        <div class="passion-entry reveal">
+          <div class="passion-meta">
+            <p class="passion-index">03</p>
+            <h2 class="passion-name"><em>Astronomy</em></h2>
+            <span class="passion-tag">Systems</span>
+          </div>
+          <div class="passion-body">
+            <p class="passion-pull">"The universe is not large. It is patient."</p>
+            <p>I have been fascinated by space for as long as I can remember. Not just the scale of it, but the precision. The fact that we can predict where a planet will be in two thousand years from equations written on Earth is, to me, one of the most extraordinary things humans have ever done.</p>
+            <p>Astronomy is what pulled me toward physics, and physics toward engineering. Everything connects. The orbit of a satellite and the trajectory of a robotic arm are solved with the same tools.</p>
+          </div>
+        </div>
+
+        <!-- Video Games -->
+        <div class="passion-entry reveal">
+          <div class="passion-meta">
+            <p class="passion-index">04</p>
+            <h2 class="passion-name">Video<br><em>Games</em></h2>
+            <span class="passion-tag">Design</span>
+          </div>
+          <div class="passion-body">
+            <p class="passion-pull">"The best games teach you how to think, not what to do."</p>
+            <p>I grew up with games, but I never just played them. I always wanted to know how the rules worked: why a mechanic felt satisfying, where the difficulty curve broke, how the world was built. Games are interactive systems, and systems are what I find most interesting about everything.</p>
+            <p>Some games reshaped how I approach problems. The puzzle that forced me to think backwards. The strategy game that taught me to accept incomplete information. I bring those lessons into code and design without always realising it.</p>
+          </div>
+        </div>
+
+        <!-- Reading -->
+        <div class="passion-entry reveal">
+          <div class="passion-meta">
+            <p class="passion-index">05</p>
+            <h2 class="passion-name"><em>Reading</em></h2>
+            <span class="passion-tag">Ideas</span>
+          </div>
+          <div class="passion-body">
+            <p class="passion-pull">"A book is someone else's thinking, slowed down enough to catch."</p>
+            <p>I read to encounter minds that work differently from mine. Science, fiction, essays, history: the genre matters less than the quality of thought. I am looking for the sentence that reframes something I thought I already understood.</p>
+            <p>Reading is the slowest thing I do. I have learned to value that.</p>
+          </div>
+        </div>
+
+        <!-- Volleyball -->
+        <div class="passion-entry reveal">
+          <div class="passion-meta">
+            <p class="passion-index">06</p>
+            <h2 class="passion-name"><em>Volleyball</em></h2>
+            <span class="passion-tag">Team</span>
+          </div>
+          <div class="passion-body">
+            <p class="passion-pull">"You cannot win a rally alone."</p>
+            <p>Volleyball is where I learned to trust other people's decisions in real time. There is no pause, no undo. The ball is either going over the net or it is not, and each of the six players made that happen together.</p>
+            <p>Team sports are a strange kind of distributed system. Everyone running a local decision, shared global objective. I find that genuinely interesting, beyond just enjoying the game.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DREAM -->
+  <section id="dream">
+    <div class="inner">
+      <p class="dream-label reveal">Dream</p>
+      <h2 class="dream-heading reveal d1">
+        I do not know exactly<br>
+        where I am going. <em>That is fine.</em>
+      </h2>
+      <div class="dream-lines reveal d2">
+        <div class="dream-line">
+          <span class="dream-line-marker">·</span>
+          <span class="dream-line-text">An engineer. In trains, in space, in watchmaking, in the design of objects that last. I do not know which yet. I know I want <strong>to build things that are precise and beautiful</strong> at the same time.</span>
+        </div>
+        <div class="dream-line">
+          <span class="dream-line-marker">·</span>
+          <span class="dream-line-text">A volunteer firefighter. Not for the adrenaline, though it is part of it. For the idea that <strong>some things are worth showing up for</strong> without being asked twice.</span>
+        </div>
+        <div class="dream-line">
+          <span class="dream-line-marker">·</span>
+          <span class="dream-line-text">A writer. One book. I do not know what it is about yet, but I know the feeling I want it to leave. <strong>That particular kind of quiet</strong> you get after the last page.</span>
+        </div>
+        <div class="dream-line">
+          <span class="dream-line-marker">·</span>
+          <span class="dream-line-text">A game developer. A real one, with a world in it. Something that takes <strong>three years to finish</strong> and means something when you do.</span>
+        </div>
+        <div class="dream-line">
+          <span class="dream-line-marker">·</span>
+          <span class="dream-line-text">A creator who cares about how a thing looks and feels, not just whether it works.</span>
+        </div>
+        <div class="dream-line">
+          <span class="dream-line-marker">·</span>
+          <span class="dream-line-text">Someone who never stopped being curious about the universe, and found ways to make that curiosity useful.</span>
+        </div>
+      </div>
+      <p class="dream-close reveal d3">
+        "The wind will point somewhere.<br>
+        I just want to be ready to follow it."
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="page-footer">
+  <div class="inner">
+    <a href="about.html" class="btn-pill">← About</a>
+    <span class="footer-sig">Bastien Gaffet</span>
+    <a href="work-v4.html" class="btn-pill">Work →</a>
+  </div>
+</footer>
+
+<script>
+/* ── COSMOS ── */
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+const NUM_STARS = 220;
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', () => { resize(); initStars(); });
+resize();
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < NUM_STARS; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * Math.max(W, H) * 0.65;
+    stars.push({ x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius, r:Math.random()*1.1+0.15, alpha:Math.random()*0.5+0.08, twinkle:Math.random()*Math.PI*2, speed:(Math.random()*0.3+0.05)*0.00008, angle, radius });
+  }
+}
+initStars();
+
+function draw(t) {
+  ctx.clearRect(0, 0, W, H);
+  const bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
+  bg.addColorStop(0,'rgba(14,10,30,1)'); bg.addColorStop(0.3,'rgba(8,6,18,1)'); bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  const cx=W/2, cy=H/2;
+  // Violet nebula glow (stronger on work page)
+  const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.5);
+  g1.addColorStop(0,'rgba(100,50,200,0.0)'); g1.addColorStop(0.3,'rgba(100,50,200,0.06)'); g1.addColorStop(0.7,'rgba(60,20,140,0.09)'); g1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+  stars.forEach(s => {
+    s.angle += s.speed; s.x = cx+Math.cos(s.angle)*s.radius; s.y = cy+Math.sin(s.angle)*s.radius;
+    const a = Math.max(0, Math.min(1, s.alpha+Math.sin(s.twinkle+t*0.001)*0.25));
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fillStyle=`rgba(220,210,255,${a})`; ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+
+resize(); initStars(); requestAnimationFrame(draw);
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+/* ── REVEAL ── */
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+</body>
+</html>

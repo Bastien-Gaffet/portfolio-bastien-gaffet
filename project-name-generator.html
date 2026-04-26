@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Name Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #05060A;
+  --surface:  rgba(255,255,255,0.04);
+  --border:   rgba(255,255,255,0.08);
+  --violet:   hsl(265 75% 62%);
+  --vglow:    hsl(265 75% 62% / 0.25);
+  --cyan:     hsl(195 80% 65%);
+  --white:    oklch(95% 0.005 250);
+  --dim:      oklch(55% 0.01 250);
+  --mono:     'Syne Mono', monospace;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-x: hidden;
+}
+
+canvas#bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+
+.wrap {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 680px;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+
+/* ── HEADER ── */
+.eyebrow {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 1rem;
+  opacity: 0; animation: up 0.7s ease 0.1s forwards;
+}
+h1 {
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 800; line-height: 1; letter-spacing: -0.03em;
+  text-align: center; margin-bottom: 0.8rem;
+  opacity: 0; animation: up 0.7s ease 0.2s forwards;
+}
+h1 span { color: var(--violet); }
+.sub {
+  font-size: 0.82rem; color: var(--dim); text-align: center;
+  line-height: 1.7; margin-bottom: 3rem;
+  opacity: 0; animation: up 0.7s ease 0.3s forwards;
+}
+
+/* ── CONTROLS ── */
+.controls {
+  width: 100%; display: flex; flex-direction: column; gap: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0; animation: up 0.7s ease 0.4s forwards;
+}
+
+.control-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+@media(max-width:520px){ .control-row { grid-template-columns: 1fr; } }
+
+.control {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 1rem 1.2rem;
+}
+.control label {
+  display: block; font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--violet); margin-bottom: 0.7rem;
+}
+.control select, .control input[type=text] {
+  width: 100%; background: transparent; border: none; outline: none;
+  color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.85rem;
+  cursor: pointer;
+}
+.control select option { background: #1a1830; }
+
+.toggle-group {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+}
+.tog {
+  padding: 0.3rem 0.9rem; border-radius: 30px; border: 1px solid var(--border);
+  font-family: 'Syne', sans-serif; font-size: 0.72rem; cursor: pointer;
+  color: var(--dim); background: transparent; transition: all 0.2s;
+}
+.tog.active {
+  border-color: var(--violet); color: var(--white);
+  background: hsl(265 75% 62% / 0.15);
+}
+.tog:hover { border-color: rgba(255,255,255,0.2); color: var(--white); }
+
+/* ── GENERATE BUTTON ── */
+.btn-gen {
+  width: 100%; padding: 1rem; border-radius: 12px;
+  border: 1px solid var(--violet); background: var(--vglow);
+  color: var(--white); font-family: 'Syne', sans-serif;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; cursor: pointer;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.1s;
+  opacity: 0; animation: up 0.7s ease 0.5s forwards;
+}
+.btn-gen:hover {
+  background: hsl(265 75% 62% / 0.35);
+  box-shadow: 0 0 40px hsl(265 75% 62% / 0.2);
+}
+.btn-gen:active { transform: scale(0.98); }
+
+/* ── OUTPUT ── */
+.output {
+  width: 100%; margin-top: 2rem;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.result-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.4rem 1.6rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  opacity: 0; transform: translateY(10px);
+  animation: cardIn 0.4s ease forwards;
+}
+.result-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
+}
+.result-card.featured {
+  border-color: hsl(265 75% 62% / 0.5);
+  background: hsl(265 75% 62% / 0.08);
+}
+.result-card.featured:hover { background: hsl(265 75% 62% / 0.14); }
+
+.card-left { flex: 1; min-width: 0; }
+.card-name {
+  font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700;
+  letter-spacing: -0.02em; margin-bottom: 0.3rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.result-card.featured .card-name { color: hsl(265 60% 85%); }
+.card-type {
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim);
+}
+.card-right { display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
+.card-tag {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--dim);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+}
+.copy-btn {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--dim); cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: color 0.2s, border-color 0.2s;
+}
+.copy-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.copy-btn.copied { color: var(--cyan); border-color: var(--cyan); }
+
+.divider {
+  text-align: center; font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--dim); padding: 0.4rem 0;
+}
+
+.empty {
+  text-align: center; color: var(--dim); font-size: 0.82rem;
+  padding: 3rem 0; border: 1px dashed var(--border); border-radius: 16px;
+}
+
+/* ── FOOTER ── */
+.credit {
+  margin-top: 3rem; font-size: 0.65rem; color: var(--dim);
+  letter-spacing: 0.1em; opacity: 0; animation: up 0.7s ease 0.6s forwards;
+}
+.credit a { color: var(--violet); text-decoration: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes up {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes cardIn {
+  to { opacity:1; transform:translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="wrap">
+  <p class="eyebrow">Tool by Bastien Gaffet</p>
+  <h1>Project Name<br><span>Generator</span></h1>
+  <p class="sub">Enter a few keywords about your project.<br>Get names that sound built, not brainstormed.</p>
+
+  <div class="controls">
+    <div class="control">
+      <label>Keywords (optional)</label>
+      <input type="text" id="keywords" placeholder="robot, autonomous, chess, sensor..." maxlength="80">
+    </div>
+
+    <div class="control-row">
+      <div class="control">
+        <label>Domain</label>
+        <select id="domain">
+          <option value="any">Any</option>
+          <option value="robotics">Robotics</option>
+          <option value="software">Software</option>
+          <option value="ai">AI / Algorithm</option>
+          <option value="hardware">Hardware</option>
+          <option value="web">Web / Interface</option>
+          <option value="space">Space / Astronomy</option>
+          <option value="game">Game</option>
+          <option value="data">Data / Systems</option>
+        </select>
+      </div>
+      <div class="control">
+        <label>Style</label>
+        <div class="toggle-group" id="style-group">
+          <button class="tog active" data-val="short">Short</button>
+          <button class="tog active" data-val="compound">Compound</button>
+          <button class="tog active" data-val="acronym">Acronym</button>
+          <button class="tog active" data-val="mythic">Mythic</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-gen" onclick="generate()">Generate Names</button>
+
+  <div class="output" id="output">
+    <div class="empty">Hit generate to get your first batch.</div>
+  </div>
+
+  <p class="credit">Made by <a href="story-v6.html">Bastien Gaffet</a></p>
+</div>
+
+<script>
+/* ── COSMOS ── */
+const cv = document.getElementById('bg');
+const ctx = cv.getContext('2d');
+let W, H, stars = [];
+function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+function initS(){
+  stars = Array.from({length:160},()=>{
+    const a = Math.random()*Math.PI*2, r = Math.random()*Math.max(W,H)*0.65;
+    return {x:W/2+Math.cos(a)*r, y:H/2+Math.sin(a)*r, r:Math.random()*1+0.15,
+            al:Math.random()*0.45+0.05, tw:Math.random()*Math.PI*2,
+            sp:(Math.random()*0.3+0.05)*0.00007, a, radius:r};
+  });
+}
+function drawBg(t){
+  ctx.clearRect(0,0,W,H);
+  const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
+  bg.addColorStop(0,'rgba(12,8,28,1)'); bg.addColorStop(0.4,'rgba(7,5,16,1)'); bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.a+=s.sp; s.x=W/2+Math.cos(s.a)*s.radius; s.y=H/2+Math.sin(s.a)*s.radius;
+    const a=s.al*(0.6+0.4*Math.sin(s.tw+t*0.001));
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(210,200,255,${a})`; ctx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+resize(); initS(); requestAnimationFrame(drawBg);
+window.addEventListener('resize',()=>{resize();initS();});
+
+/* ── TOGGLE LOGIC ── */
+document.querySelectorAll('.tog').forEach(t=>{
+  t.addEventListener('click',()=>t.classList.toggle('active'));
+});
+
+/* ── NAME BANKS ── */
+const BANKS = {
+  prefixes: {
+    robotics: ['Servo','Torq','Axon','Nex','Grav','Flux','Vect','Arc','Mech'],
+    software: ['Sync','Flux','Node','Core','Byte','Hex','Pack','Run','Loop'],
+    ai:       ['Sigma','Infer','Apex','Logic','Nexum','Ratio','Axiom','Algo'],
+    hardware: ['Volt','Amp','Core','Gate','Board','Chip','Bus','Pulse','Ohm'],
+    web:      ['View','Frame','Mesh','Grid','Lens','Form','Layer','Snap','Flow'],
+    space:    ['Lyra','Orion','Vega','Altair','Sirius','Nova','Pulsar','Quasar'],
+    game:     ['Quest','Forge','Realm','Pixel','Glyph','Rune','Rift','Vault'],
+    data:     ['Struct','Schema','Index','Query','Pipe','Cache','Merge','Graph'],
+    any:      ['Nexus','Forge','Arc','Pulse','Core','Apex','Flux','Grid','Eigen'],
+  },
+  suffixes: {
+    robotics: ['arm','bot','mech','rig','joint','grip','link','axis'],
+    software: ['kit','lib','io','run','lab','hub','forge','stack'],
+    ai:       ['net','mind','engine','agent','brain','learn','infer'],
+    hardware: ['board','chip','gate','bus','core','module','shield'],
+    web:      ['UI','view','dash','flow','frame','layer','grid'],
+    space:    ['scope','map','nav','track','probe','scan','field'],
+    game:     ['craft','world','run','quest','forge','byte','play'],
+    data:     ['base','flow','pipe','stream','log','set','graph'],
+    any:      ['lab','forge','core','hub','kit','net','run','io'],
+  },
+  mythic:   ['Aether','Zephyr','Helios','Kairos','Chronos','Erebus','Hyperion',
+             'Selene','Ouranos','Nemesis','Proteus','Castor','Pollux','Oberon',
+             'Triton','Ariel','Phoebe','Tethys','Rhea','Dione'],
+  connectors: ['X','Pro','Zero','One','Alpha','Beta','Lite','Ultra','Neo','Plus'],
+  acronym_words: {
+    robotics: ['Robotic','Autonomous','Mechanical','Integrated','Kinematic','Servo','Electronic'],
+    software: ['Scalable','Optimized','Fast','Efficient','Unified','Networked','Lightweight'],
+    ai:       ['Adaptive','Intelligent','Neural','Optimized','Recursive','Heuristic','Predictive'],
+    hardware: ['Advanced','Modular','Integrated','Compact','Embedded','Reliable','Unified'],
+    web:      ['Responsive','Visual','Interactive','Modular','Elegant','Fast','Unified'],
+    space:    ['Stellar','Orbital','Navigational','Astronomical','Spatial','Cosmic','Universal'],
+    game:     ['Dynamic','Interactive','Generative','Immersive','Adaptive','Playful','Exploratory'],
+    data:     ['Structured','Queryable','Analyzed','Transactional','Aggregated','Indexed','Mapped'],
+    any:      ['Advanced','Networked','Intelligent','Generic','Extended','Rapid','System'],
+  }
+};
+
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+function getStyles(){
+  return [...document.querySelectorAll('.tog.active')].map(t=>t.dataset.val);
+}
+
+function makeAcronym(domain, kw){
+  const pool = [...(BANKS.acronym_words[domain]||BANKS.acronym_words.any)];
+  if(kw){ kw.split(/[\s,]+/).forEach(w=>{ if(w.length>3) pool.push(cap(w)); }); }
+  const len = 3 + Math.floor(Math.random()*2);
+  let letters = '', words = [];
+  for(let i=0;i<len;i++){
+    const w = pick(pool); letters+=w[0].toUpperCase(); words.push(w);
+  }
+  return { name: letters, subtitle: words.join(' '), type:'acronym' };
+}
+
+function makeShort(domain, kw){
+  const kwArr = kw ? kw.split(/[\s,]+/).filter(w=>w.length>2) : [];
+  const base = kwArr.length && Math.random()>.4
+    ? cap(pick(kwArr))
+    : cap(pick(BANKS.prefixes[domain]||BANKS.prefixes.any));
+  return { name: base, type:'short' };
+}
+
+function makeCompound(domain, kw){
+  const kwArr = kw ? kw.split(/[\s,]+/).filter(w=>w.length>2) : [];
+  const pre = kwArr.length && Math.random()>.5
+    ? cap(pick(kwArr))
+    : cap(pick(BANKS.prefixes[domain]||BANKS.prefixes.any));
+  const suf = pick(BANKS.suffixes[domain]||BANKS.suffixes.any);
+  const conn = Math.random()>.6 ? pick(BANKS.connectors) : null;
+  const name = conn
+    ? `${pre}${conn} ${cap(suf)}`
+    : `${pre}${suf}`;
+  return { name, type:'compound' };
+}
+
+function makeMythic(domain){
+  const base = pick(BANKS.mythic);
+  const variant = Math.random()>.5 ? ` ${pick(BANKS.connectors)}` : '';
+  return { name: base+variant, type:'mythic' };
+}
+
+function generate(){
+  const domain  = document.getElementById('domain').value;
+  const kw      = document.getElementById('keywords').value.trim().toLowerCase();
+  const styles  = getStyles();
+  if(!styles.length) return;
+
+  const results = [];
+  const pool = [];
+
+  // Always make 1 featured (random style)
+  const featStyle = pick(styles);
+  let feat;
+  if(featStyle==='acronym')  feat = makeAcronym(domain,kw);
+  else if(featStyle==='mythic')   feat = makeMythic(domain);
+  else if(featStyle==='compound') feat = makeCompound(domain,kw);
+  else feat = makeShort(domain,kw);
+  feat.featured = true;
+  results.push(feat);
+
+  // Fill rest: 5 more
+  for(let i=0;i<5;i++){
+    const s = pick(styles);
+    let r;
+    if(s==='acronym')  r = makeAcronym(domain,kw);
+    else if(s==='mythic')   r = makeMythic(domain);
+    else if(s==='compound') r = makeCompound(domain,kw);
+    else r = makeShort(domain,kw);
+    results.push(r);
+  }
+
+  renderResults(results);
+}
+
+function renderResults(results){
+  const out = document.getElementById('output');
+  out.innerHTML = '';
+
+  results.forEach((r,i)=>{
+    if(i===1){
+      const div = document.createElement('div');
+      div.className='divider'; div.textContent='— other suggestions —';
+      out.appendChild(div);
+    }
+
+    const card = document.createElement('div');
+    card.className = 'result-card'+(r.featured?' featured':'');
+    card.style.animationDelay = `${i*0.07}s`;
+
+    const typeLabel = {
+      acronym:'Acronym', short:'Short form',
+      compound:'Compound', mythic:'Mythic reference'
+    }[r.type] || r.type;
+
+    card.innerHTML = `
+      <div class="card-left">
+        <div class="card-name">${r.name}</div>
+        <div class="card-type">${typeLabel}${r.subtitle?` &nbsp;·&nbsp; <span style="font-family:var(--mono);font-size:0.58rem;opacity:.6">${r.subtitle}</span>`:''}</div>
+      </div>
+      <div class="card-right">
+        <span class="card-tag">${r.type}</span>
+        <button class="copy-btn" title="Copy">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>`;
+
+    card.querySelector('.copy-btn').addEventListener('click', e=>{
+      e.stopPropagation();
+      navigator.clipboard.writeText(r.name);
+      const btn = e.currentTarget;
+      btn.classList.add('copied');
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+      setTimeout(()=>{
+        btn.classList.remove('copied');
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+      }, 1800);
+    });
+
+    out.appendChild(card);
+  });
+}
+
+// Enter key triggers generate
+document.getElementById('keywords').addEventListener('keydown', e=>{
+  if(e.key==='Enter') generate();
+});
+</script>
+</body>
+</html>
