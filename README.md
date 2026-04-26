@@ -2,7 +2,7 @@
 
 Personal portfolio. Story, projects, universe and about pages built as a static site.
 
-# bastiengaffet.fr
+## bastiengaffet.fr
 
 Personal portfolio website built as a static HTML/CSS/JS site.
 
