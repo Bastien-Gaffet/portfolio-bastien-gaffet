@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html, body { height: 100%; overflow: hidden; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  opacity: 0; animation: fadeIn 0.7s ease forwards;
+  display: flex; flex-direction: column;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
+}
+nav a {
+  color: var(--dim); text-decoration: none;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+nav a:hover { color: var(--white); }
+nav .nav-active { color: var(--white); }
+
+/* ══ LAYOUT ══ */
+#page {
+  position: relative; z-index: 1;
+  height: 100vh; display: flex; flex-direction: column;
+}
+
+/* ══ HEADER ══ */
+#header {
+  padding: 2rem 3rem 1.5rem;
+  flex-shrink: 0;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  border-bottom: 1px solid var(--glass-border);
+}
+.header-left {}
+.page-eyebrow {
+  font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 0.5rem;
+}
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400; line-height: 1.1;
+}
+.page-title em { font-style: italic; color: hsl(265 60% 80%); }
+.photo-count {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 0.78rem; color: var(--dim);
+  align-self: flex-end; padding-bottom: 0.15rem;
+}
+
+/* ══ CAROUSEL AREA ══ */
+#carousel-area {
+  flex: 1; display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 1.5rem 0;
+  cursor: grab;
+}
+#carousel-area:active { cursor: grabbing; }
+
+#track {
+  display: flex; align-items: center;
+  gap: 1.5rem; padding: 0 calc(50vw - 240px);
+  transition: transform 0.55s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+  user-select: none;
+}
+
+/* ══ CARDS ══ */
+.photo-card {
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 8px; overflow: hidden;
+  transition: width 0.55s cubic-bezier(.22,.61,.36,1),
+              height 0.55s cubic-bezier(.22,.61,.36,1),
+              opacity 0.55s ease,
+              box-shadow 0.55s ease;
+  cursor: pointer;
+}
+
+.photo-card.active {
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px var(--glass-border);
+  cursor: default;
+}
+
+.photo-card img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  pointer-events: none;
+  transition: filter 0.55s ease;
+}
+
+/* Card sizes */
+.photo-card.active  { width: 480px; height: 360px; opacity: 1; }
+.photo-card.side-1  { width: 280px; height: 210px; opacity: 0.55; }
+.photo-card.side-2  { width: 180px; height: 135px; opacity: 0.3; }
+.photo-card.hidden  { width: 120px; height: 90px; opacity: 0.1; }
+
+.photo-card:not(.active) img { filter: brightness(0.65) saturate(0.7); }
+
+/* Overlay on active card */
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,6,10,0.75) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.photo-card.active .card-overlay { opacity: 1; }
+
+/* ══ CAPTION ══ */
+#caption {
+  position: absolute; bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  text-align: center; z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.caption-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 400; line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+.caption-title em { font-style: italic; color: hsl(265 60% 80%); }
+.caption-meta {
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ══ PROGRESS DOTS ══ */
+#dots {
+  position: absolute; bottom: 0.8rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 0.4rem; align-items: center;
+  z-index: 10;
+}
+.dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--dim); opacity: 0.4;
+  transition: all 0.35s ease; cursor: pointer;
+}
+.dot.active {
+  width: 20px; border-radius: 2px;
+  background: var(--violet); opacity: 1;
+}
+
+/* ══ SCROLL HINT ══ */
+#scroll-hint {
+  position: absolute; right: 2.5rem; bottom: 1.8rem;
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim); opacity: 0.5;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.hint-arrow { font-size: 0.9rem; animation: nudge 2s ease-in-out infinite; }
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+/* ══ FOOTER ══ */
+#page-footer {
+  border-top: 1px solid var(--glass-border);
+  padding: 1.2rem 3rem; flex-shrink: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; z-index: 1;
+}
+.btn-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; color: var(--dim); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--glass-border); border-radius: 30px;
+  padding: 0.5rem 1.3rem; transition: color 0.3s, border-color 0.3s;
+}
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
+.footer-sig {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 0.85rem; color: var(--dim);
+}
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<div id="page">
+  <div id="header">
+    <div class="header-left">
+      <p class="page-eyebrow">Photography</p>
+      <h1 class="page-title">Through the <em>lens</em></h1>
+    </div>
+    <p class="photo-count" id="count-label">01 / 08</p>
+  </div>
+
+  <div id="carousel-area">
+    <div id="track"></div>
+
+    <div id="caption">
+      <p class="caption-title" id="cap-title"></p>
+      <p class="caption-meta" id="cap-meta"></p>
+    </div>
+
+    <div id="dots"></div>
+
+    <div id="scroll-hint">
+      Scroll to navigate <span class="hint-arrow">›</span>
+    </div>
+  </div>
+
+  <footer id="page-footer">
+    <a href="work-v4.html" class="btn-pill">← Work</a>
+    <span class="footer-sig">Bastien Gaffet</span>
+    <a href="about.html" class="btn-pill">About →</a>
+  </footer>
+</div>
+
+<script>
+// ══ PHOTOS DATA ══════════════════════════════════════════════════════════════
+// Replace src with real image paths when available.
+// Format: { src, title, location, date }
+const PHOTOS = [
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
+  { src: '', title: 'Your photo title', location: 'Location', date: '2025' },
+];
+
+// ══ COSMOS ═══════════════════════════════════════════════════════════════════
+const cv = document.getElementById('cosmos');
+const ctx = cv.getContext('2d');
+let W, H, stars = [];
+
+function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+function initS(){
+  stars = Array.from({length:160},()=>{
+    const a=Math.random()*Math.PI*2, r=Math.random()*Math.max(W,H)*.65;
+    return {x:W/2+Math.cos(a)*r, y:H/2+Math.sin(a)*r,
+            rad:Math.random()*1.1+.15, al:Math.random()*.45+.05,
+            sp:(Math.random()*.3+.05)*.00007, a, radius:r,
+            tw:Math.random()*Math.PI*2};
+  });
+}
+function drawBg(t){
+  ctx.clearRect(0,0,W,H);
+  const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
+  bg.addColorStop(0,'rgba(12,8,28,1)');bg.addColorStop(.4,'rgba(7,5,16,1)');bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.a+=s.sp;s.x=W/2+Math.cos(s.a)*s.radius;s.y=H/2+Math.sin(s.a)*s.radius;
+    const a=s.al*(0.6+0.4*Math.sin(s.tw+t*.001));
+    ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);
+    ctx.fillStyle=`rgba(210,200,255,${a})`;ctx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+resize();initS();requestAnimationFrame(drawBg);
+window.addEventListener('resize',()=>{resize();initS();});
+
+// ══ CAROUSEL ═════════════════════════════════════════════════════════════════
+const track   = document.getElementById('track');
+const capTitle = document.getElementById('cap-title');
+const capMeta  = document.getElementById('cap-meta');
+const dotsEl   = document.getElementById('dots');
+const countEl  = document.getElementById('count-label');
+
+let current = 0;
+let isDragging = false, dragStartX = 0, dragDelta = 0;
+
+// Build cards
+PHOTOS.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'photo-card';
+  card.dataset.index = i;
+
+  if (p.src) {
+    const img = document.createElement('img');
+    img.src = p.src;
+    img.alt = p.title;
+    img.draggable = false;
+    card.appendChild(img);
+  } else {
+    // Placeholder when no image yet
+    card.style.background = `hsl(${265 + i * 20} 30% 12%)`;
+    card.style.border = '1px solid var(--glass-border)';
+    const ph = document.createElement('div');
+    ph.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;';
+    ph.innerHTML = `<span style="font-family:Playfair Display,serif;font-style:italic;font-size:.8rem;color:var(--dim);opacity:.5;">${String(i+1).padStart(2,'0')}</span>`;
+    card.appendChild(ph);
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'card-overlay';
+  card.appendChild(overlay);
+
+  card.addEventListener('click', () => { if (!isDragging) goTo(i); });
+  track.appendChild(card);
+});
+
+// Build dots
+PHOTOS.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot';
+  dot.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(dot);
+});
+
+function getSizeClass(dist) {
+  if (dist === 0) return 'active';
+  if (dist === 1) return 'side-1';
+  if (dist === 2) return 'side-2';
+  return 'hidden';
+}
+
+function update() {
+  const cards = track.querySelectorAll('.photo-card');
+  const dots   = dotsEl.querySelectorAll('.dot');
+  const n = PHOTOS.length;
+
+  cards.forEach((card, i) => {
+    const dist = Math.min(Math.abs(i - current), n - Math.abs(i - current));
+    card.className = 'photo-card ' + getSizeClass(dist);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === current);
+  });
+
+  // Caption
+  const p = PHOTOS[current];
+  capTitle.innerHTML = p.title.includes(' ') 
+    ? p.title.replace(/(\w+)\s+(\w.*)/, '$1 <em>$2</em>')
+    : `<em>${p.title}</em>`;
+  capMeta.textContent = `${p.location} · ${p.date}`;
+
+  // Counter
+  countEl.textContent = `${String(current+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
+
+  // Offset track so active card is centered
+  const CARD_W = 480, SIDE1_W = 280, SIDE2_W = 180, HIDDEN_W = 120;
+  const GAP = 24;
+  let offset = 0;
+  for (let i = 0; i < current; i++) {
+    const dist = Math.min(Math.abs(i - current), n - Math.abs(i - current));
+    const w = dist === 0 ? CARD_W : dist === 1 ? SIDE1_W : dist === 2 ? SIDE2_W : HIDDEN_W;
+    offset += w + GAP;
+  }
+  track.style.transform = `translateX(-${offset}px)`;
+}
+
+function goTo(idx) {
+  const n = PHOTOS.length;
+  current = ((idx % n) + n) % n;
+  update();
+}
+
+// Wheel scroll
+let wheelCooldown = false;
+document.getElementById('carousel-area').addEventListener('wheel', e => {
+  e.preventDefault();
+  if (wheelCooldown) return;
+  wheelCooldown = true;
+  if (e.deltaY > 0 || e.deltaX > 0) goTo(current + 1);
+  else goTo(current - 1);
+  setTimeout(() => wheelCooldown = false, 580);
+}, { passive: false });
+
+// Drag / touch
+const area = document.getElementById('carousel-area');
+
+area.addEventListener('mousedown', e => {
+  isDragging = false;
+  dragStartX = e.clientX;
+});
+area.addEventListener('mousemove', e => {
+  if (!dragStartX) return;
+  dragDelta = e.clientX - dragStartX;
+  if (Math.abs(dragDelta) > 8) isDragging = true;
+});
+area.addEventListener('mouseup', () => {
+  if (isDragging) {
+    if (dragDelta < -40) goTo(current + 1);
+    else if (dragDelta > 40) goTo(current - 1);
+  }
+  dragStartX = 0; dragDelta = 0;
+  setTimeout(() => isDragging = false, 50);
+});
+
+area.addEventListener('touchstart', e => {
+  dragStartX = e.touches[0].clientX;
+}, { passive: true });
+area.addEventListener('touchend', e => {
+  const delta = e.changedTouches[0].clientX - dragStartX;
+  if (delta < -40) goTo(current + 1);
+  else if (delta > 40) goTo(current - 1);
+  dragStartX = 0;
+}, { passive: true });
+
+// Keyboard
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+});
+
+// Init
+update();
+</script>
+</body>
+</html>
