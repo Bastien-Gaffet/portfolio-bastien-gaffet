@@ -21,7 +21,7 @@ DIM        = colors.HexColor('#888899')
 DIM_LIGHT  = colors.HexColor('#AAAACC')
 LINE       = colors.HexColor('#E4E2F0')
 
-# Replace None with the path to your square photo, e.g. 'photo.jpg'
+# Remplace None par le chemin de ta photo carree, ex: 'photo.jpg'
 PHOTO_PATH = None
 PHOTO_R    = 18*mm
 
@@ -46,7 +46,7 @@ def wrap(c, text, x, y, max_w, font, size, color, line_h):
 
 
 def make_cv():
-    c = canvas.Canvas('cv-bastien-gaffet-en.pdf', pagesize=A4)
+    c = canvas.Canvas('cv-bastien-gaffet-fr.pdf', pagesize=A4)
     c.setTitle('Bastien Gaffet / CV')
     c.setAuthor('Bastien Gaffet')
 
@@ -75,7 +75,7 @@ def make_cv():
         c.circle(SB_CX, ph_cy, PHOTO_R, fill=1, stroke=0)
         c.setFillColor(DIM)
         c.setFont('Helvetica', 6.5)
-        c.drawCentredString(SB_CX, ph_cy - 2, 'Your photo')
+        c.drawCentredString(SB_CX, ph_cy - 2, 'Votre photo')
     c.setStrokeColor(VIOLET)
     c.setLineWidth(1.2)
     c.circle(SB_CX, ph_cy, PHOTO_R, fill=0, stroke=1)
@@ -112,7 +112,7 @@ def make_cv():
         c.drawString(PAD + 4.5*mm, y, text)
         return y - 4.5*mm
 
-    def sb_lang_bar(label, level, pct, y):
+    def sb_lang_bar(label, niveau, pct, y):
         c.setFillColor(DIM_LIGHT)
         c.setFont('Helvetica-Bold', 6.5)
         c.drawString(PAD + 1*mm, y, label)
@@ -127,46 +127,46 @@ def make_cv():
         y -= 4*mm
         c.setFillColor(DIM)
         c.setFont('Helvetica-Oblique', 6)
-        c.drawCentredString(SB_CX, y, level)
+        c.drawCentredString(SB_CX, y, niveau)
         return y - 5*mm
 
     # CONTACT
     sb_y = sb_title('Contact', sb_y)
-    sb_y = sb_kv('Email',    'your@email.com',                sb_y)
-    sb_y = sb_kv('GitHub',   'github.com/YOUR_GITHUB',        sb_y)
-    sb_y = sb_kv('LinkedIn', 'linkedin.com/in/YOUR_LINKEDIN', sb_y)
-    sb_y = sb_kv('Website',  'bastiengaffet.com',             sb_y)
+    sb_y = sb_kv('Email',    'votre@email.com',               sb_y)
+    sb_y = sb_kv('GitHub',   'github.com/VOTRE_GITHUB',       sb_y)
+    sb_y = sb_kv('LinkedIn', 'linkedin.com/in/VOTRE_LINKEDIN',sb_y)
+    sb_y = sb_kv('Site web', 'bastiengaffet.com',             sb_y)
     sb_y -= 5*mm
 
-    # SKILLS
-    sb_y = sb_title('Skills', sb_y)
+    # COMPETENCES
+    sb_y = sb_title('Competences', sb_y)
     c.setFillColor(DIM_LIGHT)
     c.setFont('Helvetica-Bold', 6.5)
-    c.drawCentredString(SB_CX, sb_y, 'Languages')
+    c.drawCentredString(SB_CX, sb_y, 'Langages')
     sb_y -= 4*mm
     for s in ['Python', 'Arduino (C++)', 'HTML / CSS / JS']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 2*mm
     c.setFillColor(DIM_LIGHT)
     c.setFont('Helvetica-Bold', 6.5)
-    c.drawCentredString(SB_CX, sb_y, 'Domains')
+    c.drawCentredString(SB_CX, sb_y, 'Domaines')
     sb_y -= 4*mm
-    for s in ['Robotics & Embedded', 'Computer Vision',
-              'Algorithm Design', 'Interface Design']:
+    for s in ['Robotique & Embarque', 'Vision par ordinateur',
+              'Conception algorithmique', 'Design d\'interfaces']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 5*mm
 
-    # INTERESTS
-    sb_y = sb_title('Interests', sb_y)
-    for s in ['Astrophotography', 'Guitar', 'Volleyball',
-              'Video Games', 'Reading', 'Astronomy']:
+    # INTERETS
+    sb_y = sb_title('Interets', sb_y)
+    for s in ['Astrophotographie', 'Guitare', 'Volleyball',
+              'Jeux video', 'Lecture', 'Astronomie']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 5*mm
 
-    # LANGUAGES with bars
-    sb_y = sb_title('Languages', sb_y)
-    sb_y = sb_lang_bar('French',  'Native',                1.00, sb_y)
-    sb_y = sb_lang_bar('English', 'Fluent, professional',  0.75, sb_y)
+    # LANGUES avec barres
+    sb_y = sb_title('Langues', sb_y)
+    sb_y = sb_lang_bar('Francais', 'Langue maternelle', 1.00, sb_y)
+    sb_y = sb_lang_bar('Anglais',  'Courant, professionnel', 0.75, sb_y)
 
     # MAIN
     MAIN_W = RIGHT - MX
@@ -184,17 +184,17 @@ def make_cv():
     my -= 5*mm
     c.setFillColor(DIM)
     c.setFont('Helvetica', 7.5)
-    c.drawString(MX, my, 'Engineering Student  /  Creative Builder')
+    c.drawString(MX, my, 'Etudiant en ingenierie  /  Createur de systemes')
     my -= 10*mm
 
     def section(label, y):
         c.setFillColor(BLACK)
         c.setFont('Helvetica-Bold', 7)
         c.drawString(MX, y, label.upper())
-        y -= 2.5*mm
+        y -= 2*mm
         c.setFillColor(VIOLET)
         c.rect(MX, y, MAIN_W, 0.4*mm, fill=1, stroke=0)
-        return y - 6*mm
+        return y - 5*mm
 
     def entry(title, sub, date, bullets, y):
         c.setFillColor(BLACK)
@@ -203,84 +203,90 @@ def make_cv():
         c.setFillColor(DIM)
         c.setFont('Helvetica', 7)
         c.drawRightString(RIGHT, y, date)
-        y -= 4.5*mm
+        y -= 4.2*mm
         c.setFillColor(VIOLET)
         c.setFont('Helvetica-Oblique', 7.5)
         c.drawString(MX, y, sub)
-        y -= 5.5*mm
+        y -= 5.0*mm
         for b in bullets:
             c.setFillColor(VIOLET)
             c.circle(MX + 1.5*mm, y + 1.5*mm, 0.7*mm, fill=1, stroke=0)
             y = wrap(c, b, MX + 4*mm, y, MAIN_W - 4*mm,
-                     'Helvetica', 7.5, DIM, 3.8*mm)
-            y -= 1.5*mm
-        return y - 5*mm
+                     'Helvetica', 7.5, DIM, 3.6*mm)
+            y -= 1.4*mm
+        return y - 4.6*mm
 
     def award_entry(title, desc, y):
         c.setFillColor(VIOLET)
         c.setFont('Helvetica-Bold', 7.5)
         c.drawString(MX, y, title)
-        y -= 4*mm
+        y -= 3.6*mm
         y = wrap(c, desc, MX + 2*mm, y, MAIN_W - 2*mm,
-                 'Helvetica', 7.5, DIM, 3.8*mm)
-        return y - 6*mm
+                 'Helvetica', 7.5, DIM, 3.6*mm)
+        return y - 5.0*mm
 
-    # PROFILE
-    my = section('Profile', my)
-    profile = (
-        "Engineering student with a passion for building systems where mechanics, "
-        "software and design converge. I approach every project with curiosity first "
-        "and craft second. Comfortable moving between embedded hardware and interface "
-        "design, between algorithm logic and physical execution. Always looking for "
-        "the intersection where things work well and feel right."
+    # PROFIL
+    my = section('Profil', my)
+    profil = (
+        "Etudiant en ingenierie passionne par la construction de systemes a "
+        "l'intersection de la mecanique, du logiciel et du design. J'aborde "
+        "chaque projet avec la curiosite comme moteur et l'exigence comme "
+        "methode. A l'aise aussi bien sur du materiel embarque que sur la "
+        "conception d'interfaces, entre la logique algorithmique et l'execution "
+        "physique. Toujours en quete du point ou ca fonctionne bien et ou ca "
+        "semble juste."
     )
-    my = wrap(c, profile, MX, my, MAIN_W, 'Helvetica', 7.8, DIM, 4.2*mm)
-    my -= 12*mm
+    my = wrap(c, profil, MX, my, MAIN_W, 'Helvetica', 7.8, DIM, 4.0*mm)
+    my -= 5*mm
 
     # EXPERIENCE
     my = section('Experience', my)
     my = entry(
-        'Robot J4', 'Robotics / AI / Computer Vision', '2024 / 2025',
+        'Robot J4', 'Robotique / IA / Vision par ordinateur', '2024 / 2025',
         [
-            'Designed and built a robotic arm playing Connect Four autonomously against a human.',
-            'Minimax algorithm with custom heuristics for optimal decision-making up to depth 6.',
-            'Python + OpenCV pipeline for real-time board state recognition via camera feed.',
-            'Arduino UART serial link between the Python decision engine and the physical arm.',
+            'Conception et construction d\'un bras robotique jouant au Puissance 4 de facon autonome.',
+            'Algorithme Minimax avec heuristiques personnalisees pour une prise de decision optimale.',
+            'Pipeline Python + OpenCV pour la reconnaissance en temps reel de l\'etat du plateau.',
+            'Liaison serie Arduino UART entre le moteur de decision Python et le bras physique.',
         ], my)
     my = entry(
-        'Sports Club Board Member', 'Volunteering / Association Management', '2023 / Present',
+        'Bureau du Club Sportif', 'Benevolat / Gestion associative', '2023 / Present',
         [
-            'Member of a sports club board. Administrative management, event organisation and coordination between members and governing bodies.',
-            'Collective responsibilities in a voluntary associative setting.',
+            'Membre du bureau d\'un club sportif. Gestion administrative, organisation d\'evenements et coordination entre membres et instances.',
+            'Responsabilites collectives dans un cadre associatif benevole.',
         ], my)
-    my -= 10*mm
+    my = entry(
+        'Construction salle de classe, Vallee de l\'Ourika', 'Projet humanitaire / Maroc', '2024',
+        [
+            'Construction d\'une classe dans un village pres de Chicker ou 40 eleves du primaire partageaient une salle sur 4 niveaux. Travaux realises : ferraillage, fondations en pierres, malaxage manuel du beton et coulage de la dalle.',
+            'Elaboration des premiers plans de la salle en lien avec l\'association de developpement locale.',
+        ], my)
 
-    # EDUCATION
-    my = section('Education', my)
+    # FORMATION
+    my = section('Formation', my)
     my = entry(
         'CPGE PCSI', 'Lycee Descartes, Tours', '2024 / Present',
         [
-            'Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences.',
-            'TIPE research on epoxy resin mechanical properties in composite structures under stress.',
+            'Classes preparatoires aux grandes ecoles. Physique, Chimie, Sciences de l\'ingenieur.',
+            'TIPE : proprietes mecaniques des resines epoxy en structures composites sous contrainte.',
         ], my)
     my -= 2*mm
     my = entry(
-        'French Baccalaureat', 'Lycee Vaucanson, Tours', '2024',
+        'Baccalaureat General', 'Lycee Vaucanson, Tours', '2024',
         [
-            'Mention Tres Bien, felicitations du jury (highest honours with distinction).',
-            'Specialisations: Maths, Physique-Chimie, Maths Expertes.',
+            'Mention Tres Bien, felicitations du jury.',
+            'Specialites : Mathematiques, Physique-Chimie, Mathematiques Expertes.',
         ], my)
-    my -= 10*mm
 
-    # AWARDS
-    my = section('Awards & Recognition', my)
+    # DISTINCTIONS
+    my = section('Distinctions', my)
     my = award_entry(
-        'Concours Cgenial, National Winner',
-        'First place at the national final, 2024. Leading French science and engineering competition for high school students.',
+        'Concours Cgenial, 1er Prix National',
+        'Premier prix au concours national 2024. Principale competition francaise de sciences et ingenierie pour lyceens.',
         my)
     my = award_entry(
-        'CERN European Prize, EUCYS Latvia',
-        'CERN European Prize at the European Union Contest for Young Scientists, Riga, 2025.',
+        'Prix Europeen du CERN, EUCYS Lettonie',
+        'Prix du CERN decerne au Concours Europeen des Jeunes Scientifiques, Riga, 2025.',
         my)
 
     # FOOTER
@@ -292,6 +298,6 @@ def make_cv():
     c.drawRightString(RIGHT, 6*mm, 'Bastien Gaffet, CV 2025')
 
     c.save()
-    print(f"EN CV generated. Main content ends at y={my/mm:.0f}mm from bottom.")
+    print(f"CV FR genere. Contenu principal termine a y={my/mm:.0f}mm du bas.")
 
 make_cv()

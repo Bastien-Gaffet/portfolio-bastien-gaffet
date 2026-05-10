@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --black:#05060A; --violet:hsl(265 75% 60%); --violet-dim:hsl(265 75% 60% / 0.12); --white:oklch(96% 0.005 250); --dim:oklch(55% 0.01 250); --dim2:oklch(72% 0.008 250); --glass-border:rgba(255,255,255,0.09); }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+nav { position: fixed; top: 0; right: 0; z-index: 100; padding: 2rem 2.5rem; display: flex; gap: 2rem; }
+nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+nav a:hover { color: var(--white); }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}
+
+#page { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 14vh 3rem 8rem; }
+@media(max-width:600px){ #page { padding: 14vh 1.5rem 6rem; } }
+
+/* Hero */
+.page-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.page-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.page-title em { font-style: italic; color: hsl(265 60% 80%); }
+.page-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.85; max-width: 480px; margin-bottom: 5rem; }
+
+/* Timeline */
+.timeline { position: relative; }
+
+/* Vertical line */
+.timeline::before {
+  content: ''; position: absolute;
+  left: 108px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--glass-border) 5%, var(--glass-border) 95%, transparent);
+}
+@media(max-width:480px){
+  .timeline::before { left: 60px; }
+}
+
+/* Year marker */
+.tl-year {
+  position: relative; margin-bottom: 0.5rem; margin-top: 3rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.tl-year:first-child { margin-top: 0; }
+.year-label {
+  width: 90px; text-align: right; flex-shrink: 0;
+  font-family: 'Playfair Display', serif; font-size: 1.5rem;
+  color: var(--white); font-weight: 400; letter-spacing: -0.02em;
+  line-height: 1;
+}
+@media(max-width:480px){ .year-label { width: 50px; font-size: 1.1rem; } }
+.year-line-dot {
+  width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  background: var(--violet); margin-left: -4px;
+  box-shadow: 0 0 0 3px var(--black), 0 0 0 4px hsl(265 75% 60% / 0.35);
+}
+.year-spacer { flex: 1; }
+
+/* Event entry */
+.tl-event {
+  position: relative; display: flex; align-items: flex-start;
+  gap: 1.5rem; padding: 0 0 2.2rem 0;
+}
+.tl-event:last-child { padding-bottom: 0; }
+
+.event-date {
+  width: 90px; text-align: right; flex-shrink: 0; padding-top: 0.12rem;
+  font-size: 0.65rem; color: var(--dim); font-family: 'Playfair Display', serif;
+  font-style: italic; line-height: 1.4;
+}
+@media(max-width:480px){ .event-date { width: 50px; font-size: 0.58rem; } }
+
+.event-dot {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+  background: var(--glass-border); margin-top: 0.42rem; margin-left: -2px;
+  transition: background 0.3s;
+}
+.tl-event:hover .event-dot { background: var(--violet); }
+
+.event-body { flex: 1; }
+.event-tag {
+  font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 0.28rem; display: block;
+}
+.event-title { font-size: 0.88rem; color: var(--white); font-weight: 400; line-height: 1.35; margin-bottom: 0.3rem; }
+.event-desc { font-size: 0.75rem; color: var(--dim2); line-height: 1.65; }
+.event-link { font-size: 0.62rem; color: var(--violet); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.3); transition: border-color 0.2s; margin-top: 0.3rem; display: inline-block; }
+.event-link:hover { border-color: var(--violet); }
+
+/* Tag colors */
+.tag-award { color: hsl(45 80% 65%); }
+.tag-project { color: hsl(265 60% 72%); }
+.tag-education { color: hsl(200 55% 60%); }
+.tag-site { color: hsl(140 45% 58%); }
+
+/* Now indicator */
+.tl-now {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-top: 2rem; padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
+}
+.now-label-tag {
+  width: 90px; text-align: right; flex-shrink: 0;
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
+}
+.now-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--violet); flex-shrink: 0; margin-left: -4px; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 hsl(265 75% 60% / 0.5); } 50%{ box-shadow: 0 0 0 6px hsl(265 75% 60% / 0); } }
+.now-text { font-size: 0.75rem; color: var(--dim2); font-family: 'Playfair Display', serif; font-style: italic; }
+
+/* Footer */
+#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<div id="page">
+  <p class="page-eyebrow reveal">Timeline</p>
+  <h1 class="page-title reveal d1">The path<br><em>so far</em></h1>
+  <p class="page-desc reveal d2">Projects, distinctions and milestones. A map of where I have been and what I have built.</p>
+
+  <div class="timeline reveal">
+
+    <!-- 2025 -->
+    <div class="tl-year">
+      <span class="year-label">2025</span>
+      <div class="year-line-dot"></div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Sep 2025</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-award">Award</span>
+        <p class="event-title">CERN European Prize — EUCYS Latvia</p>
+        <p class="event-desc">CERN European Prize awarded at the European Union Contest for Young Scientists in Riga. Robot J4 presented to an international jury of scientists.</p>
+        <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="event-link">EUCYS project page</a>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">May 2025</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-award">Award</span>
+        <p class="event-title">Chemistry Olympiad — Academic Final</p>
+        <p class="event-desc">Reached the academic final of the French Chemistry Olympiad. Competed at regional level, qualified for the Paris final.</p>
+        <a href="https://www.vaucanson.org/olympiades-de-chimie-2025/" target="_blank" rel="noopener" class="event-link">Lycee Vaucanson article</a>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Apr 2025</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-site">Launch</span>
+        <p class="event-title">Cosmos Wallpaper Generator — released on Ko-fi</p>
+        <p class="event-desc">First digital product. A browser-based generative tool for cosmos wallpapers. 20+ object types, exports up to 4K.</p>
+        <a href="product-cosmos-wallpaper.html" class="event-link">Product page</a>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Apr 2025</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-site">Launch</span>
+        <p class="event-title">bastiengaffet.fr — site launched</p>
+        <p class="event-desc">Personal portfolio built from scratch in plain HTML, CSS and JS. No framework, no dependencies.</p>
+        <a href="story-v6.html" class="event-link">Story</a>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Feb 2025</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag">Humanitarian</span>
+        <p class="event-title">Classroom construction — Ourika Valley, Morocco</p>
+        <p class="event-desc">Participated in building an additional classroom for a school in a village near Chicker. Rebar fabrication, stone foundations, concrete mixing and slab pouring. Produced the initial architectural plans.</p>
+        <a href="https://www.vaucanson.org/mon-ecole-maternelle-au-maroc-debut-de-la-construction/" target="_blank" rel="noopener" class="event-link">Lycee Vaucanson article</a>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Sep 2024</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-education">Education</span>
+        <p class="event-title">CPGE PCSI — Lycee Descartes, Tours</p>
+        <p class="event-desc">Enrolled in preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences. TIPE on epoxy resin mechanical properties.</p>
+        <a href="tipe.html" class="event-link">TIPE page</a>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="tl-year">
+      <span class="year-label">2024</span>
+      <div class="year-line-dot"></div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Jun 2024</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-award">Award</span>
+        <p class="event-title">Concours Cgenial — 1er Prix National</p>
+        <p class="event-desc">First place at the national final of Cgenial, the leading French science and engineering competition for high school students. Presented Robot J4.</p>
+        <a href="https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/252-concours-cgenial-2025" target="_blank" rel="noopener" class="event-link">Cgenial 2025</a>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">Jun 2024</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-education">Education</span>
+        <p class="event-title">Baccalaureat — Mention Tres Bien, felicitations du jury</p>
+        <p class="event-desc">Highest honours with distinction. Specialisations: Mathematiques, Physique-Chimie, Mathematiques Expertes. Lycee Vaucanson, Tours.</p>
+      </div>
+    </div>
+
+    <div class="tl-event">
+      <span class="event-date">2024</span>
+      <div class="event-dot"></div>
+      <div class="event-body">
+        <span class="event-tag tag-project">Project</span>
+        <p class="event-title">Robot J4 — built and completed</p>
+        <p class="event-desc">Robotic arm playing Connect Four autonomously against a human. Minimax AI with depth 6, Python + OpenCV vision, Arduino UART link. Built over several months with a team of five.</p>
+        <a href="project-robotj4.html" class="event-link">Project page</a>
+      </div>
+    </div>
+
+    <!-- Now -->
+    <div class="tl-now">
+      <span class="now-label-tag">Now</span>
+      <div class="now-pulse"></div>
+      <p class="now-text">CPGE PCSI, year two — and whatever comes next.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer id="page-footer">
+  <a href="about.html" class="btn-pill">← About</a>
+  <span class="footer-sig">Bastien Gaffet</span>
+  <a href="cv.html" class="btn-pill">CV →</a>
+</footer>
+
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); }});
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*100));
+});
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
+let W,H,stars=[];const NUM_STARS=220;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
+function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

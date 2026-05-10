@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-dim: hsl(265 75% 60% / 0.12);
+  --violet-mid: hsl(265 75% 60% / 0.25);
+  --white: oklch(96% 0.005 250); --dim: oklch(55% 0.01 250);
+  --dim2: oklch(70% 0.008 250);
+  --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  opacity: 0; animation: fadeIn 0.6s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
+}
+nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+nav a:hover { color: var(--white); }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ══ LAYOUT ══ */
+#page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 14vh 2.5rem 8rem; }
+
+/* ══ HEADER ══ */
+#cv-header {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: end; gap: 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 4rem;
+}
+.cv-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; }
+.cv-name em { font-style: italic; color: hsl(265 60% 80%); }
+.cv-role { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet); margin-top: 0.8rem; }
+.cv-actions { display: flex; flex-direction: column; gap: 0.7rem; align-items: flex-end; }
+.btn-dl {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid var(--glass-border); border-radius: 30px;
+  padding: 0.6rem 1.4rem; background: var(--glass-bg);
+  color: var(--dim2); text-decoration: none; font-size: 0.65rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+  white-space: nowrap;
+}
+.btn-dl:hover { border-color: var(--violet); color: var(--white); background: var(--violet-dim); }
+.btn-dl svg { width: 12px; height: 12px; }
+
+/* ══ TWO COLUMNS ══ */
+#cv-body { display: grid; grid-template-columns: 1fr 260px; gap: 4rem; }
+@media(max-width: 800px){ #cv-body { grid-template-columns: 1fr; } }
+
+/* ══ SECTION ══ */
+.cv-section { margin-bottom: 3.5rem; }
+.section-label {
+  font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 0.6rem; display: block;
+}
+.section-line {
+  height: 1px; background: var(--glass-border); margin-bottom: 2rem;
+}
+
+/* ══ ENTRY ══ */
+.cv-entry { margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--glass-border); }
+.cv-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.entry-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.35rem; }
+.entry-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 400; }
+.entry-title em { font-style: italic; color: hsl(265 60% 80%); }
+.entry-date { font-size: 0.62rem; letter-spacing: 0.12em; color: var(--dim); white-space: nowrap; padding-top: 0.2rem; }
+.entry-sub { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); margin-bottom: 1rem; }
+.entry-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.entry-bullets li { display: flex; gap: 0.7rem; font-size: 0.8rem; color: var(--dim2); line-height: 1.7; }
+.entry-bullets li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--violet); flex-shrink: 0; margin-top: 0.55rem; }
+
+/* ══ SIDEBAR ══ */
+.sidebar-block { margin-bottom: 2.8rem; }
+.sidebar-block .section-label { margin-bottom: 0.5rem; }
+.sidebar-block .section-line { margin-bottom: 1.5rem; }
+
+/* Contact */
+.contact-item { display: flex; flex-direction: column; gap: 0.12rem; margin-bottom: 1.1rem; }
+.contact-label { font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+.contact-value { font-size: 0.78rem; color: var(--dim2); }
+.contact-value a { color: var(--dim2); text-decoration: none; transition: color 0.2s; }
+.contact-value a:hover { color: var(--white); }
+
+/* Tags */
+.tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-size: 0.62rem; padding: 0.3rem 0.7rem;
+  border: 1px solid var(--glass-border); border-radius: 20px;
+  color: var(--dim2); background: var(--glass-bg);
+  transition: border-color 0.2s, color 0.2s;
+}
+.tag:hover { border-color: var(--violet); color: var(--white); }
+
+/* Language bars */
+.lang-item { margin-bottom: 1.2rem; }
+.lang-header { display: flex; justify-content: space-between; margin-bottom: 0.45rem; }
+.lang-name { font-size: 0.75rem; color: var(--dim2); }
+.lang-level { font-size: 0.6rem; color: var(--dim); }
+.lang-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+.lang-fill { height: 100%; background: var(--violet); border-radius: 2px; width: 0; transition: width 1.2s cubic-bezier(.22,.61,.36,1); }
+
+/* Awards */
+.award-item { margin-bottom: 1.4rem; }
+.award-title { font-size: 0.78rem; color: var(--white); margin-bottom: 0.2rem; font-weight: 400; }
+.award-desc { font-size: 0.72rem; color: var(--dim); line-height: 1.65; }
+
+/* ══ FOOTER ══ */
+#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<div id="page">
+
+  <!-- HEADER -->
+  <header id="cv-header">
+    <div>
+      <h1 class="cv-name reveal">Bastien <em>Gaffet</em></h1>
+      <p class="cv-role reveal d1">Engineering Student / Creative Builder</p>
+    </div>
+    <div class="cv-actions reveal d2">
+      <a href="cv-bastien-gaffet-en.pdf" download class="btn-dl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download EN
+      </a>
+      <a href="cv-bastien-gaffet-fr.pdf" download class="btn-dl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Telecharger FR
+      </a>
+    </div>
+  </header>
+
+  <div id="cv-body">
+
+    <!-- MAIN -->
+    <main>
+
+      <!-- PROFILE -->
+      <section class="cv-section reveal d1">
+        <span class="section-label">Profile</span>
+        <div class="section-line"></div>
+        <p style="font-size:.85rem;color:var(--dim2);line-height:1.85;">
+          Engineering student with a passion for building systems where mechanics, software and design converge. I approach every project with curiosity first and craft second. Comfortable moving between embedded hardware and interface design, between algorithm logic and physical execution. Always looking for the intersection where things work well and feel right.
+        </p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="cv-section reveal d2">
+        <span class="section-label">Experience</span>
+        <div class="section-line"></div>
+
+        <div class="cv-entry">
+          <div class="entry-header">
+            <h2 class="entry-title">Robot <em>J4</em></h2>
+            <span class="entry-date">2024 / 2025</span>
+          </div>
+          <p class="entry-sub">Robotics / AI / Computer Vision</p>
+          <ul class="entry-bullets">
+            <li>Designed and built a robotic arm playing Connect Four autonomously against a human opponent.</li>
+            <li>Minimax algorithm with custom heuristics for optimal decision-making up to depth 6.</li>
+            <li>Python + OpenCV pipeline for real-time board state recognition via camera feed.</li>
+            <li>Arduino UART serial link between the Python decision engine and the physical arm.</li>
+          </ul>
+        </div>
+
+        <div class="cv-entry">
+          <div class="entry-header">
+            <h2 class="entry-title">Classroom Construction, <em>Ourika Valley</em></h2>
+            <span class="entry-date">2024</span>
+          </div>
+          <p class="entry-sub">Humanitarian Project / Morocco</p>
+          <ul class="entry-bullets">
+            <li>Volunteered in a village near Chicker to build an additional classroom for a school unable to self-fund construction.</li>
+            <li>Since 2016, Moroccan law requires school access from age 4. The existing room housed 40 primary students across 4 year levels simultaneously.</li>
+            <li>On-site tasks: fabricating rebar from raw steel, stone-laying for foundations, trenching for toilet drainage, manual concrete mixing and slab pouring.</li>
+            <li>Produced the initial architectural plans for the new classroom in collaboration with the local development association.</li>
+          </ul>
+        </div>
+
+        <div class="cv-entry">
+          <div class="entry-header">
+            <h2 class="entry-title">Sports Club <em>Board Member</em></h2>
+            <span class="entry-date">2023 / Present</span>
+          </div>
+          <p class="entry-sub">Volunteering / Association Management</p>
+          <ul class="entry-bullets">
+            <li>Member of a sports club board. Administrative management, event organisation and coordination between members and governing bodies.</li>
+            <li>Collective responsibilities in a voluntary associative setting.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="cv-section reveal d3">
+        <span class="section-label">Education</span>
+        <div class="section-line"></div>
+
+        <div class="cv-entry">
+          <div class="entry-header">
+            <h2 class="entry-title">CPGE <em>PCSI</em></h2>
+            <span class="entry-date">2024 / Present</span>
+          </div>
+          <p class="entry-sub">Lycee Descartes, Tours</p>
+          <ul class="entry-bullets">
+            <li>Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences.</li>
+            <li>TIPE research on epoxy resin mechanical properties in composite structures under stress.</li>
+          </ul>
+        </div>
+
+        <div class="cv-entry">
+          <div class="entry-header">
+            <h2 class="entry-title">French <em>Baccalaureat</em></h2>
+            <span class="entry-date">2024</span>
+          </div>
+          <p class="entry-sub">Lycee Vaucanson, Tours</p>
+          <ul class="entry-bullets">
+            <li>Mention Tres Bien, felicitations du jury (highest honours with distinction).</li>
+            <li>Specialisations: Maths, Physique-Chimie, Maths Expertes.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AWARDS -->
+      <section class="cv-section reveal d4">
+        <span class="section-label">Awards</span>
+        <div class="section-line"></div>
+        <div class="award-item">
+          <p class="award-title">Concours Cgenial, National Winner</p>
+          <p class="award-desc">First place at the national final, 2024. Leading French science and engineering competition for high school students.</p>
+        </div>
+        <div class="award-item">
+          <p class="award-title">CERN European Prize, EUCYS Latvia</p>
+          <p class="award-desc">CERN European Prize at the European Union Contest for Young Scientists, Riga, 2025.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <!-- CONTACT -->
+      <div class="sidebar-block reveal d1">
+        <span class="section-label">Contact</span>
+        <div class="section-line"></div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:votre@email.com">votre@email.com</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Website</span>
+          <span class="contact-value"><a href="https://bastiengaffet.fr" target="_blank">bastiengaffet.fr</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value"><a href="https://github.com/votre-username" target="_blank">github.com/votre-username</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value"><a href="https://linkedin.com/in/votre-username" target="_blank">linkedin.com/in/votre-username</a></span>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="sidebar-block reveal d2">
+        <span class="section-label">Skills</span>
+        <div class="section-line"></div>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;">Languages</p>
+        <div class="tag-list" style="margin-bottom:1.2rem;">
+          <span class="tag">Python</span>
+          <span class="tag">Arduino (C++)</span>
+          <span class="tag">HTML / CSS / JS</span>
+        </div>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;">Domains</p>
+        <div class="tag-list">
+          <span class="tag">Robotics</span>
+          <span class="tag">Embedded</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Algorithm Design</span>
+          <span class="tag">Interface Design</span>
+        </div>
+      </div>
+
+      <!-- LANGUAGES -->
+      <div class="sidebar-block reveal d3">
+        <span class="section-label">Languages</span>
+        <div class="section-line"></div>
+        <div class="lang-item">
+          <div class="lang-header">
+            <span class="lang-name">French</span>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" data-width="100"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-header">
+            <span class="lang-name">English</span>
+            <span class="lang-level">Fluent, professional</span>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" data-width="75"></div></div>
+        </div>
+      </div>
+
+      <!-- INTERESTS -->
+      <div class="sidebar-block reveal d4">
+        <span class="section-label">Interests</span>
+        <div class="section-line"></div>
+        <div class="tag-list">
+          <span class="tag">Astrophotography</span>
+          <span class="tag">Guitar</span>
+          <span class="tag">Volleyball</span>
+          <span class="tag">Video Games</span>
+          <span class="tag">Reading</span>
+          <span class="tag">Astronomy</span>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<footer id="page-footer">
+  <a href="about.html" class="btn-pill">← About</a>
+  <span class="footer-sig">Bastien Gaffet</span>
+  <a href="work-v4.html" class="btn-pill">Work →</a>
+</footer>
+
+<script>
+// ══ REVEAL ════════════════════════════════════════════════════════════════
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');rObs.unobserve(e.target);} });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*80));
+});
+
+// ══ LANGUAGE BARS (animate when visible) ═════════════════════════════════
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const fill = e.target;
+      fill.style.width = fill.dataset.width + '%';
+      barObs.unobserve(fill);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.lang-fill').forEach(el => barObs.observe(el));
+
+// ══ COSMOS ════════════════════════════════════════════════════════════════
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+const NUM_STARS = 220;
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+function initStars() {
+  stars = [];
+  for (let i = 0; i < NUM_STARS; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * Math.max(W, H) * 0.65;
+    stars.push({ x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius, r:Math.random()*1.1+0.15, alpha:Math.random()*0.5+0.08, twinkle:Math.random()*Math.PI*2, speed:(Math.random()*0.3+0.05)*0.00008, angle, radius });
+  }
+}
+function draw(t) {
+  ctx.clearRect(0,0,W,H);
+  const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
+  bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(0.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  const cx=W/2,cy=H/2;
+  const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.5);
+  g1.addColorStop(0,'rgba(100,50,200,0.0)');g1.addColorStop(0.3,'rgba(100,50,200,0.06)');g1.addColorStop(0.7,'rgba(60,20,140,0.09)');g1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;
+    const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*0.001)*0.25));
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

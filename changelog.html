@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --black:#05060A; --violet:hsl(265 75% 60%); --white:oklch(96% 0.005 250); --dim:oklch(55% 0.01 250); --dim2:oklch(72% 0.008 250); --glass-bg:rgba(255,255,255,0.04); --glass-border:rgba(255,255,255,0.09); }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+nav { position: fixed; top: 0; right: 0; z-index: 100; padding: 2rem 2.5rem; display: flex; gap: 2rem; }
+nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+nav a:hover { color: var(--white); }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+
+#hero { min-height: 60vh; padding-top: 14vh; padding-bottom: 5rem; position: relative; z-index: 1; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3.2rem, 7vw, 5.5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 2rem; }
+.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
+.hero-desc { max-width: 500px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); }
+
+#content { position: relative; z-index: 1; padding-bottom: 8rem; }
+
+/* Timeline */
+.timeline { padding: 4rem 0; max-width: 680px; }
+
+.tl-entry { display: grid; grid-template-columns: 130px 1fr; gap: 2rem; margin-bottom: 3rem; }
+.tl-entry:last-child { margin-bottom: 0; }
+@media(max-width:560px){ .tl-entry { grid-template-columns: 1fr; gap: 0.5rem; } }
+
+.tl-date {
+  padding-top: 0.18rem; text-align: right;
+  font-size: 0.68rem; color: var(--dim); line-height: 1.4;
+  font-family: 'Playfair Display', serif; font-style: italic;
+}
+@media(max-width:560px){ .tl-date { text-align: left; } }
+
+.tl-body { position: relative; padding-left: 1.4rem; border-left: 1px solid var(--glass-border); }
+.tl-dot { position: absolute; left: -4px; top: 0.45rem; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); border: 1px solid var(--black); }
+
+.tl-tag { font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.4rem; }
+.tl-title { font-size: 0.9rem; color: var(--white); font-weight: 400; margin-bottom: 0.5rem; line-height: 1.35; }
+.tl-items { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+.tl-items li { font-size: 0.76rem; color: var(--dim2); line-height: 1.6; display: flex; gap: 0.5rem; }
+.tl-items li::before { content: '+'; color: var(--violet); flex-shrink: 0; font-size: 0.72rem; margin-top: 0.02rem; }
+.tl-items li.fix::before { content: '~'; color: hsl(200 60% 60%); }
+.tl-items li.remove::before { content: '-'; color: oklch(55% 0.01 250); }
+
+/* Tag colors */
+.tag-site { color: hsl(265 60% 72%); }
+.tag-product { color: hsl(45 80% 65%); }
+.tag-new { color: hsl(140 55% 55%); }
+
+#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<section id="hero">
+  <div class="inner">
+    <p class="hero-eyebrow reveal">Changelog</p>
+    <h1 class="hero-title reveal d1">What has <em>changed</em></h1>
+    <p class="hero-desc reveal d2">Updates to the site and digital products, most recent first.</p>
+  </div>
+</section>
+
+<section id="content">
+  <div class="inner">
+    <div class="timeline reveal">
+
+      <!-- Add new entries at the top -->
+
+      <div class="tl-entry">
+        <p class="tl-date">May 2025</p>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <p class="tl-tag tag-site">Site</p>
+          <p class="tl-title">Navigation and search</p>
+          <ul class="tl-items">
+            <li>Added rich footer with sitemap across all pages</li>
+            <li>Added command palette — press / to search all pages</li>
+            <li>Added Press, Changelog, Uses, Blog, Shop, Links, Contact and CV pages</li>
+            <li>Added photography page with carousel and bento grid</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <p class="tl-date">May 2025</p>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <p class="tl-tag tag-product">Product</p>
+          <p class="tl-title">Cosmos Wallpaper Generator — v2</p>
+          <ul class="tl-items">
+            <li>Added 9 new object types: Supernova, Pulsar, Comet, Quasar, Cosmic Web, Planetary Nebula, Wormhole, Moon, Pillars of Creation</li>
+            <li>Added MP4 video export with progress overlay</li>
+            <li>Added WebM animated video export</li>
+            <li>Fixed galaxy edge-on and barred spiral visibility</li>
+            <li>Added 4K export (3840x2160)</li>
+            <li>Gravitational lensing on Black Hole and Wormhole</li>
+            <li>Reorganized type selector into collapsible categories</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <p class="tl-date">April 2025</p>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <p class="tl-tag tag-new">Launch</p>
+          <p class="tl-title">Cosmos Wallpaper Generator — v1</p>
+          <ul class="tl-items">
+            <li>First public release on Ko-fi</li>
+            <li>Galaxy Spiral, Barred, Elliptic, Edge-on</li>
+            <li>Nebula, Black Hole, Star Field, Aurora, Planet, Star System, Constellation, Deep Void</li>
+            <li>PNG export in Desktop, 4K and Mobile resolution</li>
+            <li>Fully customizable colors, parameters and seed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <p class="tl-date">April 2025</p>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <p class="tl-tag tag-site">Site</p>
+          <p class="tl-title">Initial launch — bastiengaffet.fr</p>
+          <ul class="tl-items">
+            <li>Story, Work, About, Universe pages</li>
+            <li>Robot J4 project page</li>
+            <li>Cosmos background with animated stars on all pages</li>
+            <li>Custom 404 page</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer id="page-footer">
+  <a href="shop.html" class="btn-pill">← Shop</a>
+  <span class="footer-sig">Bastien Gaffet</span>
+  <a href="about.html" class="btn-pill">About →</a>
+</footer>
+
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); }});
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 120+i*150));
+});
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
+let W,H,stars=[];const NUM_STARS=220;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
+function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

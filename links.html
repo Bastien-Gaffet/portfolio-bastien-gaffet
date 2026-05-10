@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-dim: hsl(265 75% 60% / 0.14);
+  --white: oklch(96% 0.005 250); --dim: oklch(55% 0.01 250);
+  --dim2: oklch(72% 0.008 250);
+  --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+}
+html, body { min-height: 100%; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; display: flex; flex-direction: column; align-items: center; padding: 3rem 1.5rem 5rem; opacity: 0; animation: fadeIn 0.6s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+#container { position: relative; z-index: 1; width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; }
+
+/* Avatar */
+.avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  border: 1.5px solid var(--glass-border);
+  background: hsl(265 30% 12%);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem; overflow: hidden;
+  /* Replace with: <img src="photo.jpg"> inside the div */
+}
+.avatar-placeholder { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: hsl(265 60% 80%); }
+
+/* Name + bio */
+.links-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.35rem; }
+.links-name em { font-style: italic; color: hsl(265 60% 80%); }
+.links-bio { font-size: 0.78rem; color: var(--dim2); text-align: center; line-height: 1.65; max-width: 320px; margin-bottom: 2.5rem; }
+
+/* Section label */
+.links-section { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); width: 100%; margin-bottom: 0.6rem; margin-top: 1.6rem; }
+.links-section:first-of-type { margin-top: 0; }
+
+/* Link card */
+.link-card {
+  width: 100%; display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: var(--glass-bg);
+  text-decoration: none; color: var(--white);
+  margin-bottom: 0.6rem;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+.link-card:hover { border-color: hsl(265 75% 60% / 0.4); background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+.link-card:active { transform: translateY(0); }
+
+.link-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: var(--violet-dim); border: 1px solid hsl(265 75% 60% / 0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 1rem;
+}
+.link-icon svg { width: 18px; height: 18px; }
+
+.link-text { flex: 1; }
+.link-label { font-size: 0.82rem; font-weight: 400; color: var(--white); }
+.link-sub { font-size: 0.65rem; color: var(--dim); margin-top: 0.1rem; }
+
+.link-arrow { font-size: 0.8rem; color: var(--dim); transition: color 0.2s, transform 0.2s; }
+.link-card:hover .link-arrow { color: var(--violet); transform: translateX(2px); }
+
+/* Ko-fi special */
+.link-card.kofi { border-color: hsl(265 75% 60% / 0.3); background: var(--violet-dim); }
+.link-card.kofi .link-icon { background: var(--violet); border-color: transparent; color: white; }
+
+/* Footer */
+.links-footer { margin-top: 3rem; font-size: 0.62rem; color: var(--dim); text-align: center; }
+.links-footer a { color: var(--dim); text-decoration: none; border-bottom: 1px solid var(--glass-border); transition: color 0.2s; }
+.links-footer a:hover { color: var(--white); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<div id="container">
+
+  <!-- Avatar -->
+  <div class="avatar">
+    <!-- Replace with: <img src="photo.jpg" alt="Bastien Gaffet" style="width:100%;height:100%;object-fit:cover;"> -->
+    <span class="avatar-placeholder">B</span>
+  </div>
+
+  <p class="links-name">Bastien <em>Gaffet</em></p>
+  <p class="links-bio">Engineering student. Building things at the intersection of software, hardware and design.</p>
+
+  <!-- WEBSITE -->
+  <span class="links-section">Portfolio</span>
+  <a href="https://bastiengaffet.fr" class="link-card">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">bastiengaffet.fr</p>
+      <p class="link-sub">Portfolio, projects and photography</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <!-- SHOP -->
+  <span class="links-section">Shop</span>
+  <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" rel="noopener" class="link-card kofi">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.591-4.859-4.591H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.918zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">Cosmos Wallpaper Generator</p>
+      <p class="link-sub">Digital product on Ko-fi — from €4</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+  <a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener" class="link-card">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">Support on Ko-fi</p>
+      <p class="link-sub">ko-fi.com/bastien_gft</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <!-- SOCIAL -->
+  <span class="links-section">Elsewhere</span>
+  <a href="https://github.com/votre-username" target="_blank" rel="noopener" class="link-card">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">GitHub</p>
+      <p class="link-sub">github.com/votre-username</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+  <a href="https://linkedin.com/in/votre-username" target="_blank" rel="noopener" class="link-card">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">LinkedIn</p>
+      <p class="link-sub">linkedin.com/in/votre-username</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <!-- PROJECTS -->
+  <span class="links-section">Projects</span>
+  <a href="https://bastiengaffet.fr/project-robotj4.html" class="link-card">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">Robot J4</p>
+      <p class="link-sub">Robotic arm, Minimax AI, EUCYS 2025</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+  <a href="https://bastiengaffet.fr/cv.html" class="link-card">
+    <div class="link-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    </div>
+    <div class="link-text">
+      <p class="link-label">CV</p>
+      <p class="link-sub">Interactive resume</p>
+    </div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <p class="links-footer">
+    <a href="https://bastiengaffet.fr">bastiengaffet.fr</a>
+  </p>
+
+</div>
+
+<script>
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
+let W,H,stars=[];const NUM_STARS=180;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
+function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uses / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-dim: hsl(265 75% 60% / 0.12);
+  --white: oklch(96% 0.005 250); --dim: oklch(55% 0.01 250);
+  --dim2: oklch(72% 0.008 250);
+  --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+nav { position: fixed; top: 0; right: 0; z-index: 100; padding: 2rem 2.5rem; display: flex; gap: 2rem; }
+nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+nav a:hover { color: var(--white); }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+#page { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 14vh 2.5rem 8rem; }
+
+/* Header */
+.page-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.page-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.page-title em { font-style: italic; color: hsl(265 60% 80%); }
+.page-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.85; max-width: 500px; margin-bottom: 4rem; }
+.header-divider { height: 1px; background: var(--glass-border); margin-bottom: 4rem; }
+
+/* Category */
+.uses-category { margin-bottom: 3.5rem; }
+.cat-label { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.5rem; display: block; }
+.cat-line { height: 1px; background: var(--glass-border); margin-bottom: 2rem; }
+
+/* Item */
+.uses-item {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 1.5rem; padding: 1.2rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  align-items: start;
+}
+.uses-item:last-child { border-bottom: none; }
+@media(max-width: 560px) { .uses-item { grid-template-columns: 1fr; gap: 0.3rem; } }
+
+.item-name { font-size: 0.82rem; color: var(--white); font-weight: 400; padding-top: 0.05rem; }
+.item-name a { color: var(--white); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.3); transition: border-color 0.2s; }
+.item-name a:hover { border-color: var(--violet); }
+.item-desc { font-size: 0.8rem; color: var(--dim2); line-height: 1.7; }
+
+/* Footer */
+#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<div id="page">
+  <p class="page-eyebrow reveal">Uses</p>
+  <h1 class="page-title reveal d1">What I <em>use</em></h1>
+  <p class="page-desc reveal d2">Tools, software and hardware I rely on daily. Updated when things change.</p>
+  <div class="header-divider reveal d3"></div>
+
+  <!-- HARDWARE -->
+  <div class="uses-category reveal">
+    <span class="cat-label">Hardware</span>
+    <div class="cat-line"></div>
+    <div class="uses-item">
+      <span class="item-name">PC</span>
+      <span class="item-desc">My main machine for coding, 3D printing, and everything else. Running Windows 11.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name">Laptop</span>
+      <span class="item-desc">Used at school and on the go.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name">3D Printer</span>
+      <span class="item-desc">For prototyping parts and project enclosures.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name">Arduino</span>
+      <span class="item-desc">The backbone of most of my embedded projects, including Robot J4.</span>
+    </div>
+  </div>
+
+  <!-- CODING -->
+  <div class="uses-category reveal">
+    <span class="cat-label">Coding</span>
+    <div class="cat-line"></div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://code.visualstudio.com" target="_blank" rel="noopener">VS Code</a></span>
+      <span class="item-desc">My main code editor for HTML, CSS, JavaScript and Python.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://www.editorconfig.org" target="_blank" rel="noopener">Pyzo</a></span>
+      <span class="item-desc">Python IDE used at school for quick scripts and data analysis.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name">Python</span>
+      <span class="item-desc">Main language. Used for robotics, image processing with OpenCV, PDF generation and automation scripts.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name">Arduino (C++)</span>
+      <span class="item-desc">For microcontroller programming and serial communication with Python.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name">HTML / CSS / JS</span>
+      <span class="item-desc">Everything on this site is plain HTML, CSS and vanilla JavaScript. No framework.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></span>
+      <span class="item-desc">Version control and portfolio hosting.</span>
+    </div>
+  </div>
+
+  <!-- DESIGN -->
+  <div class="uses-category reveal">
+    <span class="cat-label">Design</span>
+    <div class="cat-line"></div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://www.adobe.com/products/firefly.html" target="_blank" rel="noopener">Adobe Firefly</a></span>
+      <span class="item-desc">AI image generation for concept work and character consistency workflows.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://www.raise3d.com/ideamaker/" target="_blank" rel="noopener">IdeaMaker</a></span>
+      <span class="item-desc">Slicer for 3D printing. Used daily for preparing models.</span>
+    </div>
+  </div>
+
+  <!-- ROBOTICS -->
+  <div class="uses-category reveal">
+    <span class="cat-label">Robotics</span>
+    <div class="cat-line"></div>
+    <div class="uses-item">
+      <span class="item-name">OpenCV</span>
+      <span class="item-desc">Computer vision library used for real-time board state recognition in Robot J4.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://www.robomaster.com" target="_blank" rel="noopener">DJI RoboMaster EP Core</a></span>
+      <span class="item-desc">Educational robotics platform used for autonomous mission programming at school.</span>
+    </div>
+  </div>
+
+  <!-- THIS SITE -->
+  <div class="uses-category reveal">
+    <span class="cat-label">This site</span>
+    <div class="cat-line"></div>
+    <div class="uses-item">
+      <span class="item-name">Plain HTML/CSS/JS</span>
+      <span class="item-desc">No framework, no build step, no dependencies. Every page is a self-contained file.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a></span>
+      <span class="item-desc">Playfair Display for headings, Inter for body text.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://www.netlify.com" target="_blank" rel="noopener">Netlify</a></span>
+      <span class="item-desc">Hosting. Free tier, automatic deploys from GitHub, handles 404 natively.</span>
+    </div>
+    <div class="uses-item">
+      <span class="item-name"><a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener">Ko-fi</a></span>
+      <span class="item-desc">Platform used to sell digital products. Handles payments and instant file delivery.</span>
+    </div>
+  </div>
+</div>
+
+<footer id="page-footer">
+  <a href="about.html" class="btn-pill">← About</a>
+  <span class="footer-sig">Bastien Gaffet</span>
+  <a href="work-v4.html" class="btn-pill">Work →</a>
+</footer>
+
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); }});
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*80));
+});
+
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
+let W,H,stars=[];const NUM_STARS=220;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
+function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

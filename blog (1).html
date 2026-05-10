@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-dim: hsl(265 75% 60% / 0.12);
+  --white: oklch(96% 0.005 250); --dim: oklch(55% 0.01 250);
+  --dim2: oklch(72% 0.008 250);
+  --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+nav { position: fixed; top: 0; right: 0; z-index: 100; padding: 2rem 2.5rem; display: flex; gap: 2rem; }
+nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+nav a:hover, nav .active { color: var(--white); }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══ PAGE ══ */
+#page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 14vh 2.5rem 8rem; }
+
+/* ══ HEADER ══ */
+#blog-header { padding-bottom: 3rem; border-bottom: 1px solid var(--glass-border); margin-bottom: 4rem; }
+.page-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.page-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.page-title em { font-style: italic; color: hsl(265 60% 80%); }
+.page-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.85; max-width: 500px; }
+
+/* ══ FILTERS ══ */
+#filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.filter-btn { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.9rem; border: 1px solid var(--glass-border); border-radius: 20px; background: transparent; color: var(--dim); cursor: pointer; transition: all 0.2s; }
+.filter-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--white); }
+.filter-btn.active { border-color: var(--violet); color: var(--violet); background: var(--violet-dim); }
+
+/* ══ ARTICLE LIST ══ */
+#articles { display: flex; flex-direction: column; gap: 0; }
+
+.article-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem; align-items: start;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  text-decoration: none; color: inherit;
+}
+.article-card:hover .card-title { color: hsl(265 60% 80%); }
+.article-card:hover .card-cover img { transform: scale(1.04); }
+.article-card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
+@media(max-width: 640px) { .article-card { grid-template-columns: 1fr; } }
+
+/* Cover image */
+.card-cover {
+  width: 100%; aspect-ratio: 4/3;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: hsl(265 20% 10%);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s cubic-bezier(.22,.61,.36,1); }
+.card-cover-placeholder {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+}
+.card-cover-placeholder span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.65rem; color: var(--dim); opacity: 0.4; }
+
+.card-date { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--dim); padding-top: 0.3rem; line-height: 1.5; }
+.card-month { display: block; }
+.card-year  { display: block; opacity: 0.6; }
+
+.card-body {}
+.card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.card-tag { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); border: 1px solid hsl(265 75% 60% / 0.3); border-radius: 10px; padding: 0.15rem 0.5rem; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.6rem; transition: color 0.25s; }
+.card-title em { font-style: italic; color: hsl(265 60% 80%); }
+.card-excerpt { font-size: 0.8rem; color: var(--dim2); line-height: 1.7; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; }
+.card-read { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.card-arrow { font-size: 0.85rem; color: var(--violet); opacity: 0; transition: opacity 0.25s, transform 0.25s; }
+
+/* Empty state */
+#empty { text-align: center; padding: 4rem 0; color: var(--dim); font-size: 0.85rem; display: none; }
+#empty em { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; display: block; margin-bottom: 0.5rem; color: var(--dim2); }
+
+/* ══ FOOTER ══ */
+#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<nav>
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+</nav>
+
+<div id="page">
+  <header id="blog-header">
+    <p class="page-eyebrow reveal">Notes</p>
+    <h1 class="page-title reveal">Things I <em>think about</em></h1>
+    <p class="page-desc reveal">Projects in progress, things I am learning, observations. One note per month, roughly.</p>
+  </header>
+
+  <div id="filters" class="reveal"></div>
+  <div id="articles"></div>
+  <div id="empty"><em>Nothing here yet.</em>Check back soon.</div>
+</div>
+
+<footer id="page-footer">
+  <a href="about.html" class="btn-pill">← About</a>
+  <span class="footer-sig">Bastien Gaffet</span>
+  <a href="work-v4.html" class="btn-pill">Work →</a>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════════════════════════
+// ARTICLES — add a new object here for each new post.
+// file   : the HTML filename (put it in the same folder)
+// title  : article title — use ** around the italic part e.g. "My **project**"
+// date   : "Month YYYY"
+// tags   : array of strings, used for filtering
+// excerpt: 1-2 sentence summary shown in the list
+// ══════════════════════════════════════════════════════════════════════════
+const ARTICLES = [
+  // Example — delete this and add your real articles:
+  {
+    file:    'post-example.html',
+    title:   'Welcome to my **notes**',
+    date:    'May 2025',
+    tags:    ['Meta'],
+    excerpt: 'A first note to explain what this space is and what I plan to write about.',
+    cover:   'your-cover-image.jpg', // optional — leave out or set to '' to show a placeholder
+  },
+  // Add more like this:
+  // {
+  //   file:    'post-robot-j4.html',
+  //   title:   'Building **Robot J4**',
+  //   date:    'June 2025',
+  //   tags:    ['Robotics', 'AI'],
+  //   excerpt: 'How I designed the Minimax algorithm and what I learned along the way.',
+  // },
+];
+
+// ══ BUILD UI ══════════════════════════════════════════════════════════════
+const artEl  = document.getElementById('articles');
+const filtEl = document.getElementById('filters');
+const emptyEl = document.getElementById('empty');
+let activeTag = 'All';
+
+// Collect all unique tags
+const allTags = ['All', ...new Set(ARTICLES.flatMap(a => a.tags))];
+
+// Build filter buttons
+allTags.forEach(tag => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (tag === 'All' ? ' active' : '');
+  btn.textContent = tag;
+  btn.addEventListener('click', () => {
+    activeTag = tag;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderArticles();
+  });
+  filtEl.appendChild(btn);
+});
+
+function titleHTML(t) {
+  return t.replace(/\*\*(.+?)\*\*/g, '<em>$1</em>');
+}
+
+function renderArticles() {
+  artEl.innerHTML = '';
+  const filtered = activeTag === 'All' ? ARTICLES : ARTICLES.filter(a => a.tags.includes(activeTag));
+
+  if (!filtered.length) { emptyEl.style.display = 'block'; return; }
+  emptyEl.style.display = 'none';
+
+  // Most recent first
+  [...filtered].reverse().forEach((art, i) => {
+    const [month, year] = art.date.split(' ');
+    const card = document.createElement('a');
+    card.href = art.file;
+    card.className = 'article-card reveal';
+    card.style.transitionDelay = (i * 0.07) + 's';
+    const coverHTML = art.cover
+      ? `<img src="${art.cover}" alt="${art.title.replace(/\*\*/g, '')}" loading="lazy">`
+      : `<div class="card-cover-placeholder"><span>No image</span></div>`;
+
+    card.innerHTML = `
+      <div class="card-cover">${coverHTML}</div>
+      <div class="card-body">
+        <div class="card-date" style="margin-bottom:.7rem">
+          <span class="card-month" style="display:inline">${month}</span>
+          <span class="card-year" style="display:inline;opacity:.6"> ${year}</span>
+        </div>
+        <div class="card-tags">${art.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+        <h2 class="card-title">${titleHTML(art.title)}</h2>
+        <p class="card-excerpt">${art.excerpt}</p>
+        <div class="card-footer">
+          <span class="card-read">Read</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    `;
+    artEl.appendChild(card);
+  });
+
+  // Re-trigger reveal observer on new cards
+  document.querySelectorAll('.article-card.reveal').forEach(el => rObs.observe(el));
+}
+
+// ══ REVEAL ════════════════════════════════════════════════════════════════
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('#blog-header .reveal, #filters').forEach((el,i) =>
+    setTimeout(() => el.classList.add('visible'), 100 + i * 100)
+  );
+  renderArticles();
+});
+
+// ══ COSMOS ════════════════════════════════════════════════════════════════
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
+let W,H,stars=[];const NUM_STARS=220;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
+function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

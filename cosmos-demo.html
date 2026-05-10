@@ -1,0 +1,266 @@
+<!--
+  Cosmos Wallpaper Generator — FREE DEMO
+  Demo limited to Galaxy Spiral only. Full version available at:
+  https://ko-fi.com/s/9d2de59f24
+  Copyright (c) 2025 Bastien Gaffet — bastiengaffet.fr
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmos Wallpaper Generator — Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07080E;--panel:#0D0F1A;--border:rgba(255,255,255,0.07);--border-hi:rgba(255,255,255,0.14);--violet:hsl(265 72% 62%);--vglow:hsl(265 72% 62% / 0.18);--white:#F0EEF8;--dim:#6B6A80;--dim2:#9997B0;--mono:'Syne Mono',monospace;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{background:var(--bg);color:var(--white);font-family:'Syne',sans-serif;display:flex;height:100vh;overflow:hidden;}
+#panel{width:300px;min-width:300px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;z-index:10;}
+#panel::-webkit-scrollbar{width:4px;}
+#panel::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:2px;}
+.panel-header{padding:1.4rem 1.4rem 1rem;border-bottom:1px solid var(--border);}
+.panel-eyebrow{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--violet);margin-bottom:.4rem;}
+.panel-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;}
+.panel-sub{font-size:.68rem;color:var(--dim);margin-top:.3rem;line-height:1.5;}
+.section{padding:.9rem 1.4rem;border-bottom:1px solid var(--border);}
+.section-label{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:.8rem;}
+/* Colors */
+.color-row{display:flex;gap:.8rem;align-items:center;margin-bottom:.7rem;}
+.color-swatch-wrap{position:relative;flex-shrink:0;}
+.color-swatch{width:30px;height:30px;border-radius:8px;border:1px solid var(--border-hi);cursor:pointer;display:block;transition:transform .15s;}
+.color-swatch:hover{transform:scale(1.08);}
+input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.color-label{font-size:.7rem;color:var(--dim2);}
+.color-hex{font-family:var(--mono);font-size:.62rem;color:var(--dim);margin-top:.1rem;}
+.preset-row{display:flex;gap:.45rem;flex-wrap:wrap;}
+.preset-dot{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;flex-shrink:0;}
+.preset-dot:hover{transform:scale(1.25);}
+.preset-dot.active{border-color:var(--white);}
+/* Sliders */
+.slider-wrap{margin-bottom:.85rem;}
+.slider-header{display:flex;justify-content:space-between;margin-bottom:.4rem;}
+.slider-name{font-size:.68rem;color:var(--dim2);}
+.slider-val{font-family:var(--mono);font-size:.62rem;color:var(--violet);}
+input[type=range]{-webkit-appearance:none;width:100%;height:3px;background:var(--border-hi);border-radius:2px;outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--violet);cursor:pointer;box-shadow:0 0 5px var(--vglow);}
+/* Checkboxes */
+.check-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.55rem;cursor:pointer;}
+.check-box{width:15px;height:15px;border-radius:4px;border:1px solid var(--border-hi);background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.check-box.on{background:var(--violet);border-color:var(--violet);}
+.check-box.on::after{content:'✓';font-size:9px;color:white;}
+.check-label{font-size:.7rem;color:var(--dim2);}
+/* Download */
+.dl-section{padding:.9rem 1.4rem 1.4rem;margin-top:auto;}
+.dl-label{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;}
+.btn-dl{width:100%;padding:.65rem .3rem;border-radius:10px;border:1px solid var(--violet);background:var(--vglow);color:var(--white);font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;}
+.btn-dl:hover{background:hsl(265 72% 62% / .3);box-shadow:0 0 18px hsl(265 72% 62% / .15);}
+.btn-dl span{display:block;font-size:.52rem;font-weight:400;color:hsl(265 72% 80%);margin-top:.1rem;}
+/* Demo badge + CTA */
+.demo-banner{background:hsl(265 72% 62% / .12);border:1px solid hsl(265 72% 62% / .3);border-radius:8px;padding:.7rem 1rem;margin:.9rem 1.4rem;text-align:center;}
+.demo-badge{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);margin-bottom:.3rem;}
+.demo-text{font-size:.65rem;color:var(--dim2);line-height:1.5;margin-bottom:.6rem;}
+.demo-cta{display:block;background:var(--violet);color:var(--white);border-radius:6px;padding:.5rem;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.demo-cta:hover{background:hsl(265 72% 52%);}
+/* Preview */
+#preview{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;gap:.8rem;position:relative;overflow:hidden;}
+.preview-label{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);position:absolute;top:1.1rem;left:1.5rem;}
+#canvas-wrap{position:relative;box-shadow:0 25px 70px rgba(0,0,0,.75),0 0 0 1px var(--border);border-radius:3px;overflow:hidden;}
+#main-canvas{display:block;}
+.preview-info{font-size:.6rem;color:var(--dim);font-family:var(--mono);}
+/* Watermark on canvas */
+#watermark{position:absolute;bottom:.6rem;right:.8rem;font-family:var(--mono);font-size:.55rem;color:rgba(255,255,255,.18);pointer-events:none;letter-spacing:.08em;}
+</style>
+</head>
+<body>
+<div id="panel">
+  <div class="panel-header">
+    <p class="panel-eyebrow">Free Demo</p>
+    <p class="panel-title">Wallpaper Generator</p>
+    <p class="panel-sub">Galaxy Spiral preview. Full version unlocks 20+ types and all export formats.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Colors</p>
+    <div class="color-row">
+      <div class="color-swatch-wrap"><div class="color-swatch" id="swatch1"></div><input type="color" id="color1" value="#7C3FFF"></div>
+      <div><div class="color-label">Primary</div><div class="color-hex" id="hex1">#7C3FFF</div></div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch-wrap"><div class="color-swatch" id="swatch2"></div><input type="color" id="color2" value="#1A3A80"></div>
+      <div><div class="color-label">Secondary</div><div class="color-hex" id="hex2">#1A3A80</div></div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch-wrap"><div class="color-swatch" id="swatch3"></div><input type="color" id="color3" value="#05060A"></div>
+      <div><div class="color-label">Background</div><div class="color-hex" id="hex3">#05060A</div></div>
+    </div>
+    <p class="section-label" style="margin-top:.9rem">Presets</p>
+    <div class="preset-row" id="presets"></div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Parameters</p>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Star density</span><span class="slider-val" id="v-density">60</span></div><input type="range" id="s-density" min="10" max="100" value="60"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Nebula intensity</span><span class="slider-val" id="v-nebula">70</span></div><input type="range" id="s-nebula" min="0" max="100" value="70"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Glow radius</span><span class="slider-val" id="v-glow">60</span></div><input type="range" id="s-glow" min="10" max="100" value="60"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Brightness</span><span class="slider-val" id="v-bright">65</span></div><input type="range" id="s-bright" min="10" max="100" value="65"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Dust / haze</span><span class="slider-val" id="v-dust">40</span></div><input type="range" id="s-dust" min="0" max="100" value="40"></div>
+    <div class="check-row" onclick="toggleCheck('c-anim')"><div class="check-box on" id="c-anim-box"></div><span class="check-label">Animate preview</span></div>
+    <div class="check-row" onclick="toggleCheck('c-vignette')"><div class="check-box on" id="c-vignette-box"></div><span class="check-label">Vignette</span></div>
+    <div class="check-row" onclick="toggleCheck('c-grain')"><div class="check-box on" id="c-grain-box"></div><span class="check-label">Film grain</span></div>
+  </div>
+
+  <div class="dl-section">
+    <p class="dl-label">Download preview (720p)</p>
+    <button class="btn-dl" onclick="downloadDemo()">Save image<span>1280×720</span></button>
+  </div>
+
+  <div class="demo-banner">
+    <p class="demo-badge">Full version</p>
+    <p class="demo-text">20+ object types, 4K export, MP4 video, randomizer and more.</p>
+    <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" class="demo-cta">Get it on Ko-fi — €4</a>
+  </div>
+</div>
+
+<div id="preview">
+  <p class="preview-label">Galaxy Spiral — Demo</p>
+  <div id="canvas-wrap">
+    <canvas id="main-canvas"></canvas>
+    <div id="watermark">bastiengaffet.fr — demo</div>
+  </div>
+  <p class="preview-info" id="res-label">preview</p>
+</div>
+
+<script>
+// ── State (type fixed, no seed randomization exposed) ───────────────────────
+const S={type:'galaxy_spiral',c1:'#7C3FFF',c2:'#1A3A80',c3:'#05060A',
+  density:60,nebula:70,glow:60,bright:65,dust:40,
+  anim:true,vignette:true,grain:true,
+  seed:3721}; // fixed seed for demo
+
+const PRESETS=[
+  {c1:'#7C3FFF',c2:'#1A3A80',c3:'#05060A'},
+  {c1:'#FF3A6E',c2:'#3A0A60',c3:'#080005'},
+  {c1:'#00D4FF',c2:'#003060',c3:'#020A10'},
+  {c1:'#FF8C00',c2:'#600A00',c3:'#0A0400'},
+  {c1:'#00FF9D',c2:'#003020',c3:'#020A06'},
+  {c1:'#FF00E5',c2:'#300060',c3:'#080008'},
+  {c1:'#E8E0FF',c2:'#334466',c3:'#05060A'},
+  {c1:'#FFD700',c2:'#4A2000',c3:'#080400'},
+];
+
+let PX=1,raf;
+const canvas=document.getElementById('main-canvas');
+const ctx=canvas.getContext('2d');
+const wrap=document.getElementById('canvas-wrap');
+
+// ── Canvas sizing (preview only, no format toggle) ─────────────────────────
+function resizeCanvas(){
+  const avW=window.innerWidth-300-48,avH=window.innerHeight-48;
+  const ar=16/9;
+  let w=avW,h=w/ar;
+  if(h>avH){h=avH;w=h*ar;}
+  canvas.width=Math.floor(w);canvas.height=Math.floor(h);
+  wrap.style.width=canvas.width+'px';wrap.style.height=canvas.height+'px';
+  document.getElementById('res-label').textContent=`${canvas.width} × ${canvas.height} — preview`;
+}
+
+// ── Utilities ──────────────────────────────────────────────────────────────
+function sR(seed){let s=seed;return()=>{s=(s*1664525+1013904223)&0xFFFFFFFF;return(s>>>0)/0xFFFFFFFF;};}
+function hR(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function rga(hex,a){const[r,g,b]=hR(hex);return`rgba(${r},${g},${b},${a})`;}
+
+// ── Draw functions (only what Galaxy Spiral needs) ─────────────────────────
+function dBg(c,w,h){const[r,g,b]=hR(S.c3);c.fillStyle=`rgb(${r},${g},${b})`;c.fillRect(0,0,w,h);}
+
+function dStars(c,w,h,t,rng,mult=1){
+  const n=Math.round((S.density*8+120)*mult),br=S.bright/100;
+  for(let i=0;i<n;i++){const x=rng()*w,y=rng()*h,r=(rng()*1.4+0.2)*PX;const base=rng()*.65+.1;const tw=S.anim?Math.sin(t*.001*(rng()*3+.5)+rng()*Math.PI*2)*.3:0;const a=Math.max(0,Math.min(1,(base+tw)*br));const hue=rng()>.75?265:rng()>.5?210:0;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=`hsla(${hue},${hue?50:0}%,96%,${a})`;c.fill();}
+}
+
+function dGalaxySpiral(c,w,h,t,rng){
+  const cx=w/2,cy=h/2,mxR=Math.min(w,h)*(S.glow/100)*.85;
+  const int=Math.max(.35,S.nebula/100),br=Math.max(.45,S.bright/100),rot=(S.seed%628)*.01+t*.0001;
+  const cg=c.createRadialGradient(cx,cy,0,cx,cy,mxR*.22);cg.addColorStop(0,rga(S.c1,.9*br));cg.addColorStop(.4,rga(S.c1,.3*br));cg.addColorStop(1,rga(S.c1,0));c.fillStyle=cg;c.fillRect(0,0,w,h);
+  const hg=c.createRadialGradient(cx,cy,mxR*.15,cx,cy,mxR*.9);hg.addColorStop(0,rga(S.c2,.2*br));hg.addColorStop(1,rga(S.c2,0));c.fillStyle=hg;c.fillRect(0,0,w,h);
+  const arms=3,dpa=700+Math.round(int*400);
+  for(let arm=0;arm<arms;arm++){const ba=(arm/arms)*Math.PI*2;for(let i=0;i<dpa;i++){const f=i/dpa,r=f*mxR*.9,sp=(rng()-.5)*.55*(1-f*.5);const angle=ba+f*Math.PI*3.8+rot+sp;const x=cx+Math.cos(angle)*r,y=cy+Math.sin(angle)*r*(h/w<.7?.55:.75);const sr=(rng()*1.3+.2)*PX;const a=(.3+(.7-f*.4))*(rng()*.6+.38)*br*int;c.beginPath();c.arc(x,y,sr,0,Math.PI*2);c.fillStyle=rga(f<.35||rng()>.65?S.c1:S.c2,Math.min(.95,a));c.fill();}}
+}
+
+function dVignette(c,w,h){const g=c.createRadialGradient(w/2,h/2,Math.min(w,h)*.28,w/2,h/2,Math.max(w,h)*.78);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.68)');c.fillStyle=g;c.fillRect(0,0,w,h);}
+function dGrain(c,w,h){const id=c.getImageData(0,0,w,h),d=id.data,amt=.036;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*255*amt;d[i]=Math.min(255,Math.max(0,d[i]+n));d[i+1]=Math.min(255,Math.max(0,d[i+1]+n));d[i+2]=Math.min(255,Math.max(0,d[i+2]+n));}c.putImageData(id,0,0);}
+
+function renderTo(c,w,h,t=0){
+  PX=Math.max(1,Math.min(w,h)/450);
+  const rng=sR(S.seed);
+  dBg(c,w,h);
+  dStars(c,w,h,t,sR(S.seed+1));
+  dGalaxySpiral(c,w,h,t,rng);
+  if(S.dust>0){const dr=sR(S.seed+5);const dg=c.createRadialGradient(w*dr(),h*dr(),0,w/2,h/2,Math.max(w,h)*.7);dg.addColorStop(0,rga(S.c2,(S.dust/100)*.07));dg.addColorStop(1,rga(S.c2,0));c.fillStyle=dg;c.fillRect(0,0,w,h);}
+  if(S.vignette)dVignette(c,w,h);
+  if(S.grain)dGrain(c,w,h);
+}
+
+function startRender(){
+  cancelAnimationFrame(raf);
+  if(S.anim){function loop(t){renderTo(ctx,canvas.width,canvas.height,t);raf=requestAnimationFrame(loop);}raf=requestAnimationFrame(loop);}
+  else renderTo(ctx,canvas.width,canvas.height,0);
+}
+
+// ── Download (720p only, watermarked) ─────────────────────────────────────
+function downloadDemo(){
+  const off=document.createElement('canvas');off.width=1280;off.height=720;
+  const oc=off.getContext('2d');
+  renderTo(oc,1280,720,6000);
+  // Watermark
+  oc.fillStyle='rgba(255,255,255,0.22)';
+  oc.font='bold 13px monospace';
+  oc.textAlign='right';
+  oc.fillText('bastiengaffet.fr — demo version',1268,710);
+  const a=document.createElement('a');a.href=off.toDataURL('image/png');
+  a.download='cosmos-galaxy-spiral-demo.png';a.click();
+}
+
+// ── UI ─────────────────────────────────────────────────────────────────────
+function syncUI(){
+  ['1','2','3'].forEach(i=>{
+    document.getElementById('swatch'+i).style.background=S['c'+i];
+    document.getElementById('hex'+i).textContent=S['c'+i];
+    document.getElementById('color'+i).value=S['c'+i];
+  });
+}
+
+['color1','color2','color3'].forEach((id,i)=>{
+  document.getElementById(id).addEventListener('input',e=>{
+    S['c'+(i+1)]=e.target.value;syncUI();startRender();
+  });
+});
+
+[['s-density','v-density','density'],['s-nebula','v-nebula','nebula'],
+ ['s-glow','v-glow','glow'],['s-bright','v-bright','bright'],['s-dust','v-dust','dust']
+].forEach(([id,vid,key])=>{
+  const el=document.getElementById(id);
+  el.addEventListener('input',()=>{S[key]=+el.value;document.getElementById(vid).textContent=el.value;startRender();});
+});
+
+const checks={'c-anim':'anim','c-vignette':'vignette','c-grain':'grain'};
+function toggleCheck(id){S[checks[id]]=!S[checks[id]];document.getElementById(id+'-box').classList.toggle('on',S[checks[id]]);startRender();}
+
+const pw=document.getElementById('presets');
+PRESETS.forEach((p,i)=>{
+  const d=document.createElement('div');
+  d.className='preset-dot'+(i===0?' active':'');
+  d.style.background=p.c1;
+  d.addEventListener('click',()=>{
+    document.querySelectorAll('.preset-dot').forEach(x=>x.classList.remove('active'));
+    d.classList.add('active');
+    S.c1=p.c1;S.c2=p.c2;S.c3=p.c3;syncUI();startRender();
+  });
+  pw.appendChild(d);
+});
+
+window.addEventListener('resize',()=>{resizeCanvas();startRender();});
+resizeCanvas();syncUI();startRender();
+</script>
+</body>
+</html>

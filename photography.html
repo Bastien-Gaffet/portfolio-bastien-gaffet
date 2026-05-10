@@ -8,200 +8,201 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
 :root {
-  --black:        #05060A;
-  --violet:       hsl(265 75% 60%);
-  --violet-glow:  hsl(265 75% 60% / 0.2);
-  --white:        oklch(96% 0.005 250);
-  --dim:          oklch(60% 0.01 250);
-  --glass-bg:     rgba(255,255,255,0.04);
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-glow: hsl(265 75% 60% / 0.2); --white: oklch(96% 0.005 250);
+  --dim: oklch(60% 0.01 250); --glass-bg: rgba(255,255,255,0.04);
   --glass-border: rgba(255,255,255,0.09);
 }
-
-html, body { height: 100%; overflow: hidden; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--black); color: var(--white);
   font-family: 'Inter', sans-serif; font-weight: 300;
-  opacity: 0; animation: fadeIn 0.7s ease forwards;
-  display: flex; flex-direction: column;
+  overflow-x: hidden; opacity: 0; animation: fadeIn 0.7s ease forwards;
 }
 @keyframes fadeIn { to { opacity: 1; } }
-
 #cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
 nav {
   position: fixed; top: 0; right: 0; z-index: 100;
   padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
 }
-nav a {
-  color: var(--dim); text-decoration: none;
-  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
-}
+nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
 nav a:hover { color: var(--white); }
 nav .nav-active { color: var(--white); }
 
-/* ══ LAYOUT ══ */
-#page {
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .15s; } .d2 { transition-delay: .3s; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; position: relative; z-index: 1; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem; }
+.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
+.hero-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.85; max-width: 460px; }
+
+/* ══ CAROUSEL SECTION ══ */
+#carousel-section {
   position: relative; z-index: 1;
-  height: 100vh; display: flex; flex-direction: column;
+  border-top: 1px solid var(--glass-border);
+  padding: 5rem 0 3rem;
 }
-
-/* ══ HEADER ══ */
-#header {
-  padding: 2rem 3rem 1.5rem;
-  flex-shrink: 0;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  border-bottom: 1px solid var(--glass-border);
-}
-.header-left {}
-.page-eyebrow {
+.section-label {
   font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--violet); margin-bottom: 0.5rem;
+  color: var(--violet); padding-left: 3rem; margin-bottom: 2.5rem;
+  display: block;
 }
-.page-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 400; line-height: 1.1;
-}
-.page-title em { font-style: italic; color: hsl(265 60% 80%); }
-.photo-count {
-  font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 0.78rem; color: var(--dim);
-  align-self: flex-end; padding-bottom: 0.15rem;
-}
-
-/* ══ CAROUSEL AREA ══ */
-#carousel-area {
-  flex: 1; display: flex; align-items: center;
-  position: relative; overflow: hidden;
-  padding: 1.5rem 0;
+/* Carousel track wrapper */
+#carousel-wrap {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
   cursor: grab;
 }
-#carousel-area:active { cursor: grabbing; }
-
+#carousel-wrap:active { cursor: grabbing; }
 #track {
-  display: flex; align-items: center;
-  gap: 1.5rem; padding: 0 calc(50vw - 240px);
+  display: flex; align-items: center; gap: 1.2rem;
+  padding: 0 calc(50vw - 260px);
+  height: 100%;
   transition: transform 0.55s cubic-bezier(.22,.61,.36,1);
-  will-change: transform;
-  user-select: none;
+  will-change: transform; user-select: none;
 }
 
-/* ══ CARDS ══ */
+/* Cards */
 .photo-card {
-  flex-shrink: 0;
-  position: relative;
-  border-radius: 8px; overflow: hidden;
-  transition: width 0.55s cubic-bezier(.22,.61,.36,1),
-              height 0.55s cubic-bezier(.22,.61,.36,1),
-              opacity 0.55s ease,
-              box-shadow 0.55s ease;
+  flex-shrink: 0; position: relative; border-radius: 8px; overflow: hidden;
+  transition: width 0.55s cubic-bezier(.22,.61,.36,1), height 0.55s cubic-bezier(.22,.61,.36,1), opacity 0.55s ease, box-shadow 0.55s ease;
   cursor: pointer;
 }
+.freeze-all, .freeze-all * { transition: none !important; }
+.photo-card.active  { width: 520px; height: 360px; opacity: 1; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px var(--glass-border); cursor: default; }
+.photo-card.side-1  { width: 300px; height: 210px; opacity: 0.5; }
+.photo-card.side-2  { width: 190px; height: 132px; opacity: 0.28; }
+.photo-card.hidden  { width: 120px; height: 84px;  opacity: 0.1; }
 
-.photo-card.active {
-  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px var(--glass-border);
-  cursor: default;
-}
-
-.photo-card img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  pointer-events: none;
-  transition: filter 0.55s ease;
-}
-
-/* Card sizes */
-.photo-card.active  { width: 480px; height: 360px; opacity: 1; }
-.photo-card.side-1  { width: 280px; height: 210px; opacity: 0.55; }
-.photo-card.side-2  { width: 180px; height: 135px; opacity: 0.3; }
-.photo-card.hidden  { width: 120px; height: 90px; opacity: 0.1; }
-
-.photo-card:not(.active) img { filter: brightness(0.65) saturate(0.7); }
-
-/* Overlay on active card */
-.card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(5,6,10,0.75) 0%, transparent 55%);
-  opacity: 0; transition: opacity 0.4s ease;
-  pointer-events: none;
-}
+.photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; transition: filter 0.55s ease; }
+.photo-card:not(.active) img { filter: brightness(0.6) saturate(0.65); }
+.card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,6,10,.78) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
 .photo-card.active .card-overlay { opacity: 1; }
+.card-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: hsl(265 18% 10%); border: 1px solid var(--glass-border); }
+.card-placeholder span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--dim); opacity: 0.35; }
 
-/* ══ CAPTION ══ */
+/* Caption */
 #caption {
-  position: absolute; bottom: 2.5rem; left: 50%;
-  transform: translateX(-50%);
-  text-align: center; z-index: 10;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  text-align: center; z-index: 10; pointer-events: none;
+  width: 500px;
 }
-.caption-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  font-weight: 400; line-height: 1.2;
-  margin-bottom: 0.3rem;
+.cap-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.25rem; }
+.cap-title em { font-style: italic; color: hsl(265 60% 80%); }
+.cap-meta { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+
+/* Dots + counter */
+#carousel-footer {
+  display: flex; align-items: center; justify-content: center;
+  gap: 2rem; margin-top: 1.5rem; padding: 0 3rem;
 }
-.caption-title em { font-style: italic; color: hsl(265 60% 80%); }
-.caption-meta {
-  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--dim);
+#dots { display: flex; gap: 0.4rem; align-items: center; }
+.dot { width: 4px; height: 4px; border-radius: 50%; background: var(--dim); opacity: 0.4; transition: all 0.35s; cursor: pointer; }
+.dot.active { width: 20px; border-radius: 2px; background: var(--violet); opacity: 1; }
+.carousel-counter { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.75rem; color: var(--dim); }
+.scroll-hint { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); opacity: 0.45; display: flex; align-items: center; gap: 0.4rem; }
+.hint-arrow { animation: nudge 2s ease-in-out infinite; display: inline-block; }
+@keyframes nudge { 0%,100%{transform:translateX(0)} 50%{transform:translateX(4px)} }
+
+/* ══ GRID SECTION ══ */
+#grid-section {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--glass-border);
+  padding: 5rem 2.5rem 8rem;
 }
 
-/* ══ PROGRESS DOTS ══ */
-#dots {
-  position: absolute; bottom: 0.8rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex; gap: 0.4rem; align-items: center;
-  z-index: 10;
-}
-.dot {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--dim); opacity: 0.4;
-  transition: all 0.35s ease; cursor: pointer;
-}
-.dot.active {
-  width: 20px; border-radius: 2px;
-  background: var(--violet); opacity: 1;
+/* Bento grid — 12 columns, auto rows of 120px */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 80px;
+  grid-auto-flow: dense;
+  gap: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* ══ SCROLL HINT ══ */
-#scroll-hint {
-  position: absolute; right: 2.5rem; bottom: 1.8rem;
-  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--dim); opacity: 0.5;
-  display: flex; align-items: center; gap: 0.5rem;
+.bento-item {
+  border-radius: 8px; overflow: hidden; position: relative;
+  cursor: pointer;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.75s cubic-bezier(.22,.61,.36,1), transform 0.75s cubic-bezier(.22,.61,.36,1);
 }
-.hint-arrow { font-size: 0.9rem; animation: nudge 2s ease-in-out infinite; }
-@keyframes nudge {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(4px); }
+.bento-item.visible { opacity: 1; transform: translateY(0); }
+
+/* Only two formats: 4:3 landscape and 3:4 portrait */
+/* 8 cols × 6 rows = 640px w × 480px h → 4:3 */
+.bento-item[data-span="landscape"] { grid-column: span 8; grid-row: span 6; }
+/* 4 cols × 6 rows = 320px w × 480px h → 3:4 (two portrait = one landscape row) */
+.bento-item[data-span="portrait"]  { grid-column: span 4; grid-row: span 6; }
+
+@media(max-width: 900px) {
+  .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 70px; }
+  .bento-item[data-span="landscape"] { grid-column: span 4; grid-row: span 4; }
+  .bento-item[data-span="portrait"]  { grid-column: span 2; grid-row: span 4; }
 }
+@media(max-width: 600px) {
+  .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 100px; }
+  .bento-item[data-span="landscape"] { grid-column: span 2; grid-row: span 3; }
+  .bento-item[data-span="portrait"]  { grid-column: span 1; grid-row: span 4; }
+}
+
+.bento-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s cubic-bezier(.22,.61,.36,1), filter 0.4s; }
+.bento-item:hover img { transform: scale(1.04); filter: brightness(1.06); }
+
+.bento-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,6,10,.82) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.35s;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1rem 0.9rem 0.9rem;
+}
+.bento-item:hover .bento-overlay { opacity: 1; }
+.bento-title { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.15rem; }
+.bento-title em { font-style: italic; color: hsl(265 60% 80%); }
+.bento-meta { font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+
+.bento-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: hsl(265 15% 9%); border: 1px solid var(--glass-border); }
+.bento-placeholder span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--dim); opacity: 0.25; }
+
+/* ══ LIGHTBOX ══ */
+#lightbox {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(5,6,10,.96); backdrop-filter: blur(20px);
+  display: none; align-items: center; justify-content: center; padding: 2rem;
+}
+#lightbox.open { display: flex; }
+#lightbox-inner { position: relative; max-width: 90vw; max-height: 88vh; display: flex; flex-direction: column; align-items: center; animation: lbIn .35s cubic-bezier(.22,.61,.36,1); }
+@keyframes lbIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+#lightbox-img { max-width: 100%; max-height: 76vh; object-fit: contain; border-radius: 4px; display: block; }
+#lightbox-cap { margin-top: 1.2rem; text-align: center; }
+#lb-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.25rem; }
+#lb-title em { font-style: italic; color: hsl(265 60% 80%); }
+#lb-meta { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+.lb-nav { position: fixed; top: 50%; transform: translateY(-50%); background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--dim); cursor: pointer; font-size: 1.1rem; transition: color .2s, border-color .2s, background .2s; }
+.lb-nav:hover { color: var(--white); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.08); }
+#lb-prev { left: 1.5rem; } #lb-next { right: 1.5rem; }
+#lb-close { position: fixed; top: 1.5rem; right: 1.5rem; background: transparent; border: 1px solid var(--glass-border); border-radius: 30px; padding: 0.4rem 1rem; color: var(--dim); cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color .2s, border-color .2s; }
+#lb-close:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+#lb-count { position: fixed; top: 1.8rem; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; color: var(--dim); }
 
 /* ══ FOOTER ══ */
-#page-footer {
-  border-top: 1px solid var(--glass-border);
-  padding: 1.2rem 3rem; flex-shrink: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  position: relative; z-index: 1;
-}
-.btn-pill {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  text-decoration: none; color: var(--dim); font-size: 0.68rem;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  border: 1px solid var(--glass-border); border-radius: 30px;
-  padding: 0.5rem 1.3rem; transition: color 0.3s, border-color 0.3s;
-}
-.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
-.footer-sig {
-  font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 0.85rem; color: var(--dim);
-}
+#page-footer { border-top: 1px solid var(--glass-border); position: relative; z-index: 1; padding: 4rem 0; }
+#page-footer .inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
+.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
 </style>
 </head>
 <body>
-
 <canvas id="cosmos"></canvas>
 
 <nav>
@@ -211,230 +212,418 @@ nav .nav-active { color: var(--white); }
   <a href="work-v4.html">Work</a>
 </nav>
 
-<div id="page">
-  <div id="header">
-    <div class="header-left">
-      <p class="page-eyebrow">Photography</p>
-      <h1 class="page-title">Through the <em>lens</em></h1>
-    </div>
-    <p class="photo-count" id="count-label">01 / 08</p>
+<!-- HERO -->
+<section id="hero">
+  <div class="inner">
+    <p class="hero-eyebrow reveal">Photography</p>
+    <h1 class="hero-title">
+      <span class="reveal">Through</span><br>
+      <em class="reveal d1">the lens</em>
+    </h1>
+    <p class="hero-desc reveal d2">Moments captured with what I have. Light, geometry, and the small details most people walk past.</p>
   </div>
+</section>
 
-  <div id="carousel-area">
+<!-- CAROUSEL -->
+<section id="carousel-section">
+  <span class="section-label reveal">Selected</span>
+  <div id="carousel-wrap">
     <div id="track"></div>
-
     <div id="caption">
-      <p class="caption-title" id="cap-title"></p>
-      <p class="caption-meta" id="cap-meta"></p>
-    </div>
-
-    <div id="dots"></div>
-
-    <div id="scroll-hint">
-      Scroll to navigate <span class="hint-arrow">›</span>
+      <p class="cap-title" id="cap-title"></p>
+      <p class="cap-meta" id="cap-meta"></p>
     </div>
   </div>
+  <div id="carousel-footer">
+    <span class="scroll-hint">Scroll <span class="hint-arrow">›</span></span>
+    <div id="dots"></div>
+    <span class="carousel-counter" id="c-count">01 / 10</span>
+  </div>
+</section>
 
-  <footer id="page-footer">
-    <a href="work-v4.html" class="btn-pill">← Work</a>
-    <span class="footer-sig">Bastien Gaffet</span>
-    <a href="about.html" class="btn-pill">About →</a>
-  </footer>
+<!-- GRID -->
+<section id="grid-section">
+  <span class="section-label reveal">All photos</span>
+  <div class="bento" id="bento"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lb-close">Close</button>
+  <p id="lb-count"></p>
+  <button class="lb-nav" id="lb-prev">&#8592;</button>
+  <button class="lb-nav" id="lb-next">&#8594;</button>
+  <div id="lightbox-inner">
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-cap">
+      <p id="lb-title"></p>
+      <p id="lb-meta"></p>
+    </div>
+  </div>
 </div>
 
+<footer id="page-footer">
+  <div class="inner">
+    <a href="about.html" class="btn-pill">← About</a>
+    <span class="footer-sig">Bastien Gaffet</span>
+    <a href="work-v4.html" class="btn-pill">Work →</a>
+  </div>
+</footer>
+
 <script>
-// ══ PHOTOS DATA ══════════════════════════════════════════════════════════════
-// Replace src with real image paths when available.
-// Format: { src, title, location, date }
+// ══════════════════════════════════════════════════════════════════════════════
+// PHOTOS DATA
+// src      : path to image, e.g. 'photos/sunset.jpg' or full URL
+// title    : displayed in caption and lightbox
+// location : city or place
+// date     : year or full date
+// span     : 'landscape' | 'portrait' | 'square' | 'wide' | 'tall' | 'feature'
+//            Controls the grid cell size. Match to your photo's actual ratio.
+// featured : true = appears in carousel (pick your best ones)
+// ══════════════════════════════════════════════════════════════════════════════
 const PHOTOS = [
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2024' },
-  { src: '', title: 'Your photo title', location: 'Location', date: '2025' },
+  // span: 'landscape' for 4:3 photos, 'portrait' for 3:4 photos
+  // featured: true = also appears in the carousel at the top
+  // Row 1: landscape (8col) + portrait (4col) = 12
+  { src:'', title:'Photo title', location:'Location', date:'2025', span:'landscape', featured:true  },
+  { src:'', title:'Photo title', location:'Location', date:'2025', span:'portrait',  featured:true  },
+  // Row 2: portrait (4col) + landscape (8col) = 12
+  { src:'', title:'Photo title', location:'Location', date:'2025', span:'portrait',  featured:false },
+  { src:'', title:'Photo title', location:'Location', date:'2024', span:'landscape', featured:true  },
+  // Row 3: landscape + portrait
+  { src:'', title:'Photo title', location:'Location', date:'2024', span:'landscape', featured:false },
+  { src:'', title:'Photo title', location:'Location', date:'2024', span:'portrait',  featured:true  },
+  // Row 4: portrait + landscape
+  { src:'', title:'Photo title', location:'Location', date:'2025', span:'portrait',  featured:false },
+  { src:'', title:'Photo title', location:'Location', date:'2025', span:'landscape', featured:true  },
+  // Row 5: landscape + portrait
+  { src:'', title:'Photo title', location:'Location', date:'2025', span:'landscape', featured:false },
+  { src:'', title:'Photo title', location:'Location', date:'2024', span:'portrait',  featured:false },
+  // Row 6: portrait + landscape
+  { src:'', title:'Photo title', location:'Location', date:'2024', span:'portrait',  featured:false },
+  { src:'', title:'Photo title', location:'Location', date:'2024', span:'landscape', featured:true  },
 ];
 
-// ══ COSMOS ═══════════════════════════════════════════════════════════════════
-const cv = document.getElementById('cosmos');
-const ctx = cv.getContext('2d');
-let W, H, stars = [];
-
-function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
-function initS(){
-  stars = Array.from({length:160},()=>{
-    const a=Math.random()*Math.PI*2, r=Math.random()*Math.max(W,H)*.65;
-    return {x:W/2+Math.cos(a)*r, y:H/2+Math.sin(a)*r,
-            rad:Math.random()*1.1+.15, al:Math.random()*.45+.05,
-            sp:(Math.random()*.3+.05)*.00007, a, radius:r,
-            tw:Math.random()*Math.PI*2};
-  });
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function titleHTML(t) {
+  const w = t.split(' ');
+  return w.length > 1 ? `${w[0]} <em>${w.slice(1).join(' ')}</em>` : `<em>${t}</em>`;
 }
-function drawBg(t){
-  ctx.clearRect(0,0,W,H);
-  const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
-  bg.addColorStop(0,'rgba(12,8,28,1)');bg.addColorStop(.4,'rgba(7,5,16,1)');bg.addColorStop(1,'rgba(5,6,10,1)');
-  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-  stars.forEach(s=>{
-    s.a+=s.sp;s.x=W/2+Math.cos(s.a)*s.radius;s.y=H/2+Math.sin(s.a)*s.radius;
-    const a=s.al*(0.6+0.4*Math.sin(s.tw+t*.001));
-    ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);
-    ctx.fillStyle=`rgba(210,200,255,${a})`;ctx.fill();
-  });
-  requestAnimationFrame(drawBg);
-}
-resize();initS();requestAnimationFrame(drawBg);
-window.addEventListener('resize',()=>{resize();initS();});
 
-// ══ CAROUSEL ═════════════════════════════════════════════════════════════════
-const track   = document.getElementById('track');
+function makePlaceholder(label) {
+  const d = document.createElement('div');
+  d.className = 'card-placeholder';
+  const s = document.createElement('span');
+  s.textContent = label;
+  d.appendChild(s);
+  return d;
+}
+
+// ── CAROUSEL ──────────────────────────────────────────────────────────────────
+const featured = PHOTOS.filter(p => p.featured);
+const track    = document.getElementById('track');
+const dotsEl   = document.getElementById('dots');
+const cCount   = document.getElementById('c-count');
 const capTitle = document.getElementById('cap-title');
 const capMeta  = document.getElementById('cap-meta');
-const dotsEl   = document.getElementById('dots');
-const countEl  = document.getElementById('count-label');
-
-let current = 0;
-let isDragging = false, dragStartX = 0, dragDelta = 0;
-
-// Build cards
-PHOTOS.forEach((p, i) => {
-  const card = document.createElement('div');
-  card.className = 'photo-card';
-  card.dataset.index = i;
-
-  if (p.src) {
-    const img = document.createElement('img');
-    img.src = p.src;
-    img.alt = p.title;
-    img.draggable = false;
-    card.appendChild(img);
-  } else {
-    // Placeholder when no image yet
-    card.style.background = `hsl(${265 + i * 20} 30% 12%)`;
-    card.style.border = '1px solid var(--glass-border)';
-    const ph = document.createElement('div');
-    ph.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;';
-    ph.innerHTML = `<span style="font-family:Playfair Display,serif;font-style:italic;font-size:.8rem;color:var(--dim);opacity:.5;">${String(i+1).padStart(2,'0')}</span>`;
-    card.appendChild(ph);
-  }
-
-  const overlay = document.createElement('div');
-  overlay.className = 'card-overlay';
-  card.appendChild(overlay);
-
-  card.addEventListener('click', () => { if (!isDragging) goTo(i); });
-  track.appendChild(card);
-});
+let current = 0, isDragging = false, dragStartX = 0, dragDelta = 0;
 
 // Build dots
-PHOTOS.forEach((_, i) => {
-  const dot = document.createElement('div');
-  dot.className = 'dot';
-  dot.addEventListener('click', () => goTo(i));
+featured.forEach((_, i) => {
+  const dot = document.createElement('div'); dot.className = 'dot';
+  dot.addEventListener('click', () => carouselGoTo(i));
   dotsEl.appendChild(dot);
 });
 
-function getSizeClass(dist) {
+// Build cards — with clones at start and end for seamless infinite loop
+const CARD_WIDTHS = [520, 300, 190, 120], GAP = 18;
+const CLONE_COUNT = 3; // how many items to clone at each end
+const n = featured.length;
+
+function makeCard(p, dataIdx, isClone) {
+  const card = document.createElement('div');
+  card.className = 'photo-card';
+  card.dataset.real = dataIdx;
+  if (p.src) {
+    const img = document.createElement('img');
+    img.src = p.src; img.alt = p.title; img.draggable = false;
+    card.appendChild(img);
+  } else {
+    card.appendChild(makePlaceholder(String(dataIdx+1).padStart(2,'0')));
+  }
+  const ov = document.createElement('div'); ov.className = 'card-overlay';
+  card.appendChild(ov);
+  if (!isClone) card.addEventListener('click', () => { if (!isDragging) carouselGoTo(dataIdx); });
+  return card;
+}
+
+// Clones at start (last N items)
+for (let i = n - CLONE_COUNT; i < n; i++) {
+  track.appendChild(makeCard(featured[i], i, true));
+}
+// Real cards
+featured.forEach((p, i) => {
+  const card = makeCard(p, i, false);
+  track.appendChild(card);
+});
+// Clones at end (first N items)
+for (let i = 0; i < CLONE_COUNT; i++) {
+  track.appendChild(makeCard(featured[i], i, true));
+}
+
+function getCardOffset(virtualIdx) {
+  // virtualIdx = CLONE_COUNT + realIndex
+  let off = 0;
+  const allCards = track.querySelectorAll('.photo-card');
+  const total = allCards.length;
+  for (let i = 0; i < virtualIdx; i++) {
+    const dist = Math.abs(i - virtualIdx);
+    off += (CARD_WIDTHS[Math.min(dist, 3)] || 120) + GAP;
+  }
+  return off;
+}
+
+let virtualCurrent = CLONE_COUNT; // start at first real card
+let isTransitioning = false;
+
+function carouselGetClass(dist) {
   if (dist === 0) return 'active';
   if (dist === 1) return 'side-1';
   if (dist === 2) return 'side-2';
   return 'hidden';
 }
 
-function update() {
-  const cards = track.querySelectorAll('.photo-card');
-  const dots   = dotsEl.querySelectorAll('.dot');
-  const n = PHOTOS.length;
-
-  cards.forEach((card, i) => {
-    const dist = Math.min(Math.abs(i - current), n - Math.abs(i - current));
-    card.className = 'photo-card ' + getSizeClass(dist);
-  });
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === current);
-  });
-
-  // Caption
-  const p = PHOTOS[current];
-  capTitle.innerHTML = p.title.includes(' ') 
-    ? p.title.replace(/(\w+)\s+(\w.*)/, '$1 <em>$2</em>')
-    : `<em>${p.title}</em>`;
-  capMeta.textContent = `${p.location} · ${p.date}`;
-
-  // Counter
-  countEl.textContent = `${String(current+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
-
-  // Offset track so active card is centered
-  const CARD_W = 480, SIDE1_W = 280, SIDE2_W = 180, HIDDEN_W = 120;
-  const GAP = 24;
-  let offset = 0;
-  for (let i = 0; i < current; i++) {
-    const dist = Math.min(Math.abs(i - current), n - Math.abs(i - current));
-    const w = dist === 0 ? CARD_W : dist === 1 ? SIDE1_W : dist === 2 ? SIDE2_W : HIDDEN_W;
-    offset += w + GAP;
+function carouselUpdate(animate = true) {
+  if (!animate) {
+    // Freeze ALL transitions before touching anything — card width/height included
+    track.classList.add('freeze-all');
+    void track.offsetHeight; // synchronous reflow — freeze is now active
   }
-  track.style.transform = `translateX(-${offset}px)`;
+
+  const allCards = track.querySelectorAll('.photo-card');
+  allCards.forEach((card, i) => {
+    const dist = Math.abs(i - virtualCurrent);
+    card.className = 'photo-card ' + carouselGetClass(dist);
+  });
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  const p = featured[current];
+  capTitle.innerHTML = titleHTML(p.title);
+  capMeta.textContent = `${p.location} · ${p.date}`;
+  cCount.textContent = `${String(current+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
+
+  let off = 0;
+  for (let i = 0; i < virtualCurrent; i++) {
+    const dist = Math.abs(i - virtualCurrent);
+    off += (CARD_WIDTHS[Math.min(dist, 3)] || 120) + GAP;
+  }
+
+  if (!animate) {
+    track.style.transform = `translateX(-${off}px)`;
+    void track.offsetHeight; // commit new transform before unfreeze
+    // Unfreeze after two frames — browser has painted the new frozen state
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      track.classList.remove('freeze-all');
+    }));
+  } else {
+    track.style.transition = 'transform 0.55s cubic-bezier(.22,.61,.36,1)';
+    track.style.transform = `translateX(-${off}px)`;
+  }
 }
 
-function goTo(idx) {
-  const n = PHOTOS.length;
-  current = ((idx % n) + n) % n;
-  update();
+function carouselGoTo(realIdx) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  current = ((realIdx % n) + n) % n;
+  virtualCurrent = CLONE_COUNT + current;
+  carouselUpdate(true);
+
+  // After animation: if we've gone into a clone zone, silently jump
+  setTimeout(() => {
+    // Check if we're in clone territory (shouldn't happen with this approach, but keep as safety)
+    isTransitioning = false;
+  }, 560);
 }
 
-// Wheel scroll
-let wheelCooldown = false;
-document.getElementById('carousel-area').addEventListener('wheel', e => {
+function carouselStep(dir) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  virtualCurrent += dir;
+  // Update real current
+  current = ((virtualCurrent - CLONE_COUNT) % n + n) % n;
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  const p = featured[current];
+  capTitle.innerHTML = titleHTML(p.title);
+  capMeta.textContent = `${p.location} · ${p.date}`;
+  cCount.textContent = `${String(current+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
+
+  // Update card classes
+  const allCards = track.querySelectorAll('.photo-card');
+  allCards.forEach((card, i) => {
+    const dist = Math.abs(i - virtualCurrent);
+    card.className = 'photo-card ' + carouselGetClass(dist);
+  });
+  let off = 0;
+  for (let i = 0; i < virtualCurrent; i++) {
+    const dist = Math.abs(i - virtualCurrent);
+    off += (CARD_WIDTHS[Math.min(dist, 3)] || 120) + GAP;
+  }
+  track.style.transition = 'transform 0.55s cubic-bezier(.22,.61,.36,1)';
+  track.style.transform = `translateX(-${off}px)`;
+
+  setTimeout(() => {
+    // Seamless jump: if we wandered into clone zone, silently reset
+    if (virtualCurrent < CLONE_COUNT) {
+      virtualCurrent = CLONE_COUNT + n + (virtualCurrent - CLONE_COUNT);
+      carouselUpdate(false);
+    } else if (virtualCurrent >= CLONE_COUNT + n) {
+      virtualCurrent = CLONE_COUNT + (virtualCurrent - (CLONE_COUNT + n));
+      carouselUpdate(false);
+    }
+    isTransitioning = false;
+  }, 560);
+}
+
+let wCool = false;
+document.getElementById('carousel-wrap').addEventListener('wheel', e => {
   e.preventDefault();
-  if (wheelCooldown) return;
-  wheelCooldown = true;
-  if (e.deltaY > 0 || e.deltaX > 0) goTo(current + 1);
-  else goTo(current - 1);
-  setTimeout(() => wheelCooldown = false, 580);
+  if (wCool) return; wCool = true;
+  carouselStep(e.deltaY > 0 || e.deltaX > 0 ? 1 : -1);
+  setTimeout(() => wCool = false, 580);
 }, { passive: false });
 
-// Drag / touch
-const area = document.getElementById('carousel-area');
+const cWrap = document.getElementById('carousel-wrap');
+cWrap.addEventListener('mousedown', e => { isDragging = false; dragStartX = e.clientX; });
+cWrap.addEventListener('mousemove', e => { if (!dragStartX) return; dragDelta = e.clientX-dragStartX; if(Math.abs(dragDelta)>8)isDragging=true; });
+cWrap.addEventListener('mouseup', () => {
+  if (isDragging) { if(dragDelta<-40)carouselStep(1); else if(dragDelta>40)carouselStep(-1); }
+  dragStartX=0;dragDelta=0;setTimeout(()=>isDragging=false,50);
+});
+cWrap.addEventListener('touchstart', e=>{dragStartX=e.touches[0].clientX;},{passive:true});
+cWrap.addEventListener('touchend', e=>{
+  const d=e.changedTouches[0].clientX-dragStartX;
+  if(d<-40)carouselStep(1);else if(d>40)carouselStep(-1);
+  dragStartX=0;
+},{passive:true});
 
-area.addEventListener('mousedown', e => {
-  isDragging = false;
-  dragStartX = e.clientX;
-});
-area.addEventListener('mousemove', e => {
-  if (!dragStartX) return;
-  dragDelta = e.clientX - dragStartX;
-  if (Math.abs(dragDelta) > 8) isDragging = true;
-});
-area.addEventListener('mouseup', () => {
-  if (isDragging) {
-    if (dragDelta < -40) goTo(current + 1);
-    else if (dragDelta > 40) goTo(current - 1);
+carouselUpdate(false);
+
+// ── BENTO GRID ────────────────────────────────────────────────────────────────
+const bento = document.getElementById('bento');
+
+PHOTOS.forEach((p, i) => {
+  const item = document.createElement('div');
+  item.className = 'bento-item';
+  item.dataset.span = p.span;
+  item.dataset.index = i;
+
+  if (p.src) {
+    const img = document.createElement('img');
+    img.src = p.src; img.alt = p.title; img.loading = 'lazy';
+    item.appendChild(img);
+  } else {
+    const ph = document.createElement('div'); ph.className = 'bento-placeholder';
+    const s = document.createElement('span'); s.textContent = String(i+1).padStart(2,'0');
+    ph.appendChild(s); item.appendChild(ph);
   }
-  dragStartX = 0; dragDelta = 0;
-  setTimeout(() => isDragging = false, 50);
+
+  const ov = document.createElement('div'); ov.className = 'bento-overlay';
+  ov.innerHTML = `<p class="bento-title">${titleHTML(p.title)}</p><p class="bento-meta">${p.location} &nbsp;·&nbsp; ${p.date}</p>`;
+  item.appendChild(ov);
+  item.addEventListener('click', () => openLightbox(i));
+  bento.appendChild(item);
 });
 
-area.addEventListener('touchstart', e => {
-  dragStartX = e.touches[0].clientX;
-}, { passive: true });
-area.addEventListener('touchend', e => {
-  const delta = e.changedTouches[0].clientX - dragStartX;
-  if (delta < -40) goTo(current + 1);
-  else if (delta > 40) goTo(current - 1);
-  dragStartX = 0;
-}, { passive: true });
+// Staggered reveal
+const bentoObs = new IntersectionObserver(entries => {
+  entries.forEach((e, idx) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), idx * 55);
+      bentoObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.bento-item').forEach(el => bentoObs.observe(el));
 
-// Keyboard
+// ── LIGHTBOX ──────────────────────────────────────────────────────────────────
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightbox-img');
+const lbTitle = document.getElementById('lb-title');
+const lbMeta = document.getElementById('lb-meta');
+const lbCount = document.getElementById('lb-count');
+let lbIdx = 0;
+
+function openLightbox(idx) {
+  lbIdx = idx; renderLightbox();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow=''; }
+function renderLightbox() {
+  const p = PHOTOS[lbIdx], n = PHOTOS.length;
+  lbImg.style.display = p.src ? 'block' : 'none';
+  if (p.src) { lbImg.src = p.src; lbImg.alt = p.title; }
+  lbTitle.innerHTML = titleHTML(p.title);
+  lbMeta.textContent = `${p.location} · ${p.date}`;
+  lbCount.textContent = `${String(lbIdx+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
+}
+function lbNav(dir) { const n=PHOTOS.length; lbIdx=((lbIdx+dir)%n+n)%n; renderLightbox(); }
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', () => lbNav(-1));
+document.getElementById('lb-next').addEventListener('click', () => lbNav(1));
+lb.addEventListener('click', e => { if(e.target===lb) closeLightbox(); });
 window.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
-  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+  if (!lb.classList.contains('open')) return;
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='Escape')closeLightbox();
+});
+let lbTx=0;
+lb.addEventListener('touchstart',e=>{lbTx=e.touches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-lbTx;if(d<-40)lbNav(1);else if(d>40)lbNav(-1);},{passive:true});
+
+// ── REVEAL ────────────────────────────────────────────────────────────────────
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');rObs.unobserve(e.target);} });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'),150+i*180));
 });
 
-// Init
-update();
+// ── COSMOS ────────────────────────────────────────────────────────────────────
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [];
+const NUM_STARS = 220;
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+function initStars() {
+  stars = [];
+  for (let i = 0; i < NUM_STARS; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * Math.max(W, H) * 0.65;
+    stars.push({ x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius, r:Math.random()*1.1+0.15, alpha:Math.random()*0.5+0.08, twinkle:Math.random()*Math.PI*2, speed:(Math.random()*0.3+0.05)*0.00008, angle, radius });
+  }
+}
+function draw(t) {
+  ctx.clearRect(0, 0, W, H);
+  const bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
+  bg.addColorStop(0,'rgba(14,10,30,1)'); bg.addColorStop(0.3,'rgba(8,6,18,1)'); bg.addColorStop(1,'rgba(5,6,10,1)');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  const cx=W/2, cy=H/2;
+  const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.5);
+  g1.addColorStop(0,'rgba(100,50,200,0.0)'); g1.addColorStop(0.3,'rgba(100,50,200,0.06)'); g1.addColorStop(0.7,'rgba(60,20,140,0.09)'); g1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+  stars.forEach(s => {
+    s.angle += s.speed; s.x = cx+Math.cos(s.angle)*s.radius; s.y = cy+Math.sin(s.angle)*s.radius;
+    const a = Math.max(0, Math.min(1, s.alpha+Math.sin(s.twinkle+t*0.001)*0.25));
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fillStyle=`rgba(220,210,255,${a})`; ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+resize(); initStars(); requestAnimationFrame(draw);
+window.addEventListener('resize', () => { resize(); initStars(); });
 </script>
 </body>
 </html>
