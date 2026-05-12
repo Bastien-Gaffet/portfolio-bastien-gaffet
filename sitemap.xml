@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
+  <url><loc>https://bastiengaffet.fr/story-v6.html</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/work-v4.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/about.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/universe.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Projects -->
+  <url><loc>https://bastiengaffet.fr/project-robotj4.html</loc><priority>0.9</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/project-tourny.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/project-glacify.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/project-hopetime.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Me -->
+  <url><loc>https://bastiengaffet.fr/cv.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/tipe.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/timeline.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/now.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/uses.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/contact.html</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/links.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Explore -->
+  <url><loc>https://bastiengaffet.fr/photography.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/blog.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+
+  <!-- Shop -->
+  <url><loc>https://bastiengaffet.fr/shop.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/product-cosmos-wallpaper.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/cosmos-demo.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Misc -->
+  <url><loc>https://bastiengaffet.fr/press.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bastiengaffet.fr/changelog.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+
+  <!-- secret.html intentionally excluded -->
+
+</urlset>
