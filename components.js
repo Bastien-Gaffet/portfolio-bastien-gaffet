@@ -197,7 +197,11 @@ window.cmdOpen = function() {
   inp.value = ''; cmdActive = -1; cmdRender('');
   setTimeout(() => inp.focus(), 30);
 };
-window.cmdClose = function() { overlayEl.classList.remove('open'); };
+window.cmdClose = function() {
+  if (!overlayEl.classList.contains('open')) return;
+  overlayEl.classList.add('closing');
+  setTimeout(() => overlayEl.classList.remove('open', 'closing'), 160);
+};
 
 function cmdRender(query) {
   const q = query.trim();
