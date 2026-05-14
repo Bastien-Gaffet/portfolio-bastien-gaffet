@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-dim: hsl(265 75% 60% / 0.12);
+  --white: oklch(96% 0.005 250); --dim: oklch(55% 0.01 250);
+  --dim2: oklch(72% 0.008 250);
+  --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+#page { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 14vh 2.5rem 8rem; }
+
+/* ══ HEADER ══ */
+.page-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.page-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.page-title em { font-style: italic; color: hsl(265 60% 80%); }
+.page-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.85; max-width: 500px; margin-bottom: 4rem; }
+.header-divider { height: 1px; background: var(--glass-border); margin-bottom: 4rem; }
+
+/* ══ GRID ══ */
+#products { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+
+/* ══ PRODUCT CARD ══ */
+.product-card {
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px; overflow: hidden;
+  background: var(--glass-bg);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { border-color: hsl(265 75% 60% / 0.4); box-shadow: 0 12px 48px rgba(0,0,0,0.4); transform: translateY(-3px); }
+
+.card-img {
+  width: 100%; aspect-ratio: 4/3; overflow: hidden;
+  background: hsl(265 20% 8%);
+  position: relative;
+}
+.card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s cubic-bezier(.22,.61,.36,1); }
+.product-card:hover .card-img img { transform: scale(1.04); }
+.card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.card-img-placeholder span { font-family: 'Playfair Display', serif; font-style: italic; color: var(--dim); opacity: 0.3; font-size: 0.75rem; }
+
+.card-badge {
+  position: absolute; top: 0.8rem; right: 0.8rem;
+  font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--violet); color: var(--white);
+  padding: 0.25rem 0.6rem; border-radius: 20px;
+}
+
+.card-info { padding: 1.2rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+.card-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.card-tag { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); border: 1px solid hsl(265 75% 60% / 0.3); border-radius: 10px; padding: 0.15rem 0.5rem; }
+.card-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; }
+.card-name em { font-style: italic; color: hsl(265 60% 80%); }
+.card-desc { font-size: 0.75rem; color: var(--dim2); line-height: 1.65; flex: 1; margin-bottom: 1.2rem; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; }
+.card-price { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); }
+.card-price small { font-family: 'Inter', sans-serif; font-size: 0.6rem; color: var(--dim); margin-left: 0.2rem; }
+.card-cta { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 20px; padding: 0.35rem 0.8rem; transition: background 0.2s, color 0.2s; }
+.product-card:hover .card-cta { background: var(--violet-dim); }
+
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<div id="page">
+  <p class="page-eyebrow reveal">Shop</p>
+  <h1 class="page-title reveal">Digital <em>products</em></h1>
+  <p class="page-desc reveal">Tools and assets built with care. Single-file downloads, no installation required.</p>
+  <div class="header-divider reveal"></div>
+  <div id="products"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════════════
+// PRODUCTS — add a new object here for each new product.
+// page   : the individual product page (product-name.html)
+//          OR a direct Ko-fi link if you don't want a dedicated page
+// name   : product name, wrap italic part in **
+// tags   : array of strings
+// desc   : one or two sentences shown on the card
+// price  : e.g. '4' (shown as "from €4")
+// pwyw   : true if pay-what-you-want is enabled
+// cover  : path to cover image (first image shown on the card)
+// badge  : optional label e.g. 'New' or 'Updated' — leave '' to hide
+// ══════════════════════════════════════════════════════════════════════════
+const PRODUCTS = [
+  {
+    page:  'product-cosmos-wallpaper.html',
+    name:  'Cosmos Wallpaper **Generator**',
+    tags:  ['Design Tool', 'Generative'],
+    desc:  'Generate and export stunning cosmos wallpapers in your browser. 20+ object types, fully customizable, exports up to 4K.',
+    price: '4',
+    pwyw:  true,
+    cover: 'cosmos-galaxy_spiral-desktop4k-9407.png',
+    badge: '',
+  },
+  // Add more products here:
+  // {
+  //   page:  'product-next.html',
+  //   name:  'Next **Product**',
+  //   tags:  ['Tag'],
+  //   desc:  'Short description.',
+  //   price: '5',
+  //   pwyw:  false,
+  //   cover: 'cover.jpg',
+  //   badge: 'New',
+  // },
+];
+
+// ══ RENDER ════════════════════════════════════════════════════════════════
+const grid = document.getElementById('products');
+
+function nameHTML(n) { return n.replace(/\*\*(.+?)\*\*/g, '<em>$1</em>'); }
+
+PRODUCTS.forEach((p, i) => {
+  const card = document.createElement('a');
+  card.href = p.page;
+  card.className = 'product-card reveal';
+  card.style.transitionDelay = (i * 0.1) + 's';
+
+  const imgHTML = p.cover
+    ? `<img src="${p.cover}" alt="${p.name.replace(/\*\*/g, '')}" loading="lazy">`
+    : `<div class="card-img-placeholder"><span>No image</span></div>`;
+
+  const badgeHTML = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
+
+  card.innerHTML = `
+    <div class="card-img">${imgHTML}${badgeHTML}</div>
+    <div class="card-info">
+      <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+      <h2 class="card-name">${nameHTML(p.name)}</h2>
+      <p class="card-desc">${p.desc}</p>
+      <div class="card-footer">
+        <span class="card-price">€${p.price}<small>${p.pwyw ? ' or more' : ''}</small></span>
+        <span class="card-cta">View</span>
+      </div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+// ══ REVEAL ════════════════════════════════════════════════════════════════
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*80));
+});
+
+</script>
+<script src="components.js"></script>
+</body>
+</html>

@@ -12,8 +12,8 @@
   padding: 1.9rem 2.5rem; display: flex; gap: 1.4rem; align-items: center;
 }
 #site-nav a {
-  color: oklch(55% 0.01 250); text-decoration: none;
-  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: oklch(68% 0.01 250); text-decoration: none;
+  font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
   font-family: 'Inter', sans-serif; font-weight: 300;
   transition: color 0.3s;
 }

@@ -81,9 +81,6 @@ const config = PAGE_CONFIG[currentFile] || {};
 // NAV
 // ══════════════════════════════════════════════════════════════════════════
 if (!config.noNav) {
-  const pageName = (!MAIN_PAGES.includes(currentFile) && PAGE_NAMES[currentFile])
-    ? PAGE_NAMES[currentFile] : '';
-
   const nav = document.createElement('nav');
   nav.id = 'site-nav';
   nav.innerHTML = `
@@ -91,7 +88,6 @@ if (!config.noNav) {
     <a href="about.html">About</a>
     <a href="universe.html">Universe</a>
     <a href="work.html">Work</a>
-    ${pageName ? `<span class="nav-sep"></span><span id="nav-page-label">${pageName}</span>` : ''}
     <span class="nav-sep"></span>
     <button class="nav-search-btn" onclick="cmdOpen()" aria-label="Search pages">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
