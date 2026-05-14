@@ -124,19 +124,6 @@ nav a:hover { color: var(--white); }
 .award-title { font-size: 0.78rem; color: var(--white); margin-bottom: 0.2rem; font-weight: 400; }
 .award-desc { font-size: 0.72rem; color: var(--dim); line-height: 1.65; }
 
-.source-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
-.source-link {
-  display: inline-flex; align-items: center; gap: 0.3rem;
-  font-size: 0.58rem; letter-spacing: 0.1em;
-  color: var(--dim); text-decoration: none;
-  border: 1px solid var(--glass-border);
-  border-radius: 20px; padding: 0.2rem 0.6rem;
-  background: var(--glass-bg);
-  transition: border-color 0.2s, color 0.2s;
-}
-.source-link:hover { border-color: var(--violet); color: var(--violet); }
-.source-link svg { width: 9px; height: 9px; flex-shrink: 0; }
-
 /* ══ FOOTER ══ */
 #page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
 .btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
@@ -205,10 +192,6 @@ nav a:hover { color: var(--white); }
             <li>Python + OpenCV pipeline for real-time board state recognition via camera feed.</li>
             <li>Arduino UART serial link between the Python decision engine and the physical arm.</li>
           </ul>
-          <div class="source-links">
-            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS project page</a>
-            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/c-est-une-maniere-sympa-d-aborder-la-science-imagine-et-cree-a-tours-le-robot-j4-de-cinq-lyceens-de-vaucanson-prime-en-lettonie-1758727420" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
-          </div>
         </div>
 
         <div class="cv-entry">
@@ -223,11 +206,6 @@ nav a:hover { color: var(--white); }
             <li>On-site tasks: fabricating rebar from raw steel, stone-laying for foundations, trenching for toilet drainage, manual concrete mixing and slab pouring.</li>
             <li>Produced the initial architectural plans for the new classroom in collaboration with the local development association.</li>
           </ul>
-          <div class="source-links">
-            <a href="https://www.vaucanson.org/mon-ecole-maternelle-au-maroc-debut-de-la-construction/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Debut construction</a>
-            <a href="https://www.vaucanson.org/restitution-du-projet-mon-ecole-maternelle-au-maroc/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Restitution du projet</a>
-            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/tours-avec-vauc-en-sciences-mission-accomplie-au-maroc-1741202013" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
-          </div>
         </div>
 
         <div class="cv-entry">
@@ -240,9 +218,6 @@ nav a:hover { color: var(--white); }
             <li>Member of a sports club board. Administrative management, event organisation and coordination between members and governing bodies.</li>
             <li>Collective responsibilities in a voluntary associative setting.</li>
           </ul>
-          <div class="source-links">
-            <a href="https://www.eso-volley.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>ESO Volley</a>
-          </div>
         </div>
       </section>
 
@@ -261,9 +236,6 @@ nav a:hover { color: var(--white); }
             <li>Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences.</li>
             <li>TIPE research on epoxy resin mechanical properties in composite structures under stress.</li>
           </ul>
-          <div class="source-links">
-            <a href="https://www.lyc-descartes.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Descartes</a>
-          </div>
         </div>
 
         <div class="cv-entry">
@@ -276,9 +248,6 @@ nav a:hover { color: var(--white); }
             <li>Mention Tres Bien, felicitations du jury (highest honours with distinction).</li>
             <li>Specialisations: Maths, Physique-Chimie, Maths Expertes.</li>
           </ul>
-          <div class="source-links">
-            <a href="https://www.vaucanson.org/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Vaucanson</a>
-          </div>
         </div>
       </section>
 
@@ -289,26 +258,10 @@ nav a:hover { color: var(--white); }
         <div class="award-item">
           <p class="award-title">Concours Cgenial, National Winner</p>
           <p class="award-desc">First place at the national final, 2024. Leading French science and engineering competition for high school students.</p>
-          <div class="source-links">
-            <a href="https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/252-concours-cgenial-2025" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Cgenial</a>
-          </div>
         </div>
         <div class="award-item">
           <p class="award-title">CERN European Prize, EUCYS Latvia</p>
           <p class="award-desc">CERN European Prize at the European Union Contest for Young Scientists, Riga, 2025.</p>
-          <div class="source-links">
-            <a href="https://www.eucys2025.eu/en/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS 2025</a>
-            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Project page</a>
-            <a href="https://www.sciencesalecole.org/concours-eucys-european-union-contest-for-young-scientists/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Sciences a l'ecole</a>
-          </div>
-        </div>
-        <div class="award-item">
-          <p class="award-title">Chemistry Olympiad, Academic Final</p>
-          <p class="award-desc">Reached the academic final of the French Chemistry Olympiad, 2025.</p>
-          <div class="source-links">
-            <a href="https://www.vaucanson.org/olympiades-de-chimie-2025/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Vaucanson</a>
-            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/une-tourangelle-disputera-la-finale-des-olympiades-de-chimie-a-paris-1744124862" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
-          </div>
         </div>
       </section>
 

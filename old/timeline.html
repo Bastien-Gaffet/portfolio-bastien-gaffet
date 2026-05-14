@@ -35,11 +35,11 @@ nav a:hover { color: var(--white); }
 /* Vertical line */
 .timeline::before {
   content: ''; position: absolute;
-  left: 116px; top: 0; bottom: 0; width: 1px;
+  left: 108px; top: 0; bottom: 0; width: 1px;
   background: linear-gradient(to bottom, transparent, var(--glass-border) 5%, var(--glass-border) 95%, transparent);
 }
 @media(max-width:480px){
-  .timeline::before { left: 66px; }
+  .timeline::before { left: 60px; }
 }
 
 /* Year marker */
@@ -57,7 +57,7 @@ nav a:hover { color: var(--white); }
 @media(max-width:480px){ .year-label { width: 50px; font-size: 1.1rem; } }
 .year-line-dot {
   width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
-  background: var(--violet);
+  background: var(--violet); margin-left: -4px;
   box-shadow: 0 0 0 3px var(--black), 0 0 0 4px hsl(265 75% 60% / 0.35);
 }
 .year-spacer { flex: 1; }
@@ -78,7 +78,7 @@ nav a:hover { color: var(--white); }
 
 .event-dot {
   width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-  background: var(--glass-border); margin-top: 0.42rem;
+  background: var(--glass-border); margin-top: 0.42rem; margin-left: -2px;
   transition: background 0.3s;
 }
 .tl-event:hover .event-dot { background: var(--violet); }
@@ -102,15 +102,14 @@ nav a:hover { color: var(--white); }
 /* Now indicator */
 .tl-now {
   display: flex; align-items: center; gap: 1.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--glass-border);
-  margin-bottom: 2.5rem;
+  margin-top: 2rem; padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
 }
 .now-label-tag {
   width: 90px; text-align: right; flex-shrink: 0;
   font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
 }
-.now-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--violet); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+.now-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--violet); flex-shrink: 0; margin-left: -4px; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 hsl(265 75% 60% / 0.5); } 50%{ box-shadow: 0 0 0 6px hsl(265 75% 60% / 0); } }
 .now-text { font-size: 0.75rem; color: var(--dim2); font-family: 'Playfair Display', serif; font-style: italic; }
 
@@ -136,13 +135,6 @@ nav a:hover { color: var(--white); }
   <p class="page-desc reveal d2">Projects, distinctions and milestones. A map of where I have been and what I have built.</p>
 
   <div class="timeline reveal">
-
-    <!-- Now — always at the top -->
-    <div class="tl-now">
-      <span class="now-label-tag">Now</span>
-      <div class="now-pulse"></div>
-      <p class="now-text">CPGE PCSI, year two — and whatever comes next.</p>
-    </div>
 
     <!-- 2025 -->
     <div class="tl-year">
@@ -252,6 +244,13 @@ nav a:hover { color: var(--white); }
         <p class="event-desc">Robotic arm playing Connect Four autonomously against a human. Minimax AI with depth 6, Python + OpenCV vision, Arduino UART link. Built over several months with a team of five.</p>
         <a href="project-robotj4.html" class="event-link">Project page</a>
       </div>
+    </div>
+
+    <!-- Now -->
+    <div class="tl-now">
+      <span class="now-label-tag">Now</span>
+      <div class="now-pulse"></div>
+      <p class="now-text">CPGE PCSI, year two — and whatever comes next.</p>
     </div>
 
   </div>
