@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation demo / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --black:#05060A; --violet:hsl(265 75% 60%); --white:oklch(96% 0.005 250); --dim:oklch(55% 0.01 250); --dim2:oklch(72% 0.008 250); --glass-border:rgba(255,255,255,0.09); }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; min-height: 100vh; display: flex; flex-direction: column; }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ════════════════════════════════════════════════════════════
+   COPY INTO <style> OF EVERY PAGE
+   ════════════════════════════════════════════════════════════ */
+
+/* ── NAV ── */
+#site-nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 1.9rem 2.5rem; display: flex; gap: 1.4rem; align-items: center;
+}
+#site-nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+#site-nav a:hover { color: var(--white); }
+#site-nav a.current { color: hsl(265 60% 78%); }
+.nav-sep { width: 1px; height: 13px; background: var(--glass-border); }
+#nav-page-label { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; color: hsl(265 60% 75%); }
+.nav-search-btn {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer; color: oklch(50% 0.01 250);
+  transition: border-color 0.22s, color 0.22s, background 0.22s;
+}
+.nav-search-btn:hover { border-color: hsl(265 75% 60% / 0.45); color: hsl(265 60% 72%); background: rgba(255,255,255,0.08); }
+.nav-search-btn svg { width: 12px; height: 12px; }
+
+/* ── SITE FOOTER ── */
+#site-footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--glass-border);
+  padding: 4rem 3rem 2.5rem;
+  margin-top: auto;
+}
+.footer-inner { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+@media(max-width:700px){ .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; } .footer-brand { grid-column: 1/-1; } }
+@media(max-width:420px){ .footer-inner { grid-template-columns: 1fr; } }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--white); margin-bottom: 0.6rem; display: block; }
+.footer-tagline { font-size: 0.72rem; color: var(--dim); line-height: 1.7; max-width: 240px; margin-bottom: 1.4rem; }
+.footer-search-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 0.35rem 0.85rem; cursor: pointer;
+  color: var(--dim); font-family: 'Inter', sans-serif; font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.footer-search-pill:hover { border-color: hsl(265 75% 60% / 0.4); color: var(--dim2); background: rgba(255,255,255,0.06); }
+.footer-search-pill svg { width: 11px; height: 11px; }
+.footer-search-pill .fkbd { font-family: monospace; font-size: 0.62rem; color: hsl(265 75% 65%); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; padding: 0.05rem 0.3rem; background: rgba(255,255,255,0.04); }
+.footer-col-label { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--violet); margin-bottom: 1rem; display: block; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.78rem; color: var(--dim); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+.footer-links a:hover { color: var(--white); }
+.footer-links .fnew { font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet); border: 1px solid hsl(265 75% 60% / 0.35); border-radius: 6px; padding: 0.08rem 0.35rem; }
+.footer-bottom { max-width: 980px; margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; }
+.footer-copy { font-size: 0.6rem; color: oklch(40% 0.008 250); }
+.footer-copy a { color: oklch(40% 0.008 250); text-decoration: none; }
+.footer-copy a:hover { color: var(--dim); }
+
+/* ── COMMAND PALETTE ── */
+#cmd-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(14,10,30,0.55); backdrop-filter: blur(22px) saturate(1.4);
+  display: none; align-items: flex-start; justify-content: center; padding-top: 14vh;
+}
+#cmd-overlay.open { display: flex; }
+#cmd-box {
+  width: 100%; max-width: 540px; margin: 0 1.5rem;
+  background: rgba(16,12,32,0.92);
+  border: 1px solid hsl(265 60% 40% / 0.35); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.04);
+  animation: cmdIn 0.18s cubic-bezier(.22,.61,.36,1);
+}
+@keyframes cmdIn { from { opacity:0; transform:translateY(-8px) scale(.98); } to { opacity:1; transform:none; } }
+#cmd-input-wrap {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.9rem 1.1rem; border-bottom: 1px solid hsl(265 50% 35% / 0.3);
+}
+#cmd-input-wrap svg { width: 15px; height: 15px; color: oklch(42% 0.007 250); flex-shrink: 0; }
+#cmd-input { flex: 1; background: transparent; border: none; outline: none; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--white); }
+#cmd-input::placeholder { color: oklch(36% 0.007 250); }
+#cmd-esc { font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(36% 0.007 250); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 0.15rem 0.4rem; cursor: pointer; flex-shrink: 0; }
+#cmd-results { max-height: 360px; overflow-y: auto; padding: 0.4rem 0 0.6rem; }
+#cmd-results::-webkit-scrollbar { width: 3px; }
+#cmd-results::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+.cmd-group-label { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: hsl(265 55% 52%); padding: 0.75rem 1.1rem 0.3rem; }
+.cmd-item { display: flex; align-items: center; gap: 0; padding: 0.6rem 1.1rem; cursor: pointer; transition: background 0.1s; text-decoration: none; }
+.cmd-item:hover, .cmd-item.active { background: rgba(255,255,255,0.045); }
+.cmd-item-text { flex: 1; }
+.cmd-item-name { font-size: 0.82rem; color: oklch(78% 0.007 250); }
+.cmd-item-desc { font-size: 0.63rem; color: oklch(40% 0.007 250); margin-top: 0.06rem; }
+.cmd-arrow { font-size: 0.7rem; color: hsl(265 60% 55%); transition: color 0.15s; }
+.cmd-item:hover .cmd-arrow, .cmd-item.active .cmd-arrow { color: hsl(265 72% 78%); }
+.cmd-item-name mark, .cmd-item-desc mark { background: transparent; color: hsl(265 68% 74%); font-weight: 500; }
+.cmd-empty { padding: 2rem; text-align: center; font-size: 0.75rem; color: oklch(38% 0.007 250); }
+
+/* ════════════════════════════════════════════════════════════ */
+
+/* Demo */
+#demo-spacer { flex: 0; z-index: 1; position: relative; display: flex; align-items: center; justify-content: center; min-height: 55vh; }
+.demo-note { text-align: center; color: var(--dim); font-size: 0.8rem; line-height: 2; }
+.demo-note strong { color: var(--violet); }
+
+/* Guide */
+#guide { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 5rem 3rem 4rem; }
+.guide-inner { max-width: 640px; margin: 0 auto; }
+.guide-eyebrow { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1rem; }
+.guide-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
+.guide-title em { font-style: italic; color: hsl(265 60% 80%); }
+.guide-desc { font-size: 0.82rem; color: var(--dim); margin-bottom: 3rem; }
+.guide-step { display: grid; grid-template-columns: 36px 1fr; gap: 1.2rem; margin-bottom: 2rem; align-items: start; }
+.step-num { width: 36px; height: 36px; border-radius: 50%; border: 1px solid hsl(265 75% 60% / 0.35); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--violet); flex-shrink: 0; }
+.step-title { font-size: 0.85rem; color: var(--white); margin-bottom: 0.35rem; font-weight: 400; }
+.step-desc { font-size: 0.78rem; color: var(--dim2); line-height: 1.72; }
+.step-note { font-size: 0.72rem; color: var(--dim); margin-top: 0.5rem; padding-left: 0.8rem; border-left: 2px solid hsl(265 75% 60% / 0.3); }
+.guide-note { font-size: 0.75rem; color: var(--dim); padding: 1rem 1.2rem; border: 1px solid var(--glass-border); border-radius: 8px; margin-top: 1rem; line-height: 1.7; }
+code { font-family: monospace; font-size: 0.82em; color: hsl(265 65% 72%); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<!-- NAV — replace old <nav> with this on every page -->
+<nav id="site-nav">
+  <a href="story-v6.html">Story</a>
+  <a href="about.html">About</a>
+  <a href="universe.html">Universe</a>
+  <a href="work-v4.html">Work</a>
+  <span class="nav-sep" id="nav-sep" style="display:none"></span>
+  <span id="nav-page-label"></span>
+  <button class="nav-search-btn" onclick="cmdOpen()" aria-label="Search pages">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  </button>
+</nav>
+
+
+<div id="demo-spacer">
+  <div class="demo-note">
+    <p>Press <strong>/</strong> or click <strong>Search</strong> in the nav to open the palette.</p>
+    <p>Scroll down for the footer and the integration guide.</p>
+  </div>
+</div>
+
+<!-- INTEGRATION GUIDE -->
+<section id="guide">
+  <div class="guide-inner">
+    <p class="guide-eyebrow">How to integrate</p>
+    <h2 class="guide-title">Adding nav and footer<br><em>to every page</em></h2>
+    <p class="guide-desc">Three copy-paste operations per page. Order matters.</p>
+
+    <div class="guide-step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <p class="step-title">CSS — in &lt;style&gt;</p>
+        <p class="step-desc">Copy everything between the two <code>COPY INTO &lt;style&gt;</code> comments into the <code>&lt;style&gt;</code> block of the page. This adds the nav, footer and palette styles.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <p class="step-title">Nav — replace &lt;nav&gt;</p>
+        <p class="step-desc">Remove the old <code>&lt;nav&gt;</code> block and paste the new <code>&lt;nav id="site-nav"&gt;</code> in its place. The current page name is detected automatically from the filename.</p>
+        <p class="step-note">If your page is not in <code>PAGE_NAMES</code> in the JS, add it so its name appears in the nav and palette.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <p class="step-title">Footer — replace old footer</p>
+        <p class="step-desc">Remove <code>&lt;footer id="page-footer"&gt;...&lt;/footer&gt;</code> and paste <code>&lt;footer id="site-footer"&gt;</code> in its place.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <p class="step-title">Palette — before &lt;/body&gt;</p>
+        <p class="step-desc">Paste the command palette overlay and the full <code>&lt;script&gt;</code> block just before <code>&lt;/body&gt;</code>. Remove the old cosmos JS if the page already has it — keep only one.</p>
+      </div>
+    </div>
+
+    <div class="guide-note">
+      The <code>PAGES</code> array in the script is the index. Add or remove entries there when the site grows.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — replace old footer with this on every page -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-sig">Bastien Gaffet</span>
+      <p class="footer-tagline">Engineering student. Building things at the intersection of software, hardware and design.</p>
+      <button class="footer-search-pill" onclick="cmdOpen()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search pages
+        <span class="fkbd">/</span>
+      </button>
+    </div>
+    <div>
+      <span class="footer-col-label">Explore</span>
+      <ul class="footer-links">
+        <li><a href="story-v6.html">Story</a></li>
+        <li><a href="work-v4.html">Work</a></li>
+        <li><a href="photography.html">Photography</a></li>
+        <li><a href="universe.html">Universe</a></li>
+        <li><a href="blog.html">Notes <span class="fnew">new</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-label">Me</span>
+      <ul class="footer-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="uses.html">Uses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="links.html">Links</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-label">Create</span>
+      <ul class="footer-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="product-cosmos-wallpaper.html">Cosmos Generator</a></li>
+        <li><a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener">Ko-fi</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Bastien Gaffet — <a href="https://bastiengaffet.fr">bastiengaffet.fr</a></span>
+    <span class="footer-copy">Built by hand, no framework.</span>
+  </div>
+</footer>
+
+<!-- COMMAND PALETTE — paste once before </body> on every page -->
+<div id="cmd-overlay" onclick="if(event.target===this)cmdClose()">
+  <div id="cmd-box">
+    <div id="cmd-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="cmd-input" placeholder="Search pages..." autocomplete="off" spellcheck="false">
+      <span id="cmd-esc" onclick="cmdClose()">Esc</span>
+    </div>
+    <div id="cmd-results"></div>
+  </div>
+</div>
+
+<script>
+// ══ ACTIVE PAGE DETECTION ═════════════════════════════════════════════════
+const MAIN = ['story-v6.html','about.html','universe.html','work-v4.html'];
+const PAGE_NAMES = {
+  'photography.html':'Photography','blog.html':'Notes','contact.html':'Contact',
+  'cv.html':'CV','uses.html':'Uses','links.html':'Links','shop.html':'Shop',
+  'product-cosmos-wallpaper.html':'Cosmos Generator','project-robotj4.html':'Robot J4',
+  'nav-components.html':'Navigation demo',
+};
+const currentFile = location.pathname.split('/').pop() || '';
+document.querySelectorAll('#site-nav a').forEach(a => {
+  if (a.getAttribute('href') === currentFile) a.classList.add('current');
+});
+if (!MAIN.includes(currentFile) && PAGE_NAMES[currentFile]) {
+  document.getElementById('nav-page-label').textContent = PAGE_NAMES[currentFile];
+  document.getElementById('nav-sep').style.display = '';
+}
+
+// ══ PAGES INDEX ═══════════════════════════════════════════════════════════
+const PAGES = [
+  { group:'Explore',  name:'Story',       desc:'The narrative introduction',            href:'story-v6.html' },
+  { group:'Explore',  name:'Work',        desc:'Projects and creations',                href:'work-v4.html' },
+  { group:'Explore',  name:'Photography', desc:'Selected photographs',                  href:'photography.html' },
+  { group:'Explore',  name:'Universe',    desc:'Passions, interests, dreams',           href:'universe.html' },
+  { group:'Explore',  name:'Notes',       desc:'Monthly articles and observations',     href:'blog.html' },
+  { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'project-robotj4.html' },
+  { group:'Me',       name:'About',       desc:'Bio and background',                    href:'about.html' },
+  { group:'Me',       name:'CV',          desc:'Interactive resume',                    href:'cv.html' },
+  { group:'Me',       name:'Uses',        desc:'Tools, software, hardware',             href:'uses.html' },
+  { group:'Me',       name:'Contact',     desc:'Get in touch',                          href:'contact.html' },
+  { group:'Me',       name:'Links',       desc:'All my links in one place',             href:'links.html' },
+  { group:'Create',   name:'Shop',        desc:'Digital products',                      href:'shop.html' },
+  { group:'Create',   name:'Cosmos Wallpaper Generator', desc:'Generative tool, from €4 on Ko-fi', href:'product-cosmos-wallpaper.html' },
+];
+
+let cmdActive = -1;
+
+function hl(text, q) {
+  if (!q) return text;
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+}
+
+function cmdOpen() {
+  document.getElementById('cmd-overlay').classList.add('open');
+  const inp = document.getElementById('cmd-input');
+  inp.value = '';
+  cmdActive = -1;
+  cmdRender('');
+  setTimeout(() => inp.focus(), 30);
+}
+function cmdClose() {
+  document.getElementById('cmd-overlay').classList.remove('open');
+}
+
+function cmdRender(query) {
+  const q = query.trim();
+  const results = document.getElementById('cmd-results');
+  results.innerHTML = '';
+  cmdActive = -1;
+
+  const filtered = q
+    ? PAGES.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.desc.toLowerCase().includes(q.toLowerCase()))
+    : PAGES;
+
+  if (!filtered.length) {
+    results.innerHTML = '<p class="cmd-empty">No page found.</p>';
+    return;
+  }
+
+  const groups = {};
+  filtered.forEach(p => { if (!groups[p.group]) groups[p.group] = []; groups[p.group].push(p); });
+
+  Object.entries(groups).forEach(([group, pages]) => {
+    const label = document.createElement('p');
+    label.className = 'cmd-group-label';
+    label.textContent = group;
+    results.appendChild(label);
+    pages.forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'cmd-item';
+      a.href = p.href;
+      a.innerHTML = `
+        <div class="cmd-item-text">
+          <p class="cmd-item-name">${hl(p.name, q)}</p>
+          <p class="cmd-item-desc">${hl(p.desc, q)}</p>
+        </div>
+        <span class="cmd-arrow">›</span>`;
+      results.appendChild(a);
+    });
+  });
+}
+
+document.getElementById('cmd-input').addEventListener('input', e => cmdRender(e.target.value));
+
+document.getElementById('cmd-input').addEventListener('keydown', e => {
+  const items = [...document.querySelectorAll('.cmd-item')];
+  if (e.key === 'ArrowDown') { e.preventDefault(); cmdActive = Math.min(cmdActive + 1, items.length - 1); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); cmdActive = Math.max(cmdActive - 1, 0); }
+  else if (e.key === 'Enter') { if (items[cmdActive]) items[cmdActive].click(); else if (items[0]) items[0].click(); }
+  else if (e.key === 'Escape') { cmdClose(); }
+  items.forEach((el, i) => el.classList.toggle('active', i === cmdActive));
+  if (items[cmdActive]) items[cmdActive].scrollIntoView({ block: 'nearest' });
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+    e.preventDefault(); cmdOpen();
+  }
+  if (e.key === 'Escape') cmdClose();
+});
+
+// ══ COSMOS ════════════════════════════════════════════════════════════════
+const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
+let W,H,stars=[];const NUM_STARS=220;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
+function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+resize();initStars();requestAnimationFrame(draw);
+window.addEventListener('resize',()=>{resize();initStars();});
+</script>
+</body>
+</html>

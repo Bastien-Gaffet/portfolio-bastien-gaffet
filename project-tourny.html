@@ -6,6 +6,7 @@
 <title>Tourny / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components.css">
 <style>
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,18 +32,6 @@ body {
 @keyframes fadeIn { to { opacity: 1; } }
 
 #cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-
-/* ── NAV , identical to work-v4 ── */
-nav {
-  position: fixed; top: 0; right: 0; z-index: 100;
-  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
-}
-nav a {
-  color: var(--dim); text-decoration: none;
-  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
-}
-nav a:hover { color: var(--white); }
-nav .nav-active { color: var(--white); }
 
 /* ── REVEAL ── */
 .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
@@ -147,30 +136,12 @@ section { position: relative; z-index: 1; }
 .rec-badge { display: inline-block; padding: 0.32rem 0.9rem; border: 1px solid var(--glass-border); border-radius: 30px; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
 .rec-card.featured .rec-badge { border-color: var(--violet); color: var(--violet); }
 
-/* ══ FOOTER ══ */
-#project-footer { border-top: 1px solid var(--glass-border); position: relative; z-index: 1; padding: 4rem 0; }
-#project-footer .inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-.btn-pill {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  text-decoration: none; color: var(--dim); font-size: 0.68rem;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  border: 1px solid var(--glass-border); border-radius: 30px;
-  padding: 0.5rem 1.3rem; transition: color 0.3s, border-color 0.3s;
-}
-.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
-.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
 
 .hero-title em { font-style: italic; color: hsl(245 60% 80%); }
 </style>
 </head>
 <body>
 <canvas id="cosmos"></canvas>
-<nav>
-  <a href="story-v6.html">Story</a>
-  <a href="about.html">About</a>
-  <a href="universe.html">Universe</a>
-  <a href="work-v4.html" class="nav-active">Work</a>
-</nav>
 <main>
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
@@ -219,51 +190,8 @@ section { position: relative; z-index: 1; }
     </div>
   </section>
 
-  <footer id="project-footer">
-    <div class="inner">
-      <a href="work-v4.html" class="btn-pill">← All projects</a>
-      <span class="footer-sig">Tourny / Bastien Gaffet</span>
-      <a href="#" target="_blank" class="btn-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-  </footer>
 </main>
 <script>
-
-const canvas = document.getElementById('cosmos');
-const ctx = canvas.getContext('2d');
-let W, H, stars = [];
-const NUM_STARS = 220;
-function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-window.addEventListener('resize', () => { resize(); initStars(); }); resize();
-function initStars() {
-  stars = [];
-  for (let i = 0; i < NUM_STARS; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const radius = Math.random() * Math.max(W, H) * 0.65;
-    stars.push({ x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius, r:Math.random()*1.1+0.15, alpha:Math.random()*0.5+0.08, twinkle:Math.random()*Math.PI*2, speed:(Math.random()*0.3+0.05)*0.00008, angle, radius });
-  }
-}
-initStars();
-function draw(t) {
-  ctx.clearRect(0,0,W,H);
-  const bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
-  bg.addColorStop(0,'rgba(14,10,30,1)'); bg.addColorStop(0.3,'rgba(8,6,18,1)'); bg.addColorStop(1,'rgba(5,6,10,1)');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-  const g1=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.min(W,H)*0.5);
-  g1.addColorStop(0,'rgba(100,50,200,0)'); g1.addColorStop(0.3,'rgba(100,50,200,0.06)'); g1.addColorStop(0.7,'rgba(60,20,140,0.09)'); g1.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
-  stars.forEach(s => {
-    s.angle+=s.speed; s.x=W/2+Math.cos(s.angle)*s.radius; s.y=H/2+Math.sin(s.angle)*s.radius;
-    const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*0.001)*0.25));
-    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fillStyle=`rgba(220,210,255,${a})`; ctx.fill();
-  });
-  requestAnimationFrame(draw);
-}
-requestAnimationFrame(draw);
-
 const rObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
@@ -274,7 +202,7 @@ window.addEventListener('load', () => {
     setTimeout(() => el.classList.add('visible'), 150 + i * 180);
   });
 });
-
 </script>
+<script src="components.js"></script>
 </body>
 </html>

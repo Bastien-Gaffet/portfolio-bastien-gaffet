@@ -1,0 +1,137 @@
+/*
+ * components.css — Bastien Gaffet
+ * Shared styles for nav, footer and command palette.
+ * Import this in every page's <head> alongside the page-specific styles.
+ *
+ * <link rel="stylesheet" href="components.css">
+ */
+
+/* ── NAV ── */
+#site-nav {
+  position: fixed; top: 0; right: 0; z-index: 100;
+  padding: 1.9rem 2.5rem; display: flex; gap: 1.4rem; align-items: center;
+}
+#site-nav a {
+  color: oklch(55% 0.01 250); text-decoration: none;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  transition: color 0.3s;
+}
+#site-nav a:hover { color: oklch(96% 0.005 250); }
+#site-nav a.current { color: hsl(265 60% 78%); }
+#nav-page-label {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 0.78rem; color: hsl(265 60% 75%);
+}
+.nav-sep { width: 1px; height: 13px; background: rgba(255,255,255,0.09); flex-shrink: 0; }
+.nav-search-btn {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer; color: oklch(50% 0.01 250);
+  transition: border-color 0.22s, color 0.22s, background 0.22s;
+}
+.nav-search-btn:hover { border-color: hsl(265 75% 60% / 0.45); color: hsl(265 60% 72%); background: rgba(255,255,255,0.08); }
+.nav-search-btn svg { width: 12px; height: 12px; }
+
+/* ── BACK NAV (top-left) ── */
+.back-nav { position: fixed; top: 0; left: 0; z-index: 100; padding: 2rem 2.5rem; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  color: oklch(55% 0.01 250); text-decoration: none;
+  font-family: 'Inter', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.back-link:hover { color: oklch(96% 0.005 250); }
+
+/* ── SITE FOOTER ── */
+#site-footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(255,255,255,0.09);
+  padding: 4rem 3rem 2.5rem;
+}
+.footer-inner {
+  max-width: 980px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+}
+@media(max-width:700px){ .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; } .footer-brand { grid-column: 1/-1; } }
+@media(max-width:420px){ .footer-inner { grid-template-columns: 1fr; } }
+.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: oklch(96% 0.005 250); margin-bottom: 0.6rem; display: block; }
+.footer-sig-small { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: oklch(55% 0.01 250); }
+.footer-tagline { font-size: 0.72rem; color: oklch(55% 0.01 250); line-height: 1.7; max-width: 240px; margin-bottom: 1.4rem; }
+.footer-search-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 20px; padding: 0.35rem 0.85rem; cursor: pointer;
+  color: oklch(50% 0.01 250); font-family: 'Inter', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.footer-search-pill:hover { border-color: hsl(265 75% 60% / 0.4); color: oklch(72% 0.008 250); background: rgba(255,255,255,0.06); }
+.footer-search-pill svg { width: 11px; height: 11px; }
+.fkbd { font-family: monospace; font-size: 0.62rem; color: hsl(265 70% 65%); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; padding: 0.05rem 0.3rem; background: rgba(255,255,255,0.04); }
+.footer-col-label { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: hsl(265 75% 60%); margin-bottom: 1rem; display: block; font-family: 'Inter', sans-serif; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.78rem; color: oklch(55% 0.01 250); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 300; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+.footer-links a:hover { color: oklch(96% 0.005 250); }
+.fnew { font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; color: hsl(265 75% 60%); border: 1px solid hsl(265 75% 60% / 0.35); border-radius: 6px; padding: 0.08rem 0.35rem; }
+.footer-bottom {
+  max-width: 980px; margin: 3rem auto 0; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.6rem; color: oklch(40% 0.008 250); font-family: 'Inter', sans-serif; }
+.footer-copy a { color: oklch(40% 0.008 250); text-decoration: none; }
+.footer-copy a:hover { color: oklch(55% 0.01 250); }
+.footer-nav-btns { display: flex; align-items: center; gap: 1.2rem; }
+.btn-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; color: oklch(55% 0.01 250);
+  font-family: 'Inter', sans-serif; font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.09); border-radius: 30px; padding: 0.5rem 1.3rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+.btn-pill:hover { color: oklch(96% 0.005 250); border-color: rgba(255,255,255,0.18); }
+
+/* ── COMMAND PALETTE ── */
+#cmd-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(14,10,30,0.55); backdrop-filter: blur(22px) saturate(1.4);
+  display: none; align-items: flex-start; justify-content: center; padding-top: 14vh;
+}
+#cmd-overlay.open { display: flex; }
+#cmd-box {
+  width: 100%; max-width: 540px; margin: 0 1.5rem;
+  background: rgba(16,12,32,0.92);
+  border: 1px solid hsl(265 60% 40% / 0.35); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+  animation: cmdIn 0.18s cubic-bezier(.22,.61,.36,1);
+}
+@keyframes cmdIn { from { opacity:0; transform:translateY(-8px) scale(.98); } to { opacity:1; transform:none; } }
+#cmd-input-wrap {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.9rem 1.1rem; border-bottom: 1px solid hsl(265 50% 35% / 0.3);
+}
+#cmd-input-wrap svg { width: 15px; height: 15px; color: oklch(42% 0.007 250); flex-shrink: 0; }
+#cmd-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300;
+  color: oklch(94% 0.005 250);
+}
+#cmd-input::placeholder { color: oklch(36% 0.007 250); }
+#cmd-esc { font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(36% 0.007 250); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 0.15rem 0.4rem; cursor: pointer; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+#cmd-results { max-height: 360px; overflow-y: auto; padding: 0.4rem 0 0.6rem; }
+#cmd-results::-webkit-scrollbar { width: 3px; }
+#cmd-results::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+.cmd-group-label { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: hsl(265 55% 52%); padding: 0.75rem 1.1rem 0.3rem; font-family: 'Inter', sans-serif; }
+.cmd-item { display: flex; align-items: center; padding: 0.6rem 1.1rem; cursor: pointer; transition: background 0.1s; text-decoration: none; }
+.cmd-item:hover, .cmd-item.active { background: rgba(255,255,255,0.045); }
+.cmd-item-text { flex: 1; }
+.cmd-item-name { font-size: 0.82rem; color: oklch(80% 0.007 250); font-family: 'Inter', sans-serif; font-weight: 300; }
+.cmd-item-desc { font-size: 0.63rem; color: oklch(42% 0.007 250); margin-top: 0.06rem; font-family: 'Inter', sans-serif; }
+.cmd-arrow { font-size: 0.7rem; color: hsl(265 60% 55%); transition: color 0.15s; }
+.cmd-item:hover .cmd-arrow, .cmd-item.active .cmd-arrow { color: hsl(265 72% 78%); }
+.cmd-item-name mark, .cmd-item-desc mark { background: transparent; color: hsl(265 68% 74%); font-weight: 500; }
+.cmd-empty { padding: 2rem; text-align: center; font-size: 0.75rem; color: oklch(38% 0.007 250); font-family: 'Inter', sans-serif; }

@@ -6,6 +6,7 @@
 <title>CV / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components.css">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -25,12 +26,6 @@ body {
 @keyframes fadeIn { to { opacity: 1; } }
 #cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-nav {
-  position: fixed; top: 0; right: 0; z-index: 100;
-  padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: center;
-}
-nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
-nav a:hover { color: var(--white); }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -124,22 +119,23 @@ nav a:hover { color: var(--white); }
 .award-title { font-size: 0.78rem; color: var(--white); margin-bottom: 0.2rem; font-weight: 400; }
 .award-desc { font-size: 0.72rem; color: var(--dim); line-height: 1.65; }
 
-/* ══ FOOTER ══ */
-#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
-.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
-.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
-.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+.source-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+.source-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  color: var(--dim); text-decoration: none;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 0.2rem 0.6rem;
+  background: var(--glass-bg);
+  transition: border-color 0.2s, color 0.2s;
+}
+.source-link:hover { border-color: var(--violet); color: var(--violet); }
+.source-link svg { width: 9px; height: 9px; flex-shrink: 0; }
+
 </style>
 </head>
 <body>
 <canvas id="cosmos"></canvas>
-
-<nav>
-  <a href="story-v6.html">Story</a>
-  <a href="about.html">About</a>
-  <a href="universe.html">Universe</a>
-  <a href="work-v4.html">Work</a>
-</nav>
 
 <div id="page">
 
@@ -192,6 +188,10 @@ nav a:hover { color: var(--white); }
             <li>Python + OpenCV pipeline for real-time board state recognition via camera feed.</li>
             <li>Arduino UART serial link between the Python decision engine and the physical arm.</li>
           </ul>
+          <div class="source-links">
+            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS project page</a>
+            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/c-est-une-maniere-sympa-d-aborder-la-science-imagine-et-cree-a-tours-le-robot-j4-de-cinq-lyceens-de-vaucanson-prime-en-lettonie-1758727420" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
+          </div>
         </div>
 
         <div class="cv-entry">
@@ -206,6 +206,11 @@ nav a:hover { color: var(--white); }
             <li>On-site tasks: fabricating rebar from raw steel, stone-laying for foundations, trenching for toilet drainage, manual concrete mixing and slab pouring.</li>
             <li>Produced the initial architectural plans for the new classroom in collaboration with the local development association.</li>
           </ul>
+          <div class="source-links">
+            <a href="https://www.vaucanson.org/mon-ecole-maternelle-au-maroc-debut-de-la-construction/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Debut construction</a>
+            <a href="https://www.vaucanson.org/restitution-du-projet-mon-ecole-maternelle-au-maroc/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Restitution du projet</a>
+            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/tours-avec-vauc-en-sciences-mission-accomplie-au-maroc-1741202013" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
+          </div>
         </div>
 
         <div class="cv-entry">
@@ -218,6 +223,9 @@ nav a:hover { color: var(--white); }
             <li>Member of a sports club board. Administrative management, event organisation and coordination between members and governing bodies.</li>
             <li>Collective responsibilities in a voluntary associative setting.</li>
           </ul>
+          <div class="source-links">
+            <a href="https://www.eso-volley.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>ESO Volley</a>
+          </div>
         </div>
       </section>
 
@@ -236,6 +244,9 @@ nav a:hover { color: var(--white); }
             <li>Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences.</li>
             <li>TIPE research on epoxy resin mechanical properties in composite structures under stress.</li>
           </ul>
+          <div class="source-links">
+            <a href="https://www.lyc-descartes.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Descartes</a>
+          </div>
         </div>
 
         <div class="cv-entry">
@@ -248,6 +259,9 @@ nav a:hover { color: var(--white); }
             <li>Mention Tres Bien, felicitations du jury (highest honours with distinction).</li>
             <li>Specialisations: Maths, Physique-Chimie, Maths Expertes.</li>
           </ul>
+          <div class="source-links">
+            <a href="https://www.vaucanson.org/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Vaucanson</a>
+          </div>
         </div>
       </section>
 
@@ -258,10 +272,26 @@ nav a:hover { color: var(--white); }
         <div class="award-item">
           <p class="award-title">Concours Cgenial, National Winner</p>
           <p class="award-desc">First place at the national final, 2024. Leading French science and engineering competition for high school students.</p>
+          <div class="source-links">
+            <a href="https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/252-concours-cgenial-2025" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Cgenial</a>
+          </div>
         </div>
         <div class="award-item">
           <p class="award-title">CERN European Prize, EUCYS Latvia</p>
           <p class="award-desc">CERN European Prize at the European Union Contest for Young Scientists, Riga, 2025.</p>
+          <div class="source-links">
+            <a href="https://www.eucys2025.eu/en/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS 2025</a>
+            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Project page</a>
+            <a href="https://www.sciencesalecole.org/concours-eucys-european-union-contest-for-young-scientists/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Sciences a l'ecole</a>
+          </div>
+        </div>
+        <div class="award-item">
+          <p class="award-title">Chemistry Olympiad, Academic Final</p>
+          <p class="award-desc">Reached the academic final of the French Chemistry Olympiad, 2025.</p>
+          <div class="source-links">
+            <a href="https://www.vaucanson.org/olympiades-de-chimie-2025/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Vaucanson</a>
+            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/une-tourangelle-disputera-la-finale-des-olympiades-de-chimie-a-paris-1744124862" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
+          </div>
         </div>
       </section>
 
@@ -350,11 +380,6 @@ nav a:hover { color: var(--white); }
   </div>
 </div>
 
-<footer id="page-footer">
-  <a href="about.html" class="btn-pill">← About</a>
-  <span class="footer-sig">Bastien Gaffet</span>
-  <a href="work-v4.html" class="btn-pill">Work →</a>
-</footer>
 
 <script>
 // ══ REVEAL ════════════════════════════════════════════════════════════════
@@ -378,38 +403,7 @@ const barObs = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.lang-fill').forEach(el => barObs.observe(el));
 
-// ══ COSMOS ════════════════════════════════════════════════════════════════
-const canvas = document.getElementById('cosmos');
-const ctx = canvas.getContext('2d');
-let W, H, stars = [];
-const NUM_STARS = 220;
-function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-function initStars() {
-  stars = [];
-  for (let i = 0; i < NUM_STARS; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const radius = Math.random() * Math.max(W, H) * 0.65;
-    stars.push({ x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius, r:Math.random()*1.1+0.15, alpha:Math.random()*0.5+0.08, twinkle:Math.random()*Math.PI*2, speed:(Math.random()*0.3+0.05)*0.00008, angle, radius });
-  }
-}
-function draw(t) {
-  ctx.clearRect(0,0,W,H);
-  const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
-  bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(0.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');
-  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-  const cx=W/2,cy=H/2;
-  const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.5);
-  g1.addColorStop(0,'rgba(100,50,200,0.0)');g1.addColorStop(0.3,'rgba(100,50,200,0.06)');g1.addColorStop(0.7,'rgba(60,20,140,0.09)');g1.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);
-  stars.forEach(s=>{
-    s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;
-    const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*0.001)*0.25));
-    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();
-  });
-  requestAnimationFrame(draw);
-}
-resize();initStars();requestAnimationFrame(draw);
-window.addEventListener('resize',()=>{resize();initStars();});
 </script>
+<script src="components.js"></script>
 </body>
 </html>

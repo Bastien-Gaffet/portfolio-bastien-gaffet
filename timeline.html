@@ -6,6 +6,7 @@
 <title>Timeline / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components.css">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root { --black:#05060A; --violet:hsl(265 75% 60%); --violet-dim:hsl(265 75% 60% / 0.12); --white:oklch(96% 0.005 250); --dim:oklch(55% 0.01 250); --dim2:oklch(72% 0.008 250); --glass-border:rgba(255,255,255,0.09); }
@@ -13,9 +14,6 @@ html { scroll-behavior: smooth; }
 body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
 @keyframes fadeIn { to { opacity: 1; } }
 #cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-nav { position: fixed; top: 0; right: 0; z-index: 100; padding: 2rem 2.5rem; display: flex; gap: 2rem; }
-nav a { color: var(--dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
-nav a:hover { color: var(--white); }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}
@@ -35,11 +33,11 @@ nav a:hover { color: var(--white); }
 /* Vertical line */
 .timeline::before {
   content: ''; position: absolute;
-  left: 108px; top: 0; bottom: 0; width: 1px;
+  left: 116px; top: 0; bottom: 0; width: 1px;
   background: linear-gradient(to bottom, transparent, var(--glass-border) 5%, var(--glass-border) 95%, transparent);
 }
 @media(max-width:480px){
-  .timeline::before { left: 60px; }
+  .timeline::before { left: 66px; }
 }
 
 /* Year marker */
@@ -57,7 +55,7 @@ nav a:hover { color: var(--white); }
 @media(max-width:480px){ .year-label { width: 50px; font-size: 1.1rem; } }
 .year-line-dot {
   width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
-  background: var(--violet); margin-left: -4px;
+  background: var(--violet);
   box-shadow: 0 0 0 3px var(--black), 0 0 0 4px hsl(265 75% 60% / 0.35);
 }
 .year-spacer { flex: 1; }
@@ -78,7 +76,7 @@ nav a:hover { color: var(--white); }
 
 .event-dot {
   width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-  background: var(--glass-border); margin-top: 0.42rem; margin-left: -2px;
+  background: var(--glass-border); margin-top: 0.42rem;
   transition: background 0.3s;
 }
 .tl-event:hover .event-dot { background: var(--violet); }
@@ -102,32 +100,22 @@ nav a:hover { color: var(--white); }
 /* Now indicator */
 .tl-now {
   display: flex; align-items: center; gap: 1.5rem;
-  margin-top: 2rem; padding-top: 2rem;
-  border-top: 1px solid var(--glass-border);
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 2.5rem;
 }
 .now-label-tag {
   width: 90px; text-align: right; flex-shrink: 0;
   font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
 }
-.now-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--violet); flex-shrink: 0; margin-left: -4px; animation: pulse 2s ease-in-out infinite; }
+.now-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--violet); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 hsl(265 75% 60% / 0.5); } 50%{ box-shadow: 0 0 0 6px hsl(265 75% 60% / 0); } }
 .now-text { font-size: 0.75rem; color: var(--dim2); font-family: 'Playfair Display', serif; font-style: italic; }
 
-/* Footer */
-#page-footer { position: relative; z-index: 1; border-top: 1px solid var(--glass-border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-.btn-pill { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--dim); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--glass-border); border-radius: 30px; padding: .5rem 1.3rem; transition: color .3s, border-color .3s; }
-.btn-pill:hover { color: var(--white); border-color: rgba(255,255,255,.18); }
-.footer-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
 </style>
 </head>
 <body>
 <canvas id="cosmos"></canvas>
-<nav>
-  <a href="story-v6.html">Story</a>
-  <a href="about.html">About</a>
-  <a href="universe.html">Universe</a>
-  <a href="work-v4.html">Work</a>
-</nav>
 
 <div id="page">
   <p class="page-eyebrow reveal">Timeline</p>
@@ -135,6 +123,13 @@ nav a:hover { color: var(--white); }
   <p class="page-desc reveal d2">Projects, distinctions and milestones. A map of where I have been and what I have built.</p>
 
   <div class="timeline reveal">
+
+    <!-- Now — always at the top -->
+    <div class="tl-now">
+      <span class="now-label-tag">Now</span>
+      <div class="now-pulse"></div>
+      <p class="now-text">CPGE PCSI, year two — and whatever comes next.</p>
+    </div>
 
     <!-- 2025 -->
     <div class="tl-year">
@@ -182,7 +177,7 @@ nav a:hover { color: var(--white); }
         <span class="event-tag tag-site">Launch</span>
         <p class="event-title">bastiengaffet.fr — site launched</p>
         <p class="event-desc">Personal portfolio built from scratch in plain HTML, CSS and JS. No framework, no dependencies.</p>
-        <a href="story-v6.html" class="event-link">Story</a>
+        <a href="story.html" class="event-link">Story</a>
       </div>
     </div>
 
@@ -246,21 +241,9 @@ nav a:hover { color: var(--white); }
       </div>
     </div>
 
-    <!-- Now -->
-    <div class="tl-now">
-      <span class="now-label-tag">Now</span>
-      <div class="now-pulse"></div>
-      <p class="now-text">CPGE PCSI, year two — and whatever comes next.</p>
-    </div>
-
   </div>
 </div>
 
-<footer id="page-footer">
-  <a href="about.html" class="btn-pill">← About</a>
-  <span class="footer-sig">Bastien Gaffet</span>
-  <a href="cv.html" class="btn-pill">CV →</a>
-</footer>
 
 <script>
 const rObs = new IntersectionObserver(entries => {
@@ -270,13 +253,7 @@ document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
 window.addEventListener('load', () => {
   document.querySelectorAll('.reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*100));
 });
-const canvas=document.getElementById('cosmos'),ctx=canvas.getContext('2d');
-let W,H,stars=[];const NUM_STARS=220;
-function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
-function initStars(){stars=[];for(let i=0;i<NUM_STARS;i++){const a=Math.random()*Math.PI*2,r=Math.random()*Math.max(W,H)*.65;stars.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,rad:Math.random()*1.1+.15,alpha:Math.random()*.5+.08,twinkle:Math.random()*Math.PI*2,speed:(Math.random()*.3+.05)*.00008,angle:a,radius:r});}}
-function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);bg.addColorStop(0,'rgba(14,10,30,1)');bg.addColorStop(.3,'rgba(8,6,18,1)');bg.addColorStop(1,'rgba(5,6,10,1)');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2;const g1=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.5);g1.addColorStop(0,'rgba(100,50,200,0)');g1.addColorStop(.3,'rgba(100,50,200,.06)');g1.addColorStop(.7,'rgba(60,20,140,.09)');g1.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g1;ctx.fillRect(0,0,W,H);stars.forEach(s=>{s.angle+=s.speed;s.x=cx+Math.cos(s.angle)*s.radius;s.y=cy+Math.sin(s.angle)*s.radius;const a=Math.max(0,Math.min(1,s.alpha+Math.sin(s.twinkle+t*.001)*.25));ctx.beginPath();ctx.arc(s.x,s.y,s.rad,0,Math.PI*2);ctx.fillStyle=`rgba(220,210,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
-resize();initStars();requestAnimationFrame(draw);
-window.addEventListener('resize',()=>{resize();initStars();});
 </script>
+<script src="components.js"></script>
 </body>
 </html>
