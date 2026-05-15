@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bastien Gaffet">
+<meta property="og:description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>HopeTime / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/components.css">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
+
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ ARCHITECTURE ══ */
+.arch-flow { display: flex; align-items: center; gap: 0; }
+.arch-node {
+  flex: 1; padding: 2rem 1.5rem; text-align: center;
+  border: 1px solid var(--glass-border); border-radius: 20px;
+  background: var(--glass-bg); position: relative;
+  transition: background 0.3s, border-color 0.3s;
+}
+.arch-node:hover { background: var(--violet-glow); border-color: var(--violet); }
+.arch-node-name { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.arch-node-sub { font-size: 0.65rem; color: var(--dim); }
+.arch-sep { font-size: 0.8rem; color: var(--dim); padding: 0 1rem; flex-shrink: 0; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+/* ══ RECOGNITION ══ */
+.rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+@media(max-width:600px){ .rec-grid { grid-template-columns: 1fr; } }
+.rec-card { border: 1px solid var(--glass-border); background: var(--glass-bg); border-radius: 20px; padding: 2.5rem 2rem; transition: border-color 0.3s; }
+.rec-card:hover { border-color: rgba(255,255,255,0.15); }
+.rec-card.featured { border-color: var(--violet); background: var(--violet-glow); }
+.rec-year { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.7rem; }
+.rec-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.7rem; }
+.rec-desc { font-size: 0.8rem; color: var(--dim); line-height: 1.75; margin-bottom: 1.2rem; }
+.rec-badge { display: inline-block; padding: 0.32rem 0.9rem; border: 1px solid var(--glass-border); border-radius: 30px; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+.rec-card.featured .rec-badge { border-color: var(--violet); color: var(--violet); }
+
+
+.hero-title em { font-style: italic; color: hsl(320 60% 80%); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<main>
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal">Project / Experimental</p>
+      <h1 class="hero-title">
+        <span class="reveal">Hope</span><br>
+        <em class="reveal d1">Time</em>
+      </h1>
+      <p class="hero-desc reveal d2">A conceptual app exploring meaningful time moments: 12:12, 08:08. A meditation on philosophy, emotion and interface design.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Concept</span><span class="tag">Philosophical UI</span><span class="tag">Experimental</span><span class="tag">Time</span></div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Overview</p>
+      <div class="overview-grid">
+        <div>
+          <h2 class="section-title reveal">Time as<br><em>something felt.</em></h2>
+          <p class="body-text reveal d1">HopeTime is not a clock. It is an exploration of the moments in a day that feel charged with meaning: repeated digits, mirrored patterns, numbers that people associate with wishes, luck or simply the habit of noticing. The project sits at the edge of design, philosophy and the quietly human act of looking at a screen and feeling something.</p>
+        </div>
+        <div class="stats-col reveal d1"><div class="stat-item"><div class="stat-num">24</div><div class="stat-lbl">Meaningful moments per day</div></div><div class="stat-item"><div class="stat-num">∞</div><div class="stat-lbl">Interpretations</div></div><div class="stat-item"><div class="stat-num">2025</div><div class="stat-lbl">Year built</div></div><div class="stat-item"><div class="stat-num">Concept</div><div class="stat-lbl">Stage</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">How it works</p>
+      <div class="steps"><div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3>A moment arrives</h3><p>The app runs quietly in the background. When a meaningful time pattern appears, it surfaces gently, without interruption.</p></div></div><div class="step reveal d1"><div class="step-num">02</div><div class="step-body"><h3>The interface reveals</h3><p>A minimal screen appears with the time, a short reflection, and nothing else. No buttons, no actions required.</p></div></div><div class="step reveal d2"><div class="step-num">03</div><div class="step-body"><h3>You sit with it</h3><p>The moment is not interactive. It is there to be read, felt, and passed. The app closes after a few seconds.</p></div></div><div class="step reveal d3"><div class="step-num">04</div><div class="step-body"><h3>Patterns accumulate</h3><p>Over time, the app builds a log of the moments you have seen. A quiet archive of charged instants.</p></div></div><div class="step reveal d4"><div class="step-num">05</div><div class="step-body"><h3>Reflection</h3><p>Occasionally, the app offers a longer reflection: a pattern it has noticed in the times you tend to see, or a thought connected to a specific number.</p></div></div></div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Stack</p>
+      <div class="stack-list"><div class="stack-row reveal"><span class="stack-name">Conceptual Design</span><span class="stack-desc">The project exists first as a concept and a set of design principles before any interface.</span></div><div class="stack-row reveal d1"><span class="stack-name">Philosophical framework</span><span class="stack-desc">Each time pattern is paired with a reflection rooted in philosophy, numerology or simply human habit.</span></div><div class="stack-row reveal d2"><span class="stack-name">Minimal UI</span><span class="stack-desc">The interface is stripped to the absolute minimum. One screen, one moment, no chrome.</span></div></div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Key concepts</p>
+      <div class="concept reveal"><div class="concept-title">Meaningful time</div><div class="concept-body">Humans have always found meaning in numbers. 12:12, 11:11, 08:08 carry weight not because they are special, but because we decided they are. HopeTime takes that seriously.</div></div><div class="concept reveal d1"><div class="concept-title">Passive interaction</div><div class="concept-body">Most apps demand attention. HopeTime offers presence instead. It does not ask for a tap or a decision. It just shows up.</div></div><div class="concept reveal d2"><div class="concept-title">Emotional interface design</div><div class="concept-body">The hardest design challenge is making something that makes you feel something. HopeTime is entirely about that problem.</div></div>
+    </div>
+  </section>
+
+</main>
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+<script src="/components.js"></script>
+</body>
+</html>

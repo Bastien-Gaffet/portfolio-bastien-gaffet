@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bastien Gaffet">
+<meta property="og:description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>Robot J4 / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/components.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
+
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ ARCHITECTURE ══ */
+.arch-flow { display: flex; align-items: center; gap: 0; }
+.arch-node {
+  flex: 1; padding: 2rem 1.5rem; text-align: center;
+  border: 1px solid var(--glass-border); border-radius: 20px;
+  background: var(--glass-bg); position: relative;
+  transition: background 0.3s, border-color 0.3s;
+}
+.arch-node:hover { background: var(--violet-glow); border-color: var(--violet); }
+.arch-node-name { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.arch-node-sub { font-size: 0.65rem; color: var(--dim); }
+.arch-sep { font-size: 0.8rem; color: var(--dim); padding: 0 1rem; flex-shrink: 0; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+/* ══ RECOGNITION ══ */
+.rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+@media(max-width:600px){ .rec-grid { grid-template-columns: 1fr; } }
+.rec-card { border: 1px solid var(--glass-border); background: var(--glass-bg); border-radius: 20px; padding: 2.5rem 2rem; transition: border-color 0.3s; }
+.rec-card:hover { border-color: rgba(255,255,255,0.15); }
+.rec-card.featured { border-color: var(--violet); background: var(--violet-glow); }
+.rec-year { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.7rem; }
+.rec-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.7rem; }
+.rec-desc { font-size: 0.8rem; color: var(--dim); line-height: 1.75; margin-bottom: 1.2rem; }
+.rec-badge { display: inline-block; padding: 0.32rem 0.9rem; border: 1px solid var(--glass-border); border-radius: 30px; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+.rec-card.featured .rec-badge { border-color: var(--violet); color: var(--violet); }
+
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal">Project / Robotics & AI</p>
+      <h1 class="hero-title">
+        <span class="reveal">Robot</span><br>
+        <em class="reveal d1">J4</em>
+      </h1>
+      <p class="hero-desc reveal d2">
+        A robotic arm that plays Connect Four. Combining mechanical design,
+        computer vision and the Minimax algorithm into a physical intelligence.
+      </p>
+      <div class="hero-awards reveal d3">
+        <span class="award-pill">Concours Cgénial / National Winner</span>
+        <span class="award-pill">EUCYS Latvia / CERN European Prize</span>
+      </div>
+      <div class="hero-tags reveal d4">
+        <span class="tag">Minimax AI</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Arduino</span>
+        <span class="tag">Python</span>
+        <span class="tag">UART</span>
+        <span class="tag">Mechanical Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Overview</p>
+      <div class="overview-grid">
+        <div>
+          <h2 class="section-title reveal">A machine that<br><em>thinks and acts.</em></h2>
+          <p class="body-text reveal d1">Robot J4 is not just a program. It's a physical presence at the table. When it's its turn, it looks at the board, thinks, and reaches for the grid. The whole loop: perception, decision, action. It all happens in the real world.</p>
+          <p class="body-text reveal d2">At its core lives the Minimax algorithm, a strategy borrowed from game theory. J4 simulates future game states, weighs outcomes and picks the move that maximises its chances of winning, or minimises yours.</p>
+          <p class="body-text reveal d3">Built as part of a high school engineering specialisation, the project won the national title at Concours Cgénial, then the CERN European Prize at EUCYS in Latvia.</p>
+        </div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">Depth levels in Minimax tree</div></div>
+          <div class="stat-item"><div class="stat-num">360°</div><div class="stat-lbl">Full loop: vision to physical move</div></div>
+          <div class="stat-item"><div class="stat-num">1st</div><div class="stat-lbl">Concours Cgénial national final</div></div>
+          <div class="stat-item"><div class="stat-num">CERN</div><div class="stat-lbl">European prize at EUCYS Latvia</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">How it works</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3>Coin toss</h3><p>A random draw determines who plays first: J4 or the human. The robot handles both opening and response strategies equally.</p></div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body"><h3>Visual perception</h3><p>A camera continuously films the board. Computer vision processes the feed in real time to detect token positions and maintain an accurate board state.</p></div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body"><h3>Minimax decision</h3><p>The algorithm explores the game tree up to a set depth. A custom heuristic evaluates each position, rewarding alignment, blocking threats and weighting centre control.</p></div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body"><h3>Physical execution</h3><p>The chosen column is sent via UART to the Arduino. J4 moves into position and drops the token into the grid with precision.</p></div></div>
+        <div class="step reveal d4"><div class="step-num">05</div><div class="step-body"><h3>Automatic turn detection</h3><p>After the human plays, the camera detects the new token without any button press. The cycle continues until someone wins or the grid is full.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Stack</p>
+      <div class="stack-list">
+        <div class="stack-row reveal"><span class="stack-name">Python</span><span class="stack-desc">Game engine, Minimax logic, camera interface and the full user interaction layer.</span></div>
+        <div class="stack-row reveal d1"><span class="stack-name">Minimax Algorithm</span><span class="stack-desc">Tree-search strategy with a custom heuristic scoring function for board evaluation at depth.</span></div>
+        <div class="stack-row reveal d2"><span class="stack-name">Computer Vision</span><span class="stack-desc">Real-time board state recognition and automatic token detection via continuous camera feed.</span></div>
+        <div class="stack-row reveal d3"><span class="stack-name">Arduino</span><span class="stack-desc">Motor control and physical command execution for the robotic arm movements.</span></div>
+        <div class="stack-row reveal d4"><span class="stack-name">UART / Serial</span><span class="stack-desc">Communication bridge between the Python logic layer and the Arduino hardware controller.</span></div>
+        <div class="stack-row reveal d4"><span class="stack-name">Mechanical Design</span><span class="stack-desc">Custom robotic arm engineered for precise column targeting and reliable token handling.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Architecture</p>
+      <div class="arch-flow reveal d1">
+        <div class="arch-node"><div class="arch-node-name">Camera</div><div class="arch-node-sub">Board recognition</div></div>
+        <div class="arch-sep">→</div>
+        <div class="arch-node"><div class="arch-node-name">Python Engine</div><div class="arch-node-sub">Minimax · Logic</div></div>
+        <div class="arch-sep">→</div>
+        <div class="arch-node"><div class="arch-node-name">Arduino</div><div class="arch-node-sub">UART · Motors</div></div>
+        <div class="arch-sep">→</div>
+        <div class="arch-node"><div class="arch-node-name">Robotic Arm</div><div class="arch-node-sub">Physical execution</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Key concepts</p>
+      <div class="concept reveal"><div class="concept-title">Minimax Algorithm</div><div class="concept-body">A recursive strategy from game theory that simulates all possible future moves up to a given depth. J4 assumes both players act optimally and picks the move that leads to the best worst-case outcome, maximising its own score while minimising the opponent's.</div></div>
+      <div class="concept reveal d1"><div class="concept-title">Heuristic Evaluation</div><div class="concept-body">Exploring every possible game state is computationally intractable. A custom scoring function evaluates board positions at the search horizon, rewarding aligned tokens, penalising threats and weighting central control.</div></div>
+      <div class="concept reveal d2"><div class="concept-title">Human-Robot Interaction</div><div class="concept-body">The loop is designed to feel natural. J4 acts, the human responds, J4 perceives. No buttons, no forced delays. The robot adapts to the human's pace through passive vision rather than explicit signalling.</div></div>
+      <div class="concept reveal d3"><div class="concept-title">Embedded Architecture</div><div class="concept-body">The split between Python (logic) and Arduino (execution) mirrors a real embedded systems pattern: a high-level brain communicating with a low-level controller over a defined serial protocol. Clean separation of concerns at the hardware level.</div></div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal">Recognition</p>
+      <div class="rec-grid reveal d1">
+        <div class="rec-card featured">
+          <p class="rec-year">2024 / France</p>
+          <h3 class="rec-title">Concours Cgénial</h3>
+          <p class="rec-desc">Winner of the national final. The leading French competition for high school science and engineering projects, recognising innovation and technical rigour.</p>
+          <span class="rec-badge">National Winner</span>
+        </div>
+        <div class="rec-card">
+          <p class="rec-year">2025 / Riga, Latvia</p>
+          <h3 class="rec-title">EUCYS</h3>
+          <p class="rec-desc">Selected to represent France at the European Union Contest for Young Scientists. Awarded the CERN European Prize for exceptional work in science and engineering.</p>
+          <span class="rec-badge">CERN European Prize</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+<script src="/components.js"></script>
+</body>
+</html>
