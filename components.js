@@ -77,6 +77,90 @@ const PAGE_NAMES = {
 const currentFile = location.pathname.split('/').pop() || 'index.html';
 const config = PAGE_CONFIG[currentFile] || {};
 
+// currentPath: pathname without leading slash and without .html extension
+// e.g. '/project/robotj4.html' → 'project/robotj4'
+//      '/about.html' or '/about' → 'about'
+//      '/' → ''
+const currentPath = location.pathname.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '');
+
+// ══════════════════════════════════════════════════════════════════════════
+// ANALYTICS
+// ══════════════════════════════════════════════════════════════════════════
+(function() {
+  const s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://cloud.umami.is/script.js';
+  s.setAttribute('data-website-id', 'cc0431fb-5a53-4ce2-bcb1-1e3009b53177');
+  document.head.appendChild(s);
+})();
+
+// ══════════════════════════════════════════════════════════════════════════
+// SEO — canonical, theme-color, RSS autodiscovery, JSON-LD structured data
+// ══════════════════════════════════════════════════════════════════════════
+
+// RSS autodiscovery
+const _rss = document.createElement('link');
+_rss.rel = 'alternate';
+_rss.type = 'application/rss+xml';
+_rss.title = 'Notes — Bastien Gaffet';
+_rss.href = 'https://bastiengaffet.fr/feed.xml';
+document.head.appendChild(_rss);
+
+// Canonical URL
+const _canon = document.createElement('link');
+_canon.rel = 'canonical';
+_canon.href = 'https://bastiengaffet.fr' + (location.pathname.replace(/\/$/, '') || '/');
+document.head.appendChild(_canon);
+
+// Theme color (mobile browser chrome)
+const _theme = document.createElement('meta');
+_theme.name = 'theme-color';
+_theme.content = '#8C4DE6';
+document.head.appendChild(_theme);
+
+// JSON-LD helper
+function _ld(schema) {
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify(schema);
+  document.head.appendChild(s);
+}
+
+// WebSite schema — every page
+_ld({ "@context":"https://schema.org", "@type":"WebSite",
+  "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr",
+  "description":"Portfolio of Bastien Gaffet — engineering student, maker and astrophotographer.",
+  "author":{ "@type":"Person", "name":"Bastien Gaffet" },
+  "inLanguage":["en","fr"] });
+
+// Person schema — about and cv pages only
+if (currentPath === 'about' || currentPath === 'cv') {
+  _ld({ "@context":"https://schema.org", "@type":"Person",
+    "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr/about",
+    "jobTitle":"Engineering student",
+    "description":"Student in CPGE PCSI at Lycée Descartes, Tours. Maker, astrophotographer, builder at the intersection of software, hardware and design.",
+    "knowsAbout":["Robotics","Python","Computer Vision","Astrophotography","Interface Design","Embedded Systems"],
+    "award":["CERN European Prize — EUCYS 2025","Concours C.Génial National Winner 2024"],
+    "alumniOf":{ "@type":"EducationalOrganization", "name":"Lycée Descartes, Tours" } });
+}
+
+// BreadcrumbList schema — project and product pages
+const _crumbs = {
+  'project/robotj4':          { parent:'/work',  parentName:'Work',  name:'Robot J4' },
+  'project/tourny':           { parent:'/work',  parentName:'Work',  name:'Tourny' },
+  'project/glacify':          { parent:'/work',  parentName:'Work',  name:'Glacify' },
+  'project/hopetime':         { parent:'/work',  parentName:'Work',  name:'HopeTime' },
+  'product/cosmos-wallpaper': { parent:'/shop',  parentName:'Shop',  name:'Cosmos Wallpaper' },
+};
+if (_crumbs[currentPath]) {
+  const b = _crumbs[currentPath];
+  _ld({ "@context":"https://schema.org", "@type":"BreadcrumbList",
+    "itemListElement":[
+      { "@type":"ListItem", "position":1, "name":b.parentName, "item":"https://bastiengaffet.fr"+b.parent },
+      { "@type":"ListItem", "position":2, "name":b.name,       "item":"https://bastiengaffet.fr/"+currentPath }
+    ]});
+}
+
 // ══════════════════════════════════════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Bastien Gaffet",
+    "label": "Engineering Student / Creative Builder",
+    "email": "votre@email.com",
+    "url": "https://bastiengaffet.fr",
+    "summary": "Engineering student with a passion for building systems where mechanics, software and design converge. Comfortable moving between embedded hardware and interface design, between algorithm logic and physical execution. Always looking for the intersection where things work well and feel right.",
+    "location": {
+      "city": "Tours",
+      "countryCode": "FR"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "votre-username",
+        "url": "https://github.com/votre-username"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "votre-username",
+        "url": "https://linkedin.com/in/votre-username"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Robot J4",
+      "position": "Robotics / AI / Computer Vision",
+      "url": "https://bastiengaffet.fr/project/robotj4",
+      "startDate": "2024",
+      "endDate": "2025",
+      "highlights": [
+        "Designed and built a robotic arm playing Connect Four autonomously against a human opponent.",
+        "Minimax algorithm with custom heuristics for optimal decision-making up to depth 6.",
+        "Python + OpenCV pipeline for real-time board state recognition via camera feed.",
+        "Arduino UART serial link between the Python decision engine and the physical arm."
+      ]
+    },
+    {
+      "name": "Classroom Construction, Ourika Valley",
+      "position": "Humanitarian Project / Morocco",
+      "startDate": "2024",
+      "endDate": "2024",
+      "highlights": [
+        "Volunteered in a village near Chicker to build an additional classroom for a school unable to self-fund construction.",
+        "On-site tasks: fabricating rebar from raw steel, stone-laying for foundations, trenching for toilet drainage, manual concrete mixing and slab pouring.",
+        "Produced the initial architectural plans for the new classroom in collaboration with the local development association."
+      ]
+    },
+    {
+      "name": "Sports Club Board Member",
+      "position": "Volunteering / Association Management",
+      "url": "https://www.eso-volley.fr/",
+      "startDate": "2023",
+      "highlights": [
+        "Member of a sports club board (ESO Volley). Administrative management, event organisation and coordination between members and governing bodies."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Lycee Descartes, Tours",
+      "area": "Physics, Chemistry, Engineering Sciences",
+      "studyType": "CPGE PCSI",
+      "startDate": "2024",
+      "url": "https://www.lyc-descartes.fr/",
+      "courses": [
+        "TIPE research on epoxy resin mechanical properties in composite structures under stress"
+      ]
+    },
+    {
+      "institution": "Lycee Vaucanson, Tours",
+      "area": "Maths, Physique-Chimie, Maths Expertes",
+      "studyType": "French Baccalaureat",
+      "startDate": "2021",
+      "endDate": "2024",
+      "score": "Mention Tres Bien, felicitations du jury",
+      "url": "https://www.vaucanson.org/"
+    }
+  ],
+  "awards": [
+    {
+      "title": "CERN European Prize",
+      "date": "2025",
+      "awarder": "EUCYS — European Union Contest for Young Scientists, Riga",
+      "summary": "CERN European Prize for the Robot J4 project at EUCYS 2025."
+    },
+    {
+      "title": "Concours Cgenial, National Winner",
+      "date": "2024",
+      "awarder": "Cgenial",
+      "summary": "First place at the national final of the leading French science and engineering competition for high school students."
+    },
+    {
+      "title": "Chemistry Olympiad, Academic Final",
+      "date": "2025",
+      "awarder": "French Chemistry Olympiad",
+      "summary": "Reached the academic final of the French Chemistry Olympiad."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming",
+      "keywords": ["Python", "Arduino (C++)", "HTML", "CSS", "JavaScript"]
+    },
+    {
+      "name": "Domains",
+      "keywords": ["Robotics", "Embedded Systems", "Computer Vision", "Algorithm Design", "Interface Design"]
+    }
+  ],
+  "languages": [
+    { "language": "French", "fluency": "Native" },
+    { "language": "English", "fluency": "Fluent, professional" }
+  ],
+  "interests": [
+    {
+      "name": "Astrophotography"
+    },
+    {
+      "name": "Guitar"
+    },
+    {
+      "name": "Volleyball"
+    },
+    {
+      "name": "Astronomy"
+    }
+  ]
+}

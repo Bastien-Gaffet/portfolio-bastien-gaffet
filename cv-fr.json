@@ -1,0 +1,122 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Bastien Gaffet",
+    "label": "Etudiant en classes preparatoires / Createur",
+    "email": "votre@email.com",
+    "url": "https://bastiengaffet.fr",
+    "summary": "Etudiant en classes preparatoires passionne par la construction de systemes a l'intersection de la mecanique, du logiciel et du design. A l'aise aussi bien en conception embarquee qu'en design d'interfaces, entre logique algorithmique et execution physique. Toujours en quete du point de jonction ou les choses fonctionnent bien et semblent justes.",
+    "location": {
+      "city": "Tours",
+      "countryCode": "FR"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "votre-username",
+        "url": "https://github.com/votre-username"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "votre-username",
+        "url": "https://linkedin.com/in/votre-username"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Robot J4",
+      "position": "Robotique / IA / Vision par ordinateur",
+      "url": "https://bastiengaffet.fr/project/robotj4",
+      "startDate": "2024",
+      "endDate": "2025",
+      "highlights": [
+        "Conception et fabrication d'un bras robotique jouant au Puissance 4 de facon autonome contre un adversaire humain.",
+        "Algorithme Minimax avec heuristiques personnalisees pour une prise de decision optimale jusqu'a la profondeur 6.",
+        "Pipeline Python + OpenCV pour la reconnaissance en temps reel de l'etat du plateau via flux camera.",
+        "Lien serie UART Arduino entre le moteur de decision Python et le bras physique."
+      ]
+    },
+    {
+      "name": "Construction d'une salle de classe, Vallee de l'Ourika",
+      "position": "Projet humanitaire / Maroc",
+      "startDate": "2024",
+      "endDate": "2024",
+      "highlights": [
+        "Benevole dans un village pres de Chicker pour la construction d'une salle de classe supplementaire dans une ecole ne pouvant s'autofinancer.",
+        "Taches sur site : fabrication de ferraille a partir d'acier brut, pose de pierres pour les fondations, tranchees pour le drainage, coulage manuel du beton.",
+        "Elaboration des plans architecturaux initiaux en collaboration avec l'association de developpement locale."
+      ]
+    },
+    {
+      "name": "Membre du bureau d'un club sportif",
+      "position": "Benevolat / Gestion associative",
+      "url": "https://www.eso-volley.fr/",
+      "startDate": "2023",
+      "highlights": [
+        "Membre du bureau d'un club de volley-ball (ESO Volley). Gestion administrative, organisation d'evenements et coordination entre membres et instances dirigeantes."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Lycee Descartes, Tours",
+      "area": "Physique, Chimie, Sciences de l'Ingenieur",
+      "studyType": "CPGE PCSI",
+      "startDate": "2024",
+      "url": "https://www.lyc-descartes.fr/",
+      "courses": [
+        "TIPE sur les proprietes mecaniques des resines epoxy dans les structures composites sous contrainte"
+      ]
+    },
+    {
+      "institution": "Lycee Vaucanson, Tours",
+      "area": "Mathematiques, Physique-Chimie, Mathematiques Expertes",
+      "studyType": "Baccalaureat general",
+      "startDate": "2021",
+      "endDate": "2024",
+      "score": "Mention Tres Bien, felicitations du jury",
+      "url": "https://www.vaucanson.org/"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Prix Europeen du CERN",
+      "date": "2025",
+      "awarder": "EUCYS — Concours europeen des jeunes scientifiques, Riga",
+      "summary": "Prix europeen du CERN pour le projet Robot J4 a l'EUCYS 2025."
+    },
+    {
+      "title": "Concours C.Genial, Premier prix national",
+      "date": "2024",
+      "awarder": "C.Genial",
+      "summary": "Premiere place a la finale nationale du principal concours francais de sciences et d'ingenierie pour lyceens."
+    },
+    {
+      "title": "Olympiades de Chimie, Finale academique",
+      "date": "2025",
+      "awarder": "Olympiades de Chimie",
+      "summary": "Atteinte de la finale academique des Olympiades de Chimie."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Langages de programmation",
+      "keywords": ["Python", "Arduino (C++)", "HTML", "CSS", "JavaScript"]
+    },
+    {
+      "name": "Domaines",
+      "keywords": ["Robotique", "Systemes embarques", "Vision par ordinateur", "Conception algorithmique", "Design d'interfaces"]
+    }
+  ],
+  "languages": [
+    { "language": "Francais", "fluency": "Langue maternelle" },
+    { "language": "Anglais", "fluency": "Courant, professionnel" }
+  ],
+  "interests": [
+    { "name": "Astrophotographie" },
+    { "name": "Guitare" },
+    { "name": "Volley-ball" },
+    { "name": "Astronomie" }
+  ]
+}

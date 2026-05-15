@@ -1,0 +1,19 @@
+/* TEAM */
+
+  Creator & developer: Bastien Gaffet
+  Site: https://bastiengaffet.fr
+  Location: Tours, France
+
+/* THANKS */
+
+  Fonts: Google Fonts — Playfair Display, Inter
+  Hosting: Netlify
+  Analytics: Umami (privacy-friendly, no cookies)
+  CV generation: ReportLab (Python)
+
+/* SITE */
+
+  Last update: 2026-05-15
+  Language: English / French
+  Standards: HTML5, CSS3, Vanilla JS
+  No frameworks. No build step.

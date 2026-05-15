@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes — Bastien Gaffet</title>
+    <description>Monthly articles and observations on projects, learning and whatever is on my mind.</description>
+    <link>https://bastiengaffet.fr/blog</link>
+    <atom:link href="https://bastiengaffet.fr/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en</language>
+    <lastBuildDate>Thu, 15 May 2026 00:00:00 GMT</lastBuildDate>
+    <managingEditor>your@email.com (Bastien Gaffet)</managingEditor>
+    <image>
+      <url>https://bastiengaffet.fr/og-image.png</url>
+      <title>Notes — Bastien Gaffet</title>
+      <link>https://bastiengaffet.fr/blog</link>
+    </image>
+
+    <!--
+      ADD A NEW <item> BLOCK HERE FOR EACH POST — most recent first.
+
+      Template:
+      <item>
+        <title>Post title</title>
+        <link>https://bastiengaffet.fr/notes/post-slug</link>
+        <guid isPermaLink="true">https://bastiengaffet.fr/notes/post-slug</guid>
+        <pubDate>Thu, 15 May 2026 00:00:00 GMT</pubDate>
+        <description>One or two sentence summary shown in RSS readers.</description>
+        <category>Tag</category>
+      </item>
+    -->
+
+  </channel>
+</rss>

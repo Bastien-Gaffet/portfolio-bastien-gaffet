@@ -1,0 +1,58 @@
+# Bastien Gaffet — bastiengaffet.fr
+
+> Engineering student, maker and astrophotographer based in Tours, France.
+> Building at the intersection of software, hardware and design.
+
+## About
+
+Bastien Gaffet is a student in CPGE PCSI (preparatory classes for grandes écoles)
+at Lycée Descartes, Tours. He builds robotics systems, generative tools and
+digital products. CERN European Prize winner at EUCYS 2025. Concours C.Génial
+national winner 2024.
+
+## Projects
+
+- **Robot J4** — robotic arm playing Connect Four autonomously using Minimax AI
+  and OpenCV computer vision. CERN European Prize at EUCYS 2025.
+  https://bastiengaffet.fr/project/robotj4
+
+- **Tourny** — https://bastiengaffet.fr/project/tourny
+
+- **Glacify** — https://bastiengaffet.fr/project/glacify
+
+- **HopeTime** — https://bastiengaffet.fr/project/hopetime
+
+- **Cosmos Wallpaper Generator** — generative cosmos wallpaper tool,
+  20+ object types, exports up to 4K. Available from €4.
+  https://bastiengaffet.fr/product/cosmos-wallpaper
+
+## Key pages
+
+- Story (introduction): https://bastiengaffet.fr/
+- Work: https://bastiengaffet.fr/work
+- About: https://bastiengaffet.fr/about
+- CV (interactive): https://bastiengaffet.fr/cv
+- CV EN (JSON Resume): https://bastiengaffet.fr/cv.json
+- CV FR (JSON Resume): https://bastiengaffet.fr/cv-fr.json
+- Photography: https://bastiengaffet.fr/photography
+- Notes (blog): https://bastiengaffet.fr/blog
+- Universe (interests): https://bastiengaffet.fr/universe
+- Timeline: https://bastiengaffet.fr/timeline
+- Contact: https://bastiengaffet.fr/contact
+- Shop: https://bastiengaffet.fr/shop
+
+## Awards & recognition
+
+- CERN European Prize — EUCYS 2025, Riga, Latvia
+- Concours C.Génial — National Winner, 2024
+- Chemistry Olympiad — Academic Final, 2025
+
+## Skills
+
+Python, Arduino (C++), HTML/CSS/JS, Robotics, Embedded Systems,
+Computer Vision, Algorithm Design, Interface Design, Astrophotography
+
+## Education
+
+- CPGE PCSI — Lycée Descartes, Tours (2024–present)
+- Baccalauréat Général, Mention Très Bien — Lycée Vaucanson, Tours (2024)
