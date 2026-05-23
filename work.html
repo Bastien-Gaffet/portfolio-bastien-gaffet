@@ -168,19 +168,24 @@ section { position: relative; z-index: 1; }
 <!-- HERO -->
 <section id="hero">
   <div class="inner">
-    <p class="hero-eyebrow reveal">Engineering Portfolio</p>
-    <h1 class="hero-title reveal d1">What I've <em>built</em>.<br>What I'm building.</h1>
-    <p class="hero-desc reveal d2">Systems, interfaces and concepts. Each project a different way to understand and shape the world around me.</p>
+    <p class="hero-eyebrow reveal t-en">Engineering Portfolio</p>
+    <p class="hero-eyebrow reveal t-fr">Portfolio Ingénierie</p>
+    <h1 class="hero-title reveal d1">
+      <span class="t-en">What I've <em>built</em>.<br>What I'm building.</span>
+      <span class="t-fr">Ce que j'ai <em>construit</em>.<br>Ce que je construis.</span>
+    </h1>
+    <p class="hero-desc reveal d2 t-en">Systems, interfaces and concepts. Each project a different way to understand and shape the world around me.</p>
+    <p class="hero-desc reveal d2 t-fr">Systèmes, interfaces et concepts. Chaque projet, une autre façon de comprendre et façonner le monde autour de moi.</p>
   </div>
 </section>
 
 <!-- FILTERS -->
 <div id="filters">
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="engineering">Engineering</button>
-    <button class="filter-btn" data-filter="creative">Creative</button>
-    <button class="filter-btn" data-filter="experimental">Experimental</button>
+    <button class="filter-btn active" data-filter="all"><span class="t-en">All</span><span class="t-fr">Tout</span></button>
+    <button class="filter-btn" data-filter="engineering"><span class="t-en">Engineering</span><span class="t-fr">Ingénierie</span></button>
+    <button class="filter-btn" data-filter="creative"><span class="t-en">Creative</span><span class="t-fr">Créatif</span></button>
+    <button class="filter-btn" data-filter="experimental"><span class="t-en">Experimental</span><span class="t-fr">Expérimental</span></button>
   </div>
 </div>
 
@@ -194,11 +199,12 @@ section { position: relative; z-index: 1; }
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2024</span><span class="card-type">Engineering</span></div>
+        <div class="card-meta"><span class="card-year">2024</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
         <h2 class="card-name">Tourny</h2>
-        <p class="card-desc">A sport tournament management platform. My first attempt to organize chaos into structure: logic, data pipelines, and a dashboard built around the complexity of competitive sports.</p>
+        <p class="card-desc t-en">A sport tournament management platform. My first attempt to organize chaos into structure: logic, data pipelines, and a dashboard built around the complexity of competitive sports.</p>
+        <p class="card-desc t-fr">Une plateforme de gestion de tournois sportifs. Ma première tentative d'organiser le chaos en structure : logique, pipelines de données, et un tableau de bord conçu autour de la complexité du sport compétitif.</p>
         <div class="card-tags"><span class="tag">Tournament System</span><span class="tag">Data Architecture</span><span class="tag">Dashboard UI</span></div>
-        <span class="card-arrow">View project</span>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
     <a class="proj-card glacify" data-cat="creative" href="project-glacify.html">
@@ -208,11 +214,12 @@ section { position: relative; z-index: 1; }
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2024</span><span class="card-type">Creative</span></div>
+        <div class="card-meta"><span class="card-year">2024</span><span class="card-type t-en">Creative</span><span class="card-type t-fr">Créatif</span></div>
         <h2 class="card-name">Glacify</h2>
-        <p class="card-desc">An ice cream ordering app designed to feel human. Playful UX, intuitive flows. The project where creativity entered the system.</p>
+        <p class="card-desc t-en">An ice cream ordering app designed to feel human. Playful UX, intuitive flows. The project where creativity entered the system.</p>
+        <p class="card-desc t-fr">Une application de commande de glaces conçue pour paraître humaine. UX ludique, flux intuitifs. Le projet où la créativité est entrée dans le système.</p>
         <div class="card-tags"><span class="tag">Mobile UX</span><span class="tag">Ordering System</span><span class="tag">Playful Interface</span></div>
-        <span class="card-arrow">View project</span>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
     <a class="proj-card hopetime" data-cat="experimental" href="project-hopetime.html">
@@ -222,11 +229,12 @@ section { position: relative; z-index: 1; }
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2025</span><span class="card-type">Experimental</span></div>
+        <div class="card-meta"><span class="card-year">2025</span><span class="card-type t-en">Experimental</span><span class="card-type t-fr">Expérimental</span></div>
         <h2 class="card-name">HopeTime</h2>
-        <p class="card-desc">A conceptual app exploring meaningful time moments: 12:12, 08:08. A meditation on philosophy, emotion, and interface design.</p>
+        <p class="card-desc t-en">A conceptual app exploring meaningful time moments: 12:12, 08:08. A meditation on philosophy, emotion, and interface design.</p>
+        <p class="card-desc t-fr">Une application conceptuelle explorant les moments temporels significatifs : 12:12, 08:08. Une méditation sur la philosophie, l'émotion et le design d'interface.</p>
         <div class="card-tags"><span class="tag">Concept</span><span class="tag">Philosophical</span><span class="tag">Experimental</span></div>
-        <span class="card-arrow">View project</span>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
     <a class="proj-card robotj4 featured" data-cat="engineering" href="project-robotj4.html">
@@ -236,11 +244,12 @@ section { position: relative; z-index: 1; }
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2024</span><span class="card-type">Engineering</span></div>
+        <div class="card-meta"><span class="card-year">2024</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
         <h2 class="card-name">Robot J4</h2>
-        <p class="card-desc">A robotic arm that plays Connect Four. Combining mechanical design, computer vision and the Minimax algorithm into a physical intelligence. National winner at Concours Cgénial, CERN European Prize at EUCYS Latvia.</p>
+        <p class="card-desc t-en">A robotic arm that plays Connect Four. Combining mechanical design, computer vision and the Minimax algorithm into a physical intelligence. National winner at Concours Cgénial, CERN European Prize at EUCYS Latvia.</p>
+        <p class="card-desc t-fr">Un bras robotique qui joue au Puissance 4. Alliance de conception mécanique, vision par ordinateur et algorithme Minimax en une intelligence physique. Lauréat national Concours Cgénial, Prix européen du CERN à l'EUCYS en Lettonie.</p>
         <div class="card-tags"><span class="tag">Minimax AI</span><span class="tag">Computer Vision</span><span class="tag">Arduino</span><span class="tag">Python</span></div>
-        <span class="card-arrow">View project</span>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
   </div>
@@ -250,28 +259,35 @@ section { position: relative; z-index: 1; }
 <section id="about">
   <div class="inner">
     <div>
-      <p class="section-label reveal">About</p>
-      <h2 class="section-title reveal d1">Engineering student.<br>System thinker.</h2>
-      <p class="body-text reveal d2">My name is Bastien Gaffet. A CPGE PCSI student, I build systems at the intersection of engineering, design and curiosity. Every project is a way to better understand how things connect: code, matter or ideas.</p>
-      <p class="body-text reveal d3">Outside the systems I create, I observe the world through photography, music (guitar), volleyball, and astronomy.</p>
+      <p class="section-label reveal t-en">About</p>
+      <p class="section-label reveal t-fr">À propos</p>
+      <h2 class="section-title reveal d1">
+        <span class="t-en">Engineering student.<br>System thinker.</span>
+        <span class="t-fr">Étudiant ingénieur.<br>Penseur systémique.</span>
+      </h2>
+      <p class="body-text reveal d2 t-en">My name is Bastien Gaffet. A CPGE PCSI student, I build systems at the intersection of engineering, design and curiosity. Every project is a way to better understand how things connect: code, matter or ideas.</p>
+      <p class="body-text reveal d2 t-fr">Je m'appelle Bastien Gaffet. Étudiant en CPGE PCSI, je construis des systèmes à l'intersection de l'ingénierie, du design et de la curiosité. Chaque projet est une façon de mieux comprendre comment les choses se connectent : code, matière ou idées.</p>
+      <p class="body-text reveal d3 t-en">Outside the systems I create, I observe the world through photography, music (guitar), volleyball, and astronomy.</p>
+      <p class="body-text reveal d3 t-fr">En dehors des systèmes que je crée, j'observe le monde à travers la photographie, la musique (guitare), le volley-ball et l'astronomie.</p>
     </div>
     <div id="skills-section">
-      <p class="section-label reveal">Skills</p>
+      <p class="section-label reveal t-en">Skills</p>
+      <p class="section-label reveal t-fr">Compétences</p>
       <div class="skills-wrap reveal d1">
         <div class="skill-row">
-          <div class="skill-name-row"><span>Software development</span><span>90%</span></div>
+          <div class="skill-name-row"><span class="t-en">Software development</span><span class="t-fr">Développement logiciel</span><span>90%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-w="0.9"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name-row"><span>System architecture</span><span>80%</span></div>
+          <div class="skill-name-row"><span class="t-en">System architecture</span><span class="t-fr">Architecture système</span><span>80%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-w="0.8"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name-row"><span>UX / Product design</span><span>75%</span></div>
+          <div class="skill-name-row"><span class="t-en">UX / Product design</span><span class="t-fr">Design UX / Produit</span><span>75%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-w="0.75"></div></div>
         </div>
         <div class="skill-row">
-          <div class="skill-name-row"><span>Maths / Physics</span><span>88%</span></div>
+          <div class="skill-name-row"><span class="t-en">Maths / Physics</span><span class="t-fr">Maths / Physique</span><span>88%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-w="0.88"></div></div>
         </div>
         <div class="skill-row">
@@ -287,34 +303,44 @@ section { position: relative; z-index: 1; }
 <section id="cv">
   <div class="inner">
     <div class="cv-header reveal">
-      <h2 class="section-title" style="margin-bottom:0">Background</h2>
-      <a href="cv-bastien-gaffet.pdf" download class="cv-dl">Download CV →</a>
+      <h2 class="section-title" style="margin-bottom:0">
+        <span class="t-en">Background</span><span class="t-fr">Parcours</span>
+      </h2>
+      <a href="cv-bastien-gaffet.pdf" download class="cv-dl t-en">Download CV →</a>
+      <a href="cv-bastien-gaffet.pdf" download class="cv-dl t-fr">Télécharger le CV →</a>
     </div>
     <div class="cv-grid">
       <div>
-        <p class="cv-col-label reveal">Education</p>
+        <p class="cv-col-label reveal t-en">Education</p>
+        <p class="cv-col-label reveal t-fr">Formation</p>
         <div class="cv-item reveal d1">
           <p class="cv-year">2023 / Ongoing</p>
           <p class="cv-item-title">CPGE PCSI</p>
-          <p class="cv-item-sub">Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences. Competitive entrance exam preparation.</p>
+          <p class="cv-item-sub t-en">Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences. Competitive entrance exam preparation.</p>
+          <p class="cv-item-sub t-fr">Classes préparatoires aux grandes écoles. Physique, Chimie, Sciences de l'Ingénieur. Préparation aux concours d'entrée aux grandes écoles.</p>
         </div>
         <div class="cv-item reveal d2">
           <p class="cv-year">2023</p>
-          <p class="cv-item-title">French Baccalaureate</p>
-          <p class="cv-item-sub">Highest honours. Specialisations: Mathematics, Physics-Chemistry, Computer Science.</p>
+          <p class="cv-item-title t-en">French Baccalaureate</p>
+          <p class="cv-item-title t-fr">Baccalauréat Général</p>
+          <p class="cv-item-sub t-en">Highest honours. Specialisations: Mathematics, Physics-Chemistry, Computer Science.</p>
+          <p class="cv-item-sub t-fr">Mention Très Bien. Spécialités : Mathématiques, Physique-Chimie, Informatique.</p>
         </div>
       </div>
       <div>
-        <p class="cv-col-label reveal">Projects &amp; Research</p>
+        <p class="cv-col-label reveal t-en">Projects &amp; Research</p>
+        <p class="cv-col-label reveal t-fr">Projets &amp; Recherche</p>
         <div class="cv-item reveal d1">
           <p class="cv-year">2024 / Ongoing</p>
           <p class="cv-item-title">TIPE / Epoxy Resins</p>
-          <p class="cv-item-sub">Research on the mechanical properties of epoxy resins in composite structures. Stiffness analysis and stress behaviour under load.</p>
+          <p class="cv-item-sub t-en">Research on the mechanical properties of epoxy resins in composite structures. Stiffness analysis and stress behaviour under load.</p>
+          <p class="cv-item-sub t-fr">Recherche sur les propriétés mécaniques des résines époxy dans les structures composites. Analyse de la rigidité et du comportement sous contrainte.</p>
         </div>
         <div class="cv-item reveal d2">
           <p class="cv-year">2024</p>
           <p class="cv-item-title">Tourny · Glacify · HopeTime</p>
-          <p class="cv-item-sub">Development of three applications spanning data management, UX design, and conceptual / philosophical interface design.</p>
+          <p class="cv-item-sub t-en">Development of three applications spanning data management, UX design, and conceptual / philosophical interface design.</p>
+          <p class="cv-item-sub t-fr">Développement de trois applications couvrant la gestion de données, le design UX, et le design d'interface conceptuel / philosophique.</p>
         </div>
       </div>
     </div>
@@ -324,18 +350,25 @@ section { position: relative; z-index: 1; }
 <!-- CONTACT -->
 <section id="contact">
   <div class="inner">
-    <h2 class="contact-title reveal">"Let's build systems that matter."</h2>
+    <h2 class="contact-title reveal">
+      <span class="t-en">"Let's build systems that matter."</span>
+      <span class="t-fr">« Construisons des systèmes qui comptent. »</span>
+    </h2>
     <div class="contact-links reveal d1">
-      <a href="/cdn-cgi/l/email-protection#43212230372a262d03263b222e332f266d202c2e" class="c-btn primary">Email</a>
+      <a href="contact.html" class="c-btn primary">Email</a>
       <a href="https://github.com" target="_blank" class="c-btn">GitHub →</a>
-      <a href="cv-bastien-gaffet.pdf" download class="c-btn">Download CV</a>
+      <a href="cv-bastien-gaffet.pdf" download class="c-btn t-en">Download CV</a>
+      <a href="cv-bastien-gaffet.pdf" download class="c-btn t-fr">Télécharger le CV</a>
     </div>
     <p class="contact-quote reveal d2">Bastien Gaffet · CPGE PCSI · 2025</p>
-    <a href="story.html" class="back-story reveal d3" id="back-btn">← Back to the story</a>
+    <a href="story.html" class="back-story reveal d3" id="back-btn">
+      <span class="t-en">← Back to the story</span>
+      <span class="t-fr">← Retour à l'intro</span>
+    </a>
   </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── REVEALS ── */
 const rObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });

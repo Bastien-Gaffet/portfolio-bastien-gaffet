@@ -138,3 +138,46 @@
 .cmd-item:hover .cmd-arrow, .cmd-item.active .cmd-arrow { color: hsl(265 72% 78%); }
 .cmd-item-name mark, .cmd-item-desc mark { background: transparent; color: hsl(265 68% 74%); font-weight: 500; }
 .cmd-empty { padding: 2rem; text-align: center; font-size: 0.75rem; color: oklch(38% 0.007 250); font-family: 'Inter', sans-serif; }
+
+/* ── LANGUAGE ── */
+.t-fr { display: none; }
+.lang-fr .t-en { display: none; }
+.lang-fr .t-fr { display: revert; }
+
+#lang-pill {
+  position: fixed; top: 0; left: 0; z-index: 100;
+  padding: 2rem 2.5rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#lang-pill.hidden { opacity: 0; pointer-events: none; transform: translateY(-6px); }
+
+.lang-toggle-wrap {
+  position: relative; display: flex; align-items: stretch;
+  border: none; border-radius: 100px; overflow: hidden;
+  background: rgba(120,60,220,0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.lang-indicator {
+  position: absolute; top: 0; left: 0;
+  width: 50%; height: 100%;
+  background: rgba(140,70,230,0.22);
+  border-radius: 100px;
+  transition: transform 0.3s cubic-bezier(.22,.61,.36,1);
+  pointer-events: none; z-index: 1;
+}
+.lang-indicator.fr { transform: translateX(100%); }
+
+.lang-opt {
+  position: relative; z-index: 2;
+  flex: 1; min-width: 44px;
+  font-family: 'Inter', sans-serif; font-size: 0.58rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  border: none; background: transparent;
+  padding: 0.44rem 0.9rem; cursor: pointer; text-align: center;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.28s;
+}
+.lang-opt.active { color: rgba(255,255,255,0.92); }
+.lang-opt:not(.active):hover { color: rgba(255,255,255,0.55); }

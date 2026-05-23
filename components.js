@@ -84,6 +84,38 @@ const config = PAGE_CONFIG[currentFile] || {};
 const currentPath = location.pathname.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '');
 
 // ══════════════════════════════════════════════════════════════════════════
+// LANGUAGE
+// ══════════════════════════════════════════════════════════════════════════
+const _langPref = localStorage.getItem('lang') || 'en';
+if (_langPref === 'fr') {
+  document.documentElement.classList.add('lang-fr');
+  document.documentElement.lang = 'fr';
+}
+window.setLang = function(lang) {
+  const fr = lang === 'fr';
+  document.documentElement.classList.toggle('lang-fr', fr);
+  document.documentElement.lang = lang;
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  document.querySelectorAll('.lang-opt').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+  document.querySelectorAll('.lang-indicator').forEach(ind => ind.classList.toggle('fr', fr));
+};
+
+// Sliding pill toggle top-left, glass, disparaît après un court scroll — pages principales seulement
+if (!config.noNav && !config.backNav) {
+  const _isFr = _langPref === 'fr';
+  const _pill = document.createElement('div');
+  _pill.id = 'lang-pill';
+  _pill.innerHTML = `<div class="lang-toggle-wrap"><span class="lang-indicator${_isFr ? ' fr' : ''}"></span><button class="lang-opt${!_isFr ? ' active' : ''}" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-opt${_isFr ? ' active' : ''}" data-lang="fr" onclick="setLang('fr')">FR</button></div>`;
+  document.body.insertBefore(_pill, document.body.firstChild);
+  let _pillHidden = false;
+  window.addEventListener('scroll', () => {
+    const hide = window.scrollY > 40;
+    if (hide !== _pillHidden) { _pillHidden = hide; _pill.classList.toggle('hidden', hide); }
+  }, { passive: true });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
 // ANALYTICS
 // ══════════════════════════════════════════════════════════════════════════
 (function() {
@@ -168,10 +200,10 @@ if (!config.noNav) {
   const nav = document.createElement('nav');
   nav.id = 'site-nav';
   nav.innerHTML = `
-    <a href="story.html">Story</a>
-    <a href="about.html">About</a>
+    <a href="story.html"><span class="t-en">Story</span><span class="t-fr">Intro</span></a>
+    <a href="about.html"><span class="t-en">About</span><span class="t-fr">À propos</span></a>
     <a href="universe.html">Universe</a>
-    <a href="work.html">Work</a>
+    <a href="work.html"><span class="t-en">Work</span><span class="t-fr">Projets</span></a>
     <span class="nav-sep"></span>
     <button class="nav-search-btn" onclick="cmdOpen()" aria-label="Search pages">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -204,37 +236,38 @@ if (!config.noFooter) {
     <div class="footer-inner">
       <div class="footer-brand">
         <span class="footer-sig">Bastien Gaffet</span>
-        <p class="footer-tagline">Engineering student. Building things at the intersection of software, hardware and design.</p>
+        <p class="footer-tagline t-en">Engineering student. Building things at the intersection of software, hardware and design.</p>
+        <p class="footer-tagline t-fr">Étudiant en ingénierie. Je construis à l'intersection du logiciel, du matériel et du design.</p>
         <button class="footer-search-pill" onclick="cmdOpen()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Search pages
+          <span class="t-en">Search pages</span><span class="t-fr">Rechercher</span>
           <span class="fkbd">/</span>
         </button>
       </div>
       <div>
-        <span class="footer-col-label">Explore</span>
+        <span class="footer-col-label t-en">Explore</span><span class="footer-col-label t-fr">Explorer</span>
         <ul class="footer-links">
-          <li><a href="story.html">Story</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="photography.html">Photography</a></li>
+          <li><a href="story.html"><span class="t-en">Story</span><span class="t-fr">Intro</span></a></li>
+          <li><a href="work.html"><span class="t-en">Work</span><span class="t-fr">Projets</span></a></li>
+          <li><a href="photography.html"><span class="t-en">Photography</span><span class="t-fr">Photographie</span></a></li>
           <li><a href="universe.html">Universe</a></li>
           <li><a href="blog.html">Notes <span class="fnew">new</span></a></li>
         </ul>
       </div>
       <div>
-        <span class="footer-col-label">Me</span>
+        <span class="footer-col-label t-en">Me</span><span class="footer-col-label t-fr">Moi</span>
         <ul class="footer-links">
-          <li><a href="about.html">About</a></li>
+          <li><a href="about.html"><span class="t-en">About</span><span class="t-fr">À propos</span></a></li>
           <li><a href="cv.html">CV</a></li>
-          <li><a href="uses.html">Uses</a></li>
+          <li><a href="uses.html"><span class="t-en">Uses</span><span class="t-fr">Outils</span></a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="links.html">Links</a></li>
+          <li><a href="links.html"><span class="t-en">Links</span><span class="t-fr">Liens</span></a></li>
         </ul>
       </div>
       <div>
-        <span class="footer-col-label">Create</span>
+        <span class="footer-col-label t-en">Create</span><span class="footer-col-label t-fr">Créer</span>
         <ul class="footer-links">
-          <li><a href="shop.html">Shop</a></li>
+          <li><a href="shop.html"><span class="t-en">Shop</span><span class="t-fr">Boutique</span></a></li>
           <li><a href="product-cosmos-wallpaper.html">Cosmos Generator</a></li>
           <li><a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
@@ -242,7 +275,8 @@ if (!config.noFooter) {
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2025 Bastien Gaffet — <a href="https://bastiengaffet.fr">bastiengaffet.fr</a></span>
-      <span class="footer-sig-small">Built by hand, no framework.</span>
+      <span class="footer-sig-small t-en">Built by hand, no framework.</span>
+      <span class="footer-sig-small t-fr">Fait à la main, sans framework.</span>
     </div>
   `;
   document.body.appendChild(footer);
