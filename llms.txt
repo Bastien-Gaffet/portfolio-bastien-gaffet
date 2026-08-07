@@ -22,15 +22,15 @@ national winner 2024.
 
 - **Kairoo** — mobile app turning mirror hours (11:11, 22:22...) into a daily
   ritual: XP, leagues, guilds and rewards on a Supabase backend.
-  https://bastiengaffet.fr/project-kairoo.html
+  https://bastiengaffet.fr/project/kairoo
 
 - **Krino** — desktop app (Tauri, Rust) to clean up a photo library month by
   month, swipe to keep or discard.
-  https://bastiengaffet.fr/project-krino.html
+  https://bastiengaffet.fr/project/krino
 
 - **cdp-scraper** — command line tool to back up personal course documents
   from cahier-de-prepa.fr, with an offline local viewer.
-  https://bastiengaffet.fr/project-cdp-scraper.html
+  https://bastiengaffet.fr/project/cdp-scraper
 
 - **Cosmos Wallpaper Generator** — generative cosmos wallpaper tool,
   20+ object types, exports up to 4K. Available from €4.

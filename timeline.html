@@ -15,7 +15,7 @@
 <title>Timeline / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="/components.css">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root { --black:#05060A; --violet:hsl(265 75% 60%); --violet-dim:hsl(265 75% 60% / 0.12); --white:oklch(96% 0.005 250); --dim:oklch(55% 0.01 250); --dim2:oklch(72% 0.008 250); --glass-border:rgba(255,255,255,0.09); }
@@ -175,7 +175,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <span class="event-tag tag-site">Launch</span>
         <p class="event-title">Cosmos Wallpaper Generator — released on Ko-fi</p>
         <p class="event-desc">First digital product. A browser-based generative tool for cosmos wallpapers. 20+ object types, exports up to 4K.</p>
-        <a href="product-cosmos-wallpaper.html" class="event-link">Product page</a>
+        <a href="/product/cosmos-wallpaper" class="event-link">Product page</a>
       </div>
     </div>
 
@@ -186,7 +186,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <span class="event-tag tag-site">Launch</span>
         <p class="event-title">bastiengaffet.fr — site launched</p>
         <p class="event-desc">Personal portfolio built from scratch in plain HTML, CSS and JS. No framework, no dependencies.</p>
-        <a href="story.html" class="event-link">Story</a>
+        <a href="/" class="event-link">Story</a>
       </div>
     </div>
 
@@ -208,7 +208,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <span class="event-tag tag-education">Education</span>
         <p class="event-title">CPGE PCSI — Lycee Descartes, Tours</p>
         <p class="event-desc">Enrolled in preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences. TIPE on epoxy resin mechanical properties.</p>
-        <a href="tipe.html" class="event-link">TIPE page</a>
+        <a href="/tipe" class="event-link">TIPE page</a>
       </div>
     </div>
 
@@ -246,7 +246,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <span class="event-tag tag-project">Project</span>
         <p class="event-title">Robot J4 — built and completed</p>
         <p class="event-desc">Robotic arm playing Connect Four autonomously against a human. Minimax AI with depth 6, Python + OpenCV vision, Arduino UART link. Built over several months with a team of five.</p>
-        <a href="project-robotj4.html" class="event-link">Project page</a>
+        <a href="/project/robotj4" class="event-link">Project page</a>
       </div>
     </div>
 
@@ -263,6 +263,6 @@ window.addEventListener('load', () => {
   document.querySelectorAll('.reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*100));
 });
 </script>
-<script src="components.js"></script>
+<script src="/components.js"></script>
 </body>
 </html>

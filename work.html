@@ -15,7 +15,7 @@
 <title>Bastien Gaffet / Work</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="/components.css">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -194,7 +194,7 @@ section { position: relative; z-index: 1; }
 <!-- PROJECTS -->
 <div id="projects">
   <div class="projects-grid">
-    <a class="proj-card tourny featured" data-cat="engineering" href="project-tourny.html">
+    <a class="proj-card tourny featured" data-cat="engineering" href="/project/tourny">
       <div class="card-visual">
         <div class="card-stripe"></div>
         <span class="card-visual-lbl">Dashboard · Data visualization</span>
@@ -209,7 +209,7 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card glacify" data-cat="creative" href="project-glacify.html">
+    <a class="proj-card glacify" data-cat="creative" href="/project/glacify">
       <div class="card-visual">
         <div class="card-stripe"></div>
         <span class="card-visual-lbl">Mobile app · UX design</span>
@@ -224,7 +224,7 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card kairoo" data-cat="creative" href="project-kairoo.html">
+    <a class="proj-card kairoo" data-cat="creative" href="/project/kairoo">
       <div class="card-visual">
         <div class="card-stripe"></div>
         <span class="card-visual-lbl">Mobile app · Game design</span>
@@ -239,7 +239,7 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card krino" data-cat="engineering" href="project-krino.html">
+    <a class="proj-card krino" data-cat="engineering" href="/project/krino">
       <div class="card-visual">
         <div class="card-stripe"></div>
         <span class="card-visual-lbl">Desktop app · Rust</span>
@@ -254,7 +254,7 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card cdp-scraper" data-cat="engineering" href="project-cdp-scraper.html">
+    <a class="proj-card cdp-scraper" data-cat="engineering" href="/project/cdp-scraper">
       <div class="card-visual">
         <div class="card-stripe"></div>
         <span class="card-visual-lbl">CLI tool · Python</span>
@@ -269,7 +269,7 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card robotj4 featured" data-cat="engineering" href="project-robotj4.html">
+    <a class="proj-card robotj4 featured" data-cat="engineering" href="/project/robotj4">
       <div class="card-visual">
         <div class="card-stripe"></div>
         <span class="card-visual-lbl">Robotics · AI · Computer Vision</span>
@@ -338,8 +338,8 @@ section { position: relative; z-index: 1; }
       <h2 class="section-title" style="margin-bottom:0">
         <span class="t-en">Background</span><span class="t-fr">Parcours</span>
       </h2>
-      <a href="cv-bastien-gaffet.pdf" download class="cv-dl t-en">Download CV →</a>
-      <a href="cv-bastien-gaffet.pdf" download class="cv-dl t-fr">Télécharger le CV →</a>
+      <a href="/cv-bastien-gaffet-en.pdf" download class="cv-dl t-en">Download CV →</a>
+      <a href="/cv-bastien-gaffet-fr.pdf" download class="cv-dl t-fr">Télécharger le CV →</a>
     </div>
     <div class="cv-grid">
       <div>
@@ -387,13 +387,13 @@ section { position: relative; z-index: 1; }
       <span class="t-fr">« Construisons des systèmes qui comptent. »</span>
     </h2>
     <div class="contact-links reveal d1">
-      <a href="contact.html" class="c-btn primary">Email</a>
+      <a href="/contact" class="c-btn primary">Email</a>
       <a href="https://github.com" target="_blank" class="c-btn">GitHub →</a>
-      <a href="cv-bastien-gaffet.pdf" download class="c-btn t-en">Download CV</a>
-      <a href="cv-bastien-gaffet.pdf" download class="c-btn t-fr">Télécharger le CV</a>
+      <a href="/cv-bastien-gaffet-en.pdf" download class="c-btn t-en">Download CV</a>
+      <a href="/cv-bastien-gaffet-fr.pdf" download class="c-btn t-fr">Télécharger le CV</a>
     </div>
     <p class="contact-quote reveal d2">Bastien Gaffet · CPGE PCSI · 2025</p>
-    <a href="story.html" class="back-story reveal d3" id="back-btn">
+    <a href="/" class="back-story reveal d3" id="back-btn">
       <span class="t-en">← Back to the story</span>
       <span class="t-fr">← Retour à l'intro</span>
     </a>
@@ -452,6 +452,6 @@ document.getElementById('back-btn').addEventListener('click', e => {
   setTimeout(() => { window.location.href = e.currentTarget.href; }, 600);
 });
 </script>
-<script src="components.js"></script>
+<script src="/components.js"></script>
 </body>
 </html>

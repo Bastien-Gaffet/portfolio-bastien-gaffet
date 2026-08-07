@@ -98,18 +98,18 @@ Mettre `t-en` / `t-fr` directement sur l'élément bloc — plus propre, pas de 
 | `project/tourny.html` | ⬜ À faire |
 | `project/glacify.html` | ⬜ À faire |
 | `product/cosmos-wallpaper.html` | ⬜ À faire |
-| `project-kairoo.html` | ✅ Traduit (nouvelle page, remplace HopeTime, écrite directement en bilingue) |
-| `project-krino.html` | ✅ Traduit (nouvelle page, écrite directement en bilingue) |
-| `project-cdp-scraper.html` | ✅ Traduit (nouvelle page, écrite directement en bilingue) |
+| `project/kairoo.html` | ✅ Traduit (nouvelle page, remplace HopeTime, écrite directement en bilingue) |
+| `project/krino.html` | ✅ Traduit (nouvelle page, écrite directement en bilingue) |
+| `project/cdp-scraper.html` | ✅ Traduit (nouvelle page, écrite directement en bilingue) |
 | Autres pages | ⬜ À faire |
 
-Note : Kairoo, Krino et cdp-scraper ont été construites directement à la
-racine (`project-kairoo.html` etc.), pas dans `project/`, pour rester
-cohérentes avec `work.html` et `components.js` qui pointent aujourd'hui vers
-les fichiers racine pour Tourny, Glacify et Robot J4. La migration vers
-`project/*.html` avec URLs propres (déjà commencée pour robotj4/tourny/glacify
-et déjà utilisée par sitemap.xml et llms.txt) reste incomplète et est un
-chantier à part, plus large que l'ajout de ces trois pages.
+Note : le 2026-08-07, tout le site est passé en URLs propres sans `.html`
+(Netlify résout `/about` vers `about.html` automatiquement). Les anciens
+doublons à la racine (`project-robotj4.html`, `project-tourny.html`,
+`project-glacify.html`, `product-cosmos-wallpaper.html`) ont été archivés
+dans `old/`, `project/` et `product/` sont désormais les seuls dossiers
+canoniques pour les pages projet et produit, et `story.html` est devenu
+`index.html` pour servir la page d'accueil à la racine.
 
 ---
 

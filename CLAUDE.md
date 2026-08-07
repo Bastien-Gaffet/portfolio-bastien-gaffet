@@ -67,7 +67,7 @@ Filenames used as keys must match the actual `.html` filename exactly.
 - **Standalone pages** (links, secret): add `{ noNav: true, noFooter: true }`
 - **Blog posts**: add `{ backNav: { href: 'blog.html', label: 'Notes' } }`
 
-Current main nav links in components.js point to `story.html` and `work.html` (renamed from `story-v6.html` / `work-v4.html`). Keep `MAIN_PAGES` and `PAGE_NAMES` in sync when pages are renamed.
+All pages are served clean, without `.html` (Netlify resolves `/about` to `about.html` automatically). Every link, and every key in `PAGE_CONFIG` / `PAGE_NAMES` / `PAGES` / `MAIN_PAGES` / `_crumbs` in `components.js`, uses the clean form — never write `.html` in an href. Project and product pages live in `project/` and `product/` subfolders (e.g. `project/robotj4.html` served at `/project/robotj4`); there are no root-level `project-name.html` duplicates anymore, the old ones are archived in `old/`. Current main nav links point to `/` (home, was `story.html`/`story-v6.html`) and `/work` (was `work.html`/`work-v4.html`). Keep `MAIN_PAGES` and `PAGE_NAMES` in sync when pages are renamed.
 
 ## Pages NOT to migrate
 
@@ -112,9 +112,9 @@ document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
 
 Hero elements are triggered on `load` with staggered `setTimeout` delays.
 
-## story.html is special
+## index.html (Story) is special
 
-Story is the narrative centerpiece — full-screen, no footer, different hero layout. Do not add a footer to this page. The cosmos is also different there (larger, denser). Story was originally `story-v6.html` and the portal navigates to `work.html` (was `work-v4.html`).
+Story is the narrative centerpiece and the homepage, served at `/`. Full-screen, no footer, different hero layout. Do not add a footer to this page. The cosmos is also different there (larger, denser). The file was `story.html` / `story-v6.html` before being renamed to `index.html` so it serves at the site root; the portal navigates to `/work` (was `work.html` / `work-v4.html`).
 
 ## Placeholders not yet filled in
 

@@ -4,17 +4,21 @@
  *
  * HOW TO USE ON A PAGE:
  *   1. Add <canvas id="cosmos"></canvas> as first child of <body>
- *   2. Add <script src="components.js"></script> before </body>
+ *   2. Add <script src="/components.js"></script> before </body>
  *   3. Remove the old <nav>, <footer>, cosmos JS and palette code
  *   4. The rest is automatic.
  *
  * TO CUSTOMISE A PAGE:
- *   Add an entry to PAGE_CONFIG below with the filename as key.
+ *   Add an entry to PAGE_CONFIG below with the clean path as key.
+ *
+ * URLS: every page is served clean, without ".html" (Netlify resolves
+ * "/about" to "about.html" automatically). All keys below and all hrefs
+ * injected by this file use the clean form. Never write ".html" in a link.
  */
 
 // ══════════════════════════════════════════════════════════════════════════
 // PAGE CONFIGURATION
-// Each key is the HTML filename (e.g. 'about.html').
+// Each key is the clean page path (e.g. 'about', 'project/robotj4', '' for home).
 // All fields are optional — defaults are used for anything not specified.
 //
 // Fields:
@@ -24,72 +28,70 @@
 // ══════════════════════════════════════════════════════════════════════════
 const PAGE_CONFIG = {
   // Pages with no nav and no footer
-  'links.html':                   { noNav: true,  noFooter: true },
-  'secret.html':                  { noNav: true,  noFooter: true },
+  'links':                    { noNav: true,  noFooter: true },
+  'secret':                   { noNav: true,  noFooter: true },
   // Pages with a back-nav top-left (project/product/post pages)
-  'project-robotj4.html':         { backNav: { href: 'work.html', label: 'Work' } },
-  'project-tourny.html':          { backNav: { href: 'work.html', label: 'Work' } },
-  'project-glacify.html':         { backNav: { href: 'work.html', label: 'Work' } },
-  'project-kairoo.html':          { backNav: { href: 'work.html', label: 'Work' } },
-  'project-krino.html':           { backNav: { href: 'work.html', label: 'Work' } },
-  'project-cdp-scraper.html':     { backNav: { href: 'work.html', label: 'Work' } },
-  'product-cosmos-wallpaper.html':{ backNav: { href: 'shop.html',    label: 'Shop' } },
+  'project/robotj4':          { backNav: { href: '/work', label: 'Work' } },
+  'project/tourny':           { backNav: { href: '/work', label: 'Work' } },
+  'project/glacify':          { backNav: { href: '/work', label: 'Work' } },
+  'project/kairoo':           { backNav: { href: '/work', label: 'Work' } },
+  'project/krino':            { backNav: { href: '/work', label: 'Work' } },
+  'project/cdp-scraper':      { backNav: { href: '/work', label: 'Work' } },
+  'product/cosmos-wallpaper': { backNav: { href: '/shop', label: 'Shop' } },
   // Blog posts — add as you publish:
-  // 'post-example.html':         { backNav: { href: 'blog.html',    label: 'Notes' } },
+  // 'notes/post-slug':        { backNav: { href: '/blog', label: 'Notes' } },
 };
 
 // ══════════════════════════════════════════════════════════════════════════
 // PAGES — command palette index
 // ══════════════════════════════════════════════════════════════════════════
 const PAGES = [
-  { group:'Explore',  name:'Story',       desc:'The narrative introduction',            href:'story.html' },
-  { group:'Explore',  name:'Work',        desc:'Projects and creations',                href:'work.html' },
-  { group:'Explore',  name:'Photography', desc:'Selected photographs',                  href:'photography.html' },
-  { group:'Explore',  name:'Universe',    desc:'Passions, interests, dreams',           href:'universe.html' },
-  { group:'Explore',  name:'Notes',       desc:'Monthly articles and observations',     href:'blog.html' },
-  { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'project-robotj4.html' },
-  { group:'Projects', name:'Tourny',      desc:'Sport tournament management platform', href:'project-tourny.html' },
-  { group:'Projects', name:'Glacify',     desc:'Ice cream ordering app, playful UX',   href:'project-glacify.html' },
-  { group:'Projects', name:'Kairoo',      desc:'Mirror hours mobile game, Supabase',   href:'project-kairoo.html' },
-  { group:'Projects', name:'Krino',       desc:'Desktop photo sorting app, Tauri',     href:'project-krino.html' },
-  { group:'Projects', name:'cdp-scraper', desc:'CLI backup tool for cahier-de-prepa',  href:'project-cdp-scraper.html' },
-  { group:'Me',       name:'About',       desc:'Bio and background',                    href:'about.html' },
-  { group:'Me',       name:'CV',          desc:'Interactive resume',                    href:'cv.html' },
-  { group:'Me',       name:'Timeline',    desc:'Milestones and projects',               href:'timeline.html' },
-  { group:'Me',       name:'TIPE',        desc:'Research on epoxy resin mechanics',     href:'tipe.html' },
-  { group:'Me',       name:'Uses',        desc:'Tools, software, hardware',             href:'uses.html' },
-  { group:'Me',       name:'Now',         desc:'What I am doing right now',             href:'now.html' },
-  { group:'Me',       name:'Press',       desc:'Articles and mentions',                 href:'press.html' },
-  { group:'Me',       name:'Contact',     desc:'Get in touch',                          href:'contact.html' },
-  { group:'Me',       name:'Links',       desc:'All my links in one place',             href:'links.html' },
-  { group:'Create',   name:'Shop',        desc:'Digital products',                      href:'shop.html' },
-  { group:'Create',   name:'Cosmos Wallpaper Generator', desc:'Generative tool, from €4 on Ko-fi', href:'product-cosmos-wallpaper.html' },
-  { group:'Create',   name:'Changelog',   desc:'Updates to site and products',          href:'changelog.html' },
+  { group:'Explore',  name:'Story',       desc:'The narrative introduction',            href:'/' },
+  { group:'Explore',  name:'Work',        desc:'Projects and creations',                href:'/work' },
+  { group:'Explore',  name:'Photography', desc:'Selected photographs',                  href:'/photography' },
+  { group:'Explore',  name:'Universe',    desc:'Passions, interests, dreams',           href:'/universe' },
+  { group:'Explore',  name:'Notes',       desc:'Monthly articles and observations',     href:'/blog' },
+  { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'/project/robotj4' },
+  { group:'Projects', name:'Tourny',      desc:'Sport tournament management platform', href:'/project/tourny' },
+  { group:'Projects', name:'Glacify',     desc:'Ice cream ordering app, playful UX',   href:'/project/glacify' },
+  { group:'Projects', name:'Kairoo',      desc:'Mirror hours mobile game, Supabase',   href:'/project/kairoo' },
+  { group:'Projects', name:'Krino',       desc:'Desktop photo sorting app, Tauri',     href:'/project/krino' },
+  { group:'Projects', name:'cdp-scraper', desc:'CLI backup tool for cahier-de-prepa',  href:'/project/cdp-scraper' },
+  { group:'Me',       name:'About',       desc:'Bio and background',                    href:'/about' },
+  { group:'Me',       name:'CV',          desc:'Interactive resume',                    href:'/cv' },
+  { group:'Me',       name:'Timeline',    desc:'Milestones and projects',               href:'/timeline' },
+  { group:'Me',       name:'TIPE',        desc:'Research on epoxy resin mechanics',     href:'/tipe' },
+  { group:'Me',       name:'Uses',        desc:'Tools, software, hardware',             href:'/uses' },
+  { group:'Me',       name:'Now',         desc:'What I am doing right now',             href:'/now' },
+  { group:'Me',       name:'Press',       desc:'Articles and mentions',                 href:'/press' },
+  { group:'Me',       name:'Contact',     desc:'Get in touch',                          href:'/contact' },
+  { group:'Me',       name:'Links',       desc:'All my links in one place',             href:'/links' },
+  { group:'Create',   name:'Shop',        desc:'Digital products',                      href:'/shop' },
+  { group:'Create',   name:'Cosmos Wallpaper Generator', desc:'Generative tool, from €4 on Ko-fi', href:'/product/cosmos-wallpaper' },
+  { group:'Create',   name:'Changelog',   desc:'Updates to site and products',          href:'/changelog' },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════
 // HELPERS
 // ══════════════════════════════════════════════════════════════════════════
-const MAIN_PAGES = ['story.html','about.html','universe.html','work.html'];
+const MAIN_PAGES = ['/','/about','/universe','/work'];
 const PAGE_NAMES = {
-  'photography.html':'Photography','blog.html':'Notes','contact.html':'Contact',
-  'cv.html':'CV','uses.html':'Uses','links.html':'Links','shop.html':'Shop',
-  'product-cosmos-wallpaper.html':'Cosmos Generator','project-robotj4.html':'Robot J4',
-  'project-tourny.html':'Tourny','project-glacify.html':'Glacify',
-  'project-kairoo.html':'Kairoo','project-krino.html':'Krino',
-  'project-cdp-scraper.html':'cdp-scraper','tipe.html':'TIPE','timeline.html':'Timeline',
-  'press.html':'Press','changelog.html':'Changelog','now.html':'Now',
-  'cosmos-demo.html':'Cosmos Demo',
+  'photography':'Photography','blog':'Notes','contact':'Contact',
+  'cv':'CV','uses':'Uses','links':'Links','shop':'Shop',
+  'product/cosmos-wallpaper':'Cosmos Generator','project/robotj4':'Robot J4',
+  'project/tourny':'Tourny','project/glacify':'Glacify',
+  'project/kairoo':'Kairoo','project/krino':'Krino',
+  'project/cdp-scraper':'cdp-scraper','tipe':'TIPE','timeline':'Timeline',
+  'press':'Press','changelog':'Changelog','now':'Now',
+  'cosmos-demo':'Cosmos Demo',
 };
 
-const currentFile = location.pathname.split('/').pop() || 'index.html';
-const config = PAGE_CONFIG[currentFile] || {};
-
 // currentPath: pathname without leading slash and without .html extension
-// e.g. '/project/robotj4.html' → 'project/robotj4'
+// e.g. '/project/robotj4.html' or '/project/robotj4' → 'project/robotj4'
 //      '/about.html' or '/about' → 'about'
 //      '/' → ''
 const currentPath = location.pathname.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '');
+const config = PAGE_CONFIG[currentPath] || {};
 
 // ══════════════════════════════════════════════════════════════════════════
 // LANGUAGE
@@ -149,7 +151,7 @@ document.head.appendChild(_rss);
 // Canonical URL
 const _canon = document.createElement('link');
 _canon.rel = 'canonical';
-_canon.href = 'https://bastiengaffet.fr' + (location.pathname.replace(/\/$/, '') || '/');
+_canon.href = 'https://bastiengaffet.fr' + (location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/');
 document.head.appendChild(_canon);
 
 // Theme color (mobile browser chrome)
@@ -189,6 +191,9 @@ const _crumbs = {
   'project/robotj4':          { parent:'/work',  parentName:'Work',  name:'Robot J4' },
   'project/tourny':           { parent:'/work',  parentName:'Work',  name:'Tourny' },
   'project/glacify':          { parent:'/work',  parentName:'Work',  name:'Glacify' },
+  'project/kairoo':           { parent:'/work',  parentName:'Work',  name:'Kairoo' },
+  'project/krino':            { parent:'/work',  parentName:'Work',  name:'Krino' },
+  'project/cdp-scraper':      { parent:'/work',  parentName:'Work',  name:'cdp-scraper' },
   'product/cosmos-wallpaper': { parent:'/shop',  parentName:'Shop',  name:'Cosmos Wallpaper' },
 };
 if (_crumbs[currentPath]) {
@@ -207,10 +212,10 @@ if (!config.noNav) {
   const nav = document.createElement('nav');
   nav.id = 'site-nav';
   nav.innerHTML = `
-    <a href="story.html"><span class="t-en">Story</span><span class="t-fr">Intro</span></a>
-    <a href="about.html"><span class="t-en">About</span><span class="t-fr">À propos</span></a>
-    <a href="universe.html">Universe</a>
-    <a href="work.html"><span class="t-en">Work</span><span class="t-fr">Projets</span></a>
+    <a href="/"><span class="t-en">Story</span><span class="t-fr">Intro</span></a>
+    <a href="/about"><span class="t-en">About</span><span class="t-fr">À propos</span></a>
+    <a href="/universe">Universe</a>
+    <a href="/work"><span class="t-en">Work</span><span class="t-fr">Projets</span></a>
     <span class="nav-sep"></span>
     <button class="nav-search-btn" onclick="cmdOpen()" aria-label="Search pages">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -220,7 +225,7 @@ if (!config.noNav) {
 
   // Highlight current main nav link
   nav.querySelectorAll('a').forEach(a => {
-    if (a.getAttribute('href') === currentFile) a.classList.add('current');
+    if (a.getAttribute('href') === '/' + currentPath) a.classList.add('current');
   });
 }
 
@@ -254,28 +259,28 @@ if (!config.noFooter) {
       <div>
         <span class="footer-col-label t-en">Explore</span><span class="footer-col-label t-fr">Explorer</span>
         <ul class="footer-links">
-          <li><a href="story.html"><span class="t-en">Story</span><span class="t-fr">Intro</span></a></li>
-          <li><a href="work.html"><span class="t-en">Work</span><span class="t-fr">Projets</span></a></li>
-          <li><a href="photography.html"><span class="t-en">Photography</span><span class="t-fr">Photographie</span></a></li>
-          <li><a href="universe.html">Universe</a></li>
-          <li><a href="blog.html">Notes <span class="fnew">new</span></a></li>
+          <li><a href="/"><span class="t-en">Story</span><span class="t-fr">Intro</span></a></li>
+          <li><a href="/work"><span class="t-en">Work</span><span class="t-fr">Projets</span></a></li>
+          <li><a href="/photography"><span class="t-en">Photography</span><span class="t-fr">Photographie</span></a></li>
+          <li><a href="/universe">Universe</a></li>
+          <li><a href="/blog">Notes <span class="fnew">new</span></a></li>
         </ul>
       </div>
       <div>
         <span class="footer-col-label t-en">Me</span><span class="footer-col-label t-fr">Moi</span>
         <ul class="footer-links">
-          <li><a href="about.html"><span class="t-en">About</span><span class="t-fr">À propos</span></a></li>
-          <li><a href="cv.html">CV</a></li>
-          <li><a href="uses.html"><span class="t-en">Uses</span><span class="t-fr">Outils</span></a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="links.html"><span class="t-en">Links</span><span class="t-fr">Liens</span></a></li>
+          <li><a href="/about"><span class="t-en">About</span><span class="t-fr">À propos</span></a></li>
+          <li><a href="/cv">CV</a></li>
+          <li><a href="/uses"><span class="t-en">Uses</span><span class="t-fr">Outils</span></a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/links"><span class="t-en">Links</span><span class="t-fr">Liens</span></a></li>
         </ul>
       </div>
       <div>
         <span class="footer-col-label t-en">Create</span><span class="footer-col-label t-fr">Créer</span>
         <ul class="footer-links">
-          <li><a href="shop.html"><span class="t-en">Shop</span><span class="t-fr">Boutique</span></a></li>
-          <li><a href="product-cosmos-wallpaper.html">Cosmos Generator</a></li>
+          <li><a href="/shop"><span class="t-en">Shop</span><span class="t-fr">Boutique</span></a></li>
+          <li><a href="/product/cosmos-wallpaper">Cosmos Generator</a></li>
           <li><a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>

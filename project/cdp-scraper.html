@@ -3,10 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Krino / Bastien Gaffet</title>
+<meta name="description" content="cdp-scraper: a command line tool to back up personal course documents from cahier-de-prepa.fr, with an offline local viewer.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="cdp-scraper / Bastien Gaffet">
+<meta property="og:description" content="A command line tool to back up personal course documents from cahier-de-prepa.fr, with an offline local viewer.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>cdp-scraper / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="/components.css">
 <style>
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,19 +64,17 @@ section { position: relative; z-index: 1; }
 .hero-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1rem;
 }
-.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-title em { font-style: italic; color: hsl(150 55% 62%); }
+.hero-codename {
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 0.72rem; letter-spacing: 0.02em; color: var(--dim);
+  margin-bottom: 1.8rem;
+}
+.hero-codename::before { content: '‹ '; color: hsl(150 55% 62%); }
+.hero-codename::after { content: ' ›'; color: hsl(150 55% 62%); }
 .hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
-
-.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
-.award-pill {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
-  border-radius: 30px; background: var(--violet-glow);
-  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
-}
-.award-pill::before { content: '★'; font-size: 0.5rem; }
 
 .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .tag {
@@ -111,7 +118,6 @@ section { position: relative; z-index: 1; }
 .concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
 .concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
 
-.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
 </style>
 </head>
 <body>
@@ -120,16 +126,16 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal t-en">Project / Desktop App</p>
-      <p class="hero-eyebrow reveal t-fr">Projet / Application de bureau</p>
+      <p class="hero-eyebrow reveal t-en">Project / CLI Tool</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Outil en ligne de commande</p>
       <h1 class="hero-title">
-        <span class="reveal">Krino</span><br>
-        <em class="reveal d1 t-en">Photo Sorting</em>
-        <em class="reveal d1 t-fr">Tri Photo</em>
+        <span class="reveal t-en">Keep<br><em>your notes.</em></span>
+        <span class="reveal t-fr">Garder<br><em>ses cours.</em></span>
       </h1>
-      <p class="hero-desc reveal d2 t-en">A desktop app that turns photo library cleanup into a fast decision: keep or discard, month by month, by keyboard, mouse or swipe. Nothing is deleted without an explicit review.</p>
-      <p class="hero-desc reveal d2 t-fr">Une application de bureau qui transforme le tri d'une photothèque en décision rapide : garder ou jeter, mois par mois, au clavier, à la souris ou d'un geste. Rien n'est supprimé sans revue explicite.</p>
-      <div class="hero-tags reveal d3"><span class="tag">Desktop</span><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">Windows</span></div>
+      <p class="hero-codename reveal d1">cdp-scraper</p>
+      <p class="hero-desc reveal d2 t-en">A command line tool that connects with the student's own credentials, walks the class documents folder on cahier-de-prepa.fr, and copies it identically to disk: same folders, same file names, private lesson schedules included.</p>
+      <p class="hero-desc reveal d2 t-fr">Un outil en ligne de commande qui se connecte avec les identifiants de l'utilisateur, explore l'arborescence des documents de la classe sur cahier-de-prepa.fr, et la recopie à l'identique sur le disque : mêmes dossiers, mêmes noms de fichiers, programmes de colles compris.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">RGPD</span><span class="tag">Open Source</span></div>
     </div>
   </section>
 
@@ -140,17 +146,17 @@ section { position: relative; z-index: 1; }
       <div class="overview-grid">
         <div>
           <h2 class="section-title reveal">
-            <span class="t-en">Judge,<br><em>then decide.</em></span>
-            <span class="t-fr">Juger,<br><em>puis décider.</em></span>
+            <span class="t-en">Courses that<br><em>outlive the account.</em></span>
+            <span class="t-fr">Des cours qui<br><em>survivent au compte.</em></span>
           </h2>
-          <p class="body-text reveal d1 t-en">Krino starts from a simple problem: tens of thousands of photos that never get sorted for lack of time. The name comes from ancient Greek, to judge, to sort, to decide. The app groups files by month and turns the decision into a fast, reversible gesture, with an internal trash bin standing between every discard and any real deletion.</p>
-          <p class="body-text reveal d1 t-fr">Krino part d'un problème simple : des dizaines de milliers de photos jamais triées faute de temps. Le nom vient du grec ancien, juger, trier, décider. L'application regroupe les fichiers par mois et transforme la décision en geste rapide et réversible, avec une corbeille interne entre chaque suppression et toute suppression réelle.</p>
+          <p class="body-text reveal d1 t-en">cdp-scraper starts from a simple fact: documents posted on cahier-de-prepa.fr disappear the moment account access ends, at the end of the year. The tool logs in with the student's own credentials, downloads only what that account already sees, and rebuilds the exact same folder structure locally. A local viewer ships alongside it to browse lessons afterward, without a browser or a connection.</p>
+          <p class="body-text reveal d1 t-fr">cdp-scraper part d'un constat simple : les documents déposés sur cahier-de-prepa.fr disparaissent avec l'accès au compte, une fois l'année finie. L'outil se connecte avec les identifiants de l'utilisateur, ne télécharge que ce que ce compte voit déjà, et recrée la même arborescence en local. Un visualiseur local l'accompagne pour parcourir ensuite ses cours, sans navigateur ni connexion.</p>
         </div>
         <div class="stats-col reveal d1">
-          <div class="stat-item"><div class="stat-num">Tauri 2</div><div class="stat-lbl t-en">Framework</div><div class="stat-lbl t-fr">Framework</div></div>
-          <div class="stat-item"><div class="stat-num">15+</div><div class="stat-lbl t-en">Formats supported</div><div class="stat-lbl t-fr">Formats pris en charge</div></div>
+          <div class="stat-item"><div class="stat-num">3.8+</div><div class="stat-lbl t-en">Python required</div><div class="stat-lbl t-fr">Python requis</div></div>
+          <div class="stat-item"><div class="stat-num">1</div><div class="stat-lbl t-en">External dependency</div><div class="stat-lbl t-fr">Dépendance externe</div></div>
           <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year released</div><div class="stat-lbl t-fr">Année de sortie</div></div>
-          <div class="stat-item"><div class="stat-num t-en">Published</div><div class="stat-num t-fr">Publié</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+          <div class="stat-item"><div class="stat-num">CeCILL</div><div class="stat-lbl t-en">License</div><div class="stat-lbl t-fr">Licence</div></div>
         </div>
       </div>
     </div>
@@ -162,24 +168,24 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-fr">Fonctionnement</p>
       <div class="steps">
         <div class="step reveal"><div class="step-num">01</div><div class="step-body">
-          <h3 class="t-en">Open a starting folder</h3><h3 class="t-fr">Ouvrir un dossier de départ</h3>
-          <p class="t-en">Krino scans everything recursively and groups it by month, whatever the original organisation was.</p>
-          <p class="t-fr">Krino scanne tout récursivement et regroupe par mois, quelle que soit l'organisation d'origine.</p>
+          <h3 class="t-en">Launch and log in</h3><h3 class="t-fr">Lancer et se connecter</h3>
+          <p class="t-en">Run the script, enter the class URL and credentials. Password entry is masked and never stored or sent anywhere else.</p>
+          <p class="t-fr">Lancer le script, indiquer l'URL de la classe et les identifiants. La saisie du mot de passe est masquée et n'est jamais stockée ni transmise ailleurs.</p>
         </div></div>
         <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
-          <h3 class="t-en">Decide month by month</h3><h3 class="t-fr">Décider mois par mois</h3>
-          <p class="t-en">Button, keyboard shortcut, or a Tinder style swipe to keep or discard each photo or video.</p>
-          <p class="t-fr">Bouton, raccourci clavier ou geste façon Tinder pour garder ou jeter chaque photo ou vidéo.</p>
+          <h3 class="t-en">The tool explores the tree</h3><h3 class="t-fr">L'outil explore l'arborescence</h3>
+          <p class="t-en">It walks the class documents folder one request at a time, respecting the server's pace.</p>
+          <p class="t-fr">Il parcourt le dossier de documents de la classe une requête à la fois, au rythme du serveur.</p>
         </div></div>
         <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
-          <h3 class="t-en">Review before validating</h3><h3 class="t-fr">Réviser avant de valider</h3>
-          <p class="t-en">A recap screen lists what stays and what goes, every decision remains editable until validation.</p>
-          <p class="t-fr">Un écran récapitulatif liste ce qui reste et ce qui part, chaque décision reste modifiable jusqu'à validation.</p>
+          <h3 class="t-en">Files land identically</h3><h3 class="t-fr">Les fichiers arrivent à l'identique</h3>
+          <p class="t-en">Same folders, same names, private lesson schedules included, copied exactly as they appear online.</p>
+          <p class="t-fr">Mêmes dossiers, mêmes noms, programmes de colles compris, copiés exactement comme en ligne.</p>
         </div></div>
         <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
-          <h3 class="t-en">Nothing is lost</h3><h3 class="t-fr">Rien n'est perdu</h3>
-          <p class="t-en">Discarded files move to an internal trash bin, fully restorable until it is emptied for good.</p>
-          <p class="t-fr">Les fichiers jetés partent dans une corbeille interne, entièrement restaurable tant qu'elle n'est pas vidée pour de bon.</p>
+          <h3 class="t-en">Browse them locally</h3><h3 class="t-fr">Les parcourir en local</h3>
+          <p class="t-en">cdp_viewer.py opens a local site to read everything back: syntax highlighting for code, PDF and image previews, nothing ever leaves the machine.</p>
+          <p class="t-fr">cdp_viewer.py ouvre un site local pour tout relire : coloration syntaxique du code, aperçu PDF et images, rien ne quitte jamais la machine.</p>
         </div></div>
       </div>
     </div>
@@ -191,24 +197,19 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-fr">Stack technique</p>
       <div class="stack-list">
         <div class="stack-row reveal">
-          <span class="stack-name">Tauri 2 (Rust)</span>
-          <span class="stack-desc t-en">Lightweight executable, instant startup, nothing to install.</span>
-          <span class="stack-desc t-fr">Exécutable léger, démarrage instantané, rien à installer.</span>
+          <span class="stack-name">Python 3.8+</span>
+          <span class="stack-desc t-en">A single external dependency, requests.</span>
+          <span class="stack-desc t-fr">Une seule dépendance externe, requests.</span>
         </div>
         <div class="stack-row reveal d1">
-          <span class="stack-name">TypeScript / Vite</span>
-          <span class="stack-desc t-en">Embedded web interface.</span>
-          <span class="stack-desc t-fr">Interface web embarquée.</span>
+          <span class="stack-name">Local server</span>
+          <span class="stack-desc t-en">cdp_viewer.py serves only on 127.0.0.1, no network exposure at all.</span>
+          <span class="stack-desc t-fr">cdp_viewer.py sert uniquement sur 127.0.0.1, aucune exposition réseau.</span>
         </div>
         <div class="stack-row reveal d2">
-          <span class="stack-name">Supabase</span>
-          <span class="stack-desc t-en">Anonymous usage statistics on the showcase site, opt out available.</span>
-          <span class="stack-desc t-fr">Statistiques d'usage anonymes sur le site vitrine, désactivables.</span>
-        </div>
-        <div class="stack-row reveal d3">
-          <span class="stack-name">Windows Imaging Component</span>
-          <span class="stack-desc t-en">HEIC and TIFF decoding on the Rust side.</span>
-          <span class="stack-desc t-fr">Décodage HEIC et TIFF côté Rust.</span>
+          <span class="stack-name">tokenize (stdlib)</span>
+          <span class="stack-desc t-en">Syntax highlighting for Python files, no dependency, works offline.</span>
+          <span class="stack-desc t-fr">Coloration syntaxique des fichiers Python, sans dépendance, fonctionne hors ligne.</span>
         </div>
       </div>
     </div>
@@ -219,19 +220,19 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">Key concepts</p>
       <p class="section-label reveal t-fr">Concepts clés</p>
       <div class="concept reveal">
-        <div class="concept-title t-en">Nothing deleted directly</div><div class="concept-title t-fr">Rien n'est supprimé directement</div>
-        <div class="concept-body t-en">Deciding never touches the disk, validating a month moves files to the internal trash, only an explicit confirmation empties it for good.</div>
-        <div class="concept-body t-fr">Décider ne touche jamais au disque, valider un mois déplace les fichiers vers la corbeille interne, seule une confirmation explicite la vide pour de bon.</div>
+        <div class="concept-title t-en">Personal backup, not collection</div><div class="concept-title t-fr">Sauvegarde personnelle, pas collecte</div>
+        <div class="concept-body t-en">The tool only reaches content the account already sees, it breaks no access control and cracks no password.</div>
+        <div class="concept-body t-fr">L'outil n'accède qu'au contenu déjà visible par le compte, il ne contourne aucun contrôle d'accès ni ne casse de mot de passe.</div>
       </div>
       <div class="concept reveal d1">
-        <div class="concept-title t-en">Signed updates</div><div class="concept-title t-fr">Mises à jour signées</div>
-        <div class="concept-body t-en">Every update manifest is verified against a minisign signature before anything installs automatically.</div>
-        <div class="concept-body t-fr">Chaque manifeste de mise à jour est vérifié par signature minisign avant toute installation automatique.</div>
+        <div class="concept-title t-en">Privacy taken seriously</div><div class="concept-title t-fr">Vie privée prise au sérieux</div>
+        <div class="concept-body t-en">Credentials are never stored or sent to a third party, no data ever leaves the machine for an external server.</div>
+        <div class="concept-body t-fr">Les identifiants ne sont jamais stockés ni transmis à un tiers, aucune donnée ne part vers un serveur externe.</div>
       </div>
       <div class="concept reveal d2">
-        <div class="concept-title t-en">Private by default</div><div class="concept-title t-fr">Vie privée par défaut</div>
-        <div class="concept-body t-en">Usage statistics are anonymous and can be turned off, no personal data and no file ever leaves the machine.</div>
-        <div class="concept-body t-fr">Les statistiques d'usage sont anonymes et désactivables, aucune donnée personnelle et aucun fichier ne quitte la machine.</div>
+        <div class="concept-title t-en">Copyright respected</div><div class="concept-title t-fr">Droit d'auteur respecté</div>
+        <div class="concept-body t-en">Terms of use are shown and must be accepted on first launch: strictly personal, educational use only.</div>
+        <div class="concept-body t-fr">Les conditions d'usage s'affichent et doivent être acceptées au premier lancement : usage strictement personnel et pédagogique.</div>
       </div>
     </div>
   </section>
@@ -249,6 +250,6 @@ window.addEventListener('load', () => {
   });
 });
 </script>
-<script src="components.js"></script>
+<script src="/components.js"></script>
 </body>
 </html>
