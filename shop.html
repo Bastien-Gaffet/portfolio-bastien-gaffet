@@ -90,9 +90,14 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 <canvas id="cosmos"></canvas>
 
 <div id="page">
-  <p class="page-eyebrow reveal">Shop</p>
-  <h1 class="page-title reveal">Digital <em>products</em></h1>
-  <p class="page-desc reveal">Tools and assets built with care. Single-file downloads, no installation required.</p>
+  <p class="page-eyebrow reveal t-en">Shop</p>
+  <p class="page-eyebrow reveal t-fr">Boutique</p>
+  <h1 class="page-title reveal">
+    <span class="t-en">Digital <em>products</em></span>
+    <span class="t-fr">Produits <em>numériques</em></span>
+  </h1>
+  <p class="page-desc reveal t-en">Tools and assets built with care. Single-file downloads, no installation required.</p>
+  <p class="page-desc reveal t-fr">Des outils et des ressources conçus avec soin. Téléchargements en un seul fichier, sans installation.</p>
   <div class="header-divider reveal"></div>
   <div id="products"></div>
 </div>
@@ -112,13 +117,15 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 // ══════════════════════════════════════════════════════════════════════════
 const PRODUCTS = [
   {
-    page:  'product-cosmos-wallpaper.html',
+    page:  '/product/cosmos-wallpaper',
     name:  'Cosmos Wallpaper **Generator**',
+    nameFr: 'Générateur de fonds d\'écran **Cosmos**',
     tags:  ['Design Tool', 'Generative'],
     desc:  'Generate and export stunning cosmos wallpapers in your browser. 20+ object types, fully customizable, exports up to 4K.',
+    descFr: 'Générez et exportez de superbes fonds d\'écran cosmiques dans votre navigateur. Plus de 20 types d\'objets, entièrement personnalisable, export jusqu\'en 4K.',
     price: '4',
     pwyw:  true,
-    cover: 'cosmos-galaxy_spiral-desktop4k-9407.png',
+    cover: '/cosmos-galaxy_spiral-desktop4k-9407.png',
     badge: '',
   },
   // Add more products here:
@@ -155,11 +162,14 @@ PRODUCTS.forEach((p, i) => {
     <div class="card-img">${imgHTML}${badgeHTML}</div>
     <div class="card-info">
       <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
-      <h2 class="card-name">${nameHTML(p.name)}</h2>
-      <p class="card-desc">${p.desc}</p>
+      <h2 class="card-name t-en">${nameHTML(p.name)}</h2>
+      <h2 class="card-name t-fr">${nameHTML(p.nameFr || p.name)}</h2>
+      <p class="card-desc t-en">${p.desc}</p>
+      <p class="card-desc t-fr">${p.descFr || p.desc}</p>
       <div class="card-footer">
-        <span class="card-price">€${p.price}<small>${p.pwyw ? ' or more' : ''}</small></span>
-        <span class="card-cta">View</span>
+        <span class="card-price">€${p.price}<small class="t-en">${p.pwyw ? ' or more' : ''}</small><small class="t-fr">${p.pwyw ? ' ou plus' : ''}</small></span>
+        <span class="card-cta t-en">View</span>
+        <span class="card-cta t-fr">Voir</span>
       </div>
     </div>
   `;
