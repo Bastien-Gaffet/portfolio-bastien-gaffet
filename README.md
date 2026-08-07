@@ -25,15 +25,17 @@ Plain HTML, CSS and JavaScript. No framework, no build step, no dependencies. Ev
 ## Structure
 
 ```
-story-v6.html
-work-v4.html
+story.html
+work.html
 about.html
 universe.html
 404.html
 project-robotj4.html
 project-tourny.html
 project-glacify.html
-project-hopetime.html
+project-kairoo.html
+project-krino.html
+project-cdp-scraper.html
 project-template.html
 ```
 

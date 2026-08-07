@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krino / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="components.css">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
+
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<main>
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal t-en">Project / Desktop App</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application de bureau</p>
+      <h1 class="hero-title">
+        <span class="reveal">Krino</span><br>
+        <em class="reveal d1 t-en">Photo Sorting</em>
+        <em class="reveal d1 t-fr">Tri Photo</em>
+      </h1>
+      <p class="hero-desc reveal d2 t-en">A desktop app that turns photo library cleanup into a fast decision: keep or discard, month by month, by keyboard, mouse or swipe. Nothing is deleted without an explicit review.</p>
+      <p class="hero-desc reveal d2 t-fr">Une application de bureau qui transforme le tri d'une photothèque en décision rapide : garder ou jeter, mois par mois, au clavier, à la souris ou d'un geste. Rien n'est supprimé sans revue explicite.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Desktop</span><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">Windows</span></div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
+      <div class="overview-grid">
+        <div>
+          <h2 class="section-title reveal">
+            <span class="t-en">Judge,<br><em>then decide.</em></span>
+            <span class="t-fr">Juger,<br><em>puis décider.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">Krino starts from a simple problem: tens of thousands of photos that never get sorted for lack of time. The name comes from ancient Greek, to judge, to sort, to decide. The app groups files by month and turns the decision into a fast, reversible gesture, with an internal trash bin standing between every discard and any real deletion.</p>
+          <p class="body-text reveal d1 t-fr">Krino part d'un problème simple : des dizaines de milliers de photos jamais triées faute de temps. Le nom vient du grec ancien, juger, trier, décider. L'application regroupe les fichiers par mois et transforme la décision en geste rapide et réversible, avec une corbeille interne entre chaque suppression et toute suppression réelle.</p>
+        </div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">Tauri 2</div><div class="stat-lbl t-en">Framework</div><div class="stat-lbl t-fr">Framework</div></div>
+          <div class="stat-item"><div class="stat-num">15+</div><div class="stat-lbl t-en">Formats supported</div><div class="stat-lbl t-fr">Formats pris en charge</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year released</div><div class="stat-lbl t-fr">Année de sortie</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Published</div><div class="stat-num t-fr">Publié</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">How it works</p>
+      <p class="section-label reveal t-fr">Fonctionnement</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Open a starting folder</h3><h3 class="t-fr">Ouvrir un dossier de départ</h3>
+          <p class="t-en">Krino scans everything recursively and groups it by month, whatever the original organisation was.</p>
+          <p class="t-fr">Krino scanne tout récursivement et regroupe par mois, quelle que soit l'organisation d'origine.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Decide month by month</h3><h3 class="t-fr">Décider mois par mois</h3>
+          <p class="t-en">Button, keyboard shortcut, or a Tinder style swipe to keep or discard each photo or video.</p>
+          <p class="t-fr">Bouton, raccourci clavier ou geste façon Tinder pour garder ou jeter chaque photo ou vidéo.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Review before validating</h3><h3 class="t-fr">Réviser avant de valider</h3>
+          <p class="t-en">A recap screen lists what stays and what goes, every decision remains editable until validation.</p>
+          <p class="t-fr">Un écran récapitulatif liste ce qui reste et ce qui part, chaque décision reste modifiable jusqu'à validation.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">Nothing is lost</h3><h3 class="t-fr">Rien n'est perdu</h3>
+          <p class="t-en">Discarded files move to an internal trash bin, fully restorable until it is emptied for good.</p>
+          <p class="t-fr">Les fichiers jetés partent dans une corbeille interne, entièrement restaurable tant qu'elle n'est pas vidée pour de bon.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Stack</p>
+      <p class="section-label reveal t-fr">Stack technique</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name">Tauri 2 (Rust)</span>
+          <span class="stack-desc t-en">Lightweight executable, instant startup, nothing to install.</span>
+          <span class="stack-desc t-fr">Exécutable léger, démarrage instantané, rien à installer.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name">TypeScript / Vite</span>
+          <span class="stack-desc t-en">Embedded web interface.</span>
+          <span class="stack-desc t-fr">Interface web embarquée.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name">Supabase</span>
+          <span class="stack-desc t-en">Anonymous usage statistics on the showcase site, opt out available.</span>
+          <span class="stack-desc t-fr">Statistiques d'usage anonymes sur le site vitrine, désactivables.</span>
+        </div>
+        <div class="stack-row reveal d3">
+          <span class="stack-name">Windows Imaging Component</span>
+          <span class="stack-desc t-en">HEIC and TIFF decoding on the Rust side.</span>
+          <span class="stack-desc t-fr">Décodage HEIC et TIFF côté Rust.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Key concepts</p>
+      <p class="section-label reveal t-fr">Concepts clés</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">Nothing deleted directly</div><div class="concept-title t-fr">Rien n'est supprimé directement</div>
+        <div class="concept-body t-en">Deciding never touches the disk, validating a month moves files to the internal trash, only an explicit confirmation empties it for good.</div>
+        <div class="concept-body t-fr">Décider ne touche jamais au disque, valider un mois déplace les fichiers vers la corbeille interne, seule une confirmation explicite la vide pour de bon.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">Signed updates</div><div class="concept-title t-fr">Mises à jour signées</div>
+        <div class="concept-body t-en">Every update manifest is verified against a minisign signature before anything installs automatically.</div>
+        <div class="concept-body t-fr">Chaque manifeste de mise à jour est vérifié par signature minisign avant toute installation automatique.</div>
+      </div>
+      <div class="concept reveal d2">
+        <div class="concept-title t-en">Private by default</div><div class="concept-title t-fr">Vie privée par défaut</div>
+        <div class="concept-body t-en">Usage statistics are anonymous and can be turned off, no personal data and no file ever leaves the machine.</div>
+        <div class="concept-body t-fr">Les statistiques d'usage sont anonymes et désactivables, aucune donnée personnelle et aucun fichier ne quitte la machine.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+<script src="components.js"></script>
+</body>
+</html>

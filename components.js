@@ -30,7 +30,9 @@ const PAGE_CONFIG = {
   'project-robotj4.html':         { backNav: { href: 'work.html', label: 'Work' } },
   'project-tourny.html':          { backNav: { href: 'work.html', label: 'Work' } },
   'project-glacify.html':         { backNav: { href: 'work.html', label: 'Work' } },
-  'project-hopetime.html':        { backNav: { href: 'work.html', label: 'Work' } },
+  'project-kairoo.html':          { backNav: { href: 'work.html', label: 'Work' } },
+  'project-krino.html':           { backNav: { href: 'work.html', label: 'Work' } },
+  'project-cdp-scraper.html':     { backNav: { href: 'work.html', label: 'Work' } },
   'product-cosmos-wallpaper.html':{ backNav: { href: 'shop.html',    label: 'Shop' } },
   // Blog posts — add as you publish:
   // 'post-example.html':         { backNav: { href: 'blog.html',    label: 'Notes' } },
@@ -46,6 +48,11 @@ const PAGES = [
   { group:'Explore',  name:'Universe',    desc:'Passions, interests, dreams',           href:'universe.html' },
   { group:'Explore',  name:'Notes',       desc:'Monthly articles and observations',     href:'blog.html' },
   { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'project-robotj4.html' },
+  { group:'Projects', name:'Tourny',      desc:'Sport tournament management platform', href:'project-tourny.html' },
+  { group:'Projects', name:'Glacify',     desc:'Ice cream ordering app, playful UX',   href:'project-glacify.html' },
+  { group:'Projects', name:'Kairoo',      desc:'Mirror hours mobile game, Supabase',   href:'project-kairoo.html' },
+  { group:'Projects', name:'Krino',       desc:'Desktop photo sorting app, Tauri',     href:'project-krino.html' },
+  { group:'Projects', name:'cdp-scraper', desc:'CLI backup tool for cahier-de-prepa',  href:'project-cdp-scraper.html' },
   { group:'Me',       name:'About',       desc:'Bio and background',                    href:'about.html' },
   { group:'Me',       name:'CV',          desc:'Interactive resume',                    href:'cv.html' },
   { group:'Me',       name:'Timeline',    desc:'Milestones and projects',               href:'timeline.html' },
@@ -69,7 +76,8 @@ const PAGE_NAMES = {
   'cv.html':'CV','uses.html':'Uses','links.html':'Links','shop.html':'Shop',
   'product-cosmos-wallpaper.html':'Cosmos Generator','project-robotj4.html':'Robot J4',
   'project-tourny.html':'Tourny','project-glacify.html':'Glacify',
-  'project-hopetime.html':'HopeTime','tipe.html':'TIPE','timeline.html':'Timeline',
+  'project-kairoo.html':'Kairoo','project-krino.html':'Krino',
+  'project-cdp-scraper.html':'cdp-scraper','tipe.html':'TIPE','timeline.html':'Timeline',
   'press.html':'Press','changelog.html':'Changelog','now.html':'Now',
   'cosmos-demo.html':'Cosmos Demo',
 };
@@ -181,7 +189,6 @@ const _crumbs = {
   'project/robotj4':          { parent:'/work',  parentName:'Work',  name:'Robot J4' },
   'project/tourny':           { parent:'/work',  parentName:'Work',  name:'Tourny' },
   'project/glacify':          { parent:'/work',  parentName:'Work',  name:'Glacify' },
-  'project/hopetime':         { parent:'/work',  parentName:'Work',  name:'HopeTime' },
   'product/cosmos-wallpaper': { parent:'/shop',  parentName:'Shop',  name:'Cosmos Wallpaper' },
 };
 if (_crumbs[currentPath]) {

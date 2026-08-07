@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HopeTime / Bastien Gaffet</title>
+<title>Kairoo / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="components.css">
@@ -137,7 +137,7 @@ section { position: relative; z-index: 1; }
 .rec-card.featured .rec-badge { border-color: var(--violet); color: var(--violet); }
 
 
-.hero-title em { font-style: italic; color: hsl(320 60% 80%); }
+.hero-title em { font-style: italic; color: hsl(38 75% 68%); }
 </style>
 </head>
 <body>
@@ -146,47 +146,119 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal">Project / Experimental</p>
+      <p class="hero-eyebrow reveal t-en">Project / Mobile App</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application mobile</p>
       <h1 class="hero-title">
-        <span class="reveal">Hope</span><br>
-        <em class="reveal d1">Time</em>
+        <span class="reveal">Kairoo</span><br>
+        <em class="reveal d1 t-en">Mirror Hours</em>
+        <em class="reveal d1 t-fr">Heures Miroir</em>
       </h1>
-      <p class="hero-desc reveal d2">A conceptual app exploring meaningful time moments: 12:12, 08:08. A meditation on philosophy, emotion and interface design.</p>
-      <div class="hero-tags reveal d3"><span class="tag">Concept</span><span class="tag">Philosophical UI</span><span class="tag">Experimental</span><span class="tag">Time</span></div>
+      <p class="hero-desc reveal d2 t-en">A mobile app that turns mirror hours, 11:11, 22:22, 10:10, into a daily ritual: experience points, leagues, guilds and rewards built around one simple gesture, opening the app at the right moment.</p>
+      <p class="hero-desc reveal d2 t-fr">Une application mobile qui transforme les heures miroir, 11h11, 22h22, 10h10, en rituel quotidien : points d'expérience, ligues, guildes et récompenses autour d'un geste simple, ouvrir l'application au bon moment.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Mobile</span><span class="tag">Game Design</span><span class="tag">React Native</span><span class="tag">Supabase</span></div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Overview</p>
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
       <div class="overview-grid">
         <div>
-          <h2 class="section-title reveal">Time as<br><em>something felt.</em></h2>
-          <p class="body-text reveal d1">HopeTime is not a clock. It is an exploration of the moments in a day that feel charged with meaning: repeated digits, mirrored patterns, numbers that people associate with wishes, luck or simply the habit of noticing. The project sits at the edge of design, philosophy and the quietly human act of looking at a screen and feeling something.</p>
+          <h2 class="section-title reveal">
+            <span class="t-en">A ritual,<br><em>not a concept.</em></span>
+            <span class="t-fr">Un rituel,<br><em>pas un concept.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">Kairoo is not a clock. It began as a question about the moments in a day that already feel loaded with meaning: repeated digits, mirrored patterns, numbers that people quietly notice without ever building something around them. What was once a design idea is now a full mobile game, with experience points, weekly leagues, guilds and quests, all running on a Supabase backend that keeps every reward honest.</p>
+          <p class="body-text reveal d1 t-fr">Kairoo n'est pas une horloge. Le projet est parti d'une question sur les moments de la journée qui semblent déjà chargés de sens : chiffres répétés, motifs miroirs, nombres que l'on remarque en silence sans jamais rien construire autour. Ce qui était une idée de design est devenu un vrai jeu mobile, avec points d'expérience, ligues hebdomadaires, guildes et quêtes, le tout sur un backend Supabase qui garantit chaque récompense.</p>
         </div>
-        <div class="stats-col reveal d1"><div class="stat-item"><div class="stat-num">24</div><div class="stat-lbl">Meaningful moments per day</div></div><div class="stat-item"><div class="stat-num">∞</div><div class="stat-lbl">Interpretations</div></div><div class="stat-item"><div class="stat-num">2025</div><div class="stat-lbl">Year built</div></div><div class="stat-item"><div class="stat-num">Concept</div><div class="stat-lbl">Stage</div></div></div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">24</div><div class="stat-lbl t-en">Mirror hours a day</div><div class="stat-lbl t-fr">Heures miroir par jour</div></div>
+          <div class="stat-item"><div class="stat-num">x3</div><div class="stat-lbl t-en">Bonus on legendary hours</div><div class="stat-lbl t-fr">Bonus sur les heures légendaires</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year in development</div><div class="stat-lbl t-fr">Année de développement</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Private beta</div><div class="stat-num t-fr">Bêta privée</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">How it works</p>
-      <div class="steps"><div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3>A moment arrives</h3><p>The app runs quietly in the background. When a meaningful time pattern appears, it surfaces gently, without interruption.</p></div></div><div class="step reveal d1"><div class="step-num">02</div><div class="step-body"><h3>The interface reveals</h3><p>A minimal screen appears with the time, a short reflection, and nothing else. No buttons, no actions required.</p></div></div><div class="step reveal d2"><div class="step-num">03</div><div class="step-body"><h3>You sit with it</h3><p>The moment is not interactive. It is there to be read, felt, and passed. The app closes after a few seconds.</p></div></div><div class="step reveal d3"><div class="step-num">04</div><div class="step-body"><h3>Patterns accumulate</h3><p>Over time, the app builds a log of the moments you have seen. A quiet archive of charged instants.</p></div></div><div class="step reveal d4"><div class="step-num">05</div><div class="step-body"><h3>Reflection</h3><p>Occasionally, the app offers a longer reflection: a pattern it has noticed in the times you tend to see, or a thought connected to a specific number.</p></div></div></div>
+      <p class="section-label reveal t-en">How it works</p>
+      <p class="section-label reveal t-fr">Fonctionnement</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">A mirror hour approaches</h3><h3 class="t-fr">Une heure miroir approche</h3>
+          <p class="t-en">No aggressive notification. The app waits quietly, and the return happens on its own, right on time.</p>
+          <p class="t-fr">Pas de notification agressive. L'application attend sans bruit, et le retour se fait de lui même, pile à l'heure.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">A two minute window opens</h3><h3 class="t-fr">Une fenêtre de deux minutes s'ouvre</h3>
+          <p class="t-en">Touching the central button inside that window validates the moment and triggers the reward.</p>
+          <p class="t-fr">Toucher le bouton central dans cette fenêtre valide l'instant et déclenche la récompense.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">The reward arrives</h3><h3 class="t-fr">La récompense arrive</h3>
+          <p class="t-en">A quote, experience points, and a bonus tied to the rarity of the hour: legendary hours like 11:11 or 22:22 pay triple.</p>
+          <p class="t-fr">Une citation, de l'expérience, et un bonus lié à la rareté de l'heure : les heures légendaires comme 11h11 ou 22h22 rapportent trois fois plus.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">The community takes over</h3><h3 class="t-fr">La communauté prend le relais</h3>
+          <p class="t-en">Guilds, collective quests, friend leaderboards and cosmetics to unlock, none of it ever buys a competitive edge.</p>
+          <p class="t-fr">Guildes, quêtes collectives, classements entre amis et cosmétiques à débloquer, rien de tout cela n'achète jamais d'avantage compétitif.</p>
+        </div></div>
+      </div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Stack</p>
-      <div class="stack-list"><div class="stack-row reveal"><span class="stack-name">Conceptual Design</span><span class="stack-desc">The project exists first as a concept and a set of design principles before any interface.</span></div><div class="stack-row reveal d1"><span class="stack-name">Philosophical framework</span><span class="stack-desc">Each time pattern is paired with a reflection rooted in philosophy, numerology or simply human habit.</span></div><div class="stack-row reveal d2"><span class="stack-name">Minimal UI</span><span class="stack-desc">The interface is stripped to the absolute minimum. One screen, one moment, no chrome.</span></div></div>
+      <p class="section-label reveal t-en">Stack</p>
+      <p class="section-label reveal t-fr">Stack technique</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name">React Native / Expo</span>
+          <span class="stack-desc t-en">Mobile app for iOS and Android from a single codebase.</span>
+          <span class="stack-desc t-fr">Application mobile iOS et Android à partir d'une seule base de code.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name">TypeScript / Zustand</span>
+          <span class="stack-desc t-en">Strict typing end to end, shared state kept simple.</span>
+          <span class="stack-desc t-fr">Typage strict de bout en bout, état partagé simple.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name">Supabase</span>
+          <span class="stack-desc t-en">Full backend: authentication, real time leaderboards, server authoritative reward economy.</span>
+          <span class="stack-desc t-fr">Backend complet : authentification, classements en temps réel, économie de récompenses gérée côté serveur.</span>
+        </div>
+        <div class="stack-row reveal d3">
+          <span class="stack-name">Expo Router</span>
+          <span class="stack-desc t-en">File based navigation.</span>
+          <span class="stack-desc t-fr">Navigation par fichiers.</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Key concepts</p>
-      <div class="concept reveal"><div class="concept-title">Meaningful time</div><div class="concept-body">Humans have always found meaning in numbers. 12:12, 11:11, 08:08 carry weight not because they are special, but because we decided they are. HopeTime takes that seriously.</div></div><div class="concept reveal d1"><div class="concept-title">Passive interaction</div><div class="concept-body">Most apps demand attention. HopeTime offers presence instead. It does not ask for a tap or a decision. It just shows up.</div></div><div class="concept reveal d2"><div class="concept-title">Emotional interface design</div><div class="concept-body">The hardest design challenge is making something that makes you feel something. HopeTime is entirely about that problem.</div></div>
+      <p class="section-label reveal t-en">Key concepts</p>
+      <p class="section-label reveal t-fr">Concepts clés</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">Mirror hours</div><div class="concept-title t-fr">Heures miroir</div>
+        <div class="concept-body t-en">The founding idea: give weight to moments most people already notice without ever building a ritual around them.</div>
+        <div class="concept-body t-fr">L'idée fondatrice : donner du poids à des instants que la plupart des gens remarquent déjà sans jamais construire de rituel autour.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">No pay to win</div><div class="concept-title t-fr">Pas de paiement pour gagner</div>
+        <div class="concept-body t-en">Cosmetics can be bought, advantages cannot. Nothing sold ever affects experience or ranking.</div>
+        <div class="concept-body t-fr">Les cosmétiques s'achètent, les avantages non. Rien de ce qui est vendu n'affecte jamais l'expérience ou le classement.</div>
+      </div>
+      <div class="concept reveal d2">
+        <div class="concept-title t-en">Server authoritative economy</div><div class="concept-title t-fr">Économie côté serveur</div>
+        <div class="concept-body t-en">Every reward is computed and validated on the server, never trusted from the client.</div>
+        <div class="concept-body t-fr">Chaque récompense est calculée et validée côté serveur, jamais laissée au client.</div>
+      </div>
     </div>
   </section>
 

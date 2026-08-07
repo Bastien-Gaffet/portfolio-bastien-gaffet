@@ -99,7 +99,9 @@ section { position: relative; z-index: 1; }
 .card-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
 .tourny  .card-accent { background: hsl(245 75% 65%); }
 .glacify .card-accent { background: hsl(190 75% 55%); }
-.hopetime .card-accent { background: hsl(320 65% 60%); }
+.kairoo  .card-accent { background: hsl(38 75% 62%); }
+.krino   .card-accent { background: hsl(227 80% 68%); }
+.cdp-scraper .card-accent { background: hsl(150 55% 58%); }
 .robotj4 .card-accent { background: hsl(265 75% 60%); }
 .robotj4.featured { border-color: hsl(265 75% 60% / 0.35); }
 
@@ -222,18 +224,48 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card hopetime" data-cat="experimental" href="project-hopetime.html">
+    <a class="proj-card kairoo" data-cat="creative" href="project-kairoo.html">
       <div class="card-visual">
         <div class="card-stripe"></div>
-        <span class="card-visual-lbl">Concept · Philosophical UI</span>
+        <span class="card-visual-lbl">Mobile app · Game design</span>
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2025</span><span class="card-type t-en">Experimental</span><span class="card-type t-fr">Expérimental</span></div>
-        <h2 class="card-name">HopeTime</h2>
-        <p class="card-desc t-en">A conceptual app exploring meaningful time moments: 12:12, 08:08. A meditation on philosophy, emotion, and interface design.</p>
-        <p class="card-desc t-fr">Une application conceptuelle explorant les moments temporels significatifs : 12:12, 08:08. Une méditation sur la philosophie, l'émotion et le design d'interface.</p>
-        <div class="card-tags"><span class="tag">Concept</span><span class="tag">Philosophical</span><span class="tag">Experimental</span></div>
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Creative</span><span class="card-type t-fr">Créatif</span></div>
+        <h2 class="card-name">Kairoo</h2>
+        <p class="card-desc t-en">A mobile app turning mirror hours into a daily ritual: XP, leagues, guilds and rewards around one simple gesture, opening the app at the right moment.</p>
+        <p class="card-desc t-fr">Une application mobile qui transforme les heures miroir en rituel quotidien : XP, ligues, guildes et récompenses autour d'un geste simple, ouvrir l'application au bon moment.</p>
+        <div class="card-tags"><span class="tag">Mirror Hours</span><span class="tag">Game Design</span><span class="tag">Supabase</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card krino" data-cat="engineering" href="project-krino.html">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">Desktop app · Rust</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
+        <h2 class="card-name">Krino</h2>
+        <p class="card-desc t-en">A desktop app to clean up a photo library: swipe through months, spot duplicates, sort albums. Nothing is deleted without explicit review.</p>
+        <p class="card-desc t-fr">Une application de bureau pour épurer une photothèque : tri mois par mois façon swipe, doublons, albums. Rien n'est supprimé sans revue explicite.</p>
+        <div class="card-tags"><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">Desktop UX</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card cdp-scraper" data-cat="engineering" href="project-cdp-scraper.html">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">CLI tool · Python</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
+        <h2 class="card-name">cdp-scraper</h2>
+        <p class="card-desc t-en">A command line tool to back up personal course documents from cahier-de-prepa.fr, with a local viewer to browse them offline afterward.</p>
+        <p class="card-desc t-fr">Un outil en ligne de commande pour sauvegarder ses cours depuis cahier-de-prepa.fr, avec un visualiseur local pour les parcourir hors ligne ensuite.</p>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">Local-first</span></div>
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
@@ -338,9 +370,9 @@ section { position: relative; z-index: 1; }
         </div>
         <div class="cv-item reveal d2">
           <p class="cv-year">2024</p>
-          <p class="cv-item-title">Tourny · Glacify · HopeTime</p>
-          <p class="cv-item-sub t-en">Development of three applications spanning data management, UX design, and conceptual / philosophical interface design.</p>
-          <p class="cv-item-sub t-fr">Développement de trois applications couvrant la gestion de données, le design UX, et le design d'interface conceptuel / philosophique.</p>
+          <p class="cv-item-title">Tourny · Glacify · Kairoo</p>
+          <p class="cv-item-sub t-en">Development of three applications spanning data management, UX design, and mobile game design with a full backend.</p>
+          <p class="cv-item-sub t-fr">Développement de trois applications couvrant la gestion de données, le design UX, et le game design mobile avec backend complet.</p>
         </div>
       </div>
     </div>
