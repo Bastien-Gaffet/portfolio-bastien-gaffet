@@ -157,18 +157,25 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal">Project / Robotics & AI</p>
+      <p class="hero-eyebrow reveal t-en">Project / Robotics & AI</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Robotique & IA</p>
       <h1 class="hero-title">
         <span class="reveal">Robot</span><br>
         <em class="reveal d1">J4</em>
       </h1>
-      <p class="hero-desc reveal d2">
+      <p class="hero-desc reveal d2 t-en">
         A robotic arm that plays Connect Four. Combining mechanical design,
         computer vision and the Minimax algorithm into a physical intelligence.
       </p>
+      <p class="hero-desc reveal d2 t-fr">
+        Un bras robotique qui joue au Puissance 4. Alliance de conception
+        mécanique, vision par ordinateur et algorithme Minimax en une intelligence physique.
+      </p>
       <div class="hero-awards reveal d3">
-        <span class="award-pill">Concours Cgénial / National Winner</span>
-        <span class="award-pill">EUCYS Latvia / CERN European Prize</span>
+        <span class="award-pill t-en">Concours Cgénial / National Winner</span>
+        <span class="award-pill t-fr">Concours Cgénial / Lauréat national</span>
+        <span class="award-pill t-en">EUCYS Latvia / CERN European Prize</span>
+        <span class="award-pill t-fr">EUCYS Lettonie / Prix européen du CERN</span>
       </div>
       <div class="hero-tags reveal d4">
         <span class="tag">Minimax AI</span>
@@ -184,19 +191,26 @@ section { position: relative; z-index: 1; }
   <!-- OVERVIEW -->
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Overview</p>
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
       <div class="overview-grid">
         <div>
-          <h2 class="section-title reveal">A machine that<br><em>thinks and acts.</em></h2>
-          <p class="body-text reveal d1">Robot J4 is not just a program. It's a physical presence at the table. When it's its turn, it looks at the board, thinks, and reaches for the grid. The whole loop: perception, decision, action. It all happens in the real world.</p>
-          <p class="body-text reveal d2">At its core lives the Minimax algorithm, a strategy borrowed from game theory. J4 simulates future game states, weighs outcomes and picks the move that maximises its chances of winning, or minimises yours.</p>
-          <p class="body-text reveal d3">Built as part of a high school engineering specialisation, the project won the national title at Concours Cgénial, then the CERN European Prize at EUCYS in Latvia.</p>
+          <h2 class="section-title reveal">
+            <span class="t-en">A machine that<br><em>thinks and acts.</em></span>
+            <span class="t-fr">Une machine qui<br><em>pense et agit.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">Robot J4 is not just a program. It's a physical presence at the table. When it's its turn, it looks at the board, thinks, and reaches for the grid. The whole loop: perception, decision, action. It all happens in the real world.</p>
+          <p class="body-text reveal d1 t-fr">Robot J4 n'est pas juste un programme. C'est une présence physique à la table. Quand c'est son tour, il regarde le plateau, réfléchit, et tend le bras vers la grille. Toute la boucle : perception, décision, action. Tout se passe dans le monde réel.</p>
+          <p class="body-text reveal d2 t-en">At its core lives the Minimax algorithm, a strategy borrowed from game theory. J4 simulates future game states, weighs outcomes and picks the move that maximises its chances of winning, or minimises yours.</p>
+          <p class="body-text reveal d2 t-fr">En son cœur vit l'algorithme Minimax, une stratégie empruntée à la théorie des jeux. J4 simule les états futurs du jeu, pèse les résultats possibles et choisit le coup qui maximise ses chances de victoire, ou minimise les vôtres.</p>
+          <p class="body-text reveal d3 t-en">Built as part of a high school engineering specialisation, the project won the national title at Concours Cgénial, then the CERN European Prize at EUCYS in Latvia.</p>
+          <p class="body-text reveal d3 t-fr">Construit dans le cadre d'une spécialité d'ingénierie au lycée, le projet a remporté le titre national au Concours Cgénial, puis le Prix européen du CERN à l'EUCYS en Lettonie.</p>
         </div>
         <div class="stats-col reveal d1">
-          <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">Depth levels in Minimax tree</div></div>
-          <div class="stat-item"><div class="stat-num">360°</div><div class="stat-lbl">Full loop: vision to physical move</div></div>
-          <div class="stat-item"><div class="stat-num">1st</div><div class="stat-lbl">Concours Cgénial national final</div></div>
-          <div class="stat-item"><div class="stat-num">CERN</div><div class="stat-lbl">European prize at EUCYS Latvia</div></div>
+          <div class="stat-item"><div class="stat-num t-en">1st</div><div class="stat-num t-fr">1er</div><div class="stat-lbl t-en">Concours Cgénial national final</div><div class="stat-lbl t-fr">Finale nationale du Concours Cgénial</div></div>
+          <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl t-en">Depth levels in Minimax tree</div><div class="stat-lbl t-fr">Niveaux de profondeur dans l'arbre Minimax</div></div>
+          <div class="stat-item"><div class="stat-num">360°</div><div class="stat-lbl t-en">Full loop: vision to physical move</div><div class="stat-lbl t-fr">Boucle complète : de la vision au mouvement physique</div></div>
+          <div class="stat-item"><div class="stat-num">CERN</div><div class="stat-lbl t-en">European prize at EUCYS Latvia</div><div class="stat-lbl t-fr">Prix européen à l'EUCYS en Lettonie</div></div>
         </div>
       </div>
     </div>
@@ -205,13 +219,34 @@ section { position: relative; z-index: 1; }
   <!-- HOW IT WORKS -->
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">How it works</p>
+      <p class="section-label reveal t-en">How it works</p>
+      <p class="section-label reveal t-fr">Fonctionnement</p>
       <div class="steps">
-        <div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3>Coin toss</h3><p>A random draw determines who plays first: J4 or the human. The robot handles both opening and response strategies equally.</p></div></div>
-        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body"><h3>Visual perception</h3><p>A camera continuously films the board. Computer vision processes the feed in real time to detect token positions and maintain an accurate board state.</p></div></div>
-        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body"><h3>Minimax decision</h3><p>The algorithm explores the game tree up to a set depth. A custom heuristic evaluates each position, rewarding alignment, blocking threats and weighting centre control.</p></div></div>
-        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body"><h3>Physical execution</h3><p>The chosen column is sent via UART to the Arduino. J4 moves into position and drops the token into the grid with precision.</p></div></div>
-        <div class="step reveal d4"><div class="step-num">05</div><div class="step-body"><h3>Automatic turn detection</h3><p>After the human plays, the camera detects the new token without any button press. The cycle continues until someone wins or the grid is full.</p></div></div>
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Coin toss</h3><h3 class="t-fr">Tirage au sort</h3>
+          <p class="t-en">A random draw determines who plays first: J4 or the human. The robot handles both opening and response strategies equally.</p>
+          <p class="t-fr">Un tirage aléatoire détermine qui joue en premier : J4 ou l'humain. Le robot gère aussi bien les stratégies d'ouverture que de réponse.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Visual perception</h3><h3 class="t-fr">Perception visuelle</h3>
+          <p class="t-en">A camera continuously films the board. Computer vision processes the feed in real time to detect token positions and maintain an accurate board state.</p>
+          <p class="t-fr">Une caméra filme le plateau en continu. La vision par ordinateur traite le flux en temps réel pour détecter la position des jetons et maintenir un état précis du plateau.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Minimax decision</h3><h3 class="t-fr">Décision Minimax</h3>
+          <p class="t-en">The algorithm explores the game tree up to a set depth. A custom heuristic evaluates each position, rewarding alignment, blocking threats and weighting centre control.</p>
+          <p class="t-fr">L'algorithme explore l'arbre de jeu jusqu'à une profondeur donnée. Une heuristique personnalisée évalue chaque position, en récompensant les alignements, en bloquant les menaces et en valorisant le contrôle du centre.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">Physical execution</h3><h3 class="t-fr">Exécution physique</h3>
+          <p class="t-en">The chosen column is sent via UART to the Arduino. J4 moves into position and drops the token into the grid with precision.</p>
+          <p class="t-fr">La colonne choisie est envoyée via UART à l'Arduino. J4 se positionne et dépose le jeton dans la grille avec précision.</p>
+        </div></div>
+        <div class="step reveal d4"><div class="step-num">05</div><div class="step-body">
+          <h3 class="t-en">Automatic turn detection</h3><h3 class="t-fr">Détection automatique du tour</h3>
+          <p class="t-en">After the human plays, the camera detects the new token without any button press. The cycle continues until someone wins or the grid is full.</p>
+          <p class="t-fr">Après que l'humain joue, la caméra détecte le nouveau jeton sans qu'aucun bouton ne soit pressé. Le cycle continue jusqu'à ce que quelqu'un gagne ou que la grille soit pleine.</p>
+        </div></div>
       </div>
     </div>
   </section>
@@ -219,14 +254,15 @@ section { position: relative; z-index: 1; }
   <!-- STACK -->
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Stack</p>
+      <p class="section-label reveal t-en">Stack</p>
+      <p class="section-label reveal t-fr">Stack technique</p>
       <div class="stack-list">
-        <div class="stack-row reveal"><span class="stack-name">Python</span><span class="stack-desc">Game engine, Minimax logic, camera interface and the full user interaction layer.</span></div>
-        <div class="stack-row reveal d1"><span class="stack-name">Minimax Algorithm</span><span class="stack-desc">Tree-search strategy with a custom heuristic scoring function for board evaluation at depth.</span></div>
-        <div class="stack-row reveal d2"><span class="stack-name">Computer Vision</span><span class="stack-desc">Real-time board state recognition and automatic token detection via continuous camera feed.</span></div>
-        <div class="stack-row reveal d3"><span class="stack-name">Arduino</span><span class="stack-desc">Motor control and physical command execution for the robotic arm movements.</span></div>
-        <div class="stack-row reveal d4"><span class="stack-name">UART / Serial</span><span class="stack-desc">Communication bridge between the Python logic layer and the Arduino hardware controller.</span></div>
-        <div class="stack-row reveal d4"><span class="stack-name">Mechanical Design</span><span class="stack-desc">Custom robotic arm engineered for precise column targeting and reliable token handling.</span></div>
+        <div class="stack-row reveal"><span class="stack-name">Python</span><span class="stack-desc t-en">Game engine, Minimax logic, camera interface and the full user interaction layer.</span><span class="stack-desc t-fr">Moteur de jeu, logique Minimax, interface caméra et toute la couche d'interaction utilisateur.</span></div>
+        <div class="stack-row reveal d1"><span class="stack-name">Minimax Algorithm</span><span class="stack-desc t-en">Tree-search strategy with a custom heuristic scoring function for board evaluation at depth.</span><span class="stack-desc t-fr">Stratégie de recherche arborescente avec une fonction heuristique personnalisée pour évaluer le plateau en profondeur.</span></div>
+        <div class="stack-row reveal d2"><span class="stack-name">Computer Vision</span><span class="stack-desc t-en">Real-time board state recognition and automatic token detection via continuous camera feed.</span><span class="stack-desc t-fr">Reconnaissance en temps réel de l'état du plateau et détection automatique des jetons via un flux caméra continu.</span></div>
+        <div class="stack-row reveal d3"><span class="stack-name">Arduino</span><span class="stack-desc t-en">Motor control and physical command execution for the robotic arm movements.</span><span class="stack-desc t-fr">Contrôle des moteurs et exécution des commandes physiques pour les mouvements du bras robotique.</span></div>
+        <div class="stack-row reveal d4"><span class="stack-name">UART / Serial</span><span class="stack-desc t-en">Communication bridge between the Python logic layer and the Arduino hardware controller.</span><span class="stack-desc t-fr">Pont de communication entre la couche logique Python et le contrôleur matériel Arduino.</span></div>
+        <div class="stack-row reveal d4"><span class="stack-name">Mechanical Design</span><span class="stack-desc t-en">Custom robotic arm engineered for precise column targeting and reliable token handling.</span><span class="stack-desc t-fr">Bras robotique sur mesure conçu pour un ciblage précis des colonnes et une manipulation fiable des jetons.</span></div>
       </div>
     </div>
   </section>
@@ -234,15 +270,16 @@ section { position: relative; z-index: 1; }
   <!-- ARCHITECTURE -->
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Architecture</p>
+      <p class="section-label reveal t-en">Architecture</p>
+      <p class="section-label reveal t-fr">Architecture</p>
       <div class="arch-flow reveal d1">
-        <div class="arch-node"><div class="arch-node-name">Camera</div><div class="arch-node-sub">Board recognition</div></div>
+        <div class="arch-node"><div class="arch-node-name t-en">Camera</div><div class="arch-node-name t-fr">Caméra</div><div class="arch-node-sub t-en">Board recognition</div><div class="arch-node-sub t-fr">Reconnaissance du plateau</div></div>
         <div class="arch-sep">→</div>
-        <div class="arch-node"><div class="arch-node-name">Python Engine</div><div class="arch-node-sub">Minimax · Logic</div></div>
+        <div class="arch-node"><div class="arch-node-name t-en">Python Engine</div><div class="arch-node-name t-fr">Moteur Python</div><div class="arch-node-sub t-en">Minimax · Logic</div><div class="arch-node-sub t-fr">Minimax · Logique</div></div>
         <div class="arch-sep">→</div>
-        <div class="arch-node"><div class="arch-node-name">Arduino</div><div class="arch-node-sub">UART · Motors</div></div>
+        <div class="arch-node"><div class="arch-node-name">Arduino</div><div class="arch-node-sub t-en">UART · Motors</div><div class="arch-node-sub t-fr">UART · Moteurs</div></div>
         <div class="arch-sep">→</div>
-        <div class="arch-node"><div class="arch-node-name">Robotic Arm</div><div class="arch-node-sub">Physical execution</div></div>
+        <div class="arch-node"><div class="arch-node-name t-en">Robotic Arm</div><div class="arch-node-name t-fr">Bras robotique</div><div class="arch-node-sub t-en">Physical execution</div><div class="arch-node-sub t-fr">Exécution physique</div></div>
       </div>
     </div>
   </section>
@@ -250,30 +287,50 @@ section { position: relative; z-index: 1; }
   <!-- KEY CONCEPTS -->
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Key concepts</p>
-      <div class="concept reveal"><div class="concept-title">Minimax Algorithm</div><div class="concept-body">A recursive strategy from game theory that simulates all possible future moves up to a given depth. J4 assumes both players act optimally and picks the move that leads to the best worst-case outcome, maximising its own score while minimising the opponent's.</div></div>
-      <div class="concept reveal d1"><div class="concept-title">Heuristic Evaluation</div><div class="concept-body">Exploring every possible game state is computationally intractable. A custom scoring function evaluates board positions at the search horizon, rewarding aligned tokens, penalising threats and weighting central control.</div></div>
-      <div class="concept reveal d2"><div class="concept-title">Human-Robot Interaction</div><div class="concept-body">The loop is designed to feel natural. J4 acts, the human responds, J4 perceives. No buttons, no forced delays. The robot adapts to the human's pace through passive vision rather than explicit signalling.</div></div>
-      <div class="concept reveal d3"><div class="concept-title">Embedded Architecture</div><div class="concept-body">The split between Python (logic) and Arduino (execution) mirrors a real embedded systems pattern: a high-level brain communicating with a low-level controller over a defined serial protocol. Clean separation of concerns at the hardware level.</div></div>
+      <p class="section-label reveal t-en">Key concepts</p>
+      <p class="section-label reveal t-fr">Concepts clés</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">Minimax Algorithm</div><div class="concept-title t-fr">Algorithme Minimax</div>
+        <div class="concept-body t-en">A recursive strategy from game theory that simulates all possible future moves up to a given depth. J4 assumes both players act optimally and picks the move that leads to the best worst-case outcome, maximising its own score while minimising the opponent's.</div>
+        <div class="concept-body t-fr">Une stratégie récursive issue de la théorie des jeux qui simule tous les coups futurs possibles jusqu'à une profondeur donnée. J4 suppose que les deux joueurs agissent de façon optimale et choisit le coup qui mène au meilleur résultat dans le pire des cas, en maximisant son propre score et en minimisant celui de l'adversaire.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">Heuristic Evaluation</div><div class="concept-title t-fr">Évaluation heuristique</div>
+        <div class="concept-body t-en">Exploring every possible game state is computationally intractable. A custom scoring function evaluates board positions at the search horizon, rewarding aligned tokens, penalising threats and weighting central control.</div>
+        <div class="concept-body t-fr">Explorer tous les états de jeu possibles est impraticable en termes de calcul. Une fonction de score personnalisée évalue les positions du plateau à l'horizon de recherche, en récompensant les jetons alignés, en pénalisant les menaces et en valorisant le contrôle du centre.</div>
+      </div>
+      <div class="concept reveal d2">
+        <div class="concept-title t-en">Human-Robot Interaction</div><div class="concept-title t-fr">Interaction humain-robot</div>
+        <div class="concept-body t-en">The loop is designed to feel natural. J4 acts, the human responds, J4 perceives. No buttons, no forced delays. The robot adapts to the human's pace through passive vision rather than explicit signalling.</div>
+        <div class="concept-body t-fr">La boucle est pensée pour paraître naturelle. J4 agit, l'humain répond, J4 perçoit. Pas de bouton, pas de délai imposé. Le robot s'adapte au rythme de l'humain par une vision passive plutôt que par un signal explicite.</div>
+      </div>
+      <div class="concept reveal d3">
+        <div class="concept-title t-en">Embedded Architecture</div><div class="concept-title t-fr">Architecture embarquée</div>
+        <div class="concept-body t-en">The split between Python (logic) and Arduino (execution) mirrors a real embedded systems pattern: a high-level brain communicating with a low-level controller over a defined serial protocol. Clean separation of concerns at the hardware level.</div>
+        <div class="concept-body t-fr">La séparation entre Python (logique) et Arduino (exécution) reflète un vrai schéma de systèmes embarqués : un cerveau de haut niveau qui communique avec un contrôleur de bas niveau via un protocole série défini. Une séparation nette des responsabilités au niveau matériel.</div>
+      </div>
     </div>
   </section>
 
   <!-- RECOGNITION -->
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Recognition</p>
+      <p class="section-label reveal t-en">Recognition</p>
+      <p class="section-label reveal t-fr">Distinctions</p>
       <div class="rec-grid reveal d1">
         <div class="rec-card featured">
-          <p class="rec-year">2024 / France</p>
+          <p class="rec-year t-en">2024 / France</p><p class="rec-year t-fr">2024 / France</p>
           <h3 class="rec-title">Concours Cgénial</h3>
-          <p class="rec-desc">Winner of the national final. The leading French competition for high school science and engineering projects, recognising innovation and technical rigour.</p>
-          <span class="rec-badge">National Winner</span>
+          <p class="rec-desc t-en">Winner of the national final. The leading French competition for high school science and engineering projects, recognising innovation and technical rigour.</p>
+          <p class="rec-desc t-fr">Lauréat de la finale nationale. La principale compétition française de projets scientifiques et d'ingénierie pour lycéens, qui récompense l'innovation et la rigueur technique.</p>
+          <span class="rec-badge t-en">National Winner</span><span class="rec-badge t-fr">Lauréat national</span>
         </div>
         <div class="rec-card">
-          <p class="rec-year">2025 / Riga, Latvia</p>
+          <p class="rec-year t-en">2025 / Riga, Latvia</p><p class="rec-year t-fr">2025 / Riga, Lettonie</p>
           <h3 class="rec-title">EUCYS</h3>
-          <p class="rec-desc">Selected to represent France at the European Union Contest for Young Scientists. Awarded the CERN European Prize for exceptional work in science and engineering.</p>
-          <span class="rec-badge">CERN European Prize</span>
+          <p class="rec-desc t-en">Selected to represent France at the European Union Contest for Young Scientists. Awarded the CERN European Prize for exceptional work in science and engineering.</p>
+          <p class="rec-desc t-fr">Sélectionné pour représenter la France au Concours de l'Union européenne pour les jeunes scientifiques. Récompensé par le Prix européen du CERN pour un travail exceptionnel en science et ingénierie.</p>
+          <span class="rec-badge t-en">CERN European Prize</span><span class="rec-badge t-fr">Prix européen du CERN</span>
         </div>
       </div>
     </div>

@@ -155,47 +155,107 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal">Project / Engineering</p>
+      <p class="hero-eyebrow reveal t-en">Project / Engineering</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Ingénierie</p>
       <h1 class="hero-title">
         <span class="reveal">Tourny</span><br>
-        <em class="reveal d1">Tournament Engine</em>
+        <em class="reveal d1 t-en">Tournament Engine</em>
+        <em class="reveal d1 t-fr">Moteur de tournois</em>
       </h1>
-      <p class="hero-desc reveal d2">A sport tournament management platform. Logic, data pipelines and a dashboard built around the complexity of competitive sports.</p>
+      <p class="hero-desc reveal d2 t-en">A sport tournament management platform. Logic, data pipelines and a dashboard built around the complexity of competitive sports.</p>
+      <p class="hero-desc reveal d2 t-fr">Une plateforme de gestion de tournois sportifs. Logique, pipelines de données et tableau de bord conçus autour de la complexité du sport compétitif.</p>
       <div class="hero-tags reveal d3"><span class="tag">Python</span><span class="tag">Data Architecture</span><span class="tag">Dashboard UI</span><span class="tag">Tournament System</span></div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Overview</p>
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
       <div class="overview-grid">
         <div>
-          <h2 class="section-title reveal">Organizing chaos<br><em>into structure.</em></h2>
-          <p class="body-text reveal d1">Tourny started from a simple frustration: managing a sports tournament by hand is a mess of spreadsheets, manual brackets and missed updates. The goal was to automate all of it, from team registration to live standings, in a system that actually makes sense to use.</p>
+          <h2 class="section-title reveal">
+            <span class="t-en">Organizing chaos<br><em>into structure.</em></span>
+            <span class="t-fr">Organiser le chaos<br><em>en structure.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">Tourny started from a simple frustration: managing a sports tournament by hand is a mess of spreadsheets, manual brackets and missed updates. The goal was to automate all of it, from team registration to live standings, in a system that actually makes sense to use.</p>
+          <p class="body-text reveal d1 t-fr">Tourny est né d'une frustration simple : gérer un tournoi sportif à la main, c'est un fouillis de tableurs, de brackets manuels et de mises à jour oubliées. L'objectif était de tout automatiser, de l'inscription des équipes au classement en direct, dans un système réellement agréable à utiliser.</p>
         </div>
-        <div class="stats-col reveal d1"><div class="stat-item"><div class="stat-num">N+</div><div class="stat-lbl">Teams supported</div></div><div class="stat-item"><div class="stat-num">Real-time</div><div class="stat-lbl">Bracket updates</div></div><div class="stat-item"><div class="stat-num">2024</div><div class="stat-lbl">Year built</div></div><div class="stat-item"><div class="stat-num">v1</div><div class="stat-lbl">Current version</div></div></div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">N+</div><div class="stat-lbl t-en">Teams supported</div><div class="stat-lbl t-fr">Équipes prises en charge</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Real-time</div><div class="stat-num t-fr">Temps réel</div><div class="stat-lbl t-en">Bracket updates</div><div class="stat-lbl t-fr">Mises à jour des brackets</div></div>
+          <div class="stat-item"><div class="stat-num">2024</div><div class="stat-lbl t-en">Year built</div><div class="stat-lbl t-fr">Année de création</div></div>
+          <div class="stat-item"><div class="stat-num">v1</div><div class="stat-lbl t-en">Current version</div><div class="stat-lbl t-fr">Version actuelle</div></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">How it works</p>
-      <div class="steps"><div class="step reveal"><div class="step-num">01</div><div class="step-body"><h3>Team registration</h3><p>Teams are registered with their group, level and contact info. The system validates entries and prevents duplicates automatically.</p></div></div><div class="step reveal d1"><div class="step-num">02</div><div class="step-body"><h3>Bracket generation</h3><p>The algorithm generates brackets based on the number of teams and tournament format chosen: single elimination, double elimination or round robin.</p></div></div><div class="step reveal d2"><div class="step-num">03</div><div class="step-body"><h3>Match scheduling</h3><p>Matches are scheduled with time slots and court assignments. Conflicts are detected and flagged before the tournament starts.</p></div></div><div class="step reveal d3"><div class="step-num">04</div><div class="step-body"><h3>Live results</h3><p>Scores are entered in real time. Standings, next matches and eliminated teams update instantly across the dashboard.</p></div></div><div class="step reveal d4"><div class="step-num">05</div><div class="step-body"><h3>Final report</h3><p>At the end of the tournament, a full report is generated with results, rankings and statistics.</p></div></div></div>
+      <p class="section-label reveal t-en">How it works</p>
+      <p class="section-label reveal t-fr">Fonctionnement</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Team registration</h3><h3 class="t-fr">Inscription des équipes</h3>
+          <p class="t-en">Teams are registered with their group, level and contact info. The system validates entries and prevents duplicates automatically.</p>
+          <p class="t-fr">Les équipes sont inscrites avec leur groupe, leur niveau et leurs coordonnées. Le système valide les entrées et empêche les doublons automatiquement.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Bracket generation</h3><h3 class="t-fr">Génération des brackets</h3>
+          <p class="t-en">The algorithm generates brackets based on the number of teams and tournament format chosen: single elimination, double elimination or round robin.</p>
+          <p class="t-fr">L'algorithme génère les brackets selon le nombre d'équipes et le format de tournoi choisi : élimination simple, double élimination ou round robin.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Match scheduling</h3><h3 class="t-fr">Planification des matchs</h3>
+          <p class="t-en">Matches are scheduled with time slots and court assignments. Conflicts are detected and flagged before the tournament starts.</p>
+          <p class="t-fr">Les matchs sont planifiés avec créneaux horaires et attribution des terrains. Les conflits sont détectés et signalés avant le début du tournoi.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">Live results</h3><h3 class="t-fr">Résultats en direct</h3>
+          <p class="t-en">Scores are entered in real time. Standings, next matches and eliminated teams update instantly across the dashboard.</p>
+          <p class="t-fr">Les scores sont saisis en temps réel. Classements, prochains matchs et équipes éliminées se mettent à jour instantanément sur le tableau de bord.</p>
+        </div></div>
+        <div class="step reveal d4"><div class="step-num">05</div><div class="step-body">
+          <h3 class="t-en">Final report</h3><h3 class="t-fr">Rapport final</h3>
+          <p class="t-en">At the end of the tournament, a full report is generated with results, rankings and statistics.</p>
+          <p class="t-fr">À la fin du tournoi, un rapport complet est généré avec résultats, classements et statistiques.</p>
+        </div></div>
+      </div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Stack</p>
-      <div class="stack-list"><div class="stack-row reveal"><span class="stack-name">Python</span><span class="stack-desc">Core logic, bracket generation algorithms and data processing.</span></div><div class="stack-row reveal d1"><span class="stack-name">Data Architecture</span><span class="stack-desc">Structured data model for teams, matches, rounds and results.</span></div><div class="stack-row reveal d2"><span class="stack-name">Dashboard UI</span><span class="stack-desc">Interface for tournament directors to manage matches and view standings in real time.</span></div></div>
+      <p class="section-label reveal t-en">Stack</p>
+      <p class="section-label reveal t-fr">Stack technique</p>
+      <div class="stack-list">
+        <div class="stack-row reveal"><span class="stack-name">Python</span><span class="stack-desc t-en">Core logic, bracket generation algorithms and data processing.</span><span class="stack-desc t-fr">Logique centrale, algorithmes de génération des brackets et traitement des données.</span></div>
+        <div class="stack-row reveal d1"><span class="stack-name">Data Architecture</span><span class="stack-desc t-en">Structured data model for teams, matches, rounds and results.</span><span class="stack-desc t-fr">Modèle de données structuré pour les équipes, matchs, tours et résultats.</span></div>
+        <div class="stack-row reveal d2"><span class="stack-name">Dashboard UI</span><span class="stack-desc t-en">Interface for tournament directors to manage matches and view standings in real time.</span><span class="stack-desc t-fr">Interface pour les organisateurs de tournois permettant de gérer les matchs et suivre les classements en temps réel.</span></div>
+      </div>
     </div>
   </section>
 
   <section class="section-wrap">
     <div class="inner">
-      <p class="section-label reveal">Key concepts</p>
-      <div class="concept reveal"><div class="concept-title">Bracket algorithms</div><div class="concept-body">Single and double elimination brackets require careful graph traversal. Each match outcome propagates correctly through the tree without manual intervention.</div></div><div class="concept reveal d1"><div class="concept-title">Data consistency</div><div class="concept-body">Tournament state is complex: a result change cascades through subsequent rounds. The system tracks dependencies and updates all affected matches automatically.</div></div><div class="concept reveal d2"><div class="concept-title">User-first design</div><div class="concept-body">The interface is built for people who are running a tournament under pressure. Every action is two clicks or fewer.</div></div>
+      <p class="section-label reveal t-en">Key concepts</p>
+      <p class="section-label reveal t-fr">Concepts clés</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">Bracket algorithms</div><div class="concept-title t-fr">Algorithmes de brackets</div>
+        <div class="concept-body t-en">Single and double elimination brackets require careful graph traversal. Each match outcome propagates correctly through the tree without manual intervention.</div>
+        <div class="concept-body t-fr">Les brackets à élimination simple et double demandent un parcours de graphe rigoureux. Chaque résultat de match se propage correctement dans l'arbre sans intervention manuelle.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">Data consistency</div><div class="concept-title t-fr">Cohérence des données</div>
+        <div class="concept-body t-en">Tournament state is complex: a result change cascades through subsequent rounds. The system tracks dependencies and updates all affected matches automatically.</div>
+        <div class="concept-body t-fr">L'état d'un tournoi est complexe : un changement de résultat se répercute sur les tours suivants. Le système suit les dépendances et met à jour automatiquement tous les matchs concernés.</div>
+      </div>
+      <div class="concept reveal d2">
+        <div class="concept-title t-en">User-first design</div><div class="concept-title t-fr">Conception centrée utilisateur</div>
+        <div class="concept-body t-en">The interface is built for people who are running a tournament under pressure. Every action is two clicks or fewer.</div>
+        <div class="concept-body t-fr">L'interface est pensée pour des gens qui gèrent un tournoi sous pression. Chaque action tient en deux clics maximum.</div>
+      </div>
     </div>
   </section>
 
