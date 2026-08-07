@@ -93,19 +93,19 @@ Mettre `t-en` / `t-fr` directement sur l'élément bloc — plus propre, pas de 
 | `work.html` | ✅ Traduit |
 | Nav + Footer | ✅ Traduit (via `components.js`) |
 | `index.html` (Story) | ⬜ À faire |
-| `about.html` | 🟡 Partiel (agent interrompu) |
+| `about.html` | ✅ Traduit |
 | `project/robotj4.html` | ✅ Traduit |
 | `project/tourny.html` | ✅ Traduit |
 | `project/glacify.html` | ✅ Traduit |
-| `product/cosmos-wallpaper.html` | 🟡 Partiel (agent interrompu) |
+| `product/cosmos-wallpaper.html` | ✅ Traduit |
 | `project/kairoo.html` | ✅ Traduit (nouvelle page, remplace HopeTime, écrite directement en bilingue) |
 | `project/krino.html` | ✅ Traduit (nouvelle page, écrite directement en bilingue) |
 | `project/cdp-scraper.html` | ✅ Traduit (nouvelle page, écrite directement en bilingue) |
-| `now.html` | 🟡 Partiel (agent interrompu) |
-| `photography.html` | 🟡 Partiel (agent interrompu) |
-| `shop.html` | 🟡 Partiel (agent interrompu) |
-| `timeline.html` | 🟡 Partiel (agent interrompu) |
-| `universe.html` | 🟡 Partiel (agent interrompu) |
+| `now.html` | ✅ Traduit |
+| `photography.html` | ✅ Traduit |
+| `shop.html` | ✅ Traduit |
+| `timeline.html` | ✅ Traduit |
+| `universe.html` | ✅ Traduit |
 | `cv.html`, `contact.html`, `links.html`, `blog.html`, `changelog.html`, `press.html`, `secret.html`, `cosmos-demo.html`, `tipe.html`, `uses.html` | ⬜ À faire |
 
 Note : le 2026-08-07, tout le site est passé en URLs propres sans `.html`
