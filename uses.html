@@ -64,9 +64,13 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 
 <section id="hero">
   <div class="inner">
-    <p class="hero-eyebrow reveal">Uses</p>
-    <h1 class="hero-title reveal d1">What I <em>use</em></h1>
-    <p class="hero-desc reveal">Tools, software and hardware I rely on. Updated when things change.</p>
+    <p class="hero-eyebrow reveal t-en">Uses</p><p class="hero-eyebrow reveal t-fr">Outils</p>
+    <h1 class="hero-title reveal d1">
+      <span class="t-en">What I <em>use</em></span>
+      <span class="t-fr">Ce que j'<em>utilise</em></span>
+    </h1>
+    <p class="hero-desc reveal t-en">Tools, software and hardware I rely on. Updated when things change.</p>
+    <p class="hero-desc reveal t-fr">Outils, logiciels et matériel sur lesquels je compte. Mis à jour quand les choses changent.</p>
   </div>
 </section>
 
@@ -74,50 +78,60 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   <div class="inner">
 
     <div class="uses-category reveal">
-      <span class="cat-label">Hardware</span>
+      <span class="cat-label t-en">Hardware</span><span class="cat-label t-fr">Matériel</span>
       <div class="uses-item">
         <span class="item-name">PC</span>
-        <span class="item-desc">Main machine for coding, 3D printing and everything creative. Running Windows 11.</span>
+        <span class="item-desc t-en">Main machine for coding, 3D printing and everything creative. Running Windows 11.</span>
+        <span class="item-desc t-fr">Machine principale pour coder, imprimer en 3D et tout ce qui est créatif. Tourne sous Windows 11.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">Laptop</span>
-        <span class="item-desc">Used at school and on the go.</span>
+        <span class="item-desc t-en">Used at school and on the go.</span>
+        <span class="item-desc t-fr">Utilisé à l'école et en déplacement.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">3D Printer</span>
-        <span class="item-desc">For prototyping parts and enclosures for projects.</span>
+        <span class="item-desc t-en">For prototyping parts and enclosures for projects.</span>
+        <span class="item-desc t-fr">Pour prototyper des pièces et boîtiers de projets.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">Arduino</span>
-        <span class="item-desc">The backbone of most embedded projects, including Robot J4.</span>
+        <span class="item-desc t-en">The backbone of most embedded projects, including Robot J4.</span>
+        <span class="item-desc t-fr">La colonne vertébrale de la plupart des projets embarqués, dont Robot J4.</span>
       </div>
     </div>
 
     <div class="uses-category reveal">
-      <span class="cat-label">Coding</span>
+      <span class="cat-label t-en">Coding</span><span class="cat-label t-fr">Code</span>
       <div class="uses-item">
         <span class="item-name"><a href="https://code.visualstudio.com" target="_blank" rel="noopener">VS Code</a></span>
-        <span class="item-desc">Main editor for HTML, CSS, JavaScript and Python.</span>
+        <span class="item-desc t-en">Main editor for HTML, CSS, JavaScript and Python.</span>
+        <span class="item-desc t-fr">Éditeur principal pour HTML, CSS, JavaScript et Python.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">Pyzo</span>
-        <span class="item-desc">Python IDE used at school for quick scripts and data analysis.</span>
+        <span class="item-desc t-en">Python IDE used at school for quick scripts and data analysis.</span>
+        <span class="item-desc t-fr">IDE Python utilisé à l'école pour des scripts rapides et l'analyse de données.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">Python</span>
-        <span class="item-desc">Main language. Robotics, image processing with OpenCV, PDF generation and automation scripts.</span>
+        <span class="item-desc t-en">Main language. Robotics, image processing with OpenCV, PDF generation and automation scripts.</span>
+        <span class="item-desc t-fr">Langage principal. Robotique, traitement d'image avec OpenCV, génération de PDF et scripts d'automatisation.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">Arduino (C++)</span>
-        <span class="item-desc">Microcontroller programming and serial communication with Python.</span>
+        <span class="item-desc t-en">Microcontroller programming and serial communication with Python.</span>
+        <span class="item-desc t-fr">Programmation de microcontrôleurs et communication série avec Python.</span>
       </div>
       <div class="uses-item">
         <span class="item-name">HTML / CSS / JS</span>
-        <span class="item-desc">Everything on this site is plain HTML, CSS and vanilla JavaScript. No framework.</span>
+        <span class="item-desc t-en">Everything on this site is plain HTML, CSS and vanilla JavaScript. No framework.</span>
+        <span class="item-desc t-fr">Tout sur ce site est en HTML, CSS et JavaScript pur. Sans framework.</span>
       </div>
       <div class="uses-item">
         <span class="item-name"><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></span>
-        <span class="item-desc">Version control and portfolio hosting.</span>
+        <span class="item-desc t-en">Version control and portfolio hosting.</span>
+        <span class="item-desc t-fr">Contrôle de version et hébergement du portfolio.</span>
       </div>
     </div>
 
@@ -125,43 +139,51 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
       <span class="cat-label">Design</span>
       <div class="uses-item">
         <span class="item-name"><a href="https://www.adobe.com/products/firefly.html" target="_blank" rel="noopener">Adobe Firefly</a></span>
-        <span class="item-desc">AI image generation for concept work and character consistency workflows.</span>
+        <span class="item-desc t-en">AI image generation for concept work and character consistency workflows.</span>
+        <span class="item-desc t-fr">Génération d'images par IA pour le travail de concept et la cohérence des personnages.</span>
       </div>
       <div class="uses-item">
         <span class="item-name"><a href="https://www.raise3d.com/ideamaker/" target="_blank" rel="noopener">IdeaMaker</a></span>
-        <span class="item-desc">Slicer for 3D printing. Used to prepare and optimize models.</span>
+        <span class="item-desc t-en">Slicer for 3D printing. Used to prepare and optimize models.</span>
+        <span class="item-desc t-fr">Slicer pour impression 3D. Utilisé pour préparer et optimiser les modèles.</span>
       </div>
     </div>
 
     <div class="uses-category reveal">
-      <span class="cat-label">Robotics</span>
+      <span class="cat-label t-en">Robotics</span><span class="cat-label t-fr">Robotique</span>
       <div class="uses-item">
         <span class="item-name">OpenCV</span>
-        <span class="item-desc">Computer vision library used for real-time board state recognition in Robot J4.</span>
+        <span class="item-desc t-en">Computer vision library used for real-time board state recognition in Robot J4.</span>
+        <span class="item-desc t-fr">Bibliothèque de vision par ordinateur utilisée pour la reconnaissance en temps réel du plateau dans Robot J4.</span>
       </div>
       <div class="uses-item">
         <span class="item-name"><a href="https://www.robomaster.com" target="_blank" rel="noopener">DJI RoboMaster EP Core</a></span>
-        <span class="item-desc">Educational robotics platform used for autonomous mission programming at school.</span>
+        <span class="item-desc t-en">Educational robotics platform used for autonomous mission programming at school.</span>
+        <span class="item-desc t-fr">Plateforme de robotique éducative utilisée pour programmer des missions autonomes à l'école.</span>
       </div>
     </div>
 
     <div class="uses-category reveal">
-      <span class="cat-label">This site</span>
+      <span class="cat-label t-en">This site</span><span class="cat-label t-fr">Ce site</span>
       <div class="uses-item">
         <span class="item-name">Plain HTML / CSS / JS</span>
-        <span class="item-desc">No framework, no build step, no dependencies. Every page is a self-contained file.</span>
+        <span class="item-desc t-en">No framework, no build step, no dependencies. Every page is a self-contained file.</span>
+        <span class="item-desc t-fr">Sans framework, sans étape de build, sans dépendance. Chaque page est un fichier autonome.</span>
       </div>
       <div class="uses-item">
         <span class="item-name"><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a></span>
-        <span class="item-desc">Playfair Display for headings, Inter for body text.</span>
+        <span class="item-desc t-en">Playfair Display for headings, Inter for body text.</span>
+        <span class="item-desc t-fr">Playfair Display pour les titres, Inter pour le corps de texte.</span>
       </div>
       <div class="uses-item">
         <span class="item-name"><a href="https://www.netlify.com" target="_blank" rel="noopener">Netlify</a></span>
-        <span class="item-desc">Free hosting, automatic deploys from GitHub, handles 404 natively.</span>
+        <span class="item-desc t-en">Free hosting, automatic deploys from GitHub, handles 404 natively.</span>
+        <span class="item-desc t-fr">Hébergement gratuit, déploiements automatiques depuis GitHub, gère nativement les 404.</span>
       </div>
       <div class="uses-item">
         <span class="item-name"><a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener">Ko-fi</a></span>
-        <span class="item-desc">Digital product sales. Handles payments and instant file delivery.</span>
+        <span class="item-desc t-en">Digital product sales. Handles payments and instant file delivery.</span>
+        <span class="item-desc t-fr">Vente de produits numériques. Gère les paiements et la livraison instantanée des fichiers.</span>
       </div>
     </div>
 
