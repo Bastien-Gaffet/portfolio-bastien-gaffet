@@ -27,19 +27,21 @@
 //   noFooter : true            — hide the site footer entirely
 // ══════════════════════════════════════════════════════════════════════════
 const PAGE_CONFIG = {
-  // Pages with no nav and no footer
-  'links':                    { noNav: true,  noFooter: true },
+  // Pages with no nav and no footer.
+  // langToggle: true opts a chrome-free page back into the language switcher.
+  'links':                    { noNav: true,  noFooter: true, langToggle: true },
   'secret':                   { noNav: true,  noFooter: true },
-  // Pages with a back-nav top-left (project/product/post pages)
-  'project/robotj4':          { backNav: { href: '/work', label: 'Work' } },
-  'project/tourny':           { backNav: { href: '/work', label: 'Work' } },
-  'project/glacify':          { backNav: { href: '/work', label: 'Work' } },
-  'project/kairoo':           { backNav: { href: '/work', label: 'Work' } },
-  'project/krino':            { backNav: { href: '/work', label: 'Work' } },
-  'project/cdp-scraper':      { backNav: { href: '/work', label: 'Work' } },
-  'product/cosmos-wallpaper': { backNav: { href: '/shop', label: 'Shop' } },
+  // Pages with a back-nav top-left (project/product/post pages).
+  // The language toggle rides along inside .back-nav on these.
+  'project/robotj4':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/tourny':           { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/glacify':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/kairoo':           { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/krino':            { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/cdp-scraper':      { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'product/cosmos-wallpaper': { backNav: { href: '/shop', label: 'Shop', labelFr: 'Boutique' } },
   // Blog posts — add as you publish:
-  // 'notes/post-slug':        { backNav: { href: '/blog', label: 'Notes' } },
+  // 'notes/post-slug':        { backNav: { href: '/blog', label: 'Notes', labelFr: 'Notes' } },
 };
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -111,12 +113,19 @@ window.setLang = function(lang) {
   document.querySelectorAll('.lang-indicator').forEach(ind => ind.classList.toggle('fr', fr));
 };
 
-// Sliding pill toggle top-left, glass, disparaît après un court scroll — pages principales seulement
-if (!config.noNav && !config.backNav) {
-  const _isFr = _langPref === 'fr';
+// The glass EN/FR capsule. Same markup everywhere; only its placement changes.
+function _langToggleHTML() {
+  const fr = _langPref === 'fr';
+  return `<div class="lang-toggle-wrap"><span class="lang-indicator${fr ? ' fr' : ''}"></span><button class="lang-opt${!fr ? ' active' : ''}" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-opt${fr ? ' active' : ''}" data-lang="fr" onclick="setLang('fr')">FR</button></div>`;
+}
+
+// Standalone pill, fixed top-left, fades out after a short scroll.
+// Skipped on back-nav pages: the back link already occupies that exact spot,
+// so there the toggle is injected inline into .back-nav instead (see NAV below).
+if (!config.backNav && (!config.noNav || config.langToggle)) {
   const _pill = document.createElement('div');
   _pill.id = 'lang-pill';
-  _pill.innerHTML = `<div class="lang-toggle-wrap"><span class="lang-indicator${_isFr ? ' fr' : ''}"></span><button class="lang-opt${!_isFr ? ' active' : ''}" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-opt${_isFr ? ' active' : ''}" data-lang="fr" onclick="setLang('fr')">FR</button></div>`;
+  _pill.innerHTML = _langToggleHTML();
   document.body.insertBefore(_pill, document.body.firstChild);
   let _pillHidden = false;
   window.addEventListener('scroll', () => {
@@ -229,11 +238,16 @@ if (!config.noNav) {
   });
 }
 
-// Back nav (top-left) for project/product/post pages
+// Back nav (top-left) for project/product/post pages.
+// Carries the language toggle inline, since the standalone pill is skipped here.
 if (config.backNav) {
   const back = document.createElement('div');
   back.className = 'back-nav';
-  back.innerHTML = `<a href="${config.backNav.href}" class="back-link">← ${config.backNav.label}</a>`;
+  const _bn = config.backNav;
+  const _backLabel = _bn.labelFr
+    ? `<span class="t-en">${_bn.label}</span><span class="t-fr">${_bn.labelFr}</span>`
+    : _bn.label;
+  back.innerHTML = `<a href="${_bn.href}" class="back-link">← ${_backLabel}</a>` + _langToggleHTML();
   document.body.insertBefore(back, document.body.firstChild);
 }
 

@@ -35,7 +35,9 @@
 .nav-search-btn svg { width: 12px; height: 12px; }
 
 /* ── BACK NAV (top-left) ── */
-.back-nav { position: fixed; top: 0; left: 0; z-index: 100; padding: 2rem 2.5rem; }
+/* On project/product pages the language toggle sits inline here, next to the
+   back link, because #lang-pill would otherwise land on the exact same spot. */
+.back-nav { position: fixed; top: 0; left: 0; z-index: 100; padding: 2rem 2.5rem; display: flex; align-items: center; gap: 1.1rem; }
 .back-link {
   display: inline-flex; align-items: center; gap: 0.4rem;
   color: oklch(55% 0.01 250); text-decoration: none;
@@ -44,6 +46,11 @@
   transition: color 0.2s;
 }
 .back-link:hover { color: oklch(96% 0.005 250); }
+/* Keep the back link + language toggle compact so they leave room for the nav. */
+@media(max-width:600px){
+  .back-nav { padding: 1.5rem; gap: 0.7rem; }
+  .back-nav .lang-opt { min-width: 36px; padding: 0.4rem 0.6rem; }
+}
 
 /* ── SITE FOOTER ── */
 #site-footer {
