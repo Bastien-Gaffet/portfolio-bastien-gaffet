@@ -142,9 +142,15 @@ body {
   <!-- LEFT -->
   <div id="left">
     <p class="page-eyebrow reveal">Contact</p>
-    <h1 class="page-title reveal d1">Let's <em>connect</em></h1>
-    <p class="page-desc reveal d2">
-      Whether you have a question about my projects, want to collaborate, or just want to say hello — my inbox is open.
+    <h1 class="page-title reveal d1">
+      <span class="t-en">Let's <em>connect</em></span>
+      <span class="t-fr">Restons <em>en contact</em></span>
+    </h1>
+    <p class="page-desc reveal d2 t-en">
+      Whether you have a question about my projects, want to collaborate, or just want to say hello, my inbox is open.
+    </p>
+    <p class="page-desc reveal d2 t-fr">
+      Que vous ayez une question sur mes projets, une envie de collaborer, ou juste envie de dire bonjour, ma messagerie est ouverte.
     </p>
 
     <div class="contact-links">
@@ -183,12 +189,14 @@ body {
 
   <!-- RIGHT -->
   <div id="right">
-    <p class="form-eyebrow reveal d1">Send a message</p>
+    <p class="form-eyebrow reveal d1 t-en">Send a message</p>
+    <p class="form-eyebrow reveal d1 t-fr">Envoyer un message</p>
 
     <form id="contact-form" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group reveal d2">
-          <label class="form-label" for="name">Name</label>
+          <label class="form-label t-en" for="name">Name</label>
+          <label class="form-label t-fr" for="name">Nom</label>
           <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
         </div>
         <div class="form-group reveal d2">
@@ -197,7 +205,8 @@ body {
         </div>
       </div>
       <div class="form-group reveal d3">
-        <label class="form-label" for="subject">Subject</label>
+        <label class="form-label t-en" for="subject">Subject</label>
+        <label class="form-label t-fr" for="subject">Sujet</label>
         <input class="form-input" type="text" id="subject" name="subject" placeholder="What is this about?">
       </div>
       <div class="form-group reveal d3">
@@ -206,7 +215,7 @@ body {
       </div>
       <div class="reveal d4">
         <button class="btn-send" type="submit">
-          Send
+          <span class="t-en">Send</span><span class="t-fr">Envoyer</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
         <p id="form-status"></p>
@@ -232,7 +241,7 @@ function handleSubmit(e) {
   // Opens mail client with prefilled fields — no server needed
   const mailto = `mailto:votre@email.com?subject=${encodeURIComponent(data.subject || 'Message from ' + data.name)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
   window.location.href = mailto;
-  status.textContent = 'Opening your mail client...';
+  status.textContent = document.documentElement.classList.contains('lang-fr') ? 'Ouverture de votre messagerie...' : 'Opening your mail client...';
   status.className = 'ok';
   setTimeout(() => { status.textContent = ''; status.className = ''; }, 4000);
 }
