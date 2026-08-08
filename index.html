@@ -311,13 +311,16 @@ main { position: relative; z-index: 1; }
   <!-- ACT 01 — HERO -->
   <section class="act" id="act-01" data-screen-label="01 Hero">
     <div class="narrow">
-      <p class="act-label reveal">CPGE PCSI · Future Engineer</p>
+      <p class="act-label reveal t-en">CPGE PCSI · Future Engineer</p>
+      <p class="act-label reveal t-fr">CPGE PCSI · Futur ingénieur</p>
       <h1 class="hero-name reveal reveal-delay-1">Bastien<br>Gaffet</h1>
-      <p class="hero-sub reveal reveal-delay-2">Future Engineer &nbsp;•&nbsp; Creative Builder &nbsp;•&nbsp; System Explorer</p>
-      <p class="hero-tagline reveal reveal-delay-3">"I design systems where engineering meets curiosity."</p>
+      <p class="hero-sub reveal reveal-delay-2 t-en">Future Engineer &nbsp;•&nbsp; Creative Builder &nbsp;•&nbsp; System Explorer</p>
+      <p class="hero-sub reveal reveal-delay-2 t-fr">Futur ingénieur &nbsp;•&nbsp; Créateur &nbsp;•&nbsp; Explorateur de systèmes</p>
+      <p class="hero-tagline reveal reveal-delay-3 t-en">"I design systems where engineering meets curiosity."</p>
+      <p class="hero-tagline reveal reveal-delay-3 t-fr">« Je conçois des systèmes où l'ingénierie rencontre la curiosité. »</p>
     </div>
     <div class="scroll-cue reveal reveal-delay-4">
-      <span>Scroll</span>
+      <span class="t-en">Scroll</span><span class="t-fr">Défiler</span>
       <div class="scroll-line"></div>
     </div>
   </section>
@@ -325,16 +328,20 @@ main { position: relative; z-index: 1; }
   <!-- ACT 02 — ORIGINS -->
   <section class="act" id="act-02" data-screen-label="02 Origins">
     <div class="narrow">
-      <p class="act-label reveal">Act I / Origins</p>
-      <p class="act-quote reveal reveal-delay-1">"Before I became a builder, I was a curious observer of systems."</p>
+      <p class="act-label reveal t-en">Act I / Origins</p>
+      <p class="act-label reveal t-fr">Acte I / Origines</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"Before I became a builder, I was a curious observer of systems."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« Avant de devenir un créateur, j'étais un observateur curieux de systèmes. »</p>
     </div>
   </section>
 
   <!-- ACT 03 — PATTERNS (constellation fixed) -->
   <section class="act" id="act-03" data-screen-label="03 Patterns">
     <div class="patterns-text">
-      <p class="act-label reveal">Act II / Discovery</p>
-      <p class="act-quote reveal reveal-delay-1" style="text-align:left;">"I started seeing patterns everywhere: in logic, in games, in time, in people."</p>
+      <p class="act-label reveal t-en">Act II / Discovery</p>
+      <p class="act-label reveal t-fr">Acte II / Découverte</p>
+      <p class="act-quote reveal reveal-delay-1 t-en" style="text-align:left;">"I started seeing patterns everywhere: in logic, in games, in time, in people."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr" style="text-align:left;">« J'ai commencé à voir des motifs partout : dans la logique, dans les jeux, dans le temps, chez les gens. »</p>
     </div>
     <div class="patterns-nodes" id="nodes-wrap">
       <!-- Static SVG lines: endpoints match node CSS top/left + translate(-50%,-50%) -->
@@ -345,28 +352,31 @@ main { position: relative; z-index: 1; }
         <line class="c-line" x1="70%" y1="55%" x2="50%" y2="10%"/>
         <line class="c-line" x1="50%" y1="10%" x2="30%" y2="70%"/>
       </svg>
-      <div class="node" id="n0"><div class="node-dot"></div><span class="node-label">Astronomy</span></div>
-      <div class="node" id="n1"><div class="node-dot"></div><span class="node-label">Music</span></div>
-      <div class="node" id="n2"><div class="node-dot"></div><span class="node-label">Photography</span></div>
+      <div class="node" id="n0"><div class="node-dot"></div><span class="node-label t-en">Astronomy</span><span class="node-label t-fr">Astronomie</span></div>
+      <div class="node" id="n1"><div class="node-dot"></div><span class="node-label t-en">Music</span><span class="node-label t-fr">Musique</span></div>
+      <div class="node" id="n2"><div class="node-dot"></div><span class="node-label t-en">Photography</span><span class="node-label t-fr">Photographie</span></div>
       <div class="node" id="n3"><div class="node-dot"></div><span class="node-label">Volleyball</span></div>
-      <div class="node" id="n4"><div class="node-dot"></div><span class="node-label">Video Games</span></div>
-      <div class="node" id="n5"><div class="node-dot"></div><span class="node-label">Reading</span></div>
-      <div class="node" id="n6"><div class="node-dot"></div><span class="node-label">Developer</span></div>
+      <div class="node" id="n4"><div class="node-dot"></div><span class="node-label t-en">Video Games</span><span class="node-label t-fr">Jeux vidéo</span></div>
+      <div class="node" id="n5"><div class="node-dot"></div><span class="node-label t-en">Reading</span><span class="node-label t-fr">Lecture</span></div>
+      <div class="node" id="n6"><div class="node-dot"></div><span class="node-label t-en">Developer</span><span class="node-label t-fr">Développeur</span></div>
     </div>
   </section>
 
   <!-- ACT 04 — PROJECTS -->
   <section class="act" id="act-04" data-screen-label="04 Systems" style="flex-direction:column;align-items:center;">
     <div class="narrow" style="margin-bottom:3rem;">
-      <p class="act-label reveal">Act III / Creation</p>
-      <p class="act-quote reveal reveal-delay-1">"Then I started building systems."</p>
+      <p class="act-label reveal t-en">Act III / Creation</p>
+      <p class="act-label reveal t-fr">Acte III / Création</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"Then I started building systems."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« Puis j'ai commencé à construire des systèmes. »</p>
     </div>
     <div class="cards-wrap">
       <div class="proj-card tourny reveal reveal-delay-1">
         <span class="proj-num">01</span>
         <div class="proj-content">
           <h3 class="proj-name">Tourny</h3>
-          <p class="proj-narrative">"My first attempt to organize chaos into structure."</p>
+          <p class="proj-narrative t-en">"My first attempt to organize chaos into structure."</p>
+          <p class="proj-narrative t-fr">« Ma première tentative d'organiser le chaos en structure. »</p>
           <div class="proj-tags">
             <span class="tag">Sport Tournament System</span>
             <span class="tag">Data Architecture</span>
@@ -378,7 +388,8 @@ main { position: relative; z-index: 1; }
         <span class="proj-num">02</span>
         <div class="proj-content">
           <h3 class="proj-name">Glacify</h3>
-          <p class="proj-narrative">"Then I tried to design something more human, something felt, not just calculated."</p>
+          <p class="proj-narrative t-en">"Then I tried to design something more human, something felt, not just calculated."</p>
+          <p class="proj-narrative t-fr">« Puis j'ai essayé de concevoir quelque chose de plus humain, quelque chose de ressenti, pas seulement calculé. »</p>
           <div class="proj-tags">
             <span class="tag">Ice Cream App</span>
             <span class="tag">UX Design</span>
@@ -390,7 +401,8 @@ main { position: relative; z-index: 1; }
         <span class="proj-num">03</span>
         <div class="proj-content">
           <h3 class="proj-name">Kairoo</h3>
-          <p class="proj-narrative">"And that exploration became real: mirror hours turned into a full game, with rules, rewards and a community around it."</p>
+          <p class="proj-narrative t-en">"And that exploration became real: mirror hours turned into a full game, with rules, rewards and a community around it."</p>
+          <p class="proj-narrative t-fr">« Et cette exploration est devenue réelle : les heures miroir sont devenues un vrai jeu, avec des règles, des récompenses et une communauté autour. »</p>
           <div class="proj-tags">
             <span class="tag">Mirror Hours Game</span>
             <span class="tag">React Native</span>
@@ -404,28 +416,32 @@ main { position: relative; z-index: 1; }
   <!-- ACT 05 — IDENTITY -->
   <section class="act" id="act-05" data-screen-label="05 Identity" style="flex-direction:column;">
     <div class="narrow">
-      <p class="act-label reveal">Act IV / Identity</p>
-      <p class="act-quote reveal reveal-delay-1">"I am not just building applications. I am building ways to understand systems."</p>
+      <p class="act-label reveal t-en">Act IV / Identity</p>
+      <p class="act-label reveal t-fr">Acte IV / Identité</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"I am not just building applications. I am building ways to understand systems."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« Je ne construis pas seulement des applications. Je construis des façons de comprendre les systèmes. »</p>
     </div>
     <div class="identity-grid">
-      <div class="id-block reveal reveal-delay-2"><p class="id-title">Education</p><p class="id-value">CPGE PCSI</p></div>
-      <div class="id-block reveal reveal-delay-2"><p class="id-title">Mindset</p><p class="id-value">Curiosity-driven</p></div>
-      <div class="id-block reveal reveal-delay-3"><p class="id-title">Approach</p><p class="id-value">Builder &amp; Explorer</p></div>
-      <div class="id-block reveal reveal-delay-3"><p class="id-title">Thinking</p><p class="id-value">Structured &amp; Creative</p></div>
+      <div class="id-block reveal reveal-delay-2"><p class="id-title t-en">Education</p><p class="id-title t-fr">Formation</p><p class="id-value">CPGE PCSI</p></div>
+      <div class="id-block reveal reveal-delay-2"><p class="id-title t-en">Mindset</p><p class="id-title t-fr">État d'esprit</p><p class="id-value t-en">Curiosity-driven</p><p class="id-value t-fr">Guidé par la curiosité</p></div>
+      <div class="id-block reveal reveal-delay-3"><p class="id-title t-en">Approach</p><p class="id-title t-fr">Approche</p><p class="id-value t-en">Builder &amp; Explorer</p><p class="id-value t-fr">Créateur et explorateur</p></div>
+      <div class="id-block reveal reveal-delay-3"><p class="id-title t-en">Thinking</p><p class="id-title t-fr">Pensée</p><p class="id-value t-en">Structured &amp; Creative</p><p class="id-value t-fr">Structurée et créative</p></div>
     </div>
   </section>
 
   <!-- ACT 06 — REAL WORLD -->
   <section class="act" id="act-06" data-screen-label="06 Real World" style="flex-direction:column;">
     <div class="narrow" style="margin-bottom:2.5rem;">
-      <p class="act-label reveal">Act V / The Outside</p>
-      <p class="act-quote reveal reveal-delay-1">"I also observe the world, not just the systems I create."</p>
+      <p class="act-label reveal t-en">Act V / The Outside</p>
+      <p class="act-label reveal t-fr">Acte V / L'extérieur</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"I also observe the world, not just the systems I create."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« J'observe aussi le monde, pas seulement les systèmes que je crée. »</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal reveal-delay-1"><div class="gallery-stripe"></div><span class="gallery-label">Mobile Photography</span></div>
-      <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label">Guitar</span></div>
+      <div class="gallery-item reveal reveal-delay-1"><div class="gallery-stripe"></div><span class="gallery-label t-en">Mobile Photography</span><span class="gallery-label t-fr">Photographie mobile</span></div>
+      <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label t-en">Guitar</span><span class="gallery-label t-fr">Guitare</span></div>
       <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label">Volleyball</span></div>
-      <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label">Astronomy</span></div>
+      <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label t-en">Astronomy</span><span class="gallery-label t-fr">Astronomie</span></div>
       <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label">Exploration</span></div>
     </div>
   </section>
@@ -433,19 +449,25 @@ main { position: relative; z-index: 1; }
   <!-- ACT 07 — NOW -->
   <section class="act" id="act-07" data-screen-label="07 Now" style="flex-direction:column;">
     <div class="narrow" style="margin-bottom:2rem;">
-      <p class="act-label reveal">Act VI / Current State</p>
-      <p class="act-quote reveal reveal-delay-1">"Right now, I explore how matter, logic and systems interact."</p>
+      <p class="act-label reveal t-en">Act VI / Current State</p>
+      <p class="act-label reveal t-fr">Acte VI / État actuel</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"Right now, I explore how matter, logic and systems interact."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« En ce moment, j'explore comment la matière, la logique et les systèmes interagissent. »</p>
     </div>
     <div class="terminal reveal reveal-delay-2">
       <div class="terminal-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
       <div class="terminal-line">$ <span>whoami</span></div>
       <div class="terminal-line">→ Bastien Gaffet, CPGE PCSI</div>
       <div class="terminal-line" style="margin-top:.8rem">$ <span>current_project</span></div>
-      <div class="terminal-line">→ TIPE / epoxy resin research</div>
-      <div class="terminal-line">→ Mechanical analysis of composite structures</div>
+      <div class="terminal-line t-en">→ TIPE / epoxy resin research</div>
+      <div class="terminal-line t-fr">→ TIPE / recherche sur la résine époxy</div>
+      <div class="terminal-line t-en">→ Mechanical analysis of composite structures</div>
+      <div class="terminal-line t-fr">→ Analyse mécanique de structures composites</div>
       <div class="terminal-line" style="margin-top:.8rem">$ <span>learning</span></div>
-      <div class="terminal-line">→ Continuum mechanics</div>
-      <div class="terminal-line">→ Systems application development</div>
+      <div class="terminal-line t-en">→ Continuum mechanics</div>
+      <div class="terminal-line t-fr">→ Mécanique des milieux continus</div>
+      <div class="terminal-line t-en">→ Systems application development</div>
+      <div class="terminal-line t-fr">→ Développement d'applications systèmes</div>
       <div class="terminal-line" style="margin-top:.8rem">$ <span>status</span><span class="terminal-cursor"></span></div>
     </div>
   </section>
@@ -453,10 +475,15 @@ main { position: relative; z-index: 1; }
   <!-- DISSOLUTION -->
   <section class="act" id="act-dissolution" data-screen-label="08 Dissolution" style="flex-direction:column;min-height:60vh;">
     <div class="narrow">
-      <p class="dissolution-text reveal">
+      <p class="dissolution-text reveal t-en">
         "This is not the end of the story."
         <br><br>
         <span class="em">"It is where it becomes real."</span>
+      </p>
+      <p class="dissolution-text reveal t-fr">
+        « Ceci n'est pas la fin de l'histoire. »
+        <br><br>
+        <span class="em">« C'est là où elle devient réelle. »</span>
       </p>
     </div>
   </section>
@@ -471,9 +498,14 @@ main { position: relative; z-index: 1; }
       <span class="mem-word" style="left:74%">Kairoo</span>
     </div>
     <div class="reality-content">
-      <p class="reality-eyebrow blur-reveal">Reality Shift</p>
-      <h2 class="reality-heading blur-reveal br-d1">From story to systems</h2>
-      <p class="reality-sub blur-reveal br-d2">Ideas become implementations.</p>
+      <p class="reality-eyebrow blur-reveal t-en">Reality Shift</p>
+      <p class="reality-eyebrow blur-reveal t-fr">Changement de réalité</p>
+      <h2 class="reality-heading blur-reveal br-d1">
+        <span class="t-en">From story to systems</span>
+        <span class="t-fr">De l'histoire aux systèmes</span>
+      </h2>
+      <p class="reality-sub blur-reveal br-d2 t-en">Ideas become implementations.</p>
+      <p class="reality-sub blur-reveal br-d2 t-fr">Les idées deviennent des réalisations.</p>
     </div>
   </section>
 
@@ -481,12 +513,15 @@ main { position: relative; z-index: 1; }
   <section class="act" id="act-portal" data-screen-label="10 Portal" style="flex-direction:column;min-height:80vh;">
     <div class="reveal">
       <a class="portal-card" id="portal-link" href="/work">
-        <p class="portal-sub">Enter</p>
-        <p class="portal-title">WORK</p>
-        <p class="portal-sub">Projects &nbsp;·&nbsp; Systems &nbsp;·&nbsp; Engineering</p>
-        <div class="portal-cta">View Portfolio</div>
+        <p class="portal-sub t-en">Enter</p><p class="portal-sub t-fr">Entrer</p>
+        <p class="portal-title t-en">WORK</p><p class="portal-title t-fr">PROJETS</p>
+        <p class="portal-sub t-en">Projects &nbsp;·&nbsp; Systems &nbsp;·&nbsp; Engineering</p>
+        <p class="portal-sub t-fr">Projets &nbsp;·&nbsp; Systèmes &nbsp;·&nbsp; Ingénierie</p>
+        <div class="portal-cta t-en">View Portfolio</div>
+        <div class="portal-cta t-fr">Voir le portfolio</div>
       </a>
-      <p class="portal-micro">A structured view of what I build.</p>
+      <p class="portal-micro t-en">A structured view of what I build.</p>
+      <p class="portal-micro t-fr">Une vue structurée de ce que je construis.</p>
     </div>
   </section>
 

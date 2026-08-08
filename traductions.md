@@ -92,7 +92,7 @@ Mettre `t-en` / `t-fr` directement sur l'élément bloc — plus propre, pas de 
 | `404.html` | ✅ Traduit |
 | `work.html` | ✅ Traduit |
 | Nav + Footer | ✅ Traduit (via `components.js`) |
-| `index.html` (Story) | ⬜ À faire |
+| `index.html` (Story) | ✅ Traduit |
 | `about.html` | ✅ Traduit |
 | `project/robotj4.html` | ✅ Traduit |
 | `project/tourny.html` | ✅ Traduit |
@@ -106,7 +106,21 @@ Mettre `t-en` / `t-fr` directement sur l'élément bloc — plus propre, pas de 
 | `shop.html` | ✅ Traduit |
 | `timeline.html` | ✅ Traduit |
 | `universe.html` | ✅ Traduit |
-| `cv.html`, `contact.html`, `links.html`, `blog.html`, `changelog.html`, `press.html`, `secret.html`, `cosmos-demo.html`, `tipe.html`, `uses.html` | ⬜ À faire |
+| `cv.html` | ✅ Traduit |
+| `contact.html` | ✅ Traduit |
+| `links.html` | ✅ Traduit |
+| `blog.html` | ✅ Traduit |
+| `changelog.html` | ✅ Traduit |
+| `press.html` | ✅ Traduit |
+| `secret.html` | ✅ Traduit |
+| `cosmos-demo.html` | ✅ Traduit (page autonome, mécanisme de langue ajouté localement) |
+| `tipe.html` | ✅ Traduit |
+| `uses.html` | ✅ Traduit |
+
+Site entièrement traduit FR/EN au 2026-08-08. Hors périmètre volontairement :
+`nav-components.html` (page de démo interne), `og-tags.html` (utilitaire dev,
+non lié), `project-name-generator.html` (orphelin, non lié), et les fichiers
+`*-template.html` (bases à copier-coller, pas des pages publiques).
 
 Note : le 2026-08-07, tout le site est passé en URLs propres sans `.html`
 (Netlify résout `/about` vers `about.html` automatiquement). Les anciens
