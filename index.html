@@ -492,11 +492,7 @@ main { position: relative; z-index: 1; }
   <section class="act" id="act-reality" data-screen-label="09 Reality Shift">
     <div class="grid-arch"></div>
     <div class="reality-overlay"></div>
-    <div class="memory-words">
-      <span class="mem-word" style="left:12%">Tourny</span>
-      <span class="mem-word" style="left:52%">Glacify</span>
-      <span class="mem-word" style="left:74%">Kairoo</span>
-    </div>
+    <div class="memory-words" id="memory-words"></div>
     <div class="reality-content">
       <p class="reality-eyebrow blur-reveal t-en">Reality Shift</p>
       <p class="reality-eyebrow blur-reveal t-fr">Changement de réalité</p>
@@ -662,6 +658,19 @@ function animateConstellation() {
   requestAnimationFrame(animateConstellation);
 }
 animateConstellation();
+
+/* ══ MEMORY WORDS — add a project name here to include it in the Reality Shift animation ══ */
+const MEMORY_WORDS = ['Tourny', 'Glacify', 'Kairoo', 'Krino', 'cdp-scraper'];
+const memWrap = document.getElementById('memory-words');
+MEMORY_WORDS.forEach((word, i) => {
+  const span = document.createElement('span');
+  span.className = 'mem-word';
+  const left = MEMORY_WORDS.length > 1 ? 6 + i * (80 / (MEMORY_WORDS.length - 1)) : 46;
+  span.style.left = left + '%';
+  span.textContent = word;
+  memWrap.appendChild(span);
+});
+
 new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     const sec = document.getElementById('act-reality');
