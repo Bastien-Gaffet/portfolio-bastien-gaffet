@@ -105,13 +105,20 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 <div id="page">
   <header id="blog-header">
     <p class="page-eyebrow reveal">Notes</p>
-    <h1 class="page-title reveal">Things I <em>think about</em></h1>
-    <p class="page-desc reveal">Projects in progress, things I am learning, observations. One note per month, roughly.</p>
+    <h1 class="page-title reveal">
+      <span class="t-en">Things I <em>think about</em></span>
+      <span class="t-fr">Ce à quoi je <em>pense</em></span>
+    </h1>
+    <p class="page-desc reveal t-en">Projects in progress, things I am learning, observations. One note per month, roughly.</p>
+    <p class="page-desc reveal t-fr">Des projets en cours, des choses que j'apprends, des observations. Une note par mois, à peu près.</p>
   </header>
 
   <div id="filters" class="reveal"></div>
   <div id="articles"></div>
-  <div id="empty"><em>Nothing here yet.</em>Check back soon.</div>
+  <div id="empty">
+    <span class="t-en"><em>Nothing here yet.</em>Check back soon.</span>
+    <span class="t-fr"><em>Rien ici pour l'instant.</em>Revenez bientôt.</span>
+  </div>
 </div>
 
 
@@ -129,9 +136,11 @@ const ARTICLES = [
   {
     file:    'post-example.html',
     title:   'Welcome to my **notes**',
+    titleFr: 'Bienvenue dans mes **notes**',
     date:    'May 2025',
     tags:    ['Meta'],
     excerpt: 'A first note to explain what this space is and what I plan to write about.',
+    excerptFr: 'Une première note pour expliquer ce qu\'est cet espace et ce que je compte y écrire.',
     cover:   'your-cover-image.jpg', // optional — leave out or set to '' to show a placeholder
   },
   // Add more like this:
@@ -157,7 +166,7 @@ const allTags = ['All', ...new Set(ARTICLES.flatMap(a => a.tags))];
 allTags.forEach(tag => {
   const btn = document.createElement('button');
   btn.className = 'filter-btn' + (tag === 'All' ? ' active' : '');
-  btn.textContent = tag;
+  btn.innerHTML = tag === 'All' ? '<span class="t-en">All</span><span class="t-fr">Tout</span>' : tag;
   btn.addEventListener('click', () => {
     activeTag = tag;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -197,10 +206,13 @@ function renderArticles() {
           <span class="card-year" style="display:inline;opacity:.6"> ${year}</span>
         </div>
         <div class="card-tags">${art.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
-        <h2 class="card-title">${titleHTML(art.title)}</h2>
-        <p class="card-excerpt">${art.excerpt}</p>
+        <h2 class="card-title t-en">${titleHTML(art.title)}</h2>
+        <h2 class="card-title t-fr">${titleHTML(art.titleFr || art.title)}</h2>
+        <p class="card-excerpt t-en">${art.excerpt}</p>
+        <p class="card-excerpt t-fr">${art.excerptFr || art.excerpt}</p>
         <div class="card-footer">
-          <span class="card-read">Read</span>
+          <span class="card-read t-en">Read</span>
+          <span class="card-read t-fr">Lire</span>
           <span class="card-arrow">→</span>
         </div>
       </div>
