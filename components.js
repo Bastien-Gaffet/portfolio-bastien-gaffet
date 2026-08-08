@@ -249,6 +249,9 @@ if (config.backNav) {
     : _bn.label;
   back.innerHTML = `<a href="${_bn.href}" class="back-link">← ${_backLabel}</a>` + _langToggleHTML();
   document.body.insertBefore(back, document.body.firstChild);
+  // Lets the stylesheet know the top-left corner is taken, so the main nav can
+  // collapse to its search button on small screens instead of colliding.
+  document.body.classList.add('has-back-nav');
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -295,7 +298,7 @@ if (!config.noFooter) {
         <ul class="footer-links">
           <li><a href="/shop"><span class="t-en">Shop</span><span class="t-fr">Boutique</span></a></li>
           <li><a href="/product/cosmos-wallpaper">Cosmos Generator</a></li>
-          <li><a href="https://ko-fi.com/bastien_gft" target="_blank" rel="noopener">Ko-fi</a></li>
+          <li><a href="https://ko-fi.com/bastiengft" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
     </div>

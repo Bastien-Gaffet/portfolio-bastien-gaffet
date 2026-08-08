@@ -299,6 +299,38 @@ main { position: relative; z-index: 1; }
 }
 .portal-card:hover .portal-cta { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
 .portal-micro { font-size: 0.65rem; color: oklch(40% 0.01 250); letter-spacing: 0.1em; margin-top: 1.5rem; }
+
+/* ── RESPONSIVE (phone) ──
+   Story is the homepage, so it has to hold at 375px. Desktop is untouched;
+   this only relaxes the parts that actually overflowed. */
+@media(max-width:700px){
+  .act { padding: 5rem 1.25rem; }
+
+  /* French runs longer than English and 0.22em tracking pushed it past the edge */
+  .hero-sub { letter-spacing: 0.12em; margin-bottom: 2rem; }
+
+  /* #act-03 already wraps; 6rem of gap just left a hole between the two halves */
+  #act-03 { gap: 2.5rem; }
+  .patterns-text, .patterns-nodes { min-width: 0; }
+  .node-label { font-size: 0.6rem; letter-spacing: 0.1em; }
+
+  .identity-grid { gap: 0.7rem; }
+
+  /* Three columns left ~93px per cell, too narrow for labels like "Photographie mobile" */
+  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: 120px; grid-auto-rows: 120px; }
+  .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: auto; }
+  .gallery-item:nth-child(5) { grid-column: span 2; }
+
+  /* The longest line ("Mechanical analysis of composite structures") overflowed */
+  .terminal { padding: 1.25rem; font-size: 0.66rem; }
+
+  .portal-card { padding: 2.5rem 1.75rem; }
+  .portal-title { font-size: 2.2rem; }
+  .portal-sub { font-size: 0.6rem; letter-spacing: 0.2em; }
+
+  /* Spread the floating project names across the narrower viewport */
+  .mem-word { font-size: clamp(1.6rem, 9vw, 3rem); }
+}
 </style>
 </head>
 <body>
@@ -662,10 +694,15 @@ animateConstellation();
 /* ══ MEMORY WORDS — add a project name here to include it in the Reality Shift animation ══ */
 const MEMORY_WORDS = ['Tourny', 'Glacify', 'Kairoo', 'Krino', 'cdp-scraper'];
 const memWrap = document.getElementById('memory-words');
+// Narrower viewports get a tighter spread, otherwise the last names start
+// beyond the right edge and never actually show up.
+const _memNarrow = window.matchMedia('(max-width:700px)').matches;
+const _memStart  = _memNarrow ? 3 : 6;
+const _memSpread = _memNarrow ? 45 : 80;
 MEMORY_WORDS.forEach((word, i) => {
   const span = document.createElement('span');
   span.className = 'mem-word';
-  const left = MEMORY_WORDS.length > 1 ? 6 + i * (80 / (MEMORY_WORDS.length - 1)) : 46;
+  const left = MEMORY_WORDS.length > 1 ? _memStart + i * (_memSpread / (MEMORY_WORDS.length - 1)) : 46;
   span.style.left = left + '%';
   span.textContent = word;
   memWrap.appendChild(span);

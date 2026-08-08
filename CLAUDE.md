@@ -116,12 +116,29 @@ Hero elements are triggered on `load` with staggered `setTimeout` delays.
 
 Story is the narrative centerpiece and the homepage, served at `/`. Full-screen, no footer, different hero layout. Do not add a footer to this page. The cosmos is also different there (larger, denser). The file was `story.html` / `story-v6.html` before being renamed to `index.html` so it serves at the site root; the portal navigates to `/work` (was `work.html` / `work-v4.html`).
 
-## Placeholders not yet filled in
+## Real contact details
 
-These pages contain placeholder values the user hasn't replaced yet:
-- `contact.html`, `cv.html` — `votre@email.com`, `votre-username` for GitHub/LinkedIn
-- `about.html` — Ko-fi link placeholder (`YOUR_KOFI_USERNAME`)
+- Email: `bastien.gaffet@outlook.com`
+- GitHub: `https://github.com/Bastien-Gaffet`
+- Ko-fi: `https://ko-fi.com/bastiengft` (no underscore; an older `bastien_gft`
+  spelling was used across the site until 2026-08-08 and has been corrected)
 - Ko-fi goal: Canon EOS R6 Mark II for astrophotography
+
+## Placeholders still to fill before publishing
+
+- **LinkedIn** (`about.html`, `contact.html`, `cv.html`, `links.html`) and
+  **Instagram** (`links.html`) still point at `votre-username` /
+  `YOUR_LINKEDIN`. The accounts do not exist yet; the links are deliberately
+  left in place so they are not forgotten. Grep for `votre-username` and
+  `YOUR_LINKEDIN` to find them all.
+- **Images**: the repo only ships `og-image.png`. Referenced but missing:
+  the 7 carousel shots in `product/cosmos-wallpaper.html`, the shop thumbnail
+  in `shop.html`, `tipe-photo-1..4.jpg` in `tipe.html`, and
+  `your-cover-image.jpg` in `blog.html`.
+- **Photography**: `photography.html` still runs on 12 empty `src:''` entries
+  titled "Photo title" / "Location".
+- **Blog**: the single sample article points at `post-example.html`, which
+  does not exist.
 
 ## CV files
 

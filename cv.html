@@ -70,6 +70,12 @@ body {
 /* ══ TWO COLUMNS ══ */
 #cv-body { display: grid; grid-template-columns: 1fr 260px; gap: 4rem; }
 @media(max-width: 800px){ #cv-body { grid-template-columns: 1fr; } }
+/* Stack the name and the download buttons rather than squeezing them side by side */
+@media(max-width: 600px){
+  #cv-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2rem; }
+  .cv-actions { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+  .cv-role { letter-spacing: 0.12em; }
+}
 
 /* ══ SECTION ══ */
 .cv-section { margin-bottom: 3.5rem; }
@@ -360,7 +366,7 @@ body {
         <div class="section-line"></div>
         <div class="contact-item">
           <span class="contact-label">Email</span>
-          <span class="contact-value"><a href="mailto:votre@email.com">votre@email.com</a></span>
+          <span class="contact-value"><a href="mailto:bastien.gaffet@outlook.com">bastien.gaffet@outlook.com</a></span>
         </div>
         <div class="contact-item">
           <span class="contact-label t-en">Website</span><span class="contact-label t-fr">Site</span>
@@ -368,7 +374,7 @@ body {
         </div>
         <div class="contact-item">
           <span class="contact-label">GitHub</span>
-          <span class="contact-value"><a href="https://github.com/votre-username" target="_blank">github.com/votre-username</a></span>
+          <span class="contact-value"><a href="https://github.com/Bastien-Gaffet" target="_blank">github.com/Bastien-Gaffet</a></span>
         </div>
         <div class="contact-item">
           <span class="contact-label">LinkedIn</span>
