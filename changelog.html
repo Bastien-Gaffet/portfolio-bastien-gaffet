@@ -76,8 +76,12 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 <section id="hero">
   <div class="inner">
     <p class="hero-eyebrow reveal">Changelog</p>
-    <h1 class="hero-title reveal d1">What has <em>changed</em></h1>
-    <p class="hero-desc reveal d2">Updates to the site and digital products, most recent first.</p>
+    <h1 class="hero-title reveal d1">
+      <span class="t-en">What has <em>changed</em></span>
+      <span class="t-fr">Ce qui a <em>changé</em></span>
+    </h1>
+    <p class="hero-desc reveal d2 t-en">Updates to the site and digital products, most recent first.</p>
+    <p class="hero-desc reveal d2 t-fr">Mises à jour du site et des produits numériques, les plus récentes en premier.</p>
   </div>
 </section>
 
@@ -91,13 +95,20 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <p class="tl-date">May 2025</p>
         <div class="tl-body">
           <div class="tl-dot"></div>
-          <p class="tl-tag tag-site">Site</p>
-          <p class="tl-title">Navigation and search</p>
-          <ul class="tl-items">
+          <p class="tl-tag tag-site t-en">Site</p><p class="tl-tag tag-site t-fr">Site</p>
+          <p class="tl-title t-en">Navigation and search</p>
+          <p class="tl-title t-fr">Navigation et recherche</p>
+          <ul class="tl-items t-en">
             <li>Added rich footer with sitemap across all pages</li>
-            <li>Added command palette — press / to search all pages</li>
+            <li>Added command palette, press / to search all pages</li>
             <li>Added Press, Changelog, Uses, Blog, Shop, Links, Contact and CV pages</li>
             <li>Added photography page with carousel and bento grid</li>
+          </ul>
+          <ul class="tl-items t-fr">
+            <li>Ajout d'un pied de page enrichi avec plan du site sur toutes les pages</li>
+            <li>Ajout d'une palette de commandes, appuyer sur / pour rechercher parmi toutes les pages</li>
+            <li>Ajout des pages Press, Changelog, Uses, Blog, Shop, Links, Contact et CV</li>
+            <li>Ajout de la page photographie avec carrousel et grille bento</li>
           </ul>
         </div>
       </div>
@@ -106,9 +117,9 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <p class="tl-date">May 2025</p>
         <div class="tl-body">
           <div class="tl-dot"></div>
-          <p class="tl-tag tag-product">Product</p>
-          <p class="tl-title">Cosmos Wallpaper Generator — v2</p>
-          <ul class="tl-items">
+          <p class="tl-tag tag-product t-en">Product</p><p class="tl-tag tag-product t-fr">Produit</p>
+          <p class="tl-title">Cosmos Wallpaper Generator: v2</p>
+          <ul class="tl-items t-en">
             <li>Added 9 new object types: Supernova, Pulsar, Comet, Quasar, Cosmic Web, Planetary Nebula, Wormhole, Moon, Pillars of Creation</li>
             <li>Added MP4 video export with progress overlay</li>
             <li>Added WebM animated video export</li>
@@ -117,21 +128,14 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
             <li>Gravitational lensing on Black Hole and Wormhole</li>
             <li>Reorganized type selector into collapsible categories</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="tl-entry">
-        <p class="tl-date">April 2025</p>
-        <div class="tl-body">
-          <div class="tl-dot"></div>
-          <p class="tl-tag tag-new">Launch</p>
-          <p class="tl-title">Cosmos Wallpaper Generator — v1</p>
-          <ul class="tl-items">
-            <li>First public release on Ko-fi</li>
-            <li>Galaxy Spiral, Barred, Elliptic, Edge-on</li>
-            <li>Nebula, Black Hole, Star Field, Aurora, Planet, Star System, Constellation, Deep Void</li>
-            <li>PNG export in Desktop, 4K and Mobile resolution</li>
-            <li>Fully customizable colors, parameters and seed</li>
+          <ul class="tl-items t-fr">
+            <li>Ajout de 9 nouveaux types d'objets : Supernova, Pulsar, Comète, Quasar, Toile cosmique, Nébuleuse planétaire, Trou de ver, Lune, Piliers de la Création</li>
+            <li>Ajout de l'export vidéo MP4 avec overlay de progression</li>
+            <li>Ajout de l'export vidéo animée WebM</li>
+            <li>Correction de la visibilité des galaxies vues par la tranche et spirales barrées</li>
+            <li>Ajout de l'export 4K (3840x2160)</li>
+            <li>Lentille gravitationnelle sur Trou noir et Trou de ver</li>
+            <li>Réorganisation du sélecteur de type en catégories repliables</li>
           </ul>
         </div>
       </div>
@@ -140,13 +144,43 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <p class="tl-date">April 2025</p>
         <div class="tl-body">
           <div class="tl-dot"></div>
-          <p class="tl-tag tag-site">Site</p>
-          <p class="tl-title">Initial launch — bastiengaffet.fr</p>
-          <ul class="tl-items">
+          <p class="tl-tag tag-new t-en">Launch</p><p class="tl-tag tag-new t-fr">Lancement</p>
+          <p class="tl-title">Cosmos Wallpaper Generator: v1</p>
+          <ul class="tl-items t-en">
+            <li>First public release on Ko-fi</li>
+            <li>Galaxy Spiral, Barred, Elliptic, Edge-on</li>
+            <li>Nebula, Black Hole, Star Field, Aurora, Planet, Star System, Constellation, Deep Void</li>
+            <li>PNG export in Desktop, 4K and Mobile resolution</li>
+            <li>Fully customizable colors, parameters and seed</li>
+          </ul>
+          <ul class="tl-items t-fr">
+            <li>Première publication publique sur Ko-fi</li>
+            <li>Galaxie Spirale, Barrée, Elliptique, Vue par la tranche</li>
+            <li>Nébuleuse, Trou noir, Champ d'étoiles, Aurore, Planète, Système stellaire, Constellation, Vide profond</li>
+            <li>Export PNG en résolution Bureau, 4K et Mobile</li>
+            <li>Couleurs, paramètres et graine entièrement personnalisables</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <p class="tl-date">April 2025</p>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <p class="tl-tag tag-site t-en">Site</p><p class="tl-tag tag-site t-fr">Site</p>
+          <p class="tl-title t-en">Initial launch: bastiengaffet.fr</p>
+          <p class="tl-title t-fr">Lancement initial : bastiengaffet.fr</p>
+          <ul class="tl-items t-en">
             <li>Story, Work, About, Universe pages</li>
             <li>Robot J4 project page</li>
             <li>Cosmos background with animated stars on all pages</li>
             <li>Custom 404 page</li>
+          </ul>
+          <ul class="tl-items t-fr">
+            <li>Pages Story, Work, About, Universe</li>
+            <li>Page projet Robot J4</li>
+            <li>Fond cosmos avec étoiles animées sur toutes les pages</li>
+            <li>Page 404 personnalisée</li>
           </ul>
         </div>
       </div>
