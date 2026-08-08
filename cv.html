@@ -152,16 +152,17 @@ body {
   <header id="cv-header">
     <div>
       <h1 class="cv-name reveal">Bastien <em>Gaffet</em></h1>
-      <p class="cv-role reveal d1">Engineering Student / Creative Builder</p>
+      <p class="cv-role reveal d1 t-en">Engineering Student / Creative Builder</p>
+      <p class="cv-role reveal d1 t-fr">Étudiant ingénieur / Créateur</p>
     </div>
     <div class="cv-actions reveal d2">
-      <a href="cv-bastien-gaffet-en.pdf" download class="btn-dl">
+      <a href="/cv-bastien-gaffet-en.pdf" download class="btn-dl">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download EN
       </a>
-      <a href="cv-bastien-gaffet-fr.pdf" download class="btn-dl">
+      <a href="/cv-bastien-gaffet-fr.pdf" download class="btn-dl">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Telecharger FR
+        Télécharger FR
       </a>
     </div>
   </header>
@@ -173,16 +174,19 @@ body {
 
       <!-- PROFILE -->
       <section class="cv-section reveal d1">
-        <span class="section-label">Profile</span>
+        <span class="section-label t-en">Profile</span><span class="section-label t-fr">Profil</span>
         <div class="section-line"></div>
-        <p style="font-size:.85rem;color:var(--dim2);line-height:1.85;">
+        <p style="font-size:.85rem;color:var(--dim2);line-height:1.85;" class="t-en">
           Engineering student with a passion for building systems where mechanics, software and design converge. I approach every project with curiosity first and craft second. Comfortable moving between embedded hardware and interface design, between algorithm logic and physical execution. Always looking for the intersection where things work well and feel right.
+        </p>
+        <p style="font-size:.85rem;color:var(--dim2);line-height:1.85;" class="t-fr">
+          Étudiant ingénieur passionné par la construction de systèmes où mécanique, logiciel et design convergent. J'aborde chaque projet avec la curiosité d'abord, le soin ensuite. À l'aise entre matériel embarqué et design d'interface, entre logique algorithmique et exécution physique. Toujours à la recherche de l'intersection où les choses fonctionnent bien et semblent justes.
         </p>
       </section>
 
       <!-- EXPERIENCE -->
       <section class="cv-section reveal d2">
-        <span class="section-label">Experience</span>
+        <span class="section-label t-en">Experience</span><span class="section-label t-fr">Expérience</span>
         <div class="section-line"></div>
 
         <div class="cv-entry">
@@ -190,47 +194,71 @@ body {
             <h2 class="entry-title">Robot <em>J4</em></h2>
             <span class="entry-date">2024 / 2025</span>
           </div>
-          <p class="entry-sub">Robotics / AI / Computer Vision</p>
-          <ul class="entry-bullets">
+          <p class="entry-sub t-en">Robotics / AI / Computer Vision</p>
+          <p class="entry-sub t-fr">Robotique / IA / Vision par ordinateur</p>
+          <ul class="entry-bullets t-en">
             <li>Designed and built a robotic arm playing Connect Four autonomously against a human opponent.</li>
             <li>Minimax algorithm with custom heuristics for optimal decision-making up to depth 6.</li>
             <li>Python + OpenCV pipeline for real-time board state recognition via camera feed.</li>
             <li>Arduino UART serial link between the Python decision engine and the physical arm.</li>
           </ul>
+          <ul class="entry-bullets t-fr">
+            <li>Conception et construction d'un bras robotique jouant au Puissance 4 de façon autonome contre un adversaire humain.</li>
+            <li>Algorithme Minimax avec heuristiques personnalisées pour une prise de décision optimale jusqu'à une profondeur de 6.</li>
+            <li>Pipeline Python + OpenCV pour la reconnaissance en temps réel de l'état du plateau via flux caméra.</li>
+            <li>Liaison série Arduino UART entre le moteur de décision Python et le bras physique.</li>
+          </ul>
           <div class="source-links">
-            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS project page</a>
-            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/c-est-une-maniere-sympa-d-aborder-la-science-imagine-et-cree-a-tours-le-robot-j4-de-cinq-lyceens-de-vaucanson-prime-en-lettonie-1758727420" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
+            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link t-en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS project page</a>
+            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link t-fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Page du projet EUCYS</a>
+            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/c-est-une-maniere-sympa-d-aborder-la-science-imagine-et-cree-a-tours-le-robot-j4-de-cinq-lyceens-de-vaucanson-prime-en-lettonie-1758727420" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle République</a>
           </div>
         </div>
 
         <div class="cv-entry">
           <div class="entry-header">
-            <h2 class="entry-title">Classroom Construction, <em>Ourika Valley</em></h2>
+            <h2 class="entry-title t-en">Classroom Construction, <em>Ourika Valley</em></h2>
+            <h2 class="entry-title t-fr">Construction d'une salle de classe, <em>vallée de l'Ourika</em></h2>
             <span class="entry-date">2024</span>
           </div>
-          <p class="entry-sub">Humanitarian Project / Morocco</p>
-          <ul class="entry-bullets">
+          <p class="entry-sub t-en">Humanitarian Project / Morocco</p>
+          <p class="entry-sub t-fr">Projet humanitaire / Maroc</p>
+          <ul class="entry-bullets t-en">
             <li>Volunteered in a village near Chicker to build an additional classroom for a school unable to self-fund construction.</li>
             <li>Since 2016, Moroccan law requires school access from age 4. The existing room housed 40 primary students across 4 year levels simultaneously.</li>
             <li>On-site tasks: fabricating rebar from raw steel, stone-laying for foundations, trenching for toilet drainage, manual concrete mixing and slab pouring.</li>
             <li>Produced the initial architectural plans for the new classroom in collaboration with the local development association.</li>
           </ul>
+          <ul class="entry-bullets t-fr">
+            <li>Bénévolat dans un village près de Chicker pour construire une salle de classe supplémentaire pour une école incapable d'autofinancer la construction.</li>
+            <li>Depuis 2016, la loi marocaine impose la scolarisation dès 4 ans. La salle existante accueillait 40 élèves de primaire répartis sur 4 niveaux simultanément.</li>
+            <li>Tâches sur site : ferraillage à partir d'acier brut, pose de pierres pour les fondations, creusement de tranchées pour l'évacuation des sanitaires, malaxage manuel du béton et coulage de dalle.</li>
+            <li>Élaboration des plans architecturaux initiaux de la nouvelle salle de classe en collaboration avec l'association de développement locale.</li>
+          </ul>
           <div class="source-links">
-            <a href="https://www.vaucanson.org/mon-ecole-maternelle-au-maroc-debut-de-la-construction/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Debut construction</a>
+            <a href="https://www.vaucanson.org/mon-ecole-maternelle-au-maroc-debut-de-la-construction/" target="_blank" rel="noopener" class="source-link t-en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Debut construction</a>
+            <a href="https://www.vaucanson.org/mon-ecole-maternelle-au-maroc-debut-de-la-construction/" target="_blank" rel="noopener" class="source-link t-fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Début construction</a>
             <a href="https://www.vaucanson.org/restitution-du-projet-mon-ecole-maternelle-au-maroc/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Restitution du projet</a>
-            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/tours-avec-vauc-en-sciences-mission-accomplie-au-maroc-1741202013" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
+            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/tours-avec-vauc-en-sciences-mission-accomplie-au-maroc-1741202013" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle République</a>
           </div>
         </div>
 
         <div class="cv-entry">
           <div class="entry-header">
-            <h2 class="entry-title">Sports Club <em>Board Member</em></h2>
-            <span class="entry-date">2023 / Present</span>
+            <h2 class="entry-title t-en">Sports Club <em>Board Member</em></h2>
+            <h2 class="entry-title t-fr">Membre du bureau <em>d'un club sportif</em></h2>
+            <span class="entry-date t-en">2023 / Present</span>
+            <span class="entry-date t-fr">2023 / Aujourd'hui</span>
           </div>
-          <p class="entry-sub">Volunteering / Association Management</p>
-          <ul class="entry-bullets">
+          <p class="entry-sub t-en">Volunteering / Association Management</p>
+          <p class="entry-sub t-fr">Bénévolat / Gestion associative</p>
+          <ul class="entry-bullets t-en">
             <li>Member of a sports club board. Administrative management, event organisation and coordination between members and governing bodies.</li>
             <li>Collective responsibilities in a voluntary associative setting.</li>
+          </ul>
+          <ul class="entry-bullets t-fr">
+            <li>Membre du bureau d'un club sportif. Gestion administrative, organisation d'événements et coordination entre les membres et les instances dirigeantes.</li>
+            <li>Responsabilités collectives dans un cadre associatif bénévole.</li>
           </ul>
           <div class="source-links">
             <a href="https://www.eso-volley.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>ESO Volley</a>
@@ -240,66 +268,83 @@ body {
 
       <!-- EDUCATION -->
       <section class="cv-section reveal d3">
-        <span class="section-label">Education</span>
+        <span class="section-label t-en">Education</span><span class="section-label t-fr">Formation</span>
         <div class="section-line"></div>
 
         <div class="cv-entry">
           <div class="entry-header">
             <h2 class="entry-title">CPGE <em>PCSI</em></h2>
-            <span class="entry-date">2024 / Present</span>
+            <span class="entry-date t-en">2024 / Present</span>
+            <span class="entry-date t-fr">2024 / Aujourd'hui</span>
           </div>
-          <p class="entry-sub">Lycee Descartes, Tours</p>
-          <ul class="entry-bullets">
+          <p class="entry-sub">Lycée Descartes, Tours</p>
+          <ul class="entry-bullets t-en">
             <li>Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences.</li>
             <li>TIPE research on epoxy resin mechanical properties in composite structures under stress.</li>
           </ul>
+          <ul class="entry-bullets t-fr">
+            <li>Classes préparatoires aux grandes écoles d'ingénieurs. Physique, Chimie, Sciences de l'Ingénieur.</li>
+            <li>Recherche TIPE sur les propriétés mécaniques de la résine époxy dans des structures composites sous contrainte.</li>
+          </ul>
           <div class="source-links">
-            <a href="https://www.lyc-descartes.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Descartes</a>
+            <a href="https://www.lyc-descartes.fr/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycée Descartes</a>
           </div>
         </div>
 
         <div class="cv-entry">
           <div class="entry-header">
-            <h2 class="entry-title">French <em>Baccalaureat</em></h2>
+            <h2 class="entry-title t-en">French <em>Baccalaureat</em></h2>
+            <h2 class="entry-title t-fr">Baccalauréat <em>français</em></h2>
             <span class="entry-date">2024</span>
           </div>
-          <p class="entry-sub">Lycee Vaucanson, Tours</p>
-          <ul class="entry-bullets">
-            <li>Mention Tres Bien, felicitations du jury (highest honours with distinction).</li>
+          <p class="entry-sub">Lycée Vaucanson, Tours</p>
+          <ul class="entry-bullets t-en">
+            <li>Highest honours with distinction (Mention Tres Bien, felicitations du jury).</li>
             <li>Specialisations: Maths, Physique-Chimie, Maths Expertes.</li>
           </ul>
+          <ul class="entry-bullets t-fr">
+            <li>Mention Très Bien, félicitations du jury.</li>
+            <li>Spécialités : Mathématiques, Physique-Chimie, Mathématiques Expertes.</li>
+          </ul>
           <div class="source-links">
-            <a href="https://www.vaucanson.org/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Vaucanson</a>
+            <a href="https://www.vaucanson.org/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycée Vaucanson</a>
           </div>
         </div>
       </section>
 
       <!-- AWARDS -->
       <section class="cv-section reveal d4">
-        <span class="section-label">Awards</span>
+        <span class="section-label t-en">Awards</span><span class="section-label t-fr">Distinctions</span>
         <div class="section-line"></div>
         <div class="award-item">
-          <p class="award-title">Concours Cgenial, National Winner</p>
-          <p class="award-desc">First place at the national final, 2024. Leading French science and engineering competition for high school students.</p>
+          <p class="award-title t-en">Concours Cgenial, National Winner</p>
+          <p class="award-title t-fr">Concours Cgénial, lauréat national</p>
+          <p class="award-desc t-en">First place at the national final, 2024. Leading French science and engineering competition for high school students.</p>
+          <p class="award-desc t-fr">Première place à la finale nationale, 2024. Principale compétition française de sciences et d'ingénierie pour lycéens.</p>
           <div class="source-links">
             <a href="https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/252-concours-cgenial-2025" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Cgenial</a>
           </div>
         </div>
         <div class="award-item">
-          <p class="award-title">CERN European Prize, EUCYS Latvia</p>
-          <p class="award-desc">CERN European Prize at the European Union Contest for Young Scientists, Riga, 2025.</p>
+          <p class="award-title t-en">CERN European Prize, EUCYS Latvia</p>
+          <p class="award-title t-fr">Prix européen du CERN, EUCYS Lettonie</p>
+          <p class="award-desc t-en">CERN European Prize at the European Union Contest for Young Scientists, Riga, 2025.</p>
+          <p class="award-desc t-fr">Prix européen du CERN au Concours de l'Union européenne pour les jeunes scientifiques, Riga, 2025.</p>
           <div class="source-links">
             <a href="https://www.eucys2025.eu/en/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>EUCYS 2025</a>
-            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Project page</a>
-            <a href="https://www.sciencesalecole.org/concours-eucys-european-union-contest-for-young-scientists/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Sciences a l'ecole</a>
+            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link t-en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Project page</a>
+            <a href="https://www.eucys2025.eu/en/projects/robot-j4-a-robotic-arm-designed-to-play-connect-four-against-a-human-using-the-minimax-algorithm/" target="_blank" rel="noopener" class="source-link t-fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Page du projet</a>
+            <a href="https://www.sciencesalecole.org/concours-eucys-european-union-contest-for-young-scientists/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Sciences à l'école</a>
           </div>
         </div>
         <div class="award-item">
-          <p class="award-title">Chemistry Olympiad, Academic Final</p>
-          <p class="award-desc">Reached the academic final of the French Chemistry Olympiad, 2025.</p>
+          <p class="award-title t-en">Chemistry Olympiad, Academic Final</p>
+          <p class="award-title t-fr">Olympiades de Chimie, finale académique</p>
+          <p class="award-desc t-en">Reached the academic final of the French Chemistry Olympiad, 2025.</p>
+          <p class="award-desc t-fr">Finaliste académique des Olympiades de Chimie, 2025.</p>
           <div class="source-links">
-            <a href="https://www.vaucanson.org/olympiades-de-chimie-2025/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycee Vaucanson</a>
-            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/une-tourangelle-disputera-la-finale-des-olympiades-de-chimie-a-paris-1744124862" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle Republique</a>
+            <a href="https://www.vaucanson.org/olympiades-de-chimie-2025/" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lycée Vaucanson</a>
+            <a href="https://www.lanouvellerepublique.fr/indre-et-loire/une-tourangelle-disputera-la-finale-des-olympiades-de-chimie-a-paris-1744124862" target="_blank" rel="noopener" class="source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>La Nouvelle République</a>
           </div>
         </div>
       </section>
@@ -318,7 +363,7 @@ body {
           <span class="contact-value"><a href="mailto:votre@email.com">votre@email.com</a></span>
         </div>
         <div class="contact-item">
-          <span class="contact-label">Website</span>
+          <span class="contact-label t-en">Website</span><span class="contact-label t-fr">Site</span>
           <span class="contact-value"><a href="https://bastiengaffet.fr" target="_blank">bastiengaffet.fr</a></span>
         </div>
         <div class="contact-item">
@@ -333,15 +378,17 @@ body {
 
       <!-- SKILLS -->
       <div class="sidebar-block reveal d2">
-        <span class="section-label">Skills</span>
+        <span class="section-label t-en">Skills</span><span class="section-label t-fr">Compétences</span>
         <div class="section-line"></div>
-        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;">Languages</p>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;" class="t-en">Languages</p>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;" class="t-fr">Langages</p>
         <div class="tag-list" style="margin-bottom:1.2rem;">
           <span class="tag">Python</span>
           <span class="tag">Arduino (C++)</span>
           <span class="tag">HTML / CSS / JS</span>
         </div>
-        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;">Domains</p>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;" class="t-en">Domains</p>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;" class="t-fr">Domaines</p>
         <div class="tag-list">
           <span class="tag">Robotics</span>
           <span class="tag">Embedded</span>
@@ -353,19 +400,19 @@ body {
 
       <!-- LANGUAGES -->
       <div class="sidebar-block reveal d3">
-        <span class="section-label">Languages</span>
+        <span class="section-label t-en">Languages</span><span class="section-label t-fr">Langues</span>
         <div class="section-line"></div>
         <div class="lang-item">
           <div class="lang-header">
-            <span class="lang-name">French</span>
-            <span class="lang-level">Native</span>
+            <span class="lang-name t-en">French</span><span class="lang-name t-fr">Français</span>
+            <span class="lang-level t-en">Native</span><span class="lang-level t-fr">Langue maternelle</span>
           </div>
           <div class="lang-bar"><div class="lang-fill" data-width="100"></div></div>
         </div>
         <div class="lang-item">
           <div class="lang-header">
-            <span class="lang-name">English</span>
-            <span class="lang-level">Fluent, professional</span>
+            <span class="lang-name t-en">English</span><span class="lang-name t-fr">Anglais</span>
+            <span class="lang-level t-en">Fluent, professional</span><span class="lang-level t-fr">Courant, niveau professionnel</span>
           </div>
           <div class="lang-bar"><div class="lang-fill" data-width="75"></div></div>
         </div>
@@ -373,7 +420,7 @@ body {
 
       <!-- INTERESTS -->
       <div class="sidebar-block reveal d4">
-        <span class="section-label">Interests</span>
+        <span class="section-label t-en">Interests</span><span class="section-label t-fr">Centres d'intérêt</span>
         <div class="section-line"></div>
         <div class="tag-list">
           <span class="tag">Astrophotography</span>
