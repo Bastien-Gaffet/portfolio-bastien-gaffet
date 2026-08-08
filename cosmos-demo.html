@@ -70,63 +70,74 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;heigh
 .preview-info{font-size:.6rem;color:var(--dim);font-family:var(--mono);}
 /* Watermark on canvas */
 #watermark{position:absolute;bottom:.6rem;right:.8rem;font-family:var(--mono);font-size:.55rem;color:rgba(255,255,255,.18);pointer-events:none;letter-spacing:.08em;}
+/* Language (mirrors components.css, this page is standalone) */
+.t-fr{display:none;}
+.lang-fr .t-en{display:none;}
+.lang-fr .t-fr{display:revert;}
 </style>
 </head>
 <body>
+<script>if (localStorage.getItem('lang') === 'fr') document.documentElement.classList.add('lang-fr');</script>
 <div id="panel">
   <div class="panel-header">
-    <p class="panel-eyebrow">Free Demo</p>
+    <p class="panel-eyebrow t-en">Free Demo</p><p class="panel-eyebrow t-fr">Démo gratuite</p>
     <p class="panel-title">Wallpaper Generator</p>
-    <p class="panel-sub">Galaxy Spiral preview. Full version unlocks 20+ types and all export formats.</p>
+    <p class="panel-sub t-en">Galaxy Spiral preview. Full version unlocks 20+ types and all export formats.</p>
+    <p class="panel-sub t-fr">Aperçu Galaxie Spirale. La version complète débloque plus de 20 types et tous les formats d'export.</p>
   </div>
 
   <div class="section">
-    <p class="section-label">Colors</p>
+    <p class="section-label t-en">Colors</p><p class="section-label t-fr">Couleurs</p>
     <div class="color-row">
       <div class="color-swatch-wrap"><div class="color-swatch" id="swatch1"></div><input type="color" id="color1" value="#7C3FFF"></div>
-      <div><div class="color-label">Primary</div><div class="color-hex" id="hex1">#7C3FFF</div></div>
+      <div><div class="color-label t-en">Primary</div><div class="color-label t-fr">Primaire</div><div class="color-hex" id="hex1">#7C3FFF</div></div>
     </div>
     <div class="color-row">
       <div class="color-swatch-wrap"><div class="color-swatch" id="swatch2"></div><input type="color" id="color2" value="#1A3A80"></div>
-      <div><div class="color-label">Secondary</div><div class="color-hex" id="hex2">#1A3A80</div></div>
+      <div><div class="color-label t-en">Secondary</div><div class="color-label t-fr">Secondaire</div><div class="color-hex" id="hex2">#1A3A80</div></div>
     </div>
     <div class="color-row">
       <div class="color-swatch-wrap"><div class="color-swatch" id="swatch3"></div><input type="color" id="color3" value="#05060A"></div>
-      <div><div class="color-label">Background</div><div class="color-hex" id="hex3">#05060A</div></div>
+      <div><div class="color-label t-en">Background</div><div class="color-label t-fr">Fond</div><div class="color-hex" id="hex3">#05060A</div></div>
     </div>
-    <p class="section-label" style="margin-top:.9rem">Presets</p>
+    <p class="section-label t-en" style="margin-top:.9rem">Presets</p>
+    <p class="section-label t-fr" style="margin-top:.9rem">Préréglages</p>
     <div class="preset-row" id="presets"></div>
   </div>
 
   <div class="section">
-    <p class="section-label">Parameters</p>
-    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Star density</span><span class="slider-val" id="v-density">60</span></div><input type="range" id="s-density" min="10" max="100" value="60"></div>
-    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Nebula intensity</span><span class="slider-val" id="v-nebula">70</span></div><input type="range" id="s-nebula" min="0" max="100" value="70"></div>
-    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Glow radius</span><span class="slider-val" id="v-glow">60</span></div><input type="range" id="s-glow" min="10" max="100" value="60"></div>
-    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Brightness</span><span class="slider-val" id="v-bright">65</span></div><input type="range" id="s-bright" min="10" max="100" value="65"></div>
-    <div class="slider-wrap"><div class="slider-header"><span class="slider-name">Dust / haze</span><span class="slider-val" id="v-dust">40</span></div><input type="range" id="s-dust" min="0" max="100" value="40"></div>
-    <div class="check-row" onclick="toggleCheck('c-anim')"><div class="check-box on" id="c-anim-box"></div><span class="check-label">Animate preview</span></div>
-    <div class="check-row" onclick="toggleCheck('c-vignette')"><div class="check-box on" id="c-vignette-box"></div><span class="check-label">Vignette</span></div>
-    <div class="check-row" onclick="toggleCheck('c-grain')"><div class="check-box on" id="c-grain-box"></div><span class="check-label">Film grain</span></div>
+    <p class="section-label t-en">Parameters</p><p class="section-label t-fr">Paramètres</p>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name t-en">Star density</span><span class="slider-name t-fr">Densité d'étoiles</span><span class="slider-val" id="v-density">60</span></div><input type="range" id="s-density" min="10" max="100" value="60"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name t-en">Nebula intensity</span><span class="slider-name t-fr">Intensité de la nébuleuse</span><span class="slider-val" id="v-nebula">70</span></div><input type="range" id="s-nebula" min="0" max="100" value="70"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name t-en">Glow radius</span><span class="slider-name t-fr">Rayon de lueur</span><span class="slider-val" id="v-glow">60</span></div><input type="range" id="s-glow" min="10" max="100" value="60"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name t-en">Brightness</span><span class="slider-name t-fr">Luminosité</span><span class="slider-val" id="v-bright">65</span></div><input type="range" id="s-bright" min="10" max="100" value="65"></div>
+    <div class="slider-wrap"><div class="slider-header"><span class="slider-name t-en">Dust / haze</span><span class="slider-name t-fr">Poussière / brume</span><span class="slider-val" id="v-dust">40</span></div><input type="range" id="s-dust" min="0" max="100" value="40"></div>
+    <div class="check-row" onclick="toggleCheck('c-anim')"><div class="check-box on" id="c-anim-box"></div><span class="check-label t-en">Animate preview</span><span class="check-label t-fr">Animer l'aperçu</span></div>
+    <div class="check-row" onclick="toggleCheck('c-vignette')"><div class="check-box on" id="c-vignette-box"></div><span class="check-label t-en">Vignette</span><span class="check-label t-fr">Vignettage</span></div>
+    <div class="check-row" onclick="toggleCheck('c-grain')"><div class="check-box on" id="c-grain-box"></div><span class="check-label t-en">Film grain</span><span class="check-label t-fr">Grain de film</span></div>
   </div>
 
   <div class="dl-section">
-    <p class="dl-label">Download preview (720p)</p>
-    <button class="btn-dl" onclick="downloadDemo()">Save image<span>1280×720</span></button>
+    <p class="dl-label t-en">Download preview (720p)</p>
+    <p class="dl-label t-fr">Télécharger l'aperçu (720p)</p>
+    <button class="btn-dl" onclick="downloadDemo()"><span class="t-en">Save image</span><span class="t-fr">Enregistrer l'image</span><span>1280×720</span></button>
   </div>
 
   <div class="demo-banner">
-    <p class="demo-badge">Full version</p>
-    <p class="demo-text">20+ object types, 4K export, MP4 video, randomizer and more.</p>
-    <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" class="demo-cta">Get it on Ko-fi — €4</a>
+    <p class="demo-badge t-en">Full version</p><p class="demo-badge t-fr">Version complète</p>
+    <p class="demo-text t-en">20+ object types, 4K export, MP4 video, randomizer and more.</p>
+    <p class="demo-text t-fr">Plus de 20 types d'objets, export 4K, vidéo MP4, générateur aléatoire et plus encore.</p>
+    <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" class="demo-cta t-en">Get it on Ko-fi, €4</a>
+    <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" class="demo-cta t-fr">Obtenir sur Ko-fi, 4€</a>
   </div>
 </div>
 
 <div id="preview">
-  <p class="preview-label">Galaxy Spiral — Demo</p>
+  <p class="preview-label t-en">Galaxy Spiral, Demo</p>
+  <p class="preview-label t-fr">Galaxie Spirale, démo</p>
   <div id="canvas-wrap">
     <canvas id="main-canvas"></canvas>
-    <div id="watermark">bastiengaffet.fr — demo</div>
+    <div id="watermark">bastiengaffet.fr, demo</div>
   </div>
   <p class="preview-info" id="res-label">preview</p>
 </div>
@@ -162,7 +173,8 @@ function resizeCanvas(){
   if(h>avH){h=avH;w=h*ar;}
   canvas.width=Math.floor(w);canvas.height=Math.floor(h);
   wrap.style.width=canvas.width+'px';wrap.style.height=canvas.height+'px';
-  document.getElementById('res-label').textContent=`${canvas.width} × ${canvas.height} — preview`;
+  const isFr = document.documentElement.classList.contains('lang-fr');
+  document.getElementById('res-label').textContent=`${canvas.width} × ${canvas.height}, ${isFr ? 'aperçu' : 'preview'}`;
 }
 
 // ── Utilities ──────────────────────────────────────────────────────────────
@@ -216,7 +228,7 @@ function downloadDemo(){
   oc.fillStyle='rgba(255,255,255,0.22)';
   oc.font='bold 13px monospace';
   oc.textAlign='right';
-  oc.fillText('bastiengaffet.fr — demo version',1268,710);
+  oc.fillText('bastiengaffet.fr, demo version',1268,710);
   const a=document.createElement('a');a.href=off.toDataURL('image/png');
   a.download='cosmos-galaxy-spiral-demo.png';a.click();
 }
