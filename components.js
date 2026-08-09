@@ -40,7 +40,8 @@ const PAGE_CONFIG = {
   'project/krino':            { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/cdp-scraper':      { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'product/cosmos-wallpaper': { backNav: { href: '/shop', label: 'Shop', labelFr: 'Boutique' } },
-  // Blog posts — add as you publish:
+  // Blog posts:
+  'notes/cern':               { backNav: { href: '/blog', label: 'Notes', labelFr: 'Notes' } },
   // 'notes/post-slug':        { backNav: { href: '/blog', label: 'Notes', labelFr: 'Notes' } },
 };
 
@@ -53,6 +54,7 @@ const PAGES = [
   { group:'Explore',  name:'Photography', desc:'Selected photographs',                  href:'/photography' },
   { group:'Explore',  name:'Universe',    desc:'Passions, interests, dreams',           href:'/universe' },
   { group:'Explore',  name:'Notes',       desc:'Monthly articles and observations',     href:'/blog' },
+  { group:'Notes',    name:'At CERN, I found a society', desc:'A week at CERN, EUCYS prize', href:'/notes/cern' },
   { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'/project/robotj4' },
   { group:'Projects', name:'Tourny',      desc:'Sport tournament management platform', href:'/project/tourny' },
   { group:'Projects', name:'Glacify',     desc:'Ice cream ordering app, playful UX',   href:'/project/glacify' },
@@ -85,7 +87,7 @@ const PAGE_NAMES = {
   'project/kairoo':'Kairoo','project/krino':'Krino',
   'project/cdp-scraper':'cdp-scraper','tipe':'TIPE','timeline':'Timeline',
   'press':'Press','changelog':'Changelog','now':'Now',
-  'cosmos-demo':'Cosmos Demo',
+  'cosmos-demo':'Cosmos Demo','notes/cern':'At CERN, I found a society',
 };
 
 // currentPath: pathname without leading slash and without .html extension
@@ -204,6 +206,7 @@ const _crumbs = {
   'project/krino':            { parent:'/work',  parentName:'Work',  name:'Krino' },
   'project/cdp-scraper':      { parent:'/work',  parentName:'Work',  name:'cdp-scraper' },
   'product/cosmos-wallpaper': { parent:'/shop',  parentName:'Shop',  name:'Cosmos Wallpaper' },
+  'notes/cern':               { parent:'/blog',  parentName:'Notes', name:'At CERN, I found a society' },
 };
 if (_crumbs[currentPath]) {
   const b = _crumbs[currentPath];

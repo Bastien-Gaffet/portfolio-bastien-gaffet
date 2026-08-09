@@ -116,6 +116,7 @@ Mettre `t-en` / `t-fr` directement sur l'élément bloc — plus propre, pas de 
 | `cosmos-demo.html` | ✅ Traduit (page autonome, mécanisme de langue ajouté localement) |
 | `tipe.html` | ✅ Traduit |
 | `uses.html` | ✅ Traduit |
+| `notes/cern.html` | ✅ Traduit (premier vrai article de blog, écrit directement en bilingue) |
 
 Site entièrement traduit FR/EN au 2026-08-08. Hors périmètre volontairement :
 `nav-components.html` (page de démo interne), `og-tags.html` (utilitaire dev,

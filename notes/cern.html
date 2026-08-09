@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A week at CERN as part of the EUCYS prize: what it takes to run a scientific complex, and what it means to imagine a new one.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="At CERN, I found a society / Bastien Gaffet">
+<meta property="og:description" content="A week at CERN as part of the EUCYS prize: what it takes to run a scientific complex, and what it means to imagine a new one.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>At CERN, I found a society / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/components.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #05060A; --violet: hsl(265 75% 60%);
+  --violet-dim: hsl(265 75% 60% / 0.12);
+  --white: oklch(96% 0.005 250); --dim: oklch(55% 0.01 250);
+  --dim2: oklch(72% 0.008 250);
+  --glass-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.09);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+/* ══ ARTICLE ══ */
+#page { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 14vh 2.5rem 8rem; }
+
+/* Meta */
+.post-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.post-tag { font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet); border: 1px solid hsl(265 75% 60% / 0.3); border-radius: 10px; padding: 0.18rem 0.55rem; }
+.post-date { font-size: 0.65rem; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 1.8rem; }
+
+/* Title */
+.post-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+.post-title em { font-style: italic; color: hsl(265 60% 80%); }
+.post-subtitle { font-size: 0.9rem; color: var(--dim2); line-height: 1.7; margin-bottom: 3rem; }
+
+/* Divider */
+.post-divider { height: 1px; background: var(--glass-border); margin-bottom: 2.8rem; }
+
+/* Body */
+.post-body { font-size: 0.88rem; color: var(--dim2); line-height: 1.9; }
+.post-body p { margin-bottom: 1.4rem; }
+.post-body p:last-child { margin-bottom: 0; }
+.post-body strong { color: var(--white); font-weight: 500; }
+.post-body em { font-style: italic; color: hsl(265 60% 80%); }
+.post-body a { color: var(--violet); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.3); transition: border-color 0.2s; }
+.post-body a:hover { border-color: var(--violet); }
+
+/* Highlight quote */
+.post-highlight { border-left: 2px solid var(--violet); padding: 0.8rem 1.4rem; margin: 2rem 0; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--white); line-height: 1.6; background: var(--violet-dim); border-radius: 0 8px 8px 0; }
+
+/* Footer */
+.post-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
+.post-sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dim); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<article id="page">
+
+  <div class="post-tags">
+    <span class="post-tag">CERN</span>
+    <span class="post-tag">EUCYS</span>
+  </div>
+
+  <p class="post-date">July 2026</p>
+
+  <h1 class="post-title">
+    <span class="t-en">At CERN, I found a <em>society</em></span>
+    <span class="t-fr">Au CERN, j'ai trouvé une <em>société</em></span>
+  </h1>
+
+  <p class="post-subtitle t-en">Seven days in Geneva, between the EUCYS prize and a lesson in what it actually takes to keep science standing.</p>
+  <p class="post-subtitle t-fr">Sept jours à Genève, entre le prix EUCYS et une leçon sur ce qu'il faut vraiment pour faire tenir la science debout.</p>
+
+  <div class="post-divider"></div>
+
+  <div class="post-body t-en">
+
+    <p>
+      I left thinking I would meet physicists. CERN ended up showing me something else: an entire
+      society, with its own firefighters, its own daycare, its own hotel, its own kitchens and its
+      own HR department. It is not just a laboratory sitting on the French-Swiss border. It is a
+      place that has to feed itself, care for itself, guard itself and rest itself, twenty-four
+      hours a day, so that a handful of experiments can keep running.
+    </p>
+
+    <p>
+      I was there for a week, from July 4 to 11, 2026, as part of the team that won the
+      <strong>CERN European Prize</strong> at EUCYS in Latvia. The prize is not a medal you frame.
+      It is a week in Geneva, alongside two other young people from elsewhere, visiting what
+      fundamental science builds when it has decades and thousands of people to build it with.
+    </p>
+
+    <p>
+      What stayed with me most was the <strong>ALICE Cavern</strong>. Not so much the sheer size
+      of the detector, though that alone is striking, but what it represents underneath: the time,
+      the dedication and the collective intelligence it took to design this thing, assemble it
+      piece by piece underground, and make it work. It is not the work of any one person.
+    </p>
+
+    <blockquote class="post-highlight">
+      It is the work of thousands of people who will probably never meet, aligned on a single goal for years.
+    </blockquote>
+
+    <p>
+      The security, reinforced against any radiation, is a constant reminder that what you are
+      looking at is not a scale model or a reconstruction. It is real, and it can hurt you if you
+      do not respect it.
+    </p>
+
+    <p>
+      Between visits, the Charm Facility, the antimatter factory, and the CERN museum, the three
+      of us from the EUCYS team also worked alongside two other young people from a different
+      country. The whole week ran in English, the only language we shared.
+    </p>
+
+    <p>
+      What struck me most in that group work did not come from physics. It came from one of the
+      other students, who approached every question through sociology. Making that reading
+      coexist with my own, more technical one, changed how we built our answers together. A
+      different culture brings a different way of thinking, not just different knowledge, and I
+      think it is that friction that made the group work interesting rather than just efficient.
+    </p>
+
+    <p>
+      Then there was <strong>Idea Square</strong>. After a week spent observing a real society
+      running this scientific complex, we were asked to imagine a new one, a more responsible
+      one. We debated the legislative system that would govern it, and the question of economics
+      took up far more space than I expected. It is strange to go from observing an organization
+      that already exists to designing, in a few hours, one that does not exist yet. But the two
+      exercises answer each other: understand how a society holds together, then try to build a
+      better one.
+    </p>
+
+    <p>
+      I came back with a wider view of what a collective project can be. Robot J4, until then, had
+      been my deepest group experience, five people around a robotic arm. CERN is the same logic
+      at a scale I had never seen: thousands of people, dozens of trades, decades, for a handful
+      of discoveries that change how we understand the universe. It left me with a sharper
+      interest in fundamental science, the kind that promises nothing useful in the short term,
+      and moves forward anyway.
+    </p>
+
+  </div>
+
+  <div class="post-body t-fr">
+
+    <p>
+      J'étais parti en pensant que j'allais rencontrer des physiciens. Le CERN a fini par me
+      montrer autre chose : une société entière, avec ses propres pompiers, sa propre crèche, son
+      propre hôtel, ses propres cuisines et son propre service des ressources humaines. Ce n'est
+      pas seulement un laboratoire posé à la frontière franco-suisse. C'est un endroit qui doit se
+      nourrir, se soigner, se garder et se reposer lui même, vingt-quatre heures sur vingt-quatre,
+      pour que quelques expériences puissent continuer à tourner.
+    </p>
+
+    <p>
+      J'y suis allé une semaine, du 4 au 11 juillet 2026, en tant que membre de l'équipe qui a
+      remporté le <strong>Prix européen du CERN</strong> à l'EUCYS en Lettonie. Le prix, ce n'est
+      pas une médaille qu'on encadre. C'est une semaine à Genève, avec deux autres jeunes venus
+      d'ailleurs, à visiter ce que la science fondamentale construit quand elle a des décennies et
+      des milliers de personnes pour le faire.
+    </p>
+
+    <p>
+      Le moment qui m'est resté, c'est la <strong>Caverne ALICE</strong>. Pas tant l'immensité du
+      détecteur, même si elle marque, mais ce qu'elle représente en creux : le temps, la
+      dédication et l'intelligence collective qu'il a fallu réunir pour concevoir cette chose,
+      l'assembler pièce par pièce sous terre, et la faire fonctionner. Ce n'est l'œuvre de
+      personne en particulier.
+    </p>
+
+    <blockquote class="post-highlight">
+      C'est l'œuvre de milliers de personnes qui ne se rencontreront peut-être jamais, alignées sur un seul objectif pendant des années.
+    </blockquote>
+
+    <p>
+      La sécurité, elle aussi renforcée contre toute radiation, rappelle en permanence que ce
+      qu'on regarde n'est pas un modèle réduit ni une reconstitution. C'est réel, et ça peut faire
+      mal si on ne le respecte pas.
+    </p>
+
+    <p>
+      Entre deux visites, la Charm Facility, l'usine à antimatière, et le musée du CERN, on
+      avançait aussi à trois dans l'équipe EUCYS, en binôme avec deux autres jeunes venus d'un
+      pays différent. Toute la semaine s'est passée en anglais, la seule langue commune.
+    </p>
+
+    <p>
+      Ce qui m'a le plus marqué dans ce travail de groupe, ce n'est pas venu de la physique. C'est
+      venu d'un des deux autres étudiants, qui abordait chaque question sous l'angle de la
+      sociologie. Faire cohabiter cette lecture avec la mienne, plus technique, a changé la façon
+      dont on construisait nos réponses ensemble. Une culture différente amène un autre schéma de
+      pensée, pas seulement d'autres connaissances, et je crois que c'est cette friction là qui a
+      rendu le travail de groupe intéressant plutôt que juste efficace.
+    </p>
+
+    <p>
+      Puis il y a eu <strong>Idea Square</strong>. Après une semaine à observer une société réelle
+      qui fait fonctionner ce complexe scientifique, on nous a demandé d'en imaginer une nouvelle,
+      plus responsable. On a débattu du système législatif qui la régirait, et la question de
+      l'économie a pris beaucoup plus de place que je ne l'aurais imaginé. C'est étrange de passer
+      de l'observation d'une organisation qui existe déjà à la conception, en quelques heures,
+      d'une organisation qui n'existe pas encore. Mais les deux exercices se répondent : comprendre
+      comment une société tient debout, puis essayer d'en construire une meilleure.
+    </p>
+
+    <p>
+      Je suis reparti avec une vision plus large de ce qu'est un projet collectif. Robot J4,
+      jusque là, avait été mon expérience de groupe la plus poussée, cinq personnes autour d'un
+      bras robotique. Le CERN, c'est la même logique à une échelle que je n'avais jamais vue : des
+      milliers de personnes, des dizaines de métiers, des décennies, pour une poignée de
+      découvertes qui changent la façon dont on comprend l'univers. Ça m'a donné un intérêt plus
+      net pour les sciences fondamentales, celles qui ne promettent rien d'utile à court terme, et
+      qui avancent quand même.
+    </p>
+
+  </div>
+
+  <footer class="post-footer">
+    <a href="/blog" class="btn-pill"><span class="t-en">← All notes</span><span class="t-fr">← Toutes les notes</span></a>
+    <span class="post-sig">Bastien Gaffet</span>
+  </footer>
+
+</article>
+
+<script src="/components.js"></script>
+</body>
+</html>
