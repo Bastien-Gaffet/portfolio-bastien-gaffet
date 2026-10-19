@@ -67,6 +67,13 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 .link-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; display: block; }
 .link-icon.logo { background: none; border: none; padding: 0; overflow: hidden; }
 .link-card.kofi .link-icon img { width: 22px; height: auto; border-radius: 0; }
+.link-icon.round img { border-radius: 50%; }
+.link-icon.big { width: 52px; height: 52px; border-radius: 12px; }
+.link-icon.big img { border-radius: 12px; }
+.link-card.kofi .link-icon.big { background: none; border: none; }
+.link-card.kofi .link-icon.big img { width: 100%; height: 100%; border-radius: 12px; }
+.link-icon.kofi-ico { background: var(--violet); border-color: transparent; }
+.link-icon.kofi-ico img { width: 22px; height: auto; border-radius: 0; }
 .link-icon svg { width: 18px; height: 18px; }
 
 .link-text { flex: 1; }
@@ -103,7 +110,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   <!-- WEBSITE -->
   <span class="links-section">Portfolio</span>
   <a href="https://bastiengaffet.fr" class="link-card">
-    <div class="link-icon logo"><img src="/img/logos/planet-small.png" alt="" width="36" height="36"></div>
+    <div class="link-icon logo round"><img src="/img/logos/planet.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Bastien Gaffet</p>
       <p class="link-sub t-en">bastiengaffet.fr: portfolio, projects and notes</p>
@@ -163,7 +170,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   <!-- SHOP -->
   <span class="links-section t-en">Shop</span><span class="links-section t-fr">Boutique</span>
   <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" rel="noopener" class="link-card kofi">
-    <div class="link-icon "><img src="/img/logos/kofi-cup.png" alt="" width="36" height="36"></div>
+    <div class="link-icon logo big"><img src="/img/logos/cosmos.webp" alt="" width="52" height="52"></div>
     <div class="link-text">
       <p class="link-label">Cosmos Wallpaper Generator</p>
       <p class="link-sub t-en">Digital product on Ko-fi, from €4</p>
@@ -172,7 +179,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <span class="link-arrow">›</span>
   </a>
   <a href="https://ko-fi.com/bastiengft" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon "><img src="/img/logos/kofi-cup.png" alt="" width="36" height="36"></div>
+    <div class="link-icon kofi-ico"><img src="/img/logos/kofi-cup.png" alt="" width="22" height="18"></div>
     <div class="link-text">
       <p class="link-label t-en">Support on Ko-fi</p>
       <p class="link-label t-fr">Soutenir sur Ko-fi</p>

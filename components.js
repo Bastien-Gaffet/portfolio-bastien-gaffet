@@ -290,7 +290,7 @@ if (!config.noFooter) {
   footer.innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand">
-        <img class="footer-logo" src="/img/logos/planet-small.png" alt="" width="30" height="30">
+        <img class="footer-logo" src="/img/logos/planet.png" alt="" width="30" height="30">
         <span class="footer-sig">Bastien Gaffet</span>
         <p class="footer-tagline t-en">Student in prépa. I build apps, games and websites for fun.</p>
         <p class="footer-tagline t-fr">Étudiant en prépa. Je crée des applications, des jeux et des sites pour le plaisir.</p>
