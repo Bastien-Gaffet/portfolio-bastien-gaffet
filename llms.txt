@@ -1,68 +1,61 @@
-# Bastien Gaffet — bastiengaffet.fr
+# Bastien Gaffet, bastiengaffet.fr
 
-> Engineering student, maker and astrophotographer based in Tours, France.
-> Building at the intersection of software, hardware and design.
+> Student in classes préparatoires in Tours, France, who builds apps, games and websites for fun.
+> Public name: Bastien Gaffet. Not to be confused with namesakes in other fields.
 
 ## About
 
-Bastien Gaffet is a student in CPGE PCSI (preparatory classes for grandes écoles)
-at Lycée Descartes, Tours. He builds robotics systems, generative tools and
-digital products. CERN European Prize winner at EUCYS 2025. Concours C.Génial
-national winner 2024.
+Bastien Gaffet is a student in CPGE PC* (second year of preparatory classes for
+the grandes écoles) at Lycée Descartes, Tours, after a first year in PCSI. Outside
+class he builds apps, games, websites and tools. He is the developer of Equiliz and
+one of the designers of the Robot J4 robotic arm. Robot J4 was presented at EUCYS
+2025 in Riga, where it received the CERN European Prize.
 
 ## Projects
 
-- **Robot J4** — robotic arm playing Connect Four autonomously using Minimax AI
-  and OpenCV computer vision. CERN European Prize at EUCYS 2025.
+- **Equiliz**: shared expenses app, closed beta, works without an account.
+  https://bastiengaffet.fr/project/equiliz and https://equiliz.bastiengaffet.fr/
+- **Cobblekit**: free Minecraft tools for players and server admins (3D skins, world
+  journal, building board, plugin config merge, backup checks).
+  https://bastiengaffet.fr/project/cobblekit and https://cobblekit.bastiengaffet.fr/
+- **Robot J4**: robotic arm that plays Connect Four, with Minimax and OpenCV.
   https://bastiengaffet.fr/project/robotj4
-
-- **Tourny** — https://bastiengaffet.fr/project/tourny
-
-- **Glacify** — https://bastiengaffet.fr/project/glacify
-
-- **Kairoo** — mobile app turning mirror hours (11:11, 22:22...) into a daily
-  ritual: XP, leagues, guilds and rewards on a Supabase backend.
-  https://bastiengaffet.fr/project/kairoo
-
-- **Krino** — desktop app (Tauri, Rust) to clean up a photo library month by
-  month, swipe to keep or discard.
+- **Krino**: Windows desktop app (Tauri, Rust) to sort a photo library.
   https://bastiengaffet.fr/project/krino
-
-- **cdp-scraper** — command line tool to back up personal course documents
-  from cahier-de-prepa.fr, with an offline local viewer.
+- **Kairoo**: early mobile app prototype around mirror hours, never published.
+  https://bastiengaffet.fr/project/kairoo
+- **cdp-scraper**: command line tool to back up your own course documents from cahier-de-prepa.fr.
   https://bastiengaffet.fr/project/cdp-scraper
-
-- **Cosmos Wallpaper Generator** — generative cosmos wallpaper tool,
-  20+ object types, exports up to 4K. Available from €4.
+- **On hold**: Tourny (https://bastiengaffet.fr/project/tourny), Glacify
+  (https://bastiengaffet.fr/project/glacify), PrepaTrack (https://bastiengaffet.fr/project/prepatrack)
+- **Lab**: smaller projects and experiments, code on GitHub: https://bastiengaffet.fr/lab
+- **Cosmos Wallpaper Generator**: generative cosmos wallpaper tool sold on Ko-fi.
   https://bastiengaffet.fr/product/cosmos-wallpaper
+
+## Other sites by Bastien Gaffet
+
+- Webtouraine, websites for craftspeople in Tours: https://webtouraine.bastiengaffet.fr/
+- GitHub: https://github.com/Bastien-Gaffet
+- Ko-fi: https://ko-fi.com/bastiengft
 
 ## Key pages
 
 - Story (introduction): https://bastiengaffet.fr/
-- Work: https://bastiengaffet.fr/work
+- Projects: https://bastiengaffet.fr/work
 - About: https://bastiengaffet.fr/about
-- CV (interactive): https://bastiengaffet.fr/cv
-- CV EN (JSON Resume): https://bastiengaffet.fr/cv.json
-- CV FR (JSON Resume): https://bastiengaffet.fr/cv-fr.json
-- Photography: https://bastiengaffet.fr/photography
-- Notes (blog): https://bastiengaffet.fr/blog
-- Universe (interests): https://bastiengaffet.fr/universe
+- CV: https://bastiengaffet.fr/cv
 - Timeline: https://bastiengaffet.fr/timeline
-- Contact: https://bastiengaffet.fr/contact
-- Shop: https://bastiengaffet.fr/shop
+- Notes: https://bastiengaffet.fr/blog
+- Contact: https://bastiengaffet.fr/contact (contact@bastiengaffet.fr)
 
-## Awards & recognition
+## Recognition
 
-- CERN European Prize — EUCYS 2025, Riga, Latvia
-- Concours C.Génial — National Winner, 2024
-- Chemistry Olympiad — Academic Final, 2025
-
-## Skills
-
-Python, Arduino (C++), HTML/CSS/JS, Robotics, Embedded Systems,
-Computer Vision, Algorithm Design, Interface Design, Astrophotography
+- Robot J4: CERN European Prize at EUCYS 2025, Riga, Latvia
+- Concours Cgénial 2025: Prix Génialissime EUCYS (Robot J4)
+- French Chemistry Olympiad: academic final, 2025
 
 ## Education
 
-- CPGE PCSI — Lycée Descartes, Tours (2024–present)
-- Baccalauréat Général, Mention Très Bien — Lycée Vaucanson, Tours (2024)
+- CPGE PC*, Lycée Descartes, Tours (from September 2026)
+- CPGE PCSI, Lycée Descartes, Tours (2025 to 2026)
+- Baccalauréat général, Lycée Vaucanson, Tours (2025)

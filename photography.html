@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
 <meta name="description" content="Bastien Gaffet — engineering student, maker and astrophotographer.">
 <meta name="author" content="Bastien Gaffet">
 <meta property="og:site_name" content="Bastien Gaffet">
@@ -216,6 +217,14 @@ body {
   </div>
 </section>
 
+<!-- EMPTY STATE (shown while there are no photos) -->
+<section id="empty-state" hidden style="position:relative;z-index:1;padding:4rem 2.5rem 8rem;">
+  <div class="inner" style="max-width:640px;margin:0 auto;">
+    <p class="hero-desc t-en" style="margin-bottom:1rem;">The gallery is empty for now. I would rather show nothing than filler. Photos will appear here when I have ones worth sharing.</p>
+    <p class="hero-desc t-fr" style="margin-bottom:1rem;">La galerie est vide pour l'instant. Je préfère ne rien montrer plutôt que de remplir. Des photos apparaîtront ici quand j'en aurai qui valent la peine d'être partagées.</p>
+  </div>
+</section>
+
 <!-- CAROUSEL -->
 <section id="carousel-section">
   <span class="section-label reveal t-en">Selected</span>
@@ -269,28 +278,14 @@ body {
 //            Controls the grid cell size. Match to your photo's actual ratio.
 // featured : true = appears in carousel (pick your best ones)
 // ══════════════════════════════════════════════════════════════════════════════
-const PHOTOS = [
-  // span: 'landscape' for 4:3 photos, 'portrait' for 3:4 photos
-  // featured: true = also appears in the carousel at the top
-  // Row 1: landscape (8col) + portrait (4col) = 12
-  { src:'', title:'Photo title', location:'Location', date:'2025', span:'landscape', featured:true  },
-  { src:'', title:'Photo title', location:'Location', date:'2025', span:'portrait',  featured:true  },
-  // Row 2: portrait (4col) + landscape (8col) = 12
-  { src:'', title:'Photo title', location:'Location', date:'2025', span:'portrait',  featured:false },
-  { src:'', title:'Photo title', location:'Location', date:'2024', span:'landscape', featured:true  },
-  // Row 3: landscape + portrait
-  { src:'', title:'Photo title', location:'Location', date:'2024', span:'landscape', featured:false },
-  { src:'', title:'Photo title', location:'Location', date:'2024', span:'portrait',  featured:true  },
-  // Row 4: portrait + landscape
-  { src:'', title:'Photo title', location:'Location', date:'2025', span:'portrait',  featured:false },
-  { src:'', title:'Photo title', location:'Location', date:'2025', span:'landscape', featured:true  },
-  // Row 5: landscape + portrait
-  { src:'', title:'Photo title', location:'Location', date:'2025', span:'landscape', featured:false },
-  { src:'', title:'Photo title', location:'Location', date:'2024', span:'portrait',  featured:false },
-  // Row 6: portrait + landscape
-  { src:'', title:'Photo title', location:'Location', date:'2024', span:'portrait',  featured:false },
-  { src:'', title:'Photo title', location:'Location', date:'2024', span:'landscape', featured:true  },
-];
+(function () {
+const PHOTOS = [];
+if (!PHOTOS.length) {
+  ["carousel-section", "grid-section", "lightbox"].forEach(function (id) { var e = document.getElementById(id); if (e) e.remove(); });
+  document.getElementById("empty-state").hidden = false;
+  document.querySelectorAll(".reveal").forEach(function (e) { e.classList.add("visible"); });
+  return;
+}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function titleHTML(t) {
@@ -579,6 +574,8 @@ window.addEventListener('load', () => {
   document.querySelectorAll('#hero .reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'),150+i*180));
 });
 
+
+})();
 </script>
 <script src="/components.js"></script>
 </body>

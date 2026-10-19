@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PrepaTrack: a rank simulator for prépa students, from class marks to an estimate of the concours rank. A project on hold.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PrepaTrack / Bastien Gaffet">
+<meta property="og:description" content="PrepaTrack: a rank simulator for prépa students, from class marks to an estimate of the concours rank. A project on hold.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>PrepaTrack / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/components.css">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
+
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<main>
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal t-en">Project / Web App</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application web</p>
+      <h1 class="hero-title">
+        <span class="reveal">PrepaTrack</span><br>
+        <em class="reveal d1 t-en">Rank Simulator</em>
+        <em class="reveal d1 t-fr">Simulateur de rang</em>
+      </h1>
+      <p class="hero-desc reveal d2 t-en">A tool for prépa students: enter your marks and see an estimate of where you could land in the entrance exams. Well advanced, on hold for now.</p>
+      <p class="hero-desc reveal d2 t-fr">Un outil pour élèves de prépa : on entre ses notes et on voit une estimation de la place qu'on pourrait avoir aux concours. Bien avancé, en pause pour l'instant.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Web app</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag t-en">On hold</span><span class="tag t-fr">En pause</span></div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
+      <div class="overview-grid">
+        <div>
+          <h2 class="section-title reveal">
+            <span class="t-en">Know where<br><em>you stand.</em></span>
+            <span class="t-fr">Savoir où<br><em>on en est.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">In prépa, you rarely know what a mark really means. PrepaTrack started from that frustration. The year simulator turns class marks, class rank and how strict each teacher is into a continuous estimate of the concours rank. A second tool takes real exam marks and the official coefficients to give a precise rank. The project is on hold for now, but it runs.</p>
+          <p class="body-text reveal d1 t-fr">En prépa, on sait rarement ce que vaut vraiment une note. PrepaTrack est parti de cette frustration. Le simulateur d'année transforme les notes de classe, le rang et la sévérité de chaque prof en une estimation continue du rang aux concours. Un second outil prend les vraies notes d'épreuves et les coefficients officiels pour donner un rang précis. Le projet est en pause pour l'instant, mais il fonctionne.</p>
+        </div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">2</div><div class="stat-lbl t-en">Tools in one app</div><div class="stat-lbl t-fr">Outils dans une application</div></div>
+          <div class="stat-item"><div class="stat-num">Web</div><div class="stat-lbl t-en">Platform</div><div class="stat-lbl t-fr">Plateforme</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year</div><div class="stat-lbl t-fr">Année</div></div>
+          <div class="stat-item"><div class="stat-num t-en">On hold</div><div class="stat-num t-fr">En pause</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">How it works</p>
+      <p class="section-label reveal t-fr">Fonctionnement</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Enter your marks</h3><h3 class="t-fr">Entrer ses notes</h3>
+          <p class="t-en">Class marks for the year, with your rank and the class size.</p>
+          <p class="t-fr">Les notes de la classe pour l'année, avec son rang et l'effectif.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Adjust for your school</h3><h3 class="t-fr">Tenir compte de son lycée</h3>
+          <p class="t-en">Marks are weighted by school and by how strict each teacher is.</p>
+          <p class="t-fr">Les notes sont pondérées selon l'établissement et la sévérité de chaque professeur.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Get an estimate</h3><h3 class="t-fr">Obtenir une estimation</h3>
+          <p class="t-en">An estimated concours rank, with school suggestions and charts.</p>
+          <p class="t-fr">Un rang estimé aux concours, avec des suggestions d'écoles et des graphiques.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">Use the real marks later</h3><h3 class="t-fr">Passer aux vraies notes</h3>
+          <p class="t-en">After the exams, the second tool computes a precise rank from real marks and official coefficients.</p>
+          <p class="t-fr">Après les épreuves, le second outil calcule un rang précis à partir des vraies notes et des coefficients officiels.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Stack</p>
+      <p class="section-label reveal t-fr">Stack technique</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name">React and TypeScript</span>
+          <span class="stack-desc t-en">Single page app, everything computed in the browser.</span>
+          <span class="stack-desc t-fr">Application monopage, tout est calculé dans le navigateur.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name">Vite, Tailwind, Recharts</span>
+          <span class="stack-desc t-en">Build, styling and charts.</span>
+          <span class="stack-desc t-fr">Build, style et graphiques.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name">Vitest</span>
+          <span class="stack-desc t-en">Automated tests on the rank estimation engine.</span>
+          <span class="stack-desc t-fr">Tests automatisés sur le moteur d'estimation du rang.</span>
+        </div>
+        <div class="stack-row reveal d3">
+          <span class="stack-name">Local first</span>
+          <span class="stack-desc t-en">Works offline from the browser storage, with an optional account to sync.</span>
+          <span class="stack-desc t-fr">Fonctionne hors ligne grâce au stockage du navigateur, avec un compte optionnel pour synchroniser.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Key concepts</p>
+      <p class="section-label reveal t-fr">Concepts clés</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">An estimate, not a promise</div><div class="concept-title t-fr">Une estimation, pas une promesse</div>
+        <div class="concept-body t-en">The result is a statistical estimate from the data you enter. It helps to see a trend, it does not predict an outcome.</div>
+        <div class="concept-body t-fr">Le résultat est une estimation statistique à partir des données saisies. Il aide à voir une tendance, il ne prédit pas un résultat.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">On hold</div><div class="concept-title t-fr">En pause</div>
+        <div class="concept-body t-en">The core works. The project is paused for now and I am not announcing a restart date.</div>
+        <div class="concept-body t-fr">Le cœur fonctionne. Le projet est en pause pour l'instant et je n'annonce pas de date de reprise.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+<script src="/components.js"></script>
+</body>
+</html>

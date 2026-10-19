@@ -3,319 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bastien Gaffet — engineering student, maker and astrophotographer.">
-<meta name="author" content="Bastien Gaffet">
+<meta name="description" content="TIPE of Bastien Gaffet: optimising the hardener to epoxy resin ratio, Shore D hardness, uncertainty with a Monte Carlo method.">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bastien Gaffet">
-<meta property="og:description" content="Engineering student. Building at the intersection of software, hardware and design.">
+<meta property="og:title" content="TIPE: epoxy resin / Bastien Gaffet">
+<meta property="og:description" content="TIPE of Bastien Gaffet: optimising the hardener to epoxy resin ratio, Shore D hardness, uncertainty with a Monte Carlo method.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
-<meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<title>TIPE / Bastien Gaffet</title>
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>TIPE: epoxy resin / Bastien Gaffet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/components.css">
 <style>
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root { --black:#05060A; --violet:hsl(265 75% 60%); --white:oklch(96% 0.005 250); --dim:oklch(55% 0.01 250); --dim2:oklch(72% 0.008 250); --glass-bg:rgba(255,255,255,0.04); --glass-border:rgba(255,255,255,0.09); }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
 html { scroll-behavior: smooth; }
-body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; opacity: 0; animation: fadeIn 0.7s ease forwards; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
 @keyframes fadeIn { to { opacity: 1; } }
+
 #cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
 .inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
 @media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
 
-#hero { min-height: 72vh; padding-top: 14vh; padding-bottom: 5rem; position: relative; z-index: 1; }
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
 #hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
 .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
-.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-.hero-title em { font-style: italic; color: hsl(265 60% 80%); }
-.hero-subtitle { font-size: 0.88rem; color: var(--dim2); margin-bottom: 2rem; line-height: 1.7; max-width: 520px; }
-.hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-.meta-item { font-size: 0.68rem; color: var(--dim); display: flex; flex-direction: column; gap: 0.2rem; }
-.meta-label { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet); }
-
-#content { position: relative; z-index: 1; padding-bottom: 8rem; }
-
-.tipe-section { padding: 3.5rem 0; border-top: 1px solid var(--glass-border); }
-.tipe-section:last-child { border-bottom: 1px solid var(--glass-border); }
-
-/* Two-col layout for wide sections */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-@media(max-width:700px){ .two-col { grid-template-columns: 1fr; } }
-
-.section-label { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.8rem; display: block; }
-.section-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 400; line-height: 1.2; margin-bottom: 1rem; }
-.section-title em { font-style: italic; color: hsl(265 60% 80%); }
-.body-text { font-size: 0.84rem; color: var(--dim2); line-height: 1.88; }
-.body-text p { margin-bottom: 1rem; }
-.body-text p:last-child { margin-bottom: 0; }
-.body-text strong { color: var(--white); font-weight: 400; }
-
-/* Key result cards */
-.results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
-@media(max-width:600px){ .results-grid { grid-template-columns: 1fr; } }
-.result-card { border: 1px solid var(--glass-border); border-radius: 10px; padding: 1.2rem; background: var(--glass-bg); }
-.result-value { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); margin-bottom: 0.2rem; }
-.result-value em { font-style: italic; color: hsl(265 60% 80%); }
-.result-desc { font-size: 0.7rem; color: var(--dim); line-height: 1.55; }
-
-/* Method steps */
-.method-steps { display: flex; flex-direction: column; gap: 1.2rem; }
-.method-step { display: grid; grid-template-columns: 28px 1fr; gap: 0.9rem; align-items: start; }
-.step-n { width: 28px; height: 28px; border-radius: 50%; border: 1px solid hsl(265 75% 60% / 0.35); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--violet); flex-shrink: 0; }
-.step-body {}
-.step-name { font-size: 0.78rem; color: var(--white); margin-bottom: 0.2rem; }
-.step-detail { font-size: 0.72rem; color: var(--dim2); line-height: 1.6; }
-
-/* Conclusion */
-.conclusion { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px; padding: 1.5rem 1.8rem; margin-top: 2rem; }
-.conclusion p { font-size: 0.82rem; color: var(--dim2); line-height: 1.85; }
-.conclusion strong { color: var(--white); font-weight: 400; }
-
-/* Bento photo grid — same logic as photography page */
-.tipe-bento {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 80px;
-  grid-auto-flow: dense;
-  gap: 10px;
-  margin-top: 0.5rem;
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
 }
-.tipe-bento-item {
-  border-radius: 8px; overflow: hidden; position: relative;
-  border: 1px solid var(--glass-border);
-}
-.tipe-bento-item[data-span="landscape"] { grid-column: span 8; grid-row: span 6; }
-.tipe-bento-item[data-span="portrait"]  { grid-column: span 4; grid-row: span 6; }
-@media(max-width:900px){
-  .tipe-bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 70px; }
-  .tipe-bento-item[data-span="landscape"] { grid-column: span 4; grid-row: span 4; }
-  .tipe-bento-item[data-span="portrait"]  { grid-column: span 2; grid-row: span 4; }
-}
-@media(max-width:600px){
-  .tipe-bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 100px; }
-  .tipe-bento-item[data-span="landscape"] { grid-column: span 2; grid-row: span 3; }
-  .tipe-bento-item[data-span="portrait"]  { grid-column: span 1; grid-row: span 4; }
-}
-.tipe-bento-item img { width: 100%; height: 100%; object-fit: cover; display: block; background: hsl(265 15% 9%); transition: transform 0.55s cubic-bezier(.22,.61,.36,1), filter 0.4s; }
-.tipe-bento-item:hover img { transform: scale(1.04); filter: brightness(1.06); }
-.tipe-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(5,6,10,.82) 0%, transparent 50%);
-  opacity: 0; transition: opacity 0.35s;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 1rem 0.9rem 0.9rem;
-}
-.tipe-bento-item:hover .tipe-overlay { opacity: 1; }
-.tipe-overlay-title { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.15rem; color: var(--white); }
-.tipe-overlay-title em { font-style: italic; color: hsl(265 60% 80%); }
-.tipe-overlay-meta { font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
 
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
+.tool-link { color: var(--white); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.45); }
+.tool-link:hover { border-bottom-color: var(--violet); }
+.tool-metas { display: block; margin-top: 0.25rem; }
+.tool-meta { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); font-weight: 400; }
+.page-note { font-size: 0.78rem; color: var(--dim); line-height: 1.8; margin-top: 2rem; }
+.page-note a { color: var(--white); }
 </style>
 </head>
 <body>
 <canvas id="cosmos"></canvas>
-
-<section id="hero">
-  <div class="inner">
-    <p class="hero-eyebrow reveal">TIPE / CPGE PCSI</p>
-    <h1 class="hero-title reveal d1">
-      <span class="t-en">Mechanical properties of<br><em>epoxy resins</em><br>in composite structures</span>
-      <span class="t-fr">Propriétés mécaniques des<br><em>résines époxy</em><br>dans les structures composites</span>
-    </h1>
-    <p class="hero-subtitle reveal d2 t-en">Study of the behavior of epoxy resin under mechanical stress in composite material assemblies. Tensile testing, failure analysis and comparison with theoretical models.</p>
-    <p class="hero-subtitle reveal d2 t-fr">Étude du comportement de la résine époxy sous contrainte mécanique dans des assemblages de matériaux composites. Essais de traction, analyse de rupture et comparaison avec les modèles théoriques.</p>
-    <div class="hero-meta reveal d3">
-      <div class="meta-item"><span class="meta-label t-en">Year</span><span class="meta-label t-fr">Année</span>2024 / 2025</div>
-      <div class="meta-item"><span class="meta-label t-en">School</span><span class="meta-label t-fr">Établissement</span>Lycée Descartes, Tours</div>
-      <div class="meta-item"><span class="meta-label t-en">Field</span><span class="meta-label t-fr">Domaine</span><span class="t-en">Materials science</span><span class="t-fr">Science des matériaux</span></div>
+<main>
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal t-en">Research / TIPE, PCSI year</p>
+      <p class="hero-eyebrow reveal t-fr">Recherche / TIPE, année de PCSI</p>
+      <h1 class="hero-title">
+        <span class="reveal">TIPE</span><br>
+        <em class="reveal d1 t-en">Epoxy Resin</em>
+        <em class="reveal d1 t-fr">Résine époxy</em>
+      </h1>
+      <p class="hero-desc reveal d2 t-en">My TIPE from the PCSI year: finding the right ratio of hardener to epoxy resin (DGEBA and TETA) to get the best mechanical properties while using as little material and energy as possible.</p>
+      <p class="hero-desc reveal d2 t-fr">Mon TIPE de l'année de PCSI : trouver le bon ratio durcisseur et résine époxy (DGEBA et TETA) pour obtenir les meilleures propriétés mécaniques en utilisant le moins de matière et d'énergie possible.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Materials</span><span class="tag">Epoxy</span><span class="tag">Shore D</span><span class="tag">Python</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="content">
-  <div class="inner">
-
-    <div class="tipe-section reveal">
-      <span class="section-label t-en">Context</span><span class="section-label t-fr">Contexte</span>
-      <div class="two-col">
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
+      <div class="overview-grid">
         <div>
-          <h2 class="section-title">
-            <span class="t-en">Why <em>epoxy resins</em></span>
-            <span class="t-fr">Pourquoi les <em>résines époxy</em></span>
+          <h2 class="section-title reveal">
+            <span class="t-en">How much hardener<br><em>is the right amount?</em></span>
+            <span class="t-fr">Quelle quantité de durcisseur<br><em>est la bonne ?</em></span>
           </h2>
-          <div class="body-text t-en">
-            <p>Epoxy resins are widely used in structural applications, from aeronautics to civil engineering, because of their excellent adhesion, low shrinkage and high resistance to chemical and thermal degradation.</p>
-            <p>In composite materials, the resin acts as the matrix binding the reinforcing fibers. Its mechanical behavior under load directly determines the structural integrity of the whole assembly. Understanding where and how it fails is a prerequisite for reliable design.</p>
-          </div>
-          <div class="body-text t-fr">
-            <p>Les résines époxy sont largement utilisées dans les applications structurelles, de l'aéronautique au génie civil, pour leur excellente adhérence, leur faible retrait et leur haute résistance à la dégradation chimique et thermique.</p>
-            <p>Dans les matériaux composites, la résine joue le rôle de matrice liant les fibres de renfort. Son comportement mécanique sous charge détermine directement l'intégrité structurelle de l'ensemble de l'assemblage. Comprendre où et comment elle rompt est un prérequis pour une conception fiable.</p>
-          </div>
+          <p class="body-text reveal d1 t-en">The TIPE is the research project of the prépa. Mine looks at an epoxy resin and the amount of hardener mixed into it: an epoxy only reaches its best properties for the right ratio, and every gram of material and every hour of energy counts. I read the literature, ran experiments measuring Shore D hardness, and built a way to put proper uncertainties on the results.</p>
+          <p class="body-text reveal d1 t-fr">Le TIPE est le projet de recherche de la prépa. Le mien porte sur une résine époxy et la quantité de durcisseur qu'on y mélange : une époxy n'atteint ses meilleures propriétés que pour le bon ratio, et chaque gramme de matière et chaque heure d'énergie compte. J'ai lu la littérature, fait des expériences en mesurant la dureté Shore D, et construit une méthode pour donner de vraies incertitudes aux résultats.</p>
         </div>
-        <div>
-          <h2 class="section-title">
-            <span class="t-en">The <em>question</em></span>
-            <span class="t-fr">La <em>question</em></span>
-          </h2>
-          <div class="body-text t-en">
-            <p>How do the mechanical properties of an epoxy resin vary as a function of its curing conditions and the geometry of the composite assembly in which it is embedded?</p>
-            <p>The goal was to identify the influence of cure time, temperature and sample geometry on the tensile strength and Young's modulus of the resin.</p>
-          </div>
-          <div class="body-text t-fr">
-            <p>Comment les propriétés mécaniques d'une résine époxy varient-elles en fonction de ses conditions de polymérisation et de la géométrie de l'assemblage composite dans lequel elle est intégrée ?</p>
-            <p>L'objectif était d'identifier l'influence du temps de polymérisation, de la température et de la géométrie des échantillons sur la résistance à la traction et le module de Young de la résine.</p>
-          </div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">18</div><div class="stat-lbl t-en">Sources read and summarised</div><div class="stat-lbl t-fr">Sources lues et résumées</div></div>
+          <div class="stat-item"><div class="stat-num">85.3</div><div class="stat-lbl t-en">Best Shore D hardness reached</div><div class="stat-lbl t-fr">Meilleure dureté Shore D atteinte</div></div>
+          <div class="stat-item"><div class="stat-num">Monte Carlo</div><div class="stat-lbl t-en">Uncertainty method, validated</div><div class="stat-lbl t-fr">Méthode d'incertitudes, validée</div></div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="tipe-section reveal">
-      <span class="section-label t-en">Method</span><span class="section-label t-fr">Méthode</span>
-      <div class="method-steps">
-        <div class="method-step">
-          <div class="step-n">1</div>
-          <div class="step-body">
-            <p class="step-name t-en">Sample preparation</p><p class="step-name t-fr">Préparation des échantillons</p>
-            <p class="step-detail t-en">Epoxy samples cast in standardized molds (dogbone geometry, ISO 527) under controlled temperature and humidity. Several cure cycles tested: ambient temperature 24h, 40C oven 12h, 60C oven 6h.</p>
-            <p class="step-detail t-fr">Échantillons d'époxy coulés dans des moules standardisés (géométrie haltère, ISO 527) sous température et humidité contrôlées. Plusieurs cycles de polymérisation testés : température ambiante 24h, four à 40°C 12h, four à 60°C 6h.</p>
-          </div>
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Method</p>
+      <p class="section-label reveal t-fr">Méthode</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Read what exists</h3><h3 class="t-fr">Lire ce qui existe</h3>
+          <p class="t-en">A bibliography of 18 sources, each one summarised in a note.</p>
+          <p class="t-fr">Une bibliographie de 18 sources, chacune résumée dans une note.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Experiment</h3><h3 class="t-fr">Expérimenter</h3>
+          <p class="t-en">Samples with different hardener ratios, measured with Shore D hardness. Each experiment has its own written note.</p>
+          <p class="t-fr">Des échantillons avec différents ratios de durcisseur, mesurés par la dureté Shore D. Chaque expérience a sa propre note écrite.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Quantify the uncertainty</h3><h3 class="t-fr">Chiffrer l'incertitude</h3>
+          <p class="t-en">A spreadsheet and a Monte Carlo simulation to know how much a measured value can be trusted.</p>
+          <p class="t-fr">Un tableur et une simulation de Monte-Carlo pour savoir dans quelle mesure on peut se fier à une valeur mesurée.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">Present it</h3><h3 class="t-fr">La présenter</h3>
+          <p class="t-en">Slides prepared in LaTeX for the oral.</p>
+          <p class="t-fr">Des diapositives préparées en LaTeX pour l'oral.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Tools</p>
+      <p class="section-label reveal t-fr">Outils</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name"><a class="tool-link" href="" target="_blank" rel="noopener">Obsidian</a></span>
+          <span class="stack-desc t-en">All the notes, sources and experiments, linked together.</span>
+          <span class="stack-desc t-fr">Toutes les notes, sources et expériences, reliées entre elles.</span>
         </div>
-        <div class="method-step">
-          <div class="step-n">2</div>
-          <div class="step-body">
-            <p class="step-name t-en">Composite assemblies</p><p class="step-name t-fr">Assemblages composites</p>
-            <p class="step-detail t-en">Glass fiber reinforced samples produced with hand layup. Fiber orientation varied (0, 45, 90 degrees) to measure anisotropy of the composite as a whole.</p>
-            <p class="step-detail t-fr">Échantillons renforcés de fibre de verre produits par drapage manuel. Orientation des fibres variée (0, 45, 90 degrés) pour mesurer l'anisotropie de l'ensemble du composite.</p>
-          </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name"><a class="tool-link" href="" target="_blank" rel="noopener">Python</a></span>
+          <span class="stack-desc t-en">Analysis and plots with numpy, scipy and matplotlib.</span>
+          <span class="stack-desc t-fr">Analyse et graphiques avec numpy, scipy et matplotlib.</span>
         </div>
-        <div class="method-step">
-          <div class="step-n">3</div>
-          <div class="step-body">
-            <p class="step-name t-en">Tensile testing</p><p class="step-name t-fr">Essais de traction</p>
-            <p class="step-detail t-en">Uniaxial tensile tests performed on a universal testing machine. Load-displacement curves recorded; Young's modulus, yield stress and ultimate tensile strength extracted from each curve.</p>
-            <p class="step-detail t-fr">Essais de traction uniaxiale réalisés sur une machine d'essai universelle. Courbes charge-déplacement enregistrées ; module de Young, contrainte au seuil d'élasticité et résistance ultime à la traction extraits de chaque courbe.</p>
-          </div>
-        </div>
-        <div class="method-step">
-          <div class="step-n">4</div>
-          <div class="step-body">
-            <p class="step-name t-en">Failure analysis</p><p class="step-name t-fr">Analyse de rupture</p>
-            <p class="step-detail t-en">Visual and macroscopic observation of fracture surfaces. Comparison with theoretical failure criteria (maximum stress, Tsai-Hill for composites).</p>
-            <p class="step-detail t-fr">Observation visuelle et macroscopique des surfaces de rupture. Comparaison avec des critères de rupture théoriques (contrainte maximale, Tsai-Hill pour les composites).</p>
-          </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name"><a class="tool-link" href="" target="_blank" rel="noopener">LaTeX</a></span>
+          <span class="stack-desc t-en">The presentation and the bibliography.</span>
+          <span class="stack-desc t-fr">La présentation et la bibliographie.</span>
         </div>
       </div>
     </div>
-
-    <div class="tipe-section reveal">
-      <span class="section-label t-en">Key results</span><span class="section-label t-fr">Résultats clés</span>
-      <div class="body-text t-en">
-        <p>The results confirmed several expected behaviors and revealed one unexpected trend regarding the relationship between cure temperature and ductility.</p>
+  </section>
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Next</p>
+      <p class="section-label reveal t-fr">La suite</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">A new TIPE</div><div class="concept-title t-fr">Un nouveau TIPE</div>
+        <div class="concept-body t-en">A second TIPE, on the LowTech theme, has just started for this year. Nothing to show yet.</div>
+        <div class="concept-body t-fr">Un second TIPE, sur le thème LowTech, vient de commencer pour cette année. Rien à montrer pour l'instant.</div>
       </div>
-      <div class="body-text t-fr">
-        <p>Les résultats ont confirmé plusieurs comportements attendus et révélé une tendance inattendue concernant la relation entre température de polymérisation et ductilité.</p>
-      </div>
-      <div class="results-grid">
-        <div class="result-card">
-          <p class="result-value">+<em>23%</em></p>
-          <p class="result-desc t-en">Increase in Young's modulus between ambient cure and 60C oven cure, consistent with higher crosslink density.</p>
-          <p class="result-desc t-fr">Augmentation du module de Young entre polymérisation ambiante et four à 60°C, cohérente avec une densité de réticulation plus élevée.</p>
-        </div>
-        <div class="result-card">
-          <p class="result-value"><em>0</em></p>
-          <p class="result-desc t-en">Fiber orientation showing maximum stiffness. 90 degree samples showed 60% lower modulus, confirming strong anisotropy.</p>
-          <p class="result-desc t-fr">Orientation des fibres montrant la rigidité maximale. Les échantillons à 90 degrés ont montré un module inférieur de 60%, confirmant une forte anisotropie.</p>
-        </div>
-        <div class="result-card">
-          <p class="result-value t-en"><em>Brittle</em></p>
-          <p class="result-value t-fr"><em>Fragile</em></p>
-          <p class="result-desc t-en">All pure resin samples showed brittle fracture with no visible plastic deformation before failure.</p>
-          <p class="result-desc t-fr">Tous les échantillons de résine pure ont montré une rupture fragile sans déformation plastique visible avant rupture.</p>
-        </div>
-      </div>
-      <div class="conclusion t-en">
-        <p>The composite assemblies consistently outperformed the pure resin on tensile strength but showed more complex and less predictable failure modes due to fiber-matrix interface debonding. The <strong>Tsai-Hill criterion</strong> gave reasonable predictions for 0 and 90 degree samples but underestimated failure loads at 45 degrees, suggesting interfacial shear plays a larger role than the model assumes.</p>
-      </div>
-      <div class="conclusion t-fr">
-        <p>Les assemblages composites ont systématiquement surpassé la résine pure en résistance à la traction, mais ont montré des modes de rupture plus complexes et moins prévisibles dus au décollement de l'interface fibre-matrice. Le <strong>critère de Tsai-Hill</strong> a donné des prédictions raisonnables pour les échantillons à 0 et 90 degrés, mais a sous-estimé les charges de rupture à 45 degrés, suggérant que le cisaillement interfacial joue un rôle plus important que ce que le modèle suppose.</p>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">Code and notes</div><div class="concept-title t-fr">Code et notes</div>
+        <div class="concept-body t-en">The code of this TIPE is public on GitHub. The experimental data stays on my computer.</div>
+        <div class="concept-body t-fr">Le code de ce TIPE est public sur GitHub. Les données expérimentales restent sur mon ordinateur.</div>
       </div>
     </div>
+  </section>
 
-    <div class="tipe-section reveal">
-      <span class="section-label t-en">Documentation</span><span class="section-label t-fr">Documentation</span>
-      <div class="tipe-bento">
-        <!-- Row 1: landscape + portrait -->
-        <div class="tipe-bento-item" data-span="landscape">
-          <img src="tipe-photo-1.jpg" alt="Tensile test setup">
-          <div class="tipe-overlay">
-            <p class="tipe-overlay-title t-en">Tensile test setup</p>
-            <p class="tipe-overlay-title t-fr">Montage d'essai de traction</p>
-            <p class="tipe-overlay-meta t-en">Universal testing machine</p>
-            <p class="tipe-overlay-meta t-fr">Machine d'essai universelle</p>
-          </div>
-        </div>
-        <div class="tipe-bento-item" data-span="portrait">
-          <img src="tipe-photo-2.jpg" alt="Sample preparation">
-          <div class="tipe-overlay">
-            <p class="tipe-overlay-title t-en">Sample <em>preparation</em></p>
-            <p class="tipe-overlay-title t-fr">Préparation <em>des échantillons</em></p>
-            <p class="tipe-overlay-meta t-en">Dogbone mold casting</p>
-            <p class="tipe-overlay-meta t-fr">Coulage en moule haltère</p>
-          </div>
-        </div>
-        <!-- Row 2: portrait + landscape -->
-        <div class="tipe-bento-item" data-span="portrait">
-          <img src="tipe-photo-3.jpg" alt="Composite layup">
-          <div class="tipe-overlay">
-            <p class="tipe-overlay-title t-en">Glass fiber <em>layup</em></p>
-            <p class="tipe-overlay-title t-fr">Drapage <em>de fibre de verre</em></p>
-            <p class="tipe-overlay-meta t-en">Hand lamination process</p>
-            <p class="tipe-overlay-meta t-fr">Procédé de stratification manuelle</p>
-          </div>
-        </div>
-        <div class="tipe-bento-item" data-span="landscape">
-          <img src="tipe-photo-4.jpg" alt="Fracture surface">
-          <div class="tipe-overlay">
-            <p class="tipe-overlay-title t-en">Fracture <em>surface</em></p>
-            <p class="tipe-overlay-title t-fr">Surface de <em>rupture</em></p>
-            <p class="tipe-overlay-meta t-en">0 degree composite sample</p>
-            <p class="tipe-overlay-meta t-fr">Échantillon composite à 0 degré</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tipe-section reveal">
-      <span class="section-label t-en">Reflection</span><span class="section-label t-fr">Réflexion</span>
-      <div class="body-text t-en" style="max-width:620px;">
-        <p>The TIPE was my first real encounter with experimental methodology at this level. The gap between what the theory predicts and what the samples actually do is where the interesting questions live.</p>
-        <p>I would have liked more time to investigate the 45-degree failure anomaly. The next step would be to use a scanning electron microscope to characterize the fracture surfaces and confirm the debonding hypothesis.</p>
-        <p>The work also reinforced something practical: preparation quality matters far more than testing quality. Most of the scatter in the data came from sample imperfections introduced during casting, not from the machine or the measurement.</p>
-      </div>
-      <div class="body-text t-fr" style="max-width:620px;">
-        <p>Le TIPE a été ma première vraie rencontre avec la méthodologie expérimentale à ce niveau. L'écart entre ce que prédit la théorie et ce que font réellement les échantillons, c'est là que vivent les questions intéressantes.</p>
-        <p>J'aurais aimé avoir plus de temps pour étudier l'anomalie de rupture à 45 degrés. La prochaine étape serait d'utiliser un microscope électronique à balayage pour caractériser les surfaces de rupture et confirmer l'hypothèse du décollement.</p>
-        <p>Ce travail a aussi confirmé quelque chose de pratique : la qualité de la préparation compte bien plus que la qualité des essais. La majeure partie de la dispersion des données venait d'imperfections des échantillons introduites lors du coulage, pas de la machine ni de la mesure.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
+</main>
 <script>
 const rObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); rObs.unobserve(e.target); }});
-}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
 window.addEventListener('load', () => {
-  document.querySelectorAll('#hero .reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 120+i*150));
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
 });
 </script>
 <script src="/components.js"></script>

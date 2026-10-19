@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta name="description" content="Glacify: a prototype app to organise ice cream orders for small groups, flavours and scoops per person. On hold.">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bastien Gaffet">
-<meta property="og:description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta property="og:title" content="Glacify / Bastien Gaffet">
+<meta property="og:description" content="Glacify: a prototype app to organise ice cream orders for small groups, flavours and scoops per person. On hold.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="en_GB">
@@ -147,6 +147,9 @@ section { position: relative; z-index: 1; }
 
 
 .hero-title em { font-style: italic; color: hsl(190 60% 80%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -155,16 +158,16 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal t-en">Project / Creative</p>
-      <p class="hero-eyebrow reveal t-fr">Projet / Créatif</p>
+      <p class="hero-eyebrow reveal t-en">Project / Mobile App, on hold</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application mobile, en pause</p>
       <h1 class="hero-title">
         <span class="reveal">Glacify</span><br>
         <em class="reveal d1 t-en">Ice Cream App</em>
         <em class="reveal d1 t-fr">Appli de glaces</em>
       </h1>
-      <p class="hero-desc reveal d2 t-en">An ice cream ordering app designed to feel human. Playful UX, intuitive flows. The project where creativity entered the system.</p>
-      <p class="hero-desc reveal d2 t-fr">Une application de commande de glaces conçue pour paraître humaine. UX ludique, flux intuitifs. Le projet où la créativité est entrée dans le système.</p>
-      <div class="hero-tags reveal d3"><span class="tag">Mobile UX</span><span class="tag">UI Design</span><span class="tag">Ordering System</span><span class="tag">Playful Interface</span></div>
+      <p class="hero-desc reveal d2 t-en">An app to organise ice cream orders for small groups: flavours, scoops per person, cone or cup. A prototype that runs on the phone, on hold for now.</p>
+      <p class="hero-desc reveal d2 t-fr">Une application pour organiser des commandes de glaces en petit groupe : parfums, boules par personne, cornet ou coupe. Un prototype qui tourne sur le téléphone, en pause pour l'instant.</p>
+      <div class="hero-tags reveal d3"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">TypeScript</span><span class="tag t-en">On hold</span><span class="tag t-fr">En pause</span></div>
     </div>
   </section>
 
@@ -175,17 +178,17 @@ section { position: relative; z-index: 1; }
       <div class="overview-grid">
         <div>
           <h2 class="section-title reveal">
-            <span class="t-en">Design that<br><em>feels good to touch.</em></span>
-            <span class="t-fr">Un design<br><em>agréable au toucher.</em></span>
+            <span class="t-en">Ice cream,<br><em>organised.</em></span>
+            <span class="t-fr">Des glaces,<br><em>bien organisées.</em></span>
           </h2>
-          <p class="body-text reveal d1 t-en">Glacify is an ice cream ordering app built with one question in mind: what if an app actually reflected the product it was selling? Ice cream is playful, colourful, and a little indulgent. The UI had to be all of those things too, without sacrificing usability.</p>
-          <p class="body-text reveal d1 t-fr">Glacify est une application de commande de glaces construite autour d'une seule question : et si une application reflétait vraiment le produit qu'elle vend ? La glace est ludique, colorée, et un peu gourmande. L'interface devait l'être aussi, sans sacrifier l'ergonomie.</p>
+          <p class="body-text reveal d1 t-en">Glacify answers a very small question: when a group orders ice cream, who wants what, and how do you prepare it without mixing everything up? You list the flavours, assign scoops to each person, as a cone or a cup, and the app regroups the orders so they are easy to prepare. It also keeps simple statistics for each person. Everything is stored on the phone, and the project is paused.</p>
+          <p class="body-text reveal d1 t-fr">Glacify répond à une question très simple : quand un groupe commande des glaces, qui veut quoi, et comment les préparer sans tout mélanger ? On liste les parfums, on attribue des boules à chaque personne, en cornet ou en coupe, et l'application regroupe les commandes pour qu'elles soient faciles à préparer. Elle garde aussi des statistiques simples pour chaque personne. Tout est enregistré sur le téléphone, et le projet est en pause.</p>
         </div>
         <div class="stats-col reveal d1">
-          <div class="stat-item"><div class="stat-num">Mobile</div><div class="stat-lbl t-en">First design</div><div class="stat-lbl t-fr">Conçu en premier</div></div>
-          <div class="stat-item"><div class="stat-num t-en">Fast</div><div class="stat-num t-fr">Rapide</div><div class="stat-lbl t-en">Order flow</div><div class="stat-lbl t-fr">Parcours de commande</div></div>
-          <div class="stat-item"><div class="stat-num">2024</div><div class="stat-lbl t-en">Year built</div><div class="stat-lbl t-fr">Année de création</div></div>
-          <div class="stat-item"><div class="stat-num">v1</div><div class="stat-lbl t-en">Current version</div><div class="stat-lbl t-fr">Version actuelle</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Prototype</div><div class="stat-num t-fr">Prototype</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+          <div class="stat-item"><div class="stat-num">Local</div><div class="stat-lbl t-en">Data stays on the phone</div><div class="stat-lbl t-fr">Les données restent sur le téléphone</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year</div><div class="stat-lbl t-fr">Année</div></div>
+          <div class="stat-item"><div class="stat-num t-en">On hold</div><div class="stat-num t-fr">En pause</div><div class="stat-lbl t-en">Status</div><div class="stat-lbl t-fr">Statut</div></div>
         </div>
       </div>
     </div>
@@ -197,29 +200,24 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-fr">Fonctionnement</p>
       <div class="steps">
         <div class="step reveal"><div class="step-num">01</div><div class="step-body">
-          <h3 class="t-en">Browse the menu</h3><h3 class="t-fr">Parcourir le menu</h3>
-          <p class="t-en">Products are displayed with large visuals and clear descriptions. Filters let users find exactly what they want by flavour, size or category.</p>
-          <p class="t-fr">Les produits s'affichent avec de grands visuels et des descriptions claires. Des filtres permettent de trouver exactement ce qu'on veut par parfum, taille ou catégorie.</p>
+          <h3 class="t-en">List the flavours</h3><h3 class="t-fr">Lister les parfums</h3>
+          <p class="t-en">A few default flavours to start, editable.</p>
+          <p class="t-fr">Quelques parfums par défaut pour commencer, modifiables.</p>
         </div></div>
         <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
-          <h3 class="t-en">Customise the order</h3><h3 class="t-fr">Personnaliser la commande</h3>
-          <p class="t-en">Each item can be customised: cone or cup, scoops, toppings. The interface updates the visual preview in real time.</p>
-          <p class="t-fr">Chaque article peut être personnalisé : cône ou pot, boules, toppings. L'interface met à jour l'aperçu visuel en temps réel.</p>
+          <h3 class="t-en">Add the people</h3><h3 class="t-fr">Ajouter les personnes</h3>
+          <p class="t-en">Each person gets their own scoops, in a cone or a cup.</p>
+          <p class="t-fr">Chaque personne a ses propres boules, en cornet ou en coupe.</p>
         </div></div>
         <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
-          <h3 class="t-en">Add to cart</h3><h3 class="t-fr">Ajouter au panier</h3>
-          <p class="t-en">Items are added with a satisfying animation. The cart is always visible without interrupting the browsing experience.</p>
-          <p class="t-fr">Les articles s'ajoutent avec une animation satisfaisante. Le panier reste toujours visible sans interrompre la navigation.</p>
+          <h3 class="t-en">Prepare the orders</h3><h3 class="t-fr">Préparer les commandes</h3>
+          <p class="t-en">Orders are rearranged into a production flow to make preparation easier.</p>
+          <p class="t-fr">Les commandes sont réorganisées en flux de préparation pour faciliter le travail.</p>
         </div></div>
         <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
-          <h3 class="t-en">Checkout</h3><h3 class="t-fr">Paiement</h3>
-          <p class="t-en">A simple, distraction-free checkout flow. Name, pickup time, payment. Nothing unnecessary.</p>
-          <p class="t-fr">Un parcours de paiement simple, sans distraction. Nom, heure de retrait, paiement. Rien de superflu.</p>
-        </div></div>
-        <div class="step reveal d4"><div class="step-num">05</div><div class="step-body">
-          <h3 class="t-en">Confirmation</h3><h3 class="t-fr">Confirmation</h3>
-          <p class="t-en">A friendly confirmation screen with order summary and estimated pickup time.</p>
-          <p class="t-fr">Un écran de confirmation chaleureux avec récapitulatif de commande et heure de retrait estimée.</p>
+          <h3 class="t-en">Look at the stats</h3><h3 class="t-fr">Regarder les statistiques</h3>
+          <p class="t-en">Total scoops, favourite flavours and sessions for each person.</p>
+          <p class="t-fr">Boules au total, parfums préférés et sessions pour chaque personne.</p>
         </div></div>
       </div>
     </div>
@@ -230,9 +228,21 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">Stack</p>
       <p class="section-label reveal t-fr">Stack technique</p>
       <div class="stack-list">
-        <div class="stack-row reveal"><span class="stack-name">Mobile UI</span><span class="stack-desc t-en">Designed for touch-first interactions with large tap targets and smooth transitions.</span><span class="stack-desc t-fr">Conçu pour des interactions tactiles en priorité, avec de larges zones de clic et des transitions fluides.</span></div>
-        <div class="stack-row reveal d1"><span class="stack-name">UX Design</span><span class="stack-desc t-en">User flows mapped and tested for minimum friction from browse to checkout.</span><span class="stack-desc t-fr">Parcours utilisateur cartographiés et testés pour un minimum de friction, de la navigation au paiement.</span></div>
-        <div class="stack-row reveal d2"><span class="stack-name">Visual Design</span><span class="stack-desc t-en">Custom colour palette and typography built around the product personality.</span><span class="stack-desc t-fr">Palette de couleurs et typographie sur mesure, construites autour de la personnalité du produit.</span></div>
+        <div class="stack-row reveal">
+          <span class="stack-name">React Native and Expo</span>
+          <span class="stack-desc t-en">One codebase for the phone app.</span>
+          <span class="stack-desc t-fr">Une seule base de code pour l'application mobile.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name">TypeScript</span>
+          <span class="stack-desc t-en">Typed code throughout.</span>
+          <span class="stack-desc t-fr">Code typé partout.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name">Local storage</span>
+          <span class="stack-desc t-en">Everything is saved on the phone, with no account and no server.</span>
+          <span class="stack-desc t-fr">Tout est enregistré sur le téléphone, sans compte et sans serveur.</span>
+        </div>
       </div>
     </div>
   </section>
@@ -242,19 +252,14 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">Key concepts</p>
       <p class="section-label reveal t-fr">Concepts clés</p>
       <div class="concept reveal">
-        <div class="concept-title t-en">Emotional design</div><div class="concept-title t-fr">Design émotionnel</div>
-        <div class="concept-body t-en">The app uses colour, motion and micro-interactions to create a feeling, not just a function. Every screen should feel like the product.</div>
-        <div class="concept-body t-fr">L'application utilise couleur, mouvement et micro-interactions pour créer une émotion, pas juste une fonction. Chaque écran doit ressembler au produit.</div>
+        <div class="concept-title t-en">Where it stands</div><div class="concept-title t-fr">Où il en est</div>
+        <div class="concept-body t-en">The main screens work: home, flavours, people and the order screen. It has not been published.</div>
+        <div class="concept-body t-fr">Les écrans principaux fonctionnent : accueil, parfums, personnes et écran de commande. Il n'a pas été publié.</div>
       </div>
       <div class="concept reveal d1">
-        <div class="concept-title t-en">Flow efficiency</div><div class="concept-title t-fr">Efficacité du parcours</div>
-        <div class="concept-body t-en">The ordering flow is optimised to require as few taps as possible. Speed and delight are not in conflict here.</div>
-        <div class="concept-body t-fr">Le parcours de commande est optimisé pour demander le moins de clics possible. Rapidité et plaisir ne s'opposent pas ici.</div>
-      </div>
-      <div class="concept reveal d2">
-        <div class="concept-title t-en">Consistency</div><div class="concept-title t-fr">Cohérence</div>
-        <div class="concept-body t-en">Every component follows the same visual language. Spacing, radius, colour usage and typography are all systematic.</div>
-        <div class="concept-body t-fr">Chaque composant suit le même langage visuel. Espacement, arrondis, usage des couleurs et typographie sont tous systématiques.</div>
+        <div class="concept-title t-en">On hold</div><div class="concept-title t-fr">En pause</div>
+        <div class="concept-body t-en">The project is paused for now and I am not announcing a restart date.</div>
+        <div class="concept-body t-fr">Le projet est en pause pour l'instant et je n'annonce pas de date de reprise.</div>
       </div>
     </div>
   </section>

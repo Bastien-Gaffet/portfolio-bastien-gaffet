@@ -6,14 +6,13 @@
 
 /* THANKS */
 
-  Fonts: Google Fonts — Playfair Display, Inter
-  Hosting: Netlify
+  Fonts: Google Fonts, Playfair Display and Inter
+  Hosting: my own server (Debian, nginx), deployed from GitHub
   Analytics: Umami (privacy-friendly, no cookies)
-  CV generation: ReportLab (Python)
 
 /* SITE */
 
-  Last update: 2026-05-15
-  Language: English / French
+  Last update: 2026-10-20
+  Language: French / English
   Standards: HTML5, CSS3, Vanilla JS
   No frameworks. No build step.

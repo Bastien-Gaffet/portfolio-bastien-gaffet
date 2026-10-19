@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Static personal portfolio for `bastiengaffet.fr`. Plain HTML/CSS/JS, no framework, no build step, no dependencies. Deployed on Netlify directly from the root folder.
+Static personal portfolio for `bastiengaffet.fr`. Plain HTML/CSS/JS, no framework, no build step, no dependencies. Hosted on the owner's own VPS (nginx), see "Deployment" below. Netlify is no longer used for this site.
 
 ## No build commands
 
@@ -67,7 +67,7 @@ Filenames used as keys must match the actual `.html` filename exactly.
 - **Standalone pages** (links, secret): add `{ noNav: true, noFooter: true }`
 - **Blog posts**: add `{ backNav: { href: 'blog.html', label: 'Notes' } }`
 
-All pages are served clean, without `.html` (Netlify resolves `/about` to `about.html` automatically). Every link, and every key in `PAGE_CONFIG` / `PAGE_NAMES` / `PAGES` / `MAIN_PAGES` / `_crumbs` in `components.js`, uses the clean form — never write `.html` in an href. Project and product pages live in `project/` and `product/` subfolders (e.g. `project/robotj4.html` served at `/project/robotj4`); there are no root-level `project-name.html` duplicates anymore, the old ones are archived in `old/`. Current main nav links point to `/` (home, was `story.html`/`story-v6.html`) and `/work` (was `work.html`/`work-v4.html`). Keep `MAIN_PAGES` and `PAGE_NAMES` in sync when pages are renamed.
+All pages are served clean, without `.html` (nginx resolves `/about` to `about.html`, see `deploy/nginx/bastiengaffet.conf`). Every link, and every key in `PAGE_CONFIG` / `PAGE_NAMES` / `PAGES` / `MAIN_PAGES` / `_crumbs` in `components.js`, uses the clean form — never write `.html` in an href. Project and product pages live in `project/` and `product/` subfolders (e.g. `project/robotj4.html` served at `/project/robotj4`); there are no root-level `project-name.html` duplicates anymore, the old ones are archived in `old/`. Current main nav links point to `/` (home, was `story.html`/`story-v6.html`) and `/work` (was `work.html`/`work-v4.html`). Keep `MAIN_PAGES` and `PAGE_NAMES` in sync when pages are renamed.
 
 ## Pages NOT to migrate
 
@@ -118,27 +118,28 @@ Story is the narrative centerpiece and the homepage, served at `/`. Full-screen,
 
 ## Real contact details
 
-- Email: `bastien.gaffet@outlook.com`
+- Email: `contact@bastiengaffet.fr`
 - GitHub: `https://github.com/Bastien-Gaffet`
 - Ko-fi: `https://ko-fi.com/bastiengft` (no underscore; an older `bastien_gft`
-  spelling was used across the site until 2026-08-08 and has been corrected)
+  spelling was used across the site until 2026-08-08 and has been corrected;
+  it redirects to the Ko-fi homepage, never use it)
 - Ko-fi goal: Canon EOS R6 Mark II for astrophotography
 
-## Placeholders still to fill before publishing
+## Open items
 
-- **LinkedIn** (`about.html`, `contact.html`, `cv.html`, `links.html`) and
-  **Instagram** (`links.html`) still point at `votre-username` /
-  `YOUR_LINKEDIN`. The accounts do not exist yet; the links are deliberately
-  left in place so they are not forgotten. Grep for `votre-username` and
-  `YOUR_LINKEDIN` to find them all.
-- **Images**: the repo only ships `og-image.png`. Referenced but missing:
-  the 7 carousel shots in `product/cosmos-wallpaper.html`, the shop thumbnail
-  in `shop.html`, `tipe-photo-1..4.jpg` in `tipe.html`, and
-  `your-cover-image.jpg` in `blog.html`.
-- **Photography**: `photography.html` still runs on 12 empty `src:''` entries
-  titled "Photo title" / "Location".
-- **Blog**: the single sample article points at `post-example.html`, which
-  does not exist.
+- **LinkedIn and Instagram**: the accounts do not exist yet, so there are NO links to them anywhere. Add them back (about, contact, cv, links) when the accounts are created.
+- **Photography**: `photography.html` shows an honest empty state (and is `noindex`, left out of the sitemap) until real photos are added to the `PHOTOS` array.
+- **Bilingual**: every page carries both languages (`t-en` / `t-fr`, see `traductions.md`). French is the source written by the owner, English is the translation.
+- **Private on purpose**: the Cosmos Wallpaper Generator itself (only its sales page and a limited demo are public), the `pp/` brand assets, class data and school panels never go in this repository.
+
+## Deployment
+
+- Production: `https://bastiengaffet.fr/` on the VPS, served from `/var/www/portfolio/current` (atomic releases). Everything lives in `deploy/` (nginx vhost with security headers and CSP, publish allowlist `rsync-allowlist`, scripts, systemd units).
+- Only the files listed in `deploy/rsync-allowlist` are published. A new kind of public file must be added there.
+- Publish the working tree now: `bash deploy/push-from-pc.sh`. Roll back: `ssh root@72.62.190.7 'sudo -u portfolio portfolio-deploy --rollback'`.
+- Automatic: `portfolio-deploy.timer` on the VPS pulls `main` from GitHub every 5 minutes. `portfolio-activity.timer` refreshes `/activity.json` (latest GitHub commits) every 30 minutes.
+- The CSP only allows self, Google Fonts, Umami and Ko-fi: a new external domain must be added to `deploy/nginx/portfolio-security-headers.conf` first.
+- `moi.bastiengaffet.fr` (old Netlify address) now redirects with a 301 to the same path on the apex.
 
 ## CV files
 

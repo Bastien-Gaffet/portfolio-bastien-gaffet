@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Equiliz: an app to split expenses between flatmates, friends or a couple. Works without an account, free during the closed beta.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Equiliz / Bastien Gaffet">
+<meta property="og:description" content="Equiliz: an app to split expenses between flatmates, friends or a couple. Works without an account, free during the closed beta.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>Equiliz / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/components.css">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
+
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<main>
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal t-en">Project / Web &amp; Android App</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application web et Android</p>
+      <h1 class="hero-title">
+        <span class="reveal">Equiliz</span><br>
+        <em class="reveal d1 t-en">Shared Expenses</em>
+        <em class="reveal d1 t-fr">Dépenses partagées</em>
+      </h1>
+      <p class="hero-desc reveal d2 t-en">An app to split expenses between people who live, travel or party together. It works without an account and it is free during the closed beta.</p>
+      <p class="hero-desc reveal d2 t-fr">Une application pour partager les dépenses entre personnes qui vivent, voyagent ou font la fête ensemble. Elle marche sans compte et elle est gratuite pendant la bêta fermée.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Web app</span><span class="tag">Android</span><span class="tag">TypeScript</span><span class="tag t-en">Closed beta</span><span class="tag t-fr">Bêta fermée</span></div>
+      <p class="hero-cta reveal d3"><a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener" class="cta-link"><span class="t-en">Try Equiliz</span><span class="t-fr">Essayer Equiliz</span></a></p>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
+      <div class="overview-grid">
+        <div>
+          <h2 class="section-title reveal">
+            <span class="t-en">Clear accounts,<br><em>intact friendships.</em></span>
+            <span class="t-fr">Des comptes clairs,<br><em>des amitiés intactes.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">Everyone has met the friend who pays you back tomorrow, or the flatmate who keeps the accounts in a spreadsheet nobody opens. Equiliz is my attempt at something simpler: add expenses in a few taps, see who owes whom, and settle with as few transfers as possible.</p>
+          <p class="body-text reveal d1 t-fr">Tout le monde a croisé l'ami qui rembourse demain, ou le coloc qui tient les comptes dans un tableur que personne n'ouvre. Equiliz est ma tentative de faire plus simple : ajouter une dépense en quelques gestes, voir qui doit quoi à qui, et régler avec le moins de virements possible.</p>
+        </div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">0</div><div class="stat-lbl t-en">Accounts needed to start</div><div class="stat-lbl t-fr">Comptes nécessaires pour commencer</div></div>
+          <div class="stat-item"><div class="stat-num">Web + Android</div><div class="stat-lbl t-en">Platforms</div><div class="stat-lbl t-fr">Plateformes</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year started</div><div class="stat-lbl t-fr">Année de départ</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Closed beta</div><div class="stat-num t-fr">Bêta fermée</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">How it works</p>
+      <p class="section-label reveal t-fr">Fonctionnement</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Create a group</h3><h3 class="t-fr">Créer un groupe</h3>
+          <p class="t-en">A flatshare, a trip, a couple, an evening: one group per situation.</p>
+          <p class="t-fr">Une colocation, un voyage, un couple, une soirée : un groupe par situation.</p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Invite people</h3><h3 class="t-fr">Inviter les gens</h3>
+          <p class="t-en">Share a link, or simply add someone by first name. If they sign up later, they keep everything that was recorded for them.</p>
+          <p class="t-fr">Partager un lien, ou simplement ajouter quelqu'un par son prénom. S'il s'inscrit plus tard, il garde tout ce qui a été enregistré pour lui.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Add expenses</h3><h3 class="t-fr">Ajouter des dépenses</h3>
+          <p class="t-en">Who paid, how much, for whom. A few taps.</p>
+          <p class="t-fr">Qui a payé, combien, pour qui. Quelques gestes.</p>
+        </div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
+          <h3 class="t-en">Settle up</h3><h3 class="t-fr">Rembourser</h3>
+          <p class="t-en">The balances show who owes whom, arranged to need the fewest transfers.</p>
+          <p class="t-fr">Les soldes montrent qui doit quoi à qui, organisés pour demander le moins de virements.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Stack</p>
+      <p class="section-label reveal t-fr">Stack technique</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name">TypeScript</span>
+          <span class="stack-desc t-en">One codebase for the web app and its tests.</span>
+          <span class="stack-desc t-fr">Une seule base de code pour l'application web et ses tests.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name">Installable web app</span>
+          <span class="stack-desc t-en">Opens in a browser, installs on a phone like an app.</span>
+          <span class="stack-desc t-fr">S'ouvre dans un navigateur, s'installe sur un téléphone comme une application.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name">Capacitor</span>
+          <span class="stack-desc t-en">Packages the same app for Android, currently in testing.</span>
+          <span class="stack-desc t-fr">Empaquette la même application pour Android, actuellement en test.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Key concepts</p>
+      <p class="section-label reveal t-fr">Concepts clés</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">No account to start</div><div class="concept-title t-fr">Pas de compte pour commencer</div>
+        <div class="concept-body t-en">You can try it with just a first name. The session lives on your device: if you lose it before creating an account, you lose access, and that is said clearly.</div>
+        <div class="concept-body t-fr">On peut l'essayer avec un simple prénom. La session vit sur l'appareil : si on la perd avant de créer un compte, on perd l'accès, et c'est dit clairement.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">Free during the beta</div><div class="concept-title t-fr">Gratuit pendant la bêta</div>
+        <div class="concept-body t-en">Nothing is charged today. A one-time paid version is planned for later, and there will be no advertising.</div>
+        <div class="concept-body t-fr">Rien n'est facturé aujourd'hui. Une version payante en achat unique est prévue plus tard, et il n'y aura pas de publicité.</div>
+      </div>
+      <div class="concept reveal d2">
+        <div class="concept-title t-en">A closed beta</div><div class="concept-title t-fr">Une bêta fermée</div>
+        <div class="concept-body t-en">The beta is closed: Android testers join through a Google Play test. The web app can be tried without an account.</div>
+        <div class="concept-body t-fr">La bêta est fermée : les testeurs Android la rejoignent via un test Google Play. L'application web peut s'essayer sans compte.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+<script src="/components.js"></script>
+</body>
+</html>

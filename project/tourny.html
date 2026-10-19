@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta name="description" content="Tourny: a prototype to run sports tournaments, born in a volleyball club. Pools, brackets and live scores. On hold.">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bastien Gaffet">
-<meta property="og:description" content="Student, maker and astrophotographer. Building robots, writing code, photographing the cosmos.">
+<meta property="og:title" content="Tourny / Bastien Gaffet">
+<meta property="og:description" content="Tourny: a prototype to run sports tournaments, born in a volleyball club. Pools, brackets and live scores. On hold.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="en_GB">
@@ -147,6 +147,9 @@ section { position: relative; z-index: 1; }
 
 
 .hero-title em { font-style: italic; color: hsl(245 60% 80%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -155,16 +158,16 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal t-en">Project / Engineering</p>
-      <p class="hero-eyebrow reveal t-fr">Projet / Ingénierie</p>
+      <p class="hero-eyebrow reveal t-en">Project / Web App, on hold</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application web, en pause</p>
       <h1 class="hero-title">
         <span class="reveal">Tourny</span><br>
         <em class="reveal d1 t-en">Tournament Engine</em>
         <em class="reveal d1 t-fr">Moteur de tournois</em>
       </h1>
-      <p class="hero-desc reveal d2 t-en">A sport tournament management platform. Logic, data pipelines and a dashboard built around the complexity of competitive sports.</p>
-      <p class="hero-desc reveal d2 t-fr">Une plateforme de gestion de tournois sportifs. Logique, pipelines de données et tableau de bord conçus autour de la complexité du sport compétitif.</p>
-      <div class="hero-tags reveal d3"><span class="tag">Python</span><span class="tag">Data Architecture</span><span class="tag">Dashboard UI</span><span class="tag">Tournament System</span></div>
+      <p class="hero-desc reveal d2 t-en">A prototype to run sports tournaments: pools, brackets and live scores. Born in a volleyball club. It is not ready for real use and it is on hold for now.</p>
+      <p class="hero-desc reveal d2 t-fr">Un prototype pour organiser des tournois sportifs : poules, tableaux et scores en direct. Né dans un club de volley. Il n'est pas prêt pour un vrai usage et il est en pause pour l'instant.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Firebase</span><span class="tag">TypeScript</span><span class="tag">Prototype</span><span class="tag t-en">On hold</span><span class="tag t-fr">En pause</span></div>
     </div>
   </section>
 
@@ -178,14 +181,14 @@ section { position: relative; z-index: 1; }
             <span class="t-en">Organizing chaos<br><em>into structure.</em></span>
             <span class="t-fr">Organiser le chaos<br><em>en structure.</em></span>
           </h2>
-          <p class="body-text reveal d1 t-en">Tourny started from a simple frustration: managing a sports tournament by hand is a mess of spreadsheets, manual brackets and missed updates. The goal was to automate all of it, from team registration to live standings, in a system that actually makes sense to use.</p>
-          <p class="body-text reveal d1 t-fr">Tourny est né d'une frustration simple : gérer un tournoi sportif à la main, c'est un fouillis de tableurs, de brackets manuels et de mises à jour oubliées. L'objectif était de tout automatiser, de l'inscription des équipes au classement en direct, dans un système réellement agréable à utiliser.</p>
+          <p class="body-text reveal d1 t-en">Tourny started from a simple frustration: running a tournament by hand means spreadsheets, hand-drawn brackets and results nobody updates. The idea is an app where an organiser creates a tournament, enters the scores, and everyone follows it live from a link. Most of the data model and the server logic are written. The screens are not finished, and the project is paused.</p>
+          <p class="body-text reveal d1 t-fr">Tourny est né d'une frustration simple : organiser un tournoi à la main, c'est des tableurs, des tableaux dessinés à la main et des résultats que personne ne met à jour. L'idée est une application où l'organisateur crée un tournoi, saisit les scores, et chacun suit en direct depuis un lien. L'essentiel du modèle de données et de la logique serveur est écrit. Les écrans ne sont pas terminés, et le projet est en pause.</p>
         </div>
         <div class="stats-col reveal d1">
-          <div class="stat-item"><div class="stat-num">N+</div><div class="stat-lbl t-en">Teams supported</div><div class="stat-lbl t-fr">Équipes prises en charge</div></div>
-          <div class="stat-item"><div class="stat-num t-en">Real-time</div><div class="stat-num t-fr">Temps réel</div><div class="stat-lbl t-en">Bracket updates</div><div class="stat-lbl t-fr">Mises à jour des brackets</div></div>
-          <div class="stat-item"><div class="stat-num">2024</div><div class="stat-lbl t-en">Year built</div><div class="stat-lbl t-fr">Année de création</div></div>
-          <div class="stat-item"><div class="stat-num">v1</div><div class="stat-lbl t-en">Current version</div><div class="stat-lbl t-fr">Version actuelle</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Prototype</div><div class="stat-num t-fr">Prototype</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+          <div class="stat-item"><div class="stat-num">Firebase</div><div class="stat-lbl t-en">Backend</div><div class="stat-lbl t-fr">Backend</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year</div><div class="stat-lbl t-fr">Année</div></div>
+          <div class="stat-item"><div class="stat-num t-en">On hold</div><div class="stat-num t-fr">En pause</div><div class="stat-lbl t-en">Status</div><div class="stat-lbl t-fr">Statut</div></div>
         </div>
       </div>
     </div>
@@ -197,29 +200,19 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-fr">Fonctionnement</p>
       <div class="steps">
         <div class="step reveal"><div class="step-num">01</div><div class="step-body">
-          <h3 class="t-en">Team registration</h3><h3 class="t-fr">Inscription des équipes</h3>
-          <p class="t-en">Teams are registered with their group, level and contact info. The system validates entries and prevents duplicates automatically.</p>
-          <p class="t-fr">Les équipes sont inscrites avec leur groupe, leur niveau et leurs coordonnées. Le système valide les entrées et empêche les doublons automatiquement.</p>
+          <h3 class="t-en">Create a tournament</h3><h3 class="t-fr">Créer un tournoi</h3>
+          <p class="t-en">Choose pools and a final phase, a knockout bracket, or an up and down format.</p>
+          <p class="t-fr">Choisir des poules et une phase finale, un tableau à élimination directe, ou un format montante-descendante.</p>
         </div></div>
         <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
-          <h3 class="t-en">Bracket generation</h3><h3 class="t-fr">Génération des brackets</h3>
-          <p class="t-en">The algorithm generates brackets based on the number of teams and tournament format chosen: single elimination, double elimination or round robin.</p>
-          <p class="t-fr">L'algorithme génère les brackets selon le nombre d'équipes et le format de tournoi choisi : élimination simple, double élimination ou round robin.</p>
+          <h3 class="t-en">Enter the scores</h3><h3 class="t-fr">Saisir les scores</h3>
+          <p class="t-en">Scores adapted to the sport: sets, points or goals.</p>
+          <p class="t-fr">Des scores adaptés au sport : sets, points ou buts.</p>
         </div></div>
         <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
-          <h3 class="t-en">Match scheduling</h3><h3 class="t-fr">Planification des matchs</h3>
-          <p class="t-en">Matches are scheduled with time slots and court assignments. Conflicts are detected and flagged before the tournament starts.</p>
-          <p class="t-fr">Les matchs sont planifiés avec créneaux horaires et attribution des terrains. Les conflits sont détectés et signalés avant le début du tournoi.</p>
-        </div></div>
-        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
-          <h3 class="t-en">Live results</h3><h3 class="t-fr">Résultats en direct</h3>
-          <p class="t-en">Scores are entered in real time. Standings, next matches and eliminated teams update instantly across the dashboard.</p>
-          <p class="t-fr">Les scores sont saisis en temps réel. Classements, prochains matchs et équipes éliminées se mettent à jour instantanément sur le tableau de bord.</p>
-        </div></div>
-        <div class="step reveal d4"><div class="step-num">05</div><div class="step-body">
-          <h3 class="t-en">Final report</h3><h3 class="t-fr">Rapport final</h3>
-          <p class="t-en">At the end of the tournament, a full report is generated with results, rankings and statistics.</p>
-          <p class="t-fr">À la fin du tournoi, un rapport complet est généré avec résultats, classements et statistiques.</p>
+          <h3 class="t-en">Share a public view</h3><h3 class="t-fr">Partager une vue publique</h3>
+          <p class="t-en">A code or a link lets players and families follow the tournament live.</p>
+          <p class="t-fr">Un code ou un lien permet aux joueurs et aux familles de suivre le tournoi en direct.</p>
         </div></div>
       </div>
     </div>
@@ -230,9 +223,21 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">Stack</p>
       <p class="section-label reveal t-fr">Stack technique</p>
       <div class="stack-list">
-        <div class="stack-row reveal"><span class="stack-name">Python</span><span class="stack-desc t-en">Core logic, bracket generation algorithms and data processing.</span><span class="stack-desc t-fr">Logique centrale, algorithmes de génération des brackets et traitement des données.</span></div>
-        <div class="stack-row reveal d1"><span class="stack-name">Data Architecture</span><span class="stack-desc t-en">Structured data model for teams, matches, rounds and results.</span><span class="stack-desc t-fr">Modèle de données structuré pour les équipes, matchs, tours et résultats.</span></div>
-        <div class="stack-row reveal d2"><span class="stack-name">Dashboard UI</span><span class="stack-desc t-en">Interface for tournament directors to manage matches and view standings in real time.</span><span class="stack-desc t-fr">Interface pour les organisateurs de tournois permettant de gérer les matchs et suivre les classements en temps réel.</span></div>
+        <div class="stack-row reveal">
+          <span class="stack-name">Firebase</span>
+          <span class="stack-desc t-en">Database, authentication and hosting.</span>
+          <span class="stack-desc t-fr">Base de données, authentification et hébergement.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name">TypeScript</span>
+          <span class="stack-desc t-en">Server functions: tournament generation, scoring, swiss system.</span>
+          <span class="stack-desc t-fr">Fonctions serveur : génération de tournois, scores, système suisse.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name">HTML, CSS, JavaScript</span>
+          <span class="stack-desc t-en">The first web screens, not finished.</span>
+          <span class="stack-desc t-fr">Les premiers écrans web, pas terminés.</span>
+        </div>
       </div>
     </div>
   </section>
@@ -242,19 +247,14 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">Key concepts</p>
       <p class="section-label reveal t-fr">Concepts clés</p>
       <div class="concept reveal">
-        <div class="concept-title t-en">Bracket algorithms</div><div class="concept-title t-fr">Algorithmes de brackets</div>
-        <div class="concept-body t-en">Single and double elimination brackets require careful graph traversal. Each match outcome propagates correctly through the tree without manual intervention.</div>
-        <div class="concept-body t-fr">Les brackets à élimination simple et double demandent un parcours de graphe rigoureux. Chaque résultat de match se propage correctement dans l'arbre sans intervention manuelle.</div>
+        <div class="concept-title t-en">Where it stands</div><div class="concept-title t-fr">Où il en est</div>
+        <div class="concept-body t-en">The foundations exist and the screens are partial. It has never been used for a real tournament.</div>
+        <div class="concept-body t-fr">Les fondations existent et les écrans sont partiels. Il n'a jamais servi pour un vrai tournoi.</div>
       </div>
       <div class="concept reveal d1">
-        <div class="concept-title t-en">Data consistency</div><div class="concept-title t-fr">Cohérence des données</div>
-        <div class="concept-body t-en">Tournament state is complex: a result change cascades through subsequent rounds. The system tracks dependencies and updates all affected matches automatically.</div>
-        <div class="concept-body t-fr">L'état d'un tournoi est complexe : un changement de résultat se répercute sur les tours suivants. Le système suit les dépendances et met à jour automatiquement tous les matchs concernés.</div>
-      </div>
-      <div class="concept reveal d2">
-        <div class="concept-title t-en">User-first design</div><div class="concept-title t-fr">Conception centrée utilisateur</div>
-        <div class="concept-body t-en">The interface is built for people who are running a tournament under pressure. Every action is two clicks or fewer.</div>
-        <div class="concept-body t-fr">L'interface est pensée pour des gens qui gèrent un tournoi sous pression. Chaque action tient en deux clics maximum.</div>
+        <div class="concept-title t-en">On hold</div><div class="concept-title t-fr">En pause</div>
+        <div class="concept-body t-en">The project is paused for now and I am not announcing a restart date.</div>
+        <div class="concept-body t-fr">Le projet est en pause pour l'instant et je n'annonce pas de date de reprise.</div>
       </div>
     </div>
   </section>

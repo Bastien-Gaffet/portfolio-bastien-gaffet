@@ -1,0 +1,43 @@
+# Allowlist of what is published on bastiengaffet.fr (used by portfolio-deploy.sh).
+# Anything not listed here never reaches the web root: notes, scripts, CV sources,
+# context files, templates, old/, deploy/ and so on stay in the repository only.
+# Order matters: first match wins.
+
+# never published, even if they match a later include
+- /nav-components.html
+- /og-tags.html
+- /post-template.html
+- /product-template.html
+- /project-template.html
+- /project-name-generator.html
+- /cosmos-wallpaper-generator.html
+
+# pages
++ /*.html
++ /project/
++ /project/*.html
++ /product/
++ /product/*.html
++ /notes/
++ /notes/*.html
+
+# shared assets
++ /components.css
++ /components.js
++ /img/
++ /img/**
++ /og-image.png
++ /cv-bastien-gaffet-en.pdf
++ /cv-bastien-gaffet-fr.pdf
+
+# machine readable files
++ /robots.txt
++ /sitemap.xml
++ /feed.xml
++ /llms.txt
++ /humans.txt
++ /.well-known/
++ /.well-known/security.txt
+
+# everything else is excluded
+- *

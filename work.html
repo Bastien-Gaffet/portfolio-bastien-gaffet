@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bastien Gaffet — engineering student, maker and astrophotographer.">
+<meta name="description" content="Bastien Gaffet: apps, games and websites built for fun. Equiliz, Krino, Kairoo, Robot J4, and the projects on hold.">
 <meta name="author" content="Bastien Gaffet">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bastien Gaffet">
-<meta property="og:description" content="Engineering student. Building at the intersection of software, hardware and design.">
+<meta property="og:description" content="Apps, games and websites built for fun between classes: Equiliz, Krino, Kairoo, Robot J4, and the projects on hold.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
@@ -103,6 +103,8 @@ section { position: relative; z-index: 1; }
 .krino   .card-accent { background: hsl(227 80% 68%); }
 .cdp-scraper .card-accent { background: hsl(150 55% 58%); }
 .robotj4 .card-accent { background: hsl(265 75% 60%); }
+.equiliz .card-accent { background: hsl(160 60% 50%); }
+.prepatrack .card-accent { background: hsl(215 70% 60%); }
 .robotj4.featured { border-color: hsl(265 75% 60% / 0.35); }
 
 .card-body { padding: 1.7rem; flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -160,6 +162,10 @@ section { position: relative; z-index: 1; }
 .contact-quote { font-size: 0.65rem; letter-spacing: 0.14em; color: oklch(38% 0.01 250); margin-top: 2rem; }
 .back-story { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: oklch(38% 0.01 250); text-decoration: none; transition: color 0.3s; margin-top: 3rem; }
 .back-story:hover { color: var(--dim); }
+.more-projects { text-align: center; margin: 3rem 0 0; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.more-projects a { color: var(--dim); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.2rem; transition: color 0.3s; }
+.more-projects a:hover { color: var(--white); }
+.cobblekit .card-accent { background: hsl(120 45% 50%); }
 </style>
 </head>
 <body>
@@ -170,14 +176,14 @@ section { position: relative; z-index: 1; }
 <!-- HERO -->
 <section id="hero">
   <div class="inner">
-    <p class="hero-eyebrow reveal t-en">Engineering Portfolio</p>
-    <p class="hero-eyebrow reveal t-fr">Portfolio Ingénierie</p>
+    <p class="hero-eyebrow reveal t-en">Projects</p>
+    <p class="hero-eyebrow reveal t-fr">Projets</p>
     <h1 class="hero-title reveal d1">
       <span class="t-en">What I've <em>built</em>.<br>What I'm building.</span>
       <span class="t-fr">Ce que j'ai <em>construit</em>.<br>Ce que je construis.</span>
     </h1>
-    <p class="hero-desc reveal d2 t-en">Systems, interfaces and concepts. Each project a different way to understand and shape the world around me.</p>
-    <p class="hero-desc reveal d2 t-fr">Systèmes, interfaces et concepts. Chaque projet, une autre façon de comprendre et façonner le monde autour de moi.</p>
+    <p class="hero-desc reveal d2 t-en">Apps, games, websites and a robot. I build them for the pleasure of it, between classes. Some are live, some are paused, none is finished the way I imagined it.</p>
+    <p class="hero-desc reveal d2 t-fr">Des applications, des jeux, des sites et un robot. Je les crée pour le plaisir, entre deux cours. Certains sont en ligne, d'autres en pause, aucun n'est fini comme je l'imaginais.</p>
   </div>
 </section>
 
@@ -187,55 +193,25 @@ section { position: relative; z-index: 1; }
     <button class="filter-btn active" data-filter="all"><span class="t-en">All</span><span class="t-fr">Tout</span></button>
     <button class="filter-btn" data-filter="engineering"><span class="t-en">Engineering</span><span class="t-fr">Ingénierie</span></button>
     <button class="filter-btn" data-filter="creative"><span class="t-en">Creative</span><span class="t-fr">Créatif</span></button>
-    <button class="filter-btn" data-filter="experimental"><span class="t-en">Experimental</span><span class="t-fr">Expérimental</span></button>
+    <button class="filter-btn" data-filter="paused"><span class="t-en">On hold</span><span class="t-fr">En pause</span></button>
   </div>
 </div>
 
 <!-- PROJECTS -->
 <div id="projects">
   <div class="projects-grid">
-    <a class="proj-card tourny featured" data-cat="engineering" href="/project/tourny">
+    <a class="proj-card equiliz featured" data-cat="engineering" href="/project/equiliz">
       <div class="card-visual">
         <div class="card-stripe"></div>
-        <span class="card-visual-lbl">Dashboard · Data visualization</span>
+        <span class="card-visual-lbl">Web app · Android</span>
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2024</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
-        <h2 class="card-name">Tourny</h2>
-        <p class="card-desc t-en">A sport tournament management platform. My first attempt to organize chaos into structure: logic, data pipelines, and a dashboard built around the complexity of competitive sports.</p>
-        <p class="card-desc t-fr">Une plateforme de gestion de tournois sportifs. Ma première tentative d'organiser le chaos en structure : logique, pipelines de données, et un tableau de bord conçu autour de la complexité du sport compétitif.</p>
-        <div class="card-tags"><span class="tag">Tournament System</span><span class="tag">Data Architecture</span><span class="tag">Dashboard UI</span></div>
-        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
-      </div>
-    </a>
-    <a class="proj-card glacify" data-cat="creative" href="/project/glacify">
-      <div class="card-visual">
-        <div class="card-stripe"></div>
-        <span class="card-visual-lbl">Mobile app · UX design</span>
-        <div class="card-accent"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta"><span class="card-year">2024</span><span class="card-type t-en">Creative</span><span class="card-type t-fr">Créatif</span></div>
-        <h2 class="card-name">Glacify</h2>
-        <p class="card-desc t-en">An ice cream ordering app designed to feel human. Playful UX, intuitive flows. The project where creativity entered the system.</p>
-        <p class="card-desc t-fr">Une application de commande de glaces conçue pour paraître humaine. UX ludique, flux intuitifs. Le projet où la créativité est entrée dans le système.</p>
-        <div class="card-tags"><span class="tag">Mobile UX</span><span class="tag">Ordering System</span><span class="tag">Playful Interface</span></div>
-        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
-      </div>
-    </a>
-    <a class="proj-card kairoo" data-cat="creative" href="/project/kairoo">
-      <div class="card-visual">
-        <div class="card-stripe"></div>
-        <span class="card-visual-lbl">Mobile app · Game design</span>
-        <div class="card-accent"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Creative</span><span class="card-type t-fr">Créatif</span></div>
-        <h2 class="card-name">Kairoo</h2>
-        <p class="card-desc t-en">A mobile app turning mirror hours into a daily ritual: XP, leagues, guilds and rewards around one simple gesture, opening the app at the right moment.</p>
-        <p class="card-desc t-fr">Une application mobile qui transforme les heures miroir en rituel quotidien : XP, ligues, guildes et récompenses autour d'un geste simple, ouvrir l'application au bon moment.</p>
-        <div class="card-tags"><span class="tag">Mirror Hours</span><span class="tag">Game Design</span><span class="tag">Supabase</span></div>
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Closed beta</span><span class="card-type t-fr">Bêta fermée</span></div>
+        <h2 class="card-name">Equiliz</h2>
+        <p class="card-desc t-en">Split expenses with flatmates, friends or a partner. It works without an account: add someone by first name, and they get everything back when they sign up. Free during the beta.</p>
+        <p class="card-desc t-fr">Partager les dépenses entre colocs, amis ou en couple. Ça marche sans compte : on ajoute quelqu'un par son prénom, et il récupère tout le jour où il s'inscrit. Gratuit pendant la bêta.</p>
+        <div class="card-tags"><span class="tag">Web app</span><span class="tag">Android</span><span class="tag">Shared expenses</span></div>
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
@@ -254,6 +230,51 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
+    <a class="proj-card cobblekit featured" data-cat="engineering" href="/project/cobblekit">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">Minecraft · Web tools · Paper</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Live, growing</span><span class="card-type t-fr">En ligne, en construction</span></div>
+        <h2 class="card-name">Cobblekit</h2>
+        <p class="card-desc t-en">A toolbox for Minecraft players and server admins: 3D skins, a world journal, a shared building board, plugin config merging, backup checks. Eleven free tools online, and the biggest project I am working on.</p>
+        <p class="card-desc t-fr">Une boîte à outils pour les joueurs et les admins de serveurs Minecraft : skins en 3D, journal de monde, tableau de chantier partagé, fusion de configs de plugins, vérification de sauvegardes. Onze outils gratuits en ligne, et le plus gros projet sur lequel je travaille.</p>
+        <div class="card-tags"><span class="tag">Minecraft</span><span class="tag">TypeScript</span><span class="tag">Web tools</span><span class="tag">Paper</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card kairoo" data-cat="creative" href="/project/kairoo">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">Mobile app · Game design</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Creative</span><span class="card-type t-fr">Créatif</span></div>
+        <h2 class="card-name">Kairoo</h2>
+        <p class="card-desc t-en">A mobile app prototype built around mirror hours like 11:11: open it at the right minute and earn a quote and some XP. Early prototype, never published.</p>
+        <p class="card-desc t-fr">Un prototype d'application mobile autour des heures miroir comme 11h11 : on l'ouvre à la bonne minute et on gagne une citation et de l'XP. Prototype précoce, jamais publié.</p>
+        <div class="card-tags"><span class="tag">Mirror Hours</span><span class="tag">Game Design</span><span class="tag">Prototype</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card robotj4 featured" data-cat="engineering" href="/project/robotj4">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">Robotics · AI · Computer Vision</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2024 / 2025</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
+        <h2 class="card-name">Robot J4</h2>
+        <p class="card-desc t-en">A robotic arm that plays Connect Four: mechanical design, computer vision and the Minimax algorithm. A school project that went to EUCYS in Riga in 2025, where it won the CERN European Prize.</p>
+        <p class="card-desc t-fr">Un bras robotique qui joue au Puissance 4 : conception mécanique, vision par ordinateur et algorithme Minimax. Un projet de lycée présenté à l'EUCYS à Riga en 2025, où il a reçu le Prix européen du CERN.</p>
+        <div class="card-tags"><span class="tag">Minimax AI</span><span class="tag">Computer Vision</span><span class="tag">Arduino</span><span class="tag">Python</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
     <a class="proj-card cdp-scraper" data-cat="engineering" href="/project/cdp-scraper">
       <div class="card-visual">
         <div class="card-stripe"></div>
@@ -269,22 +290,55 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
-    <a class="proj-card robotj4 featured" data-cat="engineering" href="/project/robotj4">
+    <a class="proj-card tourny" data-cat="paused" href="/project/tourny">
       <div class="card-visual">
         <div class="card-stripe"></div>
-        <span class="card-visual-lbl">Robotics · AI · Computer Vision</span>
+        <span class="card-visual-lbl">Dashboard · Data visualization</span>
         <div class="card-accent"></div>
       </div>
       <div class="card-body">
-        <div class="card-meta"><span class="card-year">2024</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
-        <h2 class="card-name">Robot J4</h2>
-        <p class="card-desc t-en">A robotic arm that plays Connect Four. Combining mechanical design, computer vision and the Minimax algorithm into a physical intelligence. National winner at Concours Cgénial, CERN European Prize at EUCYS Latvia.</p>
-        <p class="card-desc t-fr">Un bras robotique qui joue au Puissance 4. Alliance de conception mécanique, vision par ordinateur et algorithme Minimax en une intelligence physique. Lauréat national Concours Cgénial, Prix européen du CERN à l'EUCYS en Lettonie.</p>
-        <div class="card-tags"><span class="tag">Minimax AI</span><span class="tag">Computer Vision</span><span class="tag">Arduino</span><span class="tag">Python</span></div>
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">On hold</span><span class="card-type t-fr">En pause</span></div>
+        <h2 class="card-name">Tourny</h2>
+        <p class="card-desc t-en">Born in a volleyball club: pools, brackets and live scores for tournaments. A prototype, not ready for real use. On hold for now.</p>
+        <p class="card-desc t-fr">Né dans un club de volley : poules, tableaux et scores en direct pour les tournois. Un prototype, pas prêt pour un vrai usage. En pause pour l'instant.</p>
+        <div class="card-tags"><span class="tag">Tournament System</span><span class="tag">Data Architecture</span><span class="tag">Dashboard UI</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card glacify" data-cat="paused" href="/project/glacify">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">Mobile app · UX design</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">On hold</span><span class="card-type t-fr">En pause</span></div>
+        <h2 class="card-name">Glacify</h2>
+        <p class="card-desc t-en">An app to organise ice cream orders for small groups: flavours, scoops per person, cone or cup. A prototype that runs locally. On hold for now.</p>
+        <p class="card-desc t-fr">Une application pour organiser des commandes de glaces en petit groupe : parfums, boules par personne, cornet ou coupe. Un prototype qui tourne en local. En pause pour l'instant.</p>
+        <div class="card-tags"><span class="tag">Mobile UX</span><span class="tag">Ordering System</span><span class="tag">Playful Interface</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card prepatrack" data-cat="paused" href="/project/prepatrack">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">Web app · Prépa tools</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">On hold</span><span class="card-type t-fr">En pause</span></div>
+        <h2 class="card-name">PrepaTrack</h2>
+        <p class="card-desc t-en">A rank simulator for prépa students: enter your marks, get an estimate of where you stand for the entrance exams. Well advanced, on hold for now.</p>
+        <p class="card-desc t-fr">Un simulateur de rang pour élèves de prépa : on entre ses notes, on obtient une estimation de sa place aux concours. Bien avancé, en pause pour l'instant.</p>
+        <div class="card-tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Rank estimation</span></div>
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
   </div>
+  <p class="more-projects reveal">
+    <a href="/lab"><span class="t-en">More small projects and experiments in the Lab →</span><span class="t-fr">D'autres petits projets et expériences dans le Labo →</span></a>
+  </p>
 </div>
 
 <!-- ABOUT -->
@@ -294,38 +348,23 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">About</p>
       <p class="section-label reveal t-fr">À propos</p>
       <h2 class="section-title reveal d1">
-        <span class="t-en">Engineering student.<br>System thinker.</span>
-        <span class="t-fr">Étudiant ingénieur.<br>Penseur systémique.</span>
+        <span class="t-en">A student who<br>builds for fun.</span>
+        <span class="t-fr">Un étudiant<br>qui crée pour le plaisir.</span>
       </h2>
-      <p class="body-text reveal d2 t-en">My name is Bastien Gaffet. A CPGE PCSI student, I build systems at the intersection of engineering, design and curiosity. Every project is a way to better understand how things connect: code, matter or ideas.</p>
-      <p class="body-text reveal d2 t-fr">Je m'appelle Bastien Gaffet. Étudiant en CPGE PCSI, je construis des systèmes à l'intersection de l'ingénierie, du design et de la curiosité. Chaque projet est une façon de mieux comprendre comment les choses se connectent : code, matière ou idées.</p>
-      <p class="body-text reveal d3 t-en">Outside the systems I create, I observe the world through photography, music (guitar), volleyball, and astronomy.</p>
-      <p class="body-text reveal d3 t-fr">En dehors des systèmes que je crée, j'observe le monde à travers la photographie, la musique (guitare), le volley-ball et l'astronomie.</p>
+      <p class="body-text reveal d2 t-en">I am Bastien Gaffet, a student in classes préparatoires (PC*) in Tours. Outside of class I make things for the pleasure of it: video games, apps, websites, sometimes a robot. Most projects start as an idea and teach me something before they are done.</p>
+      <p class="body-text reveal d2 t-fr">Je suis Bastien Gaffet, étudiant en classes préparatoires (PC*) à Tours. En dehors des cours, je crée des choses pour le plaisir : des jeux vidéo, des applications, des sites, parfois un robot. La plupart des projets commencent comme une idée et m'apprennent quelque chose avant d'être finis.</p>
+      <p class="body-text reveal d3 t-en">Away from the screen: guitar, volleyball, astronomy and reading.</p>
+      <p class="body-text reveal d3 t-fr">Loin de l'écran : la guitare, le volley-ball, l'astronomie et la lecture.</p>
     </div>
     <div id="skills-section">
-      <p class="section-label reveal t-en">Skills</p>
-      <p class="section-label reveal t-fr">Compétences</p>
+      <p class="section-label reveal t-en">What I use</p>
+      <p class="section-label reveal t-fr">Ce que j'utilise</p>
       <div class="skills-wrap reveal d1">
-        <div class="skill-row">
-          <div class="skill-name-row"><span class="t-en">Software development</span><span class="t-fr">Développement logiciel</span><span>90%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-w="0.9"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name-row"><span class="t-en">System architecture</span><span class="t-fr">Architecture système</span><span>80%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-w="0.8"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name-row"><span class="t-en">UX / Product design</span><span class="t-fr">Design UX / Produit</span><span>75%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-w="0.75"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name-row"><span class="t-en">Maths / Physics</span><span class="t-fr">Maths / Physique</span><span>88%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-w="0.88"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-name-row"><span>Research (TIPE)</span><span>72%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-w="0.72"></div></div>
-        </div>
+        <div class="skill-row"><div class="skill-name-row"><span>Python</span><span class="t-en">Robot J4, scripts, tools</span><span class="t-fr">Robot J4, scripts, outils</span></div></div>
+        <div class="skill-row"><div class="skill-name-row"><span>TypeScript</span><span>Equiliz, Krino, PrepaTrack</span></div></div>
+        <div class="skill-row"><div class="skill-name-row"><span>React Native, Expo</span><span>Kairoo, Glacify</span></div></div>
+        <div class="skill-row"><div class="skill-name-row"><span>HTML, CSS, JavaScript</span><span class="t-en">This site, small web tools</span><span class="t-fr">Ce site, petits outils web</span></div></div>
+        <div class="skill-row"><div class="skill-name-row"><span>Arduino, OpenCV</span><span>Robot J4</span></div></div>
       </div>
     </div>
   </div>
@@ -346,33 +385,41 @@ section { position: relative; z-index: 1; }
         <p class="cv-col-label reveal t-en">Education</p>
         <p class="cv-col-label reveal t-fr">Formation</p>
         <div class="cv-item reveal d1">
-          <p class="cv-year">2023 / Ongoing</p>
-          <p class="cv-item-title">CPGE PCSI</p>
-          <p class="cv-item-sub t-en">Preparatory classes for engineering schools. Physics, Chemistry, Engineering Sciences. Competitive entrance exam preparation.</p>
-          <p class="cv-item-sub t-fr">Classes préparatoires aux grandes écoles. Physique, Chimie, Sciences de l'Ingénieur. Préparation aux concours d'entrée aux grandes écoles.</p>
+          <p class="cv-year t-en">Sept 2026 / Ongoing</p>
+          <p class="cv-year t-fr">Sept. 2026 / En cours</p>
+          <p class="cv-item-title">CPGE PC*</p>
+          <p class="cv-item-sub t-en">Second year of preparatory classes, Lycée Descartes, Tours.</p>
+          <p class="cv-item-sub t-fr">Deuxième année de classes préparatoires, Lycée Descartes, Tours.</p>
         </div>
         <div class="cv-item reveal d2">
-          <p class="cv-year">2023</p>
+          <p class="cv-year t-en">2025 / 2026</p>
+          <p class="cv-year t-fr">2025 / 2026</p>
+          <p class="cv-item-title">CPGE PCSI</p>
+          <p class="cv-item-sub t-en">First year of preparatory classes, Lycée Descartes, Tours.</p>
+          <p class="cv-item-sub t-fr">Première année de classes préparatoires, Lycée Descartes, Tours.</p>
+        </div>
+        <div class="cv-item reveal d3">
+          <p class="cv-year">2025</p>
           <p class="cv-item-title t-en">French Baccalaureate</p>
-          <p class="cv-item-title t-fr">Baccalauréat Général</p>
-          <p class="cv-item-sub t-en">Highest honours. Specialisations: Mathematics, Physics-Chemistry, Computer Science.</p>
-          <p class="cv-item-sub t-fr">Mention Très Bien. Spécialités : Mathématiques, Physique-Chimie, Informatique.</p>
+          <p class="cv-item-title t-fr">Baccalauréat général</p>
+          <p class="cv-item-sub t-en">Lycée Vaucanson, Tours.</p>
+          <p class="cv-item-sub t-fr">Lycée Vaucanson, Tours.</p>
         </div>
       </div>
       <div>
         <p class="cv-col-label reveal t-en">Projects &amp; Research</p>
         <p class="cv-col-label reveal t-fr">Projets &amp; Recherche</p>
         <div class="cv-item reveal d1">
-          <p class="cv-year">2024 / Ongoing</p>
-          <p class="cv-item-title">TIPE / Epoxy Resins</p>
-          <p class="cv-item-sub t-en">Research on the mechanical properties of epoxy resins in composite structures. Stiffness analysis and stress behaviour under load.</p>
-          <p class="cv-item-sub t-fr">Recherche sur les propriétés mécaniques des résines époxy dans les structures composites. Analyse de la rigidité et du comportement sous contrainte.</p>
+          <p class="cv-year">2025</p>
+          <p class="cv-item-title">Robot J4</p>
+          <p class="cv-item-sub t-en">Presented at EUCYS in Riga, CERN European Prize.</p>
+          <p class="cv-item-sub t-fr">Présenté à l'EUCYS à Riga, Prix européen du CERN.</p>
         </div>
         <div class="cv-item reveal d2">
-          <p class="cv-year">2024</p>
-          <p class="cv-item-title">Tourny · Glacify · Kairoo</p>
-          <p class="cv-item-sub t-en">Development of three applications spanning data management, UX design, and mobile game design with a full backend.</p>
-          <p class="cv-item-sub t-fr">Développement de trois applications couvrant la gestion de données, le design UX, et le game design mobile avec backend complet.</p>
+          <p class="cv-year">2026</p>
+          <p class="cv-item-title">Equiliz · Krino · Kairoo</p>
+          <p class="cv-item-sub t-en">Apps built outside of class, from a photo sorting tool to a shared expenses app now in closed beta.</p>
+          <p class="cv-item-sub t-fr">Des applications créées en dehors des cours, d'un outil de tri de photos à une application de dépenses partagées en bêta fermée.</p>
         </div>
       </div>
     </div>
@@ -383,16 +430,16 @@ section { position: relative; z-index: 1; }
 <section id="contact">
   <div class="inner">
     <h2 class="contact-title reveal">
-      <span class="t-en">"Let's build systems that matter."</span>
-      <span class="t-fr">« Construisons des systèmes qui comptent. »</span>
+      <span class="t-en">"Something in common? Say hello."</span>
+      <span class="t-fr">« Un point commun ? Écris-moi. »</span>
     </h2>
     <div class="contact-links reveal d1">
-      <a href="/contact" class="c-btn primary">Email</a>
-      <a href="https://github.com/Bastien-Gaffet" target="_blank" class="c-btn">GitHub →</a>
+      <a href="/contact" class="c-btn primary">Contact</a>
+      <a href="https://github.com/Bastien-Gaffet" target="_blank" rel="noopener" class="c-btn">GitHub →</a>
       <a href="/cv-bastien-gaffet-en.pdf" download class="c-btn t-en">Download CV</a>
       <a href="/cv-bastien-gaffet-fr.pdf" download class="c-btn t-fr">Télécharger le CV</a>
     </div>
-    <p class="contact-quote reveal d2">Bastien Gaffet · CPGE PCSI · 2025</p>
+    <p class="contact-quote reveal d2">Bastien Gaffet · CPGE PC* · Tours</p>
     <a href="/" class="back-story reveal d3" id="back-btn">
       <span class="t-en">← Back to the story</span>
       <span class="t-fr">← Retour à l'intro</span>

@@ -1,0 +1,19 @@
+[Unit]
+Description=Deploy bastiengaffet.fr from GitHub (atomic release)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=portfolio
+Group=portfolio
+ExecStart=/usr/local/bin/portfolio-deploy
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/portfolio /opt/portfolio-src
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M

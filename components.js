@@ -27,6 +27,8 @@
 //   noFooter : true            — hide the site footer entirely
 // ══════════════════════════════════════════════════════════════════════════
 const PAGE_CONFIG = {
+  // Home / Story: narrative page, deliberately no footer
+  '':                         { noFooter: true },
   // Pages with no nav and no footer.
   // langToggle: true opts a chrome-free page back into the language switcher.
   'links':                    { noNav: true,  noFooter: true, langToggle: true },
@@ -36,6 +38,10 @@ const PAGE_CONFIG = {
   'project/robotj4':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/tourny':           { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/glacify':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/equiliz':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/prepatrack':       { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'project/cobblekit':        { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
+  'lab':                      { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/kairoo':           { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/krino':            { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/cdp-scraper':      { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
@@ -53,12 +59,16 @@ const PAGES = [
   { group:'Explore',  name:'Work',        desc:'Projects and creations',                href:'/work' },
   { group:'Explore',  name:'Photography', desc:'Selected photographs',                  href:'/photography' },
   { group:'Explore',  name:'Universe',    desc:'Passions, interests, dreams',           href:'/universe' },
-  { group:'Explore',  name:'Notes',       desc:'Monthly articles and observations',     href:'/blog' },
+  { group:'Explore',  name:'Notes',       desc:'Articles and observations',     href:'/blog' },
   { group:'Notes',    name:'At CERN, I found a society', desc:'A week at CERN, EUCYS prize', href:'/notes/cern' },
   { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'/project/robotj4' },
   { group:'Projects', name:'Tourny',      desc:'Sport tournament management platform', href:'/project/tourny' },
   { group:'Projects', name:'Glacify',     desc:'Ice cream ordering app, playful UX',   href:'/project/glacify' },
-  { group:'Projects', name:'Kairoo',      desc:'Mirror hours mobile game, Supabase',   href:'/project/kairoo' },
+  { group:'Projects', name:'Equiliz',     desc:'Shared expenses app, closed beta',       href:'/project/equiliz' },
+  { group:'Projects', name:'PrepaTrack',  desc:'Rank simulator for prépa students (on hold)', href:'/project/prepatrack' },
+  { group:'Projects', name:'Cobblekit',  desc:'Free Minecraft tools for players and admins', href:'/project/cobblekit' },
+  { group:'Projects', name:'Lab',        desc:'Small projects, tools and experiments', href:'/lab' },
+  { group:'Projects', name:'Kairoo',      desc:'Mirror hours app, early prototype',   href:'/project/kairoo' },
   { group:'Projects', name:'Krino',       desc:'Desktop photo sorting app, Tauri',     href:'/project/krino' },
   { group:'Projects', name:'cdp-scraper', desc:'CLI backup tool for cahier-de-prepa',  href:'/project/cdp-scraper' },
   { group:'Me',       name:'About',       desc:'Bio and background',                    href:'/about' },
@@ -84,7 +94,7 @@ const PAGE_NAMES = {
   'cv':'CV','uses':'Uses','links':'Links','shop':'Shop',
   'product/cosmos-wallpaper':'Cosmos Generator','project/robotj4':'Robot J4',
   'project/tourny':'Tourny','project/glacify':'Glacify',
-  'project/kairoo':'Kairoo','project/krino':'Krino',
+  'project/kairoo':'Kairoo','project/cobblekit':'Cobblekit','lab':'Lab','project/equiliz':'Equiliz','project/prepatrack':'PrepaTrack','project/krino':'Krino',
   'project/cdp-scraper':'cdp-scraper','tipe':'TIPE','timeline':'Timeline',
   'press':'Press','changelog':'Changelog','now':'Now',
   'cosmos-demo':'Cosmos Demo','notes/cern':'At CERN, I found a society',
@@ -95,12 +105,13 @@ const PAGE_NAMES = {
 //      '/about.html' or '/about' → 'about'
 //      '/' → ''
 const currentPath = location.pathname.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '');
-const config = PAGE_CONFIG[currentPath] || {};
+const config = PAGE_CONFIG[currentPath === 'index' ? '' : currentPath] || {};
 
 // ══════════════════════════════════════════════════════════════════════════
 // LANGUAGE
 // ══════════════════════════════════════════════════════════════════════════
-const _langPref = localStorage.getItem('lang') || 'en';
+let _langPref = 'en';
+try { _langPref = localStorage.getItem('lang') || ((navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en'); } catch (e) {}
 if (_langPref === 'fr') {
   document.documentElement.classList.add('lang-fr');
   document.documentElement.lang = 'fr';
@@ -109,7 +120,7 @@ window.setLang = function(lang) {
   const fr = lang === 'fr';
   document.documentElement.classList.toggle('lang-fr', fr);
   document.documentElement.lang = lang;
-  localStorage.setItem('lang', lang);
+  try { localStorage.setItem('lang', lang); } catch (e) {}
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
   document.querySelectorAll('.lang-opt').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
   document.querySelectorAll('.lang-indicator').forEach(ind => ind.classList.toggle('fr', fr));
@@ -162,7 +173,7 @@ document.head.appendChild(_rss);
 // Canonical URL
 const _canon = document.createElement('link');
 _canon.rel = 'canonical';
-_canon.href = 'https://bastiengaffet.fr' + (location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/');
+_canon.href = 'https://bastiengaffet.fr/' + (currentPath === 'index' ? '' : currentPath);
 document.head.appendChild(_canon);
 
 // Theme color (mobile browser chrome)
@@ -179,22 +190,20 @@ function _ld(schema) {
   document.head.appendChild(s);
 }
 
-// WebSite schema — every page
+// WebSite schema, every page
 _ld({ "@context":"https://schema.org", "@type":"WebSite",
-  "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr",
-  "description":"Portfolio of Bastien Gaffet — engineering student, maker and astrophotographer.",
-  "author":{ "@type":"Person", "name":"Bastien Gaffet" },
-  "inLanguage":["en","fr"] });
+  "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr/",
+  "description":"Portfolio of Bastien Gaffet, a student in prépa who builds apps, games and websites for fun.",
+  "author":{ "@id":"https://bastiengaffet.fr/#bastien" },
+  "inLanguage":["fr","en"] });
 
-// Person schema — about and cv pages only
-if (currentPath === 'about' || currentPath === 'cv') {
+// Person schema: one stable identity, on the home page and About
+if (currentPath === '' || currentPath === 'index' || currentPath === 'about') {
   _ld({ "@context":"https://schema.org", "@type":"Person",
-    "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr/about",
-    "jobTitle":"Engineering student",
-    "description":"Student in CPGE PCSI at Lycée Descartes, Tours. Maker, astrophotographer, builder at the intersection of software, hardware and design.",
-    "knowsAbout":["Robotics","Python","Computer Vision","Astrophotography","Interface Design","Embedded Systems"],
-    "award":["CERN European Prize — EUCYS 2025","Concours C.Génial National Winner 2024"],
-    "alumniOf":{ "@type":"EducationalOrganization", "name":"Lycée Descartes, Tours" } });
+    "@id":"https://bastiengaffet.fr/#bastien",
+    "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr/",
+    "description":"Student in CPGE PC* at Lycée Descartes, Tours. Builds apps, games and websites for fun.",
+    "sameAs":["https://github.com/Bastien-Gaffet"] });
 }
 
 // BreadcrumbList schema — project and product pages
@@ -202,6 +211,10 @@ const _crumbs = {
   'project/robotj4':          { parent:'/work',  parentName:'Work',  name:'Robot J4' },
   'project/tourny':           { parent:'/work',  parentName:'Work',  name:'Tourny' },
   'project/glacify':          { parent:'/work',  parentName:'Work',  name:'Glacify' },
+  'project/equiliz':          { parent:'/work',  parentName:'Work',  name:'Equiliz' },
+  'project/prepatrack':       { parent:'/work',  parentName:'Work',  name:'PrepaTrack' },
+  'project/cobblekit':        { parent:'/work',  parentName:'Work',  name:'Cobblekit' },
+  'lab':                      { parent:'/work',  parentName:'Work',  name:'Lab' },
   'project/kairoo':           { parent:'/work',  parentName:'Work',  name:'Kairoo' },
   'project/krino':            { parent:'/work',  parentName:'Work',  name:'Krino' },
   'project/cdp-scraper':      { parent:'/work',  parentName:'Work',  name:'cdp-scraper' },
@@ -226,7 +239,7 @@ if (!config.noNav) {
   nav.innerHTML = `
     <a href="/"><span class="t-en">Story</span><span class="t-fr">Intro</span></a>
     <a href="/about"><span class="t-en">About</span><span class="t-fr">À propos</span></a>
-    <a href="/universe">Universe</a>
+    <a href="/universe"><span class="t-en">Universe</span><span class="t-fr">Univers</span></a>
     <a href="/work"><span class="t-en">Work</span><span class="t-fr">Projets</span></a>
     <span class="nav-sep"></span>
     <button class="nav-search-btn" onclick="cmdOpen()" aria-label="Search pages">
@@ -268,8 +281,8 @@ if (!config.noFooter) {
     <div class="footer-inner">
       <div class="footer-brand">
         <span class="footer-sig">Bastien Gaffet</span>
-        <p class="footer-tagline t-en">Engineering student. Building things at the intersection of software, hardware and design.</p>
-        <p class="footer-tagline t-fr">Étudiant en ingénierie. Je construis à l'intersection du logiciel, du matériel et du design.</p>
+        <p class="footer-tagline t-en">Student in prépa. I build apps, games and websites for fun.</p>
+        <p class="footer-tagline t-fr">Étudiant en prépa. Je crée des applications, des jeux et des sites pour le plaisir.</p>
         <button class="footer-search-pill" onclick="cmdOpen()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <span class="t-en">Search pages</span><span class="t-fr">Rechercher</span>
@@ -282,7 +295,8 @@ if (!config.noFooter) {
           <li><a href="/"><span class="t-en">Story</span><span class="t-fr">Intro</span></a></li>
           <li><a href="/work"><span class="t-en">Work</span><span class="t-fr">Projets</span></a></li>
           <li><a href="/photography"><span class="t-en">Photography</span><span class="t-fr">Photographie</span></a></li>
-          <li><a href="/universe">Universe</a></li>
+          <li><a href="/universe"><span class="t-en">Universe</span><span class="t-fr">Univers</span></a></li>
+          <li><a href="/lab"><span class="t-en">Lab</span><span class="t-fr">Labo</span></a></li>
           <li><a href="/blog">Notes <span class="fnew">new</span></a></li>
         </ul>
       </div>
@@ -301,12 +315,15 @@ if (!config.noFooter) {
         <ul class="footer-links">
           <li><a href="/shop"><span class="t-en">Shop</span><span class="t-fr">Boutique</span></a></li>
           <li><a href="/product/cosmos-wallpaper">Cosmos Generator</a></li>
+          <li><a href="https://cobblekit.bastiengaffet.fr/" target="_blank" rel="noopener">Cobblekit</a></li>
+          <li><a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener">Equiliz</a></li>
+          <li><a href="https://webtouraine.bastiengaffet.fr/" target="_blank" rel="noopener">Webtouraine</a></li>
           <li><a href="https://ko-fi.com/bastiengft" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 Bastien Gaffet — <a href="https://bastiengaffet.fr">bastiengaffet.fr</a></span>
+      <span class="footer-copy">© 2026 Bastien Gaffet · <a href="https://bastiengaffet.fr">bastiengaffet.fr</a></span>
       <span class="footer-sig-small t-en">Built by hand, no framework.</span>
       <span class="footer-sig-small t-fr">Fait à la main, sans framework.</span>
     </div>
@@ -324,7 +341,7 @@ overlayEl.innerHTML = `
   <div id="cmd-box">
     <div id="cmd-input-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="cmd-input" placeholder="Search pages..." autocomplete="off" spellcheck="false">
+      <input id="cmd-input" aria-label="Search pages" placeholder="Search pages..." autocomplete="off" spellcheck="false">
       <span id="cmd-esc" onclick="cmdClose()">Esc</span>
     </div>
     <div id="cmd-results"></div>

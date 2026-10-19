@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bastien Gaffet — engineering student, maker and astrophotographer.">
+<meta name="description" content="Bastien Gaffet: student in prépa who builds apps, games and websites for fun.">
 <meta name="author" content="Bastien Gaffet">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bastien Gaffet">
-<meta property="og:description" content="Engineering student. Building at the intersection of software, hardware and design.">
+<meta property="og:description" content="Bastien Gaffet: student in prépa who builds apps, games and websites for fun.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
@@ -106,6 +106,7 @@ main { position: relative; z-index: 1; }
 
 /* ── ACT 03 — PATTERNS / CONSTELLATION ── */
 #act-03 { gap: 6rem; flex-wrap: wrap; }
+@media (max-width: 700px) { #act-03 { gap: 3rem; } .patterns-nodes { min-width: 0; width: 100%; } }
 .patterns-text { flex: 1; min-width: 280px; max-width: 480px; }
 .patterns-nodes {
   flex: 1; min-width: 280px; max-width: 400px; height: 280px; position: relative;
@@ -136,7 +137,7 @@ main { position: relative; z-index: 1; }
 .node:nth-child(6) { top: 20%; left: 82%; }
 .node:nth-child(7) { top: 88%; left: 60%; }
 .node:nth-child(8) { top: 15%; left: 18%; }
-.node-connector { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.node-connector { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .node-connector svg, svg.node-connector { overflow: visible; }
 .c-line { stroke: hsl(265 75% 60% / 0.28); stroke-width: 1; fill: none; opacity: 0; transition: opacity 1.2s ease; }
 .c-line.lit-line { opacity: 1; }
@@ -161,6 +162,8 @@ main { position: relative; z-index: 1; }
 .tag { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--glass-border); border-radius: 20px; color: var(--dim); }
 .proj-card.tourny   { border-left: 2px solid hsl(245 75% 65%); }
 .proj-card.glacify  { border-left: 2px solid hsl(190 75% 55%); }
+.proj-card.cobblekit { border-left: 2px solid hsl(120 45% 50%); }
+.proj-card.equiliz { border-left: 2px solid hsl(160 60% 50%); }
 .proj-card.kairoo { border-left: 2px solid hsl(38 75% 62%); }
 
 /* ── ACT 05 — IDENTITY ── */
@@ -343,13 +346,13 @@ main { position: relative; z-index: 1; }
   <!-- ACT 01 — HERO -->
   <section class="act" id="act-01" data-screen-label="01 Hero">
     <div class="narrow">
-      <p class="act-label reveal t-en">CPGE PCSI · Future Engineer</p>
-      <p class="act-label reveal t-fr">CPGE PCSI · Futur ingénieur</p>
+      <p class="act-label reveal t-en">CPGE PC* · Tours</p>
+      <p class="act-label reveal t-fr">CPGE PC* · Tours</p>
       <h1 class="hero-name reveal reveal-delay-1">Bastien<br>Gaffet</h1>
-      <p class="hero-sub reveal reveal-delay-2 t-en">Future Engineer &nbsp;•&nbsp; Creative Builder &nbsp;•&nbsp; System Explorer</p>
-      <p class="hero-sub reveal reveal-delay-2 t-fr">Futur ingénieur &nbsp;•&nbsp; Créateur &nbsp;•&nbsp; Explorateur de systèmes</p>
-      <p class="hero-tagline reveal reveal-delay-3 t-en">"I design systems where engineering meets curiosity."</p>
-      <p class="hero-tagline reveal reveal-delay-3 t-fr">« Je conçois des systèmes où l'ingénierie rencontre la curiosité. »</p>
+      <p class="hero-sub reveal reveal-delay-2 t-en">Student &nbsp;•&nbsp; Maker &nbsp;•&nbsp; Curious</p>
+      <p class="hero-sub reveal reveal-delay-2 t-fr">Étudiant &nbsp;•&nbsp; Créateur &nbsp;•&nbsp; Curieux</p>
+      <p class="hero-tagline reveal reveal-delay-3 t-en">"I build things for fun, and learn along the way."</p>
+      <p class="hero-tagline reveal reveal-delay-3 t-fr">« Je crée des choses pour le plaisir, et j'apprends en chemin. »</p>
     </div>
     <div class="scroll-cue reveal reveal-delay-4">
       <span class="t-en">Scroll</span><span class="t-fr">Défiler</span>
@@ -399,8 +402,8 @@ main { position: relative; z-index: 1; }
     <div class="narrow" style="margin-bottom:3rem;">
       <p class="act-label reveal t-en">Act III / Creation</p>
       <p class="act-label reveal t-fr">Acte III / Création</p>
-      <p class="act-quote reveal reveal-delay-1 t-en">"Then I started building systems."</p>
-      <p class="act-quote reveal reveal-delay-1 t-fr">« Puis j'ai commencé à construire des systèmes. »</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"Then I started building apps."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« Puis j'ai commencé à construire des applications. »</p>
     </div>
     <div class="cards-wrap">
       <div class="proj-card tourny reveal reveal-delay-1">
@@ -433,12 +436,38 @@ main { position: relative; z-index: 1; }
         <span class="proj-num">03</span>
         <div class="proj-content">
           <h3 class="proj-name">Kairoo</h3>
-          <p class="proj-narrative t-en">"And that exploration became real: mirror hours turned into a full game, with rules, rewards and a community around it."</p>
-          <p class="proj-narrative t-fr">« Et cette exploration est devenue réelle : les heures miroir sont devenues un vrai jeu, avec des règles, des récompenses et une communauté autour. »</p>
+          <p class="proj-narrative t-en">"And I wondered what an app could do with moments like 11:11. It is still a prototype."</p>
+          <p class="proj-narrative t-fr">« Et je me suis demandé ce qu'une application pouvait faire de moments comme 11h11. C'est encore un prototype. »</p>
           <div class="proj-tags">
-            <span class="tag">Mirror Hours Game</span>
+            <span class="tag">Mirror Hours</span>
             <span class="tag">React Native</span>
-            <span class="tag">Supabase Backend</span>
+            <span class="tag">Prototype</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card equiliz reveal reveal-delay-3">
+        <span class="proj-num">04</span>
+        <div class="proj-content">
+          <h3 class="proj-name">Equiliz</h3>
+          <p class="proj-narrative t-en">"Then one of them went online: an app to split expenses, now in closed beta."</p>
+          <p class="proj-narrative t-fr">« Puis l'un d'eux est sorti : une application pour partager les dépenses, aujourd'hui en bêta fermée. »</p>
+          <div class="proj-tags">
+            <span class="tag">Shared Expenses</span>
+            <span class="tag">Web &amp; Android</span>
+            <span class="tag">Closed Beta</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card cobblekit reveal reveal-delay-3">
+        <span class="proj-num">05</span>
+        <div class="proj-content">
+          <h3 class="proj-name">Cobblekit</h3>
+          <p class="proj-narrative t-en">"And lately, the biggest one: a toolbox of free Minecraft tools for players and admins."</p>
+          <p class="proj-narrative t-fr">« Et dernièrement, le plus gros : une boîte à outils gratuits pour les joueurs et les admins Minecraft. »</p>
+          <div class="proj-tags">
+            <span class="tag">Minecraft Tools</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">11 Tools Online</span>
           </div>
         </div>
       </div>
@@ -450,14 +479,14 @@ main { position: relative; z-index: 1; }
     <div class="narrow">
       <p class="act-label reveal t-en">Act IV / Identity</p>
       <p class="act-label reveal t-fr">Acte IV / Identité</p>
-      <p class="act-quote reveal reveal-delay-1 t-en">"I am not just building applications. I am building ways to understand systems."</p>
-      <p class="act-quote reveal reveal-delay-1 t-fr">« Je ne construis pas seulement des applications. Je construis des façons de comprendre les systèmes. »</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"I do not build to impress anyone. I build because I enjoy it."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« Je ne crée pas pour impressionner. Je crée parce que ça me plaît. »</p>
     </div>
     <div class="identity-grid">
-      <div class="id-block reveal reveal-delay-2"><p class="id-title t-en">Education</p><p class="id-title t-fr">Formation</p><p class="id-value">CPGE PCSI</p></div>
-      <div class="id-block reveal reveal-delay-2"><p class="id-title t-en">Mindset</p><p class="id-title t-fr">État d'esprit</p><p class="id-value t-en">Curiosity-driven</p><p class="id-value t-fr">Guidé par la curiosité</p></div>
-      <div class="id-block reveal reveal-delay-3"><p class="id-title t-en">Approach</p><p class="id-title t-fr">Approche</p><p class="id-value t-en">Builder &amp; Explorer</p><p class="id-value t-fr">Créateur et explorateur</p></div>
-      <div class="id-block reveal reveal-delay-3"><p class="id-title t-en">Thinking</p><p class="id-title t-fr">Pensée</p><p class="id-value t-en">Structured &amp; Creative</p><p class="id-value t-fr">Structurée et créative</p></div>
+      <div class="id-block reveal reveal-delay-2"><p class="id-title t-en">Education</p><p class="id-title t-fr">Formation</p><p class="id-value">CPGE PC*</p></div>
+      <div class="id-block reveal reveal-delay-2"><p class="id-title t-en">Mindset</p><p class="id-title t-fr">État d'esprit</p><p class="id-value t-en">Curious</p><p class="id-value t-fr">Curieux</p></div>
+      <div class="id-block reveal reveal-delay-3"><p class="id-title t-en">Approach</p><p class="id-title t-fr">Approche</p><p class="id-value t-en">Hands-on</p><p class="id-value t-fr">Les mains dans le code</p></div>
+      <div class="id-block reveal reveal-delay-3"><p class="id-title t-en">Hobbies</p><p class="id-title t-fr">Loisirs</p><p class="id-value t-en">Games, code, sky</p><p class="id-value t-fr">Jeux, code, ciel</p></div>
     </div>
   </section>
 
@@ -466,8 +495,8 @@ main { position: relative; z-index: 1; }
     <div class="narrow" style="margin-bottom:2.5rem;">
       <p class="act-label reveal t-en">Act V / The Outside</p>
       <p class="act-label reveal t-fr">Acte V / L'extérieur</p>
-      <p class="act-quote reveal reveal-delay-1 t-en">"I also observe the world, not just the systems I create."</p>
-      <p class="act-quote reveal reveal-delay-1 t-fr">« J'observe aussi le monde, pas seulement les systèmes que je crée. »</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"I also look up from the screen."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« Je lève aussi les yeux de l'écran. »</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1"><div class="gallery-stripe"></div><span class="gallery-label t-en">Mobile Photography</span><span class="gallery-label t-fr">Photographie mobile</span></div>
@@ -483,23 +512,22 @@ main { position: relative; z-index: 1; }
     <div class="narrow" style="margin-bottom:2rem;">
       <p class="act-label reveal t-en">Act VI / Current State</p>
       <p class="act-label reveal t-fr">Acte VI / État actuel</p>
-      <p class="act-quote reveal reveal-delay-1 t-en">"Right now, I explore how matter, logic and systems interact."</p>
-      <p class="act-quote reveal reveal-delay-1 t-fr">« En ce moment, j'explore comment la matière, la logique et les systèmes interagissent. »</p>
+      <p class="act-quote reveal reveal-delay-1 t-en">"Right now, I share my time between prépa and a few projects."</p>
+      <p class="act-quote reveal reveal-delay-1 t-fr">« En ce moment, je partage mon temps entre la prépa et quelques projets. »</p>
     </div>
     <div class="terminal reveal reveal-delay-2">
       <div class="terminal-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
       <div class="terminal-line">$ <span>whoami</span></div>
-      <div class="terminal-line">→ Bastien Gaffet, CPGE PCSI</div>
+      <div class="terminal-line">→ Bastien Gaffet, CPGE PC*</div>
       <div class="terminal-line" style="margin-top:.8rem">$ <span>current_project</span></div>
-      <div class="terminal-line t-en">→ TIPE / epoxy resin research</div>
-      <div class="terminal-line t-fr">→ TIPE / recherche sur la résine époxy</div>
-      <div class="terminal-line t-en">→ Mechanical analysis of composite structures</div>
-      <div class="terminal-line t-fr">→ Analyse mécanique de structures composites</div>
+      <div class="terminal-line">→ Equiliz</div>
+      <div class="terminal-line t-en">→ Shared expenses app, closed beta</div>
+      <div class="terminal-line t-fr">→ Application de dépenses partagées, bêta fermée</div>
       <div class="terminal-line" style="margin-top:.8rem">$ <span>learning</span></div>
-      <div class="terminal-line t-en">→ Continuum mechanics</div>
-      <div class="terminal-line t-fr">→ Mécanique des milieux continus</div>
-      <div class="terminal-line t-en">→ Systems application development</div>
-      <div class="terminal-line t-fr">→ Développement d'applications systèmes</div>
+      <div class="terminal-line t-en">→ Second year of prépa</div>
+      <div class="terminal-line t-fr">→ Deuxième année de prépa</div>
+      <div class="terminal-line t-en">→ Building apps and games after class</div>
+      <div class="terminal-line t-fr">→ Créer des applications et des jeux après les cours</div>
       <div class="terminal-line" style="margin-top:.8rem">$ <span>status</span><span class="terminal-cursor"></span></div>
     </div>
   </section>
@@ -529,11 +557,11 @@ main { position: relative; z-index: 1; }
       <p class="reality-eyebrow blur-reveal t-en">Reality Shift</p>
       <p class="reality-eyebrow blur-reveal t-fr">Changement de réalité</p>
       <h2 class="reality-heading blur-reveal br-d1">
-        <span class="t-en">From story to systems</span>
-        <span class="t-fr">De l'histoire aux systèmes</span>
+        <span class="t-en">From story to projects</span>
+        <span class="t-fr">De l'histoire aux projets</span>
       </h2>
-      <p class="reality-sub blur-reveal br-d2 t-en">Ideas become implementations.</p>
-      <p class="reality-sub blur-reveal br-d2 t-fr">Les idées deviennent des réalisations.</p>
+      <p class="reality-sub blur-reveal br-d2 t-en">Ideas become things you can use.</p>
+      <p class="reality-sub blur-reveal br-d2 t-fr">Les idées deviennent des choses qu'on peut utiliser.</p>
     </div>
   </section>
 
@@ -543,13 +571,13 @@ main { position: relative; z-index: 1; }
       <a class="portal-card" id="portal-link" href="/work">
         <p class="portal-sub t-en">Enter</p><p class="portal-sub t-fr">Entrer</p>
         <p class="portal-title t-en">WORK</p><p class="portal-title t-fr">PROJETS</p>
-        <p class="portal-sub t-en">Projects &nbsp;·&nbsp; Systems &nbsp;·&nbsp; Engineering</p>
-        <p class="portal-sub t-fr">Projets &nbsp;·&nbsp; Systèmes &nbsp;·&nbsp; Ingénierie</p>
+        <p class="portal-sub t-en">Projects &nbsp;·&nbsp; Apps &nbsp;·&nbsp; Games</p>
+        <p class="portal-sub t-fr">Projets &nbsp;·&nbsp; Applications &nbsp;·&nbsp; Jeux</p>
         <div class="portal-cta t-en">View Portfolio</div>
         <div class="portal-cta t-fr">Voir le portfolio</div>
       </a>
-      <p class="portal-micro t-en">A structured view of what I build.</p>
-      <p class="portal-micro t-fr">Une vue structurée de ce que je construis.</p>
+      <p class="portal-micro t-en">What I build, and what is on hold.</p>
+      <p class="portal-micro t-fr">Ce que je construis, et ce qui est en pause.</p>
     </div>
   </section>
 
@@ -692,7 +720,7 @@ function animateConstellation() {
 animateConstellation();
 
 /* ══ MEMORY WORDS — add a project name here to include it in the Reality Shift animation ══ */
-const MEMORY_WORDS = ['Tourny', 'Glacify', 'Kairoo', 'Krino', 'cdp-scraper'];
+const MEMORY_WORDS = ['Tourny', 'Glacify', 'Kairoo', 'Krino', 'cdp-scraper', 'PrepaTrack', 'Equiliz', 'Cobblekit', 'reveilleur'];
 const memWrap = document.getElementById('memory-words');
 // Narrower viewports get a tighter spread, otherwise the last names start
 // beyond the right edge and never actually show up.

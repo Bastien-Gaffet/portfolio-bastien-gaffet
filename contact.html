@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bastien Gaffet — engineering student, maker and astrophotographer.">
+<meta name="description" content="Bastien Gaffet: student in prépa who builds apps, games and websites for fun.">
 <meta name="author" content="Bastien Gaffet">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
@@ -147,18 +147,18 @@ body {
       <span class="t-fr">Restons <em>en contact</em></span>
     </h1>
     <p class="page-desc reveal d2 t-en">
-      Whether you have a question about my projects, want to collaborate, or just want to say hello, my inbox is open.
+      A question about a project, an idea to build together, or just a hello: write to me.
     </p>
     <p class="page-desc reveal d2 t-fr">
-      Que vous ayez une question sur mes projets, une envie de collaborer, ou juste envie de dire bonjour, ma messagerie est ouverte.
+      Une question sur un projet, une idée à construire ensemble, ou juste un bonjour : écrivez-moi.
     </p>
 
     <div class="contact-links">
-      <a href="mailto:bastien.gaffet@outlook.com" class="contact-link reveal d2">
+      <a href="mailto:contact@bastiengaffet.fr" class="contact-link reveal d2">
         <div class="link-icon">✉</div>
         <div class="link-body">
           <span class="link-label">Email</span>
-          <span class="link-value">bastien.gaffet@outlook.com</span>
+          <span class="link-value">contact@bastiengaffet.fr</span>
         </div>
       </a>
       <a href="https://github.com/Bastien-Gaffet" target="_blank" class="contact-link reveal d3">
@@ -168,15 +168,6 @@ body {
         <div class="link-body">
           <span class="link-label">GitHub</span>
           <span class="link-value">github.com/Bastien-Gaffet</span>
-        </div>
-      </a>
-      <a href="https://linkedin.com/in/votre-username" target="_blank" class="contact-link reveal d3">
-        <div class="link-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </div>
-        <div class="link-body">
-          <span class="link-label">LinkedIn</span>
-          <span class="link-value">linkedin.com/in/votre-username</span>
         </div>
       </a>
     </div>
@@ -239,7 +230,7 @@ function handleSubmit(e) {
     message: document.getElementById('message').value,
   };
   // Opens mail client with prefilled fields — no server needed
-  const mailto = `mailto:bastien.gaffet@outlook.com?subject=${encodeURIComponent(data.subject || 'Message from ' + data.name)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
+  const mailto = `mailto:contact@bastiengaffet.fr?subject=${encodeURIComponent(data.subject || 'Message from ' + data.name)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
   window.location.href = mailto;
   status.textContent = document.documentElement.classList.contains('lang-fr') ? 'Ouverture de votre messagerie...' : 'Opening your mail client...';
   status.className = 'ok';

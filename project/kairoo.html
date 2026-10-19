@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Kairoo: a mobile app turning mirror hours into a daily ritual, XP, leagues, guilds and rewards on a Supabase backend.">
+<meta name="description" content="Kairoo: a mobile app prototype built around mirror hours like 11:11 or 22:22. Early prototype, never published.">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kairoo / Bastien Gaffet">
-<meta property="og:description" content="A mobile app turning mirror hours into a daily ritual, XP, leagues, guilds and rewards on a Supabase backend.">
+<meta property="og:description" content="Kairoo: a mobile app prototype built around mirror hours like 11:11 or 22:22. Early prototype, never published.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="en_GB">
@@ -147,6 +147,9 @@ section { position: relative; z-index: 1; }
 
 
 .hero-title em { font-style: italic; color: hsl(38 75% 68%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -155,16 +158,16 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
-      <p class="hero-eyebrow reveal t-en">Project / Mobile App</p>
-      <p class="hero-eyebrow reveal t-fr">Projet / Application mobile</p>
+      <p class="hero-eyebrow reveal t-en">Project / Mobile App, prototype</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Application mobile, prototype</p>
       <h1 class="hero-title">
         <span class="reveal">Kairoo</span><br>
         <em class="reveal d1 t-en">Mirror Hours</em>
         <em class="reveal d1 t-fr">Heures Miroir</em>
       </h1>
-      <p class="hero-desc reveal d2 t-en">A mobile app that turns mirror hours, 11:11, 22:22, 10:10, into a daily ritual: experience points, leagues, guilds and rewards built around one simple gesture, opening the app at the right moment.</p>
-      <p class="hero-desc reveal d2 t-fr">Une application mobile qui transforme les heures miroir, 11h11, 22h22, 10h10, en rituel quotidien : points d'expérience, ligues, guildes et récompenses autour d'un geste simple, ouvrir l'application au bon moment.</p>
-      <div class="hero-tags reveal d3"><span class="tag">Mobile</span><span class="tag">Game Design</span><span class="tag">React Native</span><span class="tag">Supabase</span></div>
+      <p class="hero-desc reveal d2 t-en">A mobile app prototype built around mirror hours, 11:11, 22:22, 10:10: open the app at the right minute and you get a quote and some experience points. Early prototype, never published.</p>
+      <p class="hero-desc reveal d2 t-fr">Un prototype d'application mobile construit autour des heures miroir, 11h11, 22h22, 10h10 : on ouvre l'application à la bonne minute et on reçoit une citation et de l'expérience. Prototype précoce, jamais publié.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Mobile</span><span class="tag">Game Design</span><span class="tag">React Native</span><span class="tag">Prototype</span></div>
     </div>
   </section>
 
@@ -175,17 +178,17 @@ section { position: relative; z-index: 1; }
       <div class="overview-grid">
         <div>
           <h2 class="section-title reveal">
-            <span class="t-en">A ritual,<br><em>not a concept.</em></span>
-            <span class="t-fr">Un rituel,<br><em>pas un concept.</em></span>
+            <span class="t-en">A ritual,<br><em>for now an idea.</em></span>
+            <span class="t-fr">Un rituel,<br><em>pour l'instant une idée.</em></span>
           </h2>
-          <p class="body-text reveal d1 t-en">Kairoo is not a clock. It began as a question about the moments in a day that already feel loaded with meaning: repeated digits, mirrored patterns, numbers that people quietly notice without ever building something around them. What was once a design idea is now a full mobile game, with experience points, weekly leagues, guilds and quests, all running on a Supabase backend that keeps every reward honest.</p>
-          <p class="body-text reveal d1 t-fr">Kairoo n'est pas une horloge. Le projet est parti d'une question sur les moments de la journée qui semblent déjà chargés de sens : chiffres répétés, motifs miroirs, nombres que l'on remarque en silence sans jamais rien construire autour. Ce qui était une idée de design est devenu un vrai jeu mobile, avec points d'expérience, ligues hebdomadaires, guildes et quêtes, le tout sur un backend Supabase qui garantit chaque récompense.</p>
+          <p class="body-text reveal d1 t-en">Kairoo is not a clock. It started from a question about the moments of a day that already feel charged with meaning: repeated digits, mirrored patterns, numbers people notice without ever doing anything with them. The idea is to turn one of those moments into a small daily ritual with a bit of game around it. It exists as an early prototype and has never been published.</p>
+          <p class="body-text reveal d1 t-fr">Kairoo n'est pas une horloge. Le projet est parti d'une question sur les moments de la journée qui semblent déjà chargés de sens : chiffres répétés, motifs miroirs, nombres que l'on remarque sans jamais en faire quoi que ce soit. L'idée est de transformer l'un de ces moments en petit rituel quotidien avec un peu de jeu autour. Il existe comme prototype précoce et n'a jamais été publié.</p>
         </div>
         <div class="stats-col reveal d1">
           <div class="stat-item"><div class="stat-num">24</div><div class="stat-lbl t-en">Mirror hours a day</div><div class="stat-lbl t-fr">Heures miroir par jour</div></div>
-          <div class="stat-item"><div class="stat-num">x3</div><div class="stat-lbl t-en">Bonus on legendary hours</div><div class="stat-lbl t-fr">Bonus sur les heures légendaires</div></div>
           <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year in development</div><div class="stat-lbl t-fr">Année de développement</div></div>
-          <div class="stat-item"><div class="stat-num t-en">Private beta</div><div class="stat-num t-fr">Bêta privée</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Prototype</div><div class="stat-num t-fr">Prototype</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Not published</div><div class="stat-num t-fr">Non publié</div><div class="stat-lbl t-en">Status</div><div class="stat-lbl t-fr">Statut</div></div>
         </div>
       </div>
     </div>
@@ -198,23 +201,23 @@ section { position: relative; z-index: 1; }
       <div class="steps">
         <div class="step reveal"><div class="step-num">01</div><div class="step-body">
           <h3 class="t-en">A mirror hour approaches</h3><h3 class="t-fr">Une heure miroir approche</h3>
-          <p class="t-en">No aggressive notification. The app waits quietly, and the return happens on its own, right on time.</p>
-          <p class="t-fr">Pas de notification agressive. L'application attend sans bruit, et le retour se fait de lui même, pile à l'heure.</p>
+          <p class="t-en">The app does not push you. You come back on your own at the right moment.</p>
+          <p class="t-fr">L'application ne vous relance pas. On revient de soi-même au bon moment.</p>
         </div></div>
         <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
-          <h3 class="t-en">A two minute window opens</h3><h3 class="t-fr">Une fenêtre de deux minutes s'ouvre</h3>
-          <p class="t-en">Touching the central button inside that window validates the moment and triggers the reward.</p>
-          <p class="t-fr">Toucher le bouton central dans cette fenêtre valide l'instant et déclenche la récompense.</p>
+          <h3 class="t-en">A short window opens</h3><h3 class="t-fr">Une courte fenêtre s'ouvre</h3>
+          <p class="t-en">Around the exact minute, a window of about a minute on each side lets you validate the moment.</p>
+          <p class="t-fr">Autour de la minute exacte, une fenêtre d'environ une minute de chaque côté permet de valider l'instant.</p>
         </div></div>
         <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
-          <h3 class="t-en">The reward arrives</h3><h3 class="t-fr">La récompense arrive</h3>
-          <p class="t-en">A quote, experience points, and a bonus tied to the rarity of the hour: legendary hours like 11:11 or 22:22 pay triple.</p>
-          <p class="t-fr">Une citation, de l'expérience, et un bonus lié à la rareté de l'heure : les heures légendaires comme 11h11 ou 22h22 rapportent trois fois plus.</p>
+          <h3 class="t-en">A small reward</h3><h3 class="t-fr">Une petite récompense</h3>
+          <p class="t-en">A quote and experience points, so that the gesture feels worth it.</p>
+          <p class="t-fr">Une citation et des points d'expérience, pour que le geste ait du sens.</p>
         </div></div>
         <div class="step reveal d3"><div class="step-num">04</div><div class="step-body">
-          <h3 class="t-en">The community takes over</h3><h3 class="t-fr">La communauté prend le relais</h3>
-          <p class="t-en">Guilds, collective quests, friend leaderboards and cosmetics to unlock, none of it ever buys a competitive edge.</p>
-          <p class="t-fr">Guildes, quêtes collectives, classements entre amis et cosmétiques à débloquer, rien de tout cela n'achète jamais d'avantage compétitif.</p>
+          <h3 class="t-en">A streak builds</h3><h3 class="t-fr">Une série se construit</h3>
+          <p class="t-en">Coming back on consecutive days builds a streak.</p>
+          <p class="t-fr">Revenir plusieurs jours de suite construit une série.</p>
         </div></div>
       </div>
     </div>
@@ -226,24 +229,19 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-fr">Stack technique</p>
       <div class="stack-list">
         <div class="stack-row reveal">
-          <span class="stack-name">React Native / Expo</span>
-          <span class="stack-desc t-en">Mobile app for iOS and Android from a single codebase.</span>
-          <span class="stack-desc t-fr">Application mobile iOS et Android à partir d'une seule base de code.</span>
+          <span class="stack-name">React Native and Expo</span>
+          <span class="stack-desc t-en">One codebase for the phone app.</span>
+          <span class="stack-desc t-fr">Une seule base de code pour l'application mobile.</span>
         </div>
         <div class="stack-row reveal d1">
-          <span class="stack-name">TypeScript / Zustand</span>
-          <span class="stack-desc t-en">Strict typing end to end, shared state kept simple.</span>
-          <span class="stack-desc t-fr">Typage strict de bout en bout, état partagé simple.</span>
+          <span class="stack-name">TypeScript</span>
+          <span class="stack-desc t-en">Strict typing, automated tests and a design token system.</span>
+          <span class="stack-desc t-fr">Typage strict, tests automatisés et un système de tokens de design.</span>
         </div>
         <div class="stack-row reveal d2">
           <span class="stack-name">Supabase</span>
-          <span class="stack-desc t-en">Full backend: authentication, real time leaderboards, server authoritative reward economy.</span>
-          <span class="stack-desc t-fr">Backend complet : authentification, classements en temps réel, économie de récompenses gérée côté serveur.</span>
-        </div>
-        <div class="stack-row reveal d3">
-          <span class="stack-name">Expo Router</span>
-          <span class="stack-desc t-en">File based navigation.</span>
-          <span class="stack-desc t-fr">Navigation par fichiers.</span>
+          <span class="stack-desc t-en">The backend is designed on paper (tables, rules, rankings) but not connected yet.</span>
+          <span class="stack-desc t-fr">Le backend est dessiné sur le papier (tables, règles, classements) mais pas encore branché.</span>
         </div>
       </div>
     </div>
@@ -254,19 +252,19 @@ section { position: relative; z-index: 1; }
       <p class="section-label reveal t-en">Key concepts</p>
       <p class="section-label reveal t-fr">Concepts clés</p>
       <div class="concept reveal">
-        <div class="concept-title t-en">Mirror hours</div><div class="concept-title t-fr">Heures miroir</div>
-        <div class="concept-body t-en">The founding idea: give weight to moments most people already notice without ever building a ritual around them.</div>
-        <div class="concept-body t-fr">L'idée fondatrice : donner du poids à des instants que la plupart des gens remarquent déjà sans jamais construire de rituel autour.</div>
+        <div class="concept-title t-en">What exists</div><div class="concept-title t-fr">Ce qui existe</div>
+        <div class="concept-body t-en">The core ritual and a local anonymous session. Everything else is still being designed.</div>
+        <div class="concept-body t-fr">Le rituel de base et une session anonyme locale. Tout le reste est encore en conception.</div>
       </div>
       <div class="concept reveal d1">
-        <div class="concept-title t-en">No pay to win</div><div class="concept-title t-fr">Pas de paiement pour gagner</div>
-        <div class="concept-body t-en">Cosmetics can be bought, advantages cannot. Nothing sold ever affects experience or ranking.</div>
-        <div class="concept-body t-fr">Les cosmétiques s'achètent, les avantages non. Rien de ce qui est vendu n'affecte jamais l'expérience ou le classement.</div>
+        <div class="concept-title t-en">What is planned</div><div class="concept-title t-fr">Ce qui est prévu</div>
+        <div class="concept-body t-en">Leagues, guilds, rankings and notifications are planned. None of them is built yet.</div>
+        <div class="concept-body t-fr">Ligues, guildes, classements et notifications sont prévus. Aucun n'est encore construit.</div>
       </div>
       <div class="concept reveal d2">
-        <div class="concept-title t-en">Server authoritative economy</div><div class="concept-title t-fr">Économie côté serveur</div>
-        <div class="concept-body t-en">Every reward is computed and validated on the server, never trusted from the client.</div>
-        <div class="concept-body t-fr">Chaque récompense est calculée et validée côté serveur, jamais laissée au client.</div>
+        <div class="concept-title t-en">Never published</div><div class="concept-title t-fr">Jamais publié</div>
+        <div class="concept-body t-en">Kairoo has no public release and no date. It replaces the older HopeTime concept page.</div>
+        <div class="concept-body t-fr">Kairoo n'a pas de sortie publique ni de date. Il remplace l'ancienne page du concept HopeTime.</div>
       </div>
     </div>
   </section>

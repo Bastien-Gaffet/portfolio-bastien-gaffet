@@ -74,8 +74,8 @@ def make_cv():
         c.setFillColor(colors.HexColor('#1A1730'))
         c.circle(SB_CX, ph_cy, PHOTO_R, fill=1, stroke=0)
         c.setFillColor(DIM)
-        c.setFont('Helvetica', 6.5)
-        c.drawCentredString(SB_CX, ph_cy - 2, 'Votre photo')
+        c.setFont('Helvetica-Bold', 15)
+        c.drawCentredString(SB_CX, ph_cy - 2*mm, 'BG')
     c.setStrokeColor(VIOLET)
     c.setLineWidth(1.2)
     c.circle(SB_CX, ph_cy, PHOTO_R, fill=0, stroke=1)
@@ -132,10 +132,9 @@ def make_cv():
 
     # CONTACT
     sb_y = sb_title('Contact', sb_y)
-    sb_y = sb_kv('Email',    'votre@email.com',               sb_y)
-    sb_y = sb_kv('GitHub',   'github.com/VOTRE_GITHUB',       sb_y)
-    sb_y = sb_kv('LinkedIn', 'linkedin.com/in/VOTRE_LINKEDIN',sb_y)
-    sb_y = sb_kv('Site web', 'bastiengaffet.com',             sb_y)
+    sb_y = sb_kv('Email',    'contact@bastiengaffet.fr',      sb_y)
+    sb_y = sb_kv('GitHub',   'github.com/Bastien-Gaffet',      sb_y)
+    sb_y = sb_kv('Site web', 'bastiengaffet.fr',              sb_y)
     sb_y -= 5*mm
 
     # COMPETENCES
@@ -144,22 +143,22 @@ def make_cv():
     c.setFont('Helvetica-Bold', 6.5)
     c.drawCentredString(SB_CX, sb_y, 'Langages')
     sb_y -= 4*mm
-    for s in ['Python', 'Arduino (C++)', 'HTML / CSS / JS']:
+    for s in ['Python', 'TypeScript', 'HTML / CSS / JS', 'Arduino (C++)']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 2*mm
     c.setFillColor(DIM_LIGHT)
     c.setFont('Helvetica-Bold', 6.5)
     c.drawCentredString(SB_CX, sb_y, 'Domaines')
     sb_y -= 4*mm
-    for s in ['Robotique & Embarque', 'Vision par ordinateur',
-              'Conception algorithmique', 'Design d\'interfaces']:
+    for s in ['Applications & jeux', 'Sites web',
+              'Robotique & Embarqué', 'Vision par ordinateur']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 5*mm
 
     # INTERETS
     sb_y = sb_title('Interets', sb_y)
-    for s in ['Astrophotographie', 'Guitare', 'Volleyball',
-              'Jeux video', 'Lecture', 'Astronomie']:
+    for s in ['Jeux vidéo', 'Guitare', 'Volleyball',
+              'Astronomie', 'Lecture']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 5*mm
 
@@ -184,7 +183,7 @@ def make_cv():
     my -= 5*mm
     c.setFillColor(DIM)
     c.setFont('Helvetica', 7.5)
-    c.drawString(MX, my, 'Etudiant en ingenierie  /  Createur de systemes')
+    c.drawString(MX, my, 'Étudiant en prépa  /  Créateur')
     my -= 10*mm
 
     def section(label, y):
@@ -228,13 +227,11 @@ def make_cv():
     # PROFIL
     my = section('Profil', my)
     profil = (
-        "Etudiant en ingenierie passionne par la construction de systemes a "
-        "l'intersection de la mecanique, du logiciel et du design. J'aborde "
-        "chaque projet avec la curiosite comme moteur et l'exigence comme "
-        "methode. A l'aise aussi bien sur du materiel embarque que sur la "
-        "conception d'interfaces, entre la logique algorithmique et l'execution "
-        "physique. Toujours en quete du point ou ca fonctionne bien et ou ca "
-        "semble juste."
+        "Étudiant en classes préparatoires (PC*) à Tours. En dehors des cours, "
+        "je crée pour le plaisir des applications, des jeux, des sites web et "
+        "parfois un robot. Mes projets vont d'une application de dépenses "
+        "partagées à une boîte à outils pour Minecraft, en passant par un bras "
+        "robotique qui joue au Puissance 4, présenté à l'EUCYS à Riga."
     )
     my = wrap(c, profil, MX, my, MAIN_W, 'Helvetica', 7.8, DIM, 4.0*mm)
     my -= 5*mm
@@ -256,7 +253,7 @@ def make_cv():
             'Responsabilites collectives dans un cadre associatif benevole.',
         ], my)
     my = entry(
-        'Construction salle de classe, Vallee de l\'Ourika', 'Projet humanitaire / Maroc', '2024',
+        'Construction salle de classe, Vallee de l\'Ourika', 'Projet humanitaire / Maroc', '2024 / 2025',
         [
             'Construction d\'une classe dans un village pres de Chicker ou 40 eleves du primaire partageaient une salle sur 4 niveaux. Travaux realises : ferraillage, fondations en pierres, malaxage manuel du beton et coulage de la dalle.',
             'Elaboration des premiers plans de la salle en lien avec l\'association de developpement locale.',
@@ -265,28 +262,34 @@ def make_cv():
     # FORMATION
     my = section('Formation', my)
     my = entry(
-        'CPGE PCSI', 'Lycee Descartes, Tours', '2024 / Present',
+        'CPGE PC*', 'Lycée Descartes, Tours', 'Sept. 2026 / Présent',
         [
-            'Classes preparatoires aux grandes ecoles. Physique, Chimie, Sciences de l\'ingenieur.',
-            'TIPE : proprietes mecaniques des resines epoxy en structures composites sous contrainte.',
+            'Deuxième année de classes préparatoires aux grandes écoles.',
         ], my)
     my -= 2*mm
     my = entry(
-        'Baccalaureat General', 'Lycee Vaucanson, Tours', '2024',
+        'CPGE PCSI', 'Lycée Descartes, Tours', '2025 / 2026',
         [
-            'Mention Tres Bien, felicitations du jury.',
-            'Specialites : Mathematiques, Physique-Chimie, Mathematiques Expertes.',
+            'Première année de classes préparatoires.',
+            'TIPE : optimisation du ratio durcisseur / résine époxy (DGEBA / TETA), mesures de dureté Shore D.',
+        ], my)
+    my -= 2*mm
+    my = entry(
+        'Baccalauréat général', 'Lycée Vaucanson, Tours', '2025',
+        [
+            'Mention Très Bien, félicitations du jury.',
+            'Spécialités : Mathématiques, Physique-Chimie, Mathématiques Expertes.',
         ], my)
 
     # DISTINCTIONS
     my = section('Distinctions', my)
     my = award_entry(
-        'Concours Cgenial, 1er Prix National',
-        'Premier prix au concours national 2024. Principale competition francaise de sciences et ingenierie pour lyceens.',
+        'Concours Cgénial 2025, Prix Génialissime EUCYS',
+        'Robot J4 distingué au concours national Cgénial, principale compétition française de sciences et ingénierie pour lycéens.',
         my)
     my = award_entry(
         'Prix Europeen du CERN, EUCYS Lettonie',
-        'Prix du CERN decerne au Concours Europeen des Jeunes Scientifiques, Riga, 2025.',
+        'Prix du CERN décerné au Concours européen des jeunes scientifiques, Riga, 2025.',
         my)
 
     # FOOTER
@@ -294,8 +297,8 @@ def make_cv():
     c.rect(MX, 9*mm, MAIN_W, 0.3*mm, fill=1, stroke=0)
     c.setFillColor(DIM)
     c.setFont('Helvetica', 6)
-    c.drawString(MX, 6*mm, 'bastiengaffet.com')
-    c.drawRightString(RIGHT, 6*mm, 'Bastien Gaffet, CV 2025')
+    c.drawString(MX, 6*mm, 'bastiengaffet.fr')
+    c.drawRightString(RIGHT, 6*mm, 'Bastien Gaffet, CV 2026')
 
     c.save()
     print(f"CV FR genere. Contenu principal termine a y={my/mm:.0f}mm du bas.")

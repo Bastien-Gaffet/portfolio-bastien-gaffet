@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh the GitHub activity feed every 30 minutes
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=30min
+RandomizedDelaySec=60
+Persistent=true
+
+[Install]
+WantedBy=timers.target

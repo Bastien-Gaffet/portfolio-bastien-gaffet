@@ -1,12 +1,7 @@
 User-agent: *
 Allow: /
 
-# Easter egg — keep it a secret
-Disallow: /secret.html
-
-# Templates — no need to index these
-Disallow: /post-template.html
-Disallow: /product-template.html
-Disallow: /project-template.html
+# Easter egg, keep it a secret
+Disallow: /secret
 
 Sitemap: https://bastiengaffet.fr/sitemap.xml

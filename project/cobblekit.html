@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cobblekit: free Minecraft tools for players and server admins. Skins in 3D, world journal, building board, plugin config merge, backup checks.">
+<meta property="og:site_name" content="Bastien Gaffet">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cobblekit / Bastien Gaffet">
+<meta property="og:description" content="Cobblekit: free Minecraft tools for players and server admins. Skins in 3D, world journal, building board, plugin config merge, backup checks.">
+<meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="author" content="Bastien Gaffet">
+<title>Cobblekit / Bastien Gaffet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/components.css">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:        #05060A;
+  --violet:       hsl(265 75% 60%);
+  --violet-glow:  hsl(265 75% 60% / 0.2);
+  --cyan:         oklch(75% 0.14 210);
+  --white:        oklch(96% 0.005 250);
+  --dim:          oklch(60% 0.01 250);
+  --glass-bg:     rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black); color: var(--white);
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  overflow-x: hidden; opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.15s} .d2{transition-delay:.3s} .d3{transition-delay:.45s} .d4{transition-delay:.6s}
+
+section { position: relative; z-index: 1; }
+.inner { max-width: 980px; margin: 0 auto; padding: 0 3rem; }
+@media(max-width:600px){ .inner { padding: 0 1.5rem; } }
+.section-wrap { padding: 6rem 0; border-top: 1px solid var(--glass-border); }
+.section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 2.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.4rem; }
+.section-title em { font-style: italic; }
+.body-text { font-size: 0.85rem; line-height: 1.9; color: var(--dim); }
+.body-text + .body-text { margin-top: 1rem; }
+
+/* ══ HERO ══ */
+#hero { min-height: 80vh; padding-top: 14vh; padding-bottom: 4rem; }
+#hero .inner { max-width: 700px; margin: 0; padding-left: 3rem; }
+.hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--violet); margin-bottom: 1.2rem; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); margin-bottom: 2.2rem; }
+
+.hero-awards { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.award-pill {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 1.1rem; border: 1px solid var(--violet);
+  border-radius: 30px; background: var(--violet-glow);
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet);
+}
+.award-pill::before { content: '★'; font-size: 0.5rem; }
+
+.hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  padding: 0.35rem 1rem; border: 1px solid var(--glass-border); border-radius: 30px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
+.hero-line {
+  position: absolute; bottom: 0; left: 3rem;
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--glass-border), transparent);
+}
+
+/* ══ OVERVIEW ══ */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+@media(max-width:700px){ .overview-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.stats-col { display: flex; flex-direction: column; gap: 2.2rem; }
+.stat-item { border-left: 1px solid var(--glass-border); padding-left: 1.5rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1; margin-bottom: 0.3rem; }
+.stat-lbl { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* ══ STEPS ══ */
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 52px 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid var(--glass-border); }
+.step:first-child { border-top: 1px solid var(--glass-border); }
+.step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--violet); opacity: 0.45; line-height: 1; padding-top: 0.15rem; }
+.step-body h3 { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.step-body p { font-size: 0.83rem; color: var(--dim); line-height: 1.82; }
+
+/* ══ STACK , light rows ══ */
+.stack-list { display: flex; flex-direction: column; }
+.stack-row { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--glass-border); }
+.stack-row:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .stack-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+.stack-name { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; }
+.stack-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.75; }
+
+/* ══ CONCEPTS ══ */
+.concept { display: grid; grid-template-columns: 190px 1fr; gap: 3rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
+.concept:first-child { border-top: 1px solid var(--glass-border); }
+@media(max-width:600px){ .concept { grid-template-columns: 1fr; gap: 0.6rem; } }
+.concept-title { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding-top: 0.1rem; }
+.concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
+
+.hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.hero-cta { margin-top: 1.6rem; }
+.cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
+.cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
+.tool-link { color: var(--white); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.45); }
+.tool-link:hover { border-bottom-color: var(--violet); }
+.tool-metas { display: block; margin-top: 0.25rem; }
+.tool-meta { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); font-weight: 400; }
+.page-note { font-size: 0.78rem; color: var(--dim); line-height: 1.8; margin-top: 2rem; }
+.page-note a { color: var(--white); }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+<main>
+  <section id="hero" style="position:relative;z-index:1;">
+    <div class="hero-line"></div>
+    <div class="inner">
+      <p class="hero-eyebrow reveal t-en">Project / Minecraft Tools</p>
+      <p class="hero-eyebrow reveal t-fr">Projet / Outils Minecraft</p>
+      <h1 class="hero-title">
+        <span class="reveal">Cobblekit</span><br>
+        <em class="reveal d1 t-en">Minecraft Tools</em>
+        <em class="reveal d1 t-fr">Outils Minecraft</em>
+      </h1>
+      <p class="hero-desc reveal d2 t-en">A toolbox for Minecraft players and server admins: small tools that each do one job, in the browser or on your own machine, free to use. The biggest thing I am building right now.</p>
+      <p class="hero-desc reveal d2 t-fr">Une boîte à outils pour les joueurs et les admins de serveurs Minecraft : de petits outils qui font chacun une chose, dans le navigateur ou sur ta machine, gratuits. Le plus gros chantier du moment.</p>
+      <div class="hero-tags reveal d3"><span class="tag">Minecraft</span><span class="tag">Web tools</span><span class="tag">TypeScript</span><span class="tag">Paper</span></div>
+      <p class="hero-cta reveal d3"><a href="https://cobblekit.bastiengaffet.fr/" target="_blank" rel="noopener" class="cta-link"><span class="t-en">Open Cobblekit</span><span class="t-fr">Ouvrir Cobblekit</span></a></p>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Overview</p>
+      <p class="section-label reveal t-fr">Aperçu</p>
+      <div class="overview-grid">
+        <div>
+          <h2 class="section-title reveal">
+            <span class="t-en">Small tools,<br><em>measured before they ship.</em></span>
+            <span class="t-fr">De petits outils,<br><em>mesurés avant d'être publiés.</em></span>
+          </h2>
+          <p class="body-text reveal d1 t-en">Cobblekit is a set of small tools for the chores that keep coming back when you play and run a Minecraft server. Updating a plugin without losing its settings, checking that a backup really restores, keeping track of a build with friends. Each tool does one job, works in the browser or on your own machine, and publishes how it was tested, with its limits. There is no AI inside, only tools that give the same answer every time.</p>
+          <p class="body-text reveal d1 t-fr">Cobblekit est un ensemble de petits outils pour les corvées qui reviennent sans cesse quand on joue et qu'on administre un serveur Minecraft. Mettre à jour un plugin sans perdre ses réglages, vérifier qu'une sauvegarde se restaure vraiment, suivre une construction avec des amis. Chaque outil fait une chose, marche dans le navigateur ou sur ta machine, et publie comment il a été testé, avec ses limites. Il n'y a pas d'IA dedans, seulement des outils qui donnent la même réponse à chaque fois.</p>
+        </div>
+        <div class="stats-col reveal d1">
+          <div class="stat-item"><div class="stat-num">11</div><div class="stat-lbl t-en">Tools online</div><div class="stat-lbl t-fr">Outils en ligne</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Free</div><div class="stat-num t-fr">Gratuit</div><div class="stat-lbl t-en">Price</div><div class="stat-lbl t-fr">Prix</div></div>
+          <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year started</div><div class="stat-lbl t-fr">Année de départ</div></div>
+          <div class="stat-item"><div class="stat-num t-en">Growing</div><div class="stat-num t-fr">En construction</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">For players</p>
+      <p class="section-label reveal t-fr">Pour les joueurs</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/journal/" target="_blank" rel="noopener">Journal</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">The story of a world: places and coordinates in every dimension, goals, photos and a shared timeline. Reads your minimap waypoints.</span>
+          <span class="stack-desc t-fr">L'histoire d'un monde : lieux et coordonnées dans chaque dimension, objectifs, photos et chronologie partagée. Lit les points de repère de ta minimap.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/aventures/" target="_blank" rel="noopener">Aventures</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">Plan your next survival together: steps, prerequisites, places, builds and advancements, then send them to the Journal and the building board.</span>
+          <span class="stack-desc t-fr">Planifier sa prochaine survie à plusieurs : étapes, prérequis, lieux, constructions et progrès, puis les envoyer vers le Journal et le tableau de chantier.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/chantier/" target="_blank" rel="noopener">Chantier</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">A shared building board: tasks, builders, coordinates in every dimension, materials and stock in stacks and shulker boxes.</span>
+          <span class="stack-desc t-fr">Un tableau de chantier partagé : tâches, constructeurs, coordonnées dans chaque dimension, matériaux et stock en piles et en shulkers.</span>
+        </div>
+        <div class="stack-row reveal d3">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/skins/" target="_blank" rel="noopener">Skins</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">Paint your skin in 3D, layer by layer, then download it or turn it into a totem.</span>
+          <span class="stack-desc t-fr">Peindre son skin en 3D, couche par couche, puis le télécharger ou en faire un totem.</span>
+        </div>
+        <div class="stack-row reveal">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/enclume/" target="_blank" rel="noopener">Enclume</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">Plan your enchantments, including worked equipment: presets, books and the most economical combining order.</span>
+          <span class="stack-desc t-fr">Planifier ses enchantements, équipement déjà travaillé compris : préréglages, livres et ordre de fusion le plus économique.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/atelier/" target="_blank" rel="noopener">Atelier</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">Your skin as a totem of undying: a 2D or 3D Java resource pack, made in your browser.</span>
+          <span class="stack-desc t-fr">Ton skin en totem d'immortalité : un resource pack Java en 2D ou 3D, fabriqué dans ton navigateur.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">For server admins</p>
+      <p class="section-label reveal t-fr">Pour les admins de serveurs</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/merge/" target="_blank" rel="noopener">Merge</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">Update a plugin and keep your settings: the new config.yml merged with yours, comments included.</span>
+          <span class="stack-desc t-fr">Mettre à jour un plugin sans perdre ses réglages : le nouveau config.yml fusionné avec le tien, commentaires compris.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/preflight/" target="_blank" rel="noopener">Preflight</a><span class="tool-metas"><span class="tool-meta t-en">Command line · free</span><span class="tool-meta t-fr">Ligne de commande · gratuit</span></span></span>
+          <span class="stack-desc t-en">Start a temporary copy of your server, updated, and see which plugins break before you update for real.</span>
+          <span class="stack-desc t-fr">Démarrer une copie temporaire de son serveur, mise à jour, et voir quels plugins cassent avant de mettre à jour pour de vrai.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/restore-check/" target="_blank" rel="noopener">Restore Check</a><span class="tool-metas"><span class="tool-meta t-en">Command line · free</span><span class="tool-meta t-fr">Ligne de commande · gratuit</span></span></span>
+          <span class="stack-desc t-en">Prove that a backup really restores: worlds, region files, plugins, configs and a real start.</span>
+          <span class="stack-desc t-fr">Prouver qu'une sauvegarde se restaure vraiment : mondes, fichiers de région, plugins, configs et un vrai démarrage.</span>
+        </div>
+        <div class="stack-row reveal d3">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/seasons/" target="_blank" rel="noopener">Seasons</a><span class="tool-metas"><span class="tool-meta t-en">Paper plugin · free</span><span class="tool-meta t-fr">Plugin Paper · gratuit</span></span></span>
+          <span class="stack-desc t-en">End an SMP season in one command: archive, hall of fame from vanilla stats, fresh world on restart.</span>
+          <span class="stack-desc t-fr">Terminer une saison SMP en une commande : archive, panthéon à partir des statistiques vanilla, nouveau monde au redémarrage.</span>
+        </div>
+        <div class="stack-row reveal">
+          <span class="stack-name"><a class="tool-link" href="https://cobblekit.bastiengaffet.fr/starter/" target="_blank" rel="noopener">Starter</a><span class="tool-metas"><span class="tool-meta t-en">Web · free</span><span class="tool-meta t-fr">Web · gratuit</span></span></span>
+          <span class="stack-desc t-en">Pick a Minecraft version and a kind of server, then download a ready to run Paper server with the right plugins.</span>
+          <span class="stack-desc t-fr">Choisir une version de Minecraft et un type de serveur, puis télécharger un serveur Paper prêt à lancer avec les bons plugins.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Open source Minecraft projects</p>
+      <p class="section-label reveal t-fr">Projets Minecraft open source</p>
+      <div class="stack-list">
+        <div class="stack-row reveal">
+          <span class="stack-name"><a class="tool-link" href="https://github.com/Bastien-Gaffet/reveilleur" target="_blank" rel="noopener">réveilleur</a><span class="tool-metas"><span class="tool-meta t-en">Rust · open source</span><span class="tool-meta t-fr">Rust · open source</span></span></span>
+          <span class="stack-desc t-en">Puts Minecraft servers to sleep and wakes them up. A player who arrives while a server is asleep waits in a small limbo, the server starts, and they are transferred automatically. It costs about 8 MB of memory for all the servers.</span>
+          <span class="stack-desc t-fr">Met les serveurs Minecraft en veille et les réveille. Un joueur qui arrive pendant la veille attend dans un petit limbo, le serveur démarre, et il est transféré automatiquement. Environ 8 Mo de mémoire pour tous les serveurs.</span>
+        </div>
+        <div class="stack-row reveal d1">
+          <span class="stack-name"><a class="tool-link" href="https://github.com/Bastien-Gaffet/champs-proteges" target="_blank" rel="noopener">ChampsProteges</a><span class="tool-metas"><span class="tool-meta t-en">Paper plugin · open source</span><span class="tool-meta t-fr">Plugin Paper · open source</span></span></span>
+          <span class="stack-desc t-en">A tiny Paper plugin: jumping on farmland no longer destroys it, for players and mobs. Nothing else.</span>
+          <span class="stack-desc t-fr">Un plugin Paper minuscule : sauter sur une terre labourée ne la détruit plus, pour les joueurs comme pour les mobs. Rien d'autre.</span>
+        </div>
+        <div class="stack-row reveal d2">
+          <span class="stack-name"><a class="tool-link" href="https://github.com/Bastien-Gaffet/worldgen-fork" target="_blank" rel="noopener">worldgen-fork</a><span class="tool-metas"><span class="tool-meta t-en">Python · open source</span><span class="tool-meta t-fr">Python · open source</span></span></span>
+          <span class="stack-desc t-en">Makes any world generation datapack (Terralith and others) apply to a single world, without changing the generation of the other worlds on the server.</span>
+          <span class="stack-desc t-fr">Rend n'importe quel datapack de génération (Terralith et autres) utilisable sur un seul monde, sans changer la génération des autres mondes du serveur.</span>
+        </div>
+      </div>
+      <p class="page-note reveal t-en">The code of these three is public on GitHub.</p>
+      <p class="page-note reveal t-fr">Le code de ces trois projets est public sur GitHub.</p>
+    </div>
+  </section>
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">What is next</p>
+      <p class="section-label reveal t-fr">Et ensuite</p>
+      <div class="concept reveal">
+        <div class="concept-title t-en">Tools that talk to each other</div><div class="concept-title t-fr">Des outils qui se parlent</div>
+        <div class="concept-body t-en">A skin becomes a totem, an adventure feeds the Journal and the building board, a season ends with an archive. Linking the existing tools comes before adding new ones.</div>
+        <div class="concept-body t-fr">Un skin devient un totem, une aventure alimente le Journal et le tableau de chantier, une saison se termine par une archive. Relier les outils existants passe avant d'en ajouter.</div>
+      </div>
+      <div class="concept reveal d1">
+        <div class="concept-title t-en">Install together</div><div class="concept-title t-fr">Installer ensemble</div>
+        <div class="concept-body t-en">A "ready to play together" tool, to share a modpack setup and see what each player still has to do, exists as a local prototype. It is not published.</div>
+        <div class="concept-body t-fr">Un outil « prêts à jouer ensemble », pour partager une configuration de modpack et voir ce qu'il reste à faire à chaque joueur, existe en prototype local. Il n'est pas publié.</div>
+      </div>
+      <div class="concept reveal d2">
+        <div class="concept-title t-en">Honest numbers</div><div class="concept-title t-fr">Des chiffres honnêtes</div>
+        <div class="concept-body t-en">Compatibility is announced for what was really tested. If something is not supported, the tool says so instead of guessing.</div>
+        <div class="concept-body t-fr">La compatibilité est annoncée pour ce qui a vraiment été testé. Si quelque chose n'est pas pris en charge, l'outil le dit au lieu de deviner.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 150 + i * 180);
+  });
+});
+</script>
+<script src="/components.js"></script>
+</body>
+</html>
