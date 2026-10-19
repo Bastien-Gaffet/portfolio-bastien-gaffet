@@ -176,6 +176,16 @@ _canon.rel = 'canonical';
 _canon.href = 'https://bastiengaffet.fr/' + (currentPath === 'index' ? '' : currentPath);
 document.head.appendChild(_canon);
 
+// Favicon (planet logo) and touch icon
+[['icon', '/favicon.ico', 'image/x-icon', '16x16 32x32 48x48'], ['icon', '/favicon-32.png', 'image/png', '32x32'], ['apple-touch-icon', '/apple-touch-icon.png', '', '180x180']].forEach(function (f) {
+  if (document.querySelector('link[rel="' + f[0] + '"][href="' + f[1] + '"]')) return;
+  const l = document.createElement('link');
+  l.rel = f[0]; l.href = f[1];
+  if (f[2]) l.type = f[2];
+  if (f[3]) l.setAttribute('sizes', f[3]);
+  document.head.appendChild(l);
+});
+
 // Theme color (mobile browser chrome)
 const _theme = document.createElement('meta');
 _theme.name = 'theme-color';

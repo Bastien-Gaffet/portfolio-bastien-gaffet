@@ -51,7 +51,9 @@ trap 'rm -rf "$TMP"' EXIT
 mkdir -p "$REL"
 
 if [ "$FROM_TAR" = "1" ]; then tar -xzf "$TARFILE" -C "$TMP"; else git archive "$NEW" | tar -x -C "$TMP"; fi
-rsync -a --prune-empty-dirs --filter=". $TMP/deploy/rsync-allowlist" "$TMP"/ "$REL"/
+sed 's/$//' "$TMP/deploy/rsync-allowlist" > "$TMP.allow"   # tolerate CRLF checkouts
+rsync -a --prune-empty-dirs --filter=". $TMP.allow" "$TMP"/ "$REL"/
+rm -f "$TMP.allow"
 
 # sanity checks before going live
 [ -s "$REL/index.html" ] || { echo "index.html missing, abort"; rm -rf "$REL"; exit 1; }

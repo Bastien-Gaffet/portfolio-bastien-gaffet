@@ -164,9 +164,9 @@
 .cmd-empty { padding: 2rem; text-align: center; font-size: 0.75rem; color: oklch(38% 0.007 250); font-family: 'Inter', sans-serif; }
 
 /* ── LANGUAGE ── */
-.t-fr { display: none; }
-.lang-fr .t-en { display: none; }
-.lang-fr .t-fr { display: revert; }
+/* Language switching: hide the other language whatever display the element's own class sets */
+html:not(.lang-fr) .t-fr { display: none !important; }
+html.lang-fr .t-en { display: none !important; }
 
 #lang-pill {
   position: fixed; top: 0; left: 0; z-index: 100;

@@ -88,6 +88,8 @@ section { position: relative; z-index: 1; }
 .proj-card.in { opacity:1; transform:translateY(0); transition:opacity 0.7s ease, transform 0.7s ease, border-color 0.3s, box-shadow 0.35s; }
 .proj-card:hover { border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px hsl(265 75% 60% / 0.05); transform: translateY(-5px) !important; }
 .proj-card.featured { grid-column: span 2; }
+.proj-card.in.dim { opacity: 0.16; pointer-events: none; transition: opacity 0.5s ease 0s, border-color 0.3s, box-shadow 0.35s; }
+.proj-card { will-change: transform; }
 .proj-card.featured .card-visual { height: 260px; }
 
 .card-visual {
@@ -217,6 +219,36 @@ section { position: relative; z-index: 1; }
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
+    <a class="proj-card cobblekit" data-cat="engineering" href="/project/cobblekit">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <img class="card-shot" src="/img/shots/cobblekit-skins.webp" alt="Cobblekit Skins tool: painting a Minecraft skin in 3D" loading="lazy" width="960" height="600">
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Live, growing</span><span class="card-type t-fr">En ligne, en construction</span></div>
+        <h2 class="card-name">Cobblekit</h2>
+        <p class="card-desc t-en">A toolbox for Minecraft players and server admins: 3D skins, a world journal, a shared building board, plugin config merging, backup checks. Eleven free tools online, and the biggest project I am working on.</p>
+        <p class="card-desc t-fr">Une boîte à outils pour les joueurs et les admins de serveurs Minecraft : skins en 3D, journal de monde, tableau de chantier partagé, fusion de configs de plugins, vérification de sauvegardes. Onze outils gratuits en ligne, et le plus gros projet sur lequel je travaille.</p>
+        <div class="card-tags"><span class="tag">Minecraft</span><span class="tag">TypeScript</span><span class="tag">Web tools</span><span class="tag">Paper</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
+    <a class="proj-card cdp-scraper" data-cat="engineering" href="/project/cdp-scraper">
+      <div class="card-visual">
+        <div class="card-stripe"></div>
+        <span class="card-visual-lbl">CLI tool · Python</span>
+        <div class="card-accent"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
+        <h2 class="card-name">cdp-scraper</h2>
+        <p class="card-desc t-en">A command line tool to back up personal course documents from cahier-de-prepa.fr, with a local viewer to browse them offline afterward.</p>
+        <p class="card-desc t-fr">Un outil en ligne de commande pour sauvegarder ses cours depuis cahier-de-prepa.fr, avec un visualiseur local pour les parcourir hors ligne ensuite.</p>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">Local-first</span></div>
+        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
+      </div>
+    </a>
     <a class="proj-card krino" data-cat="engineering" href="/project/krino">
       <div class="card-visual">
         <div class="card-stripe"></div>
@@ -229,21 +261,6 @@ section { position: relative; z-index: 1; }
         <p class="card-desc t-en">A desktop app to clean up a photo library: swipe through months, spot duplicates, sort albums. Nothing is deleted without explicit review.</p>
         <p class="card-desc t-fr">Une application de bureau pour épurer une photothèque : tri mois par mois façon swipe, doublons, albums. Rien n'est supprimé sans revue explicite.</p>
         <div class="card-tags"><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">Desktop UX</span></div>
-        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
-      </div>
-    </a>
-    <a class="proj-card cobblekit featured" data-cat="engineering" href="/project/cobblekit">
-      <div class="card-visual">
-        <div class="card-stripe"></div>
-        <img class="card-shot" src="/img/shots/cobblekit-skins.webp" alt="Cobblekit Skins tool: painting a Minecraft skin in 3D" loading="lazy" width="960" height="600">
-        <div class="card-accent"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Live, growing</span><span class="card-type t-fr">En ligne, en construction</span></div>
-        <h2 class="card-name">Cobblekit</h2>
-        <p class="card-desc t-en">A toolbox for Minecraft players and server admins: 3D skins, a world journal, a shared building board, plugin config merging, backup checks. Eleven free tools online, and the biggest project I am working on.</p>
-        <p class="card-desc t-fr">Une boîte à outils pour les joueurs et les admins de serveurs Minecraft : skins en 3D, journal de monde, tableau de chantier partagé, fusion de configs de plugins, vérification de sauvegardes. Onze outils gratuits en ligne, et le plus gros projet sur lequel je travaille.</p>
-        <div class="card-tags"><span class="tag">Minecraft</span><span class="tag">TypeScript</span><span class="tag">Web tools</span><span class="tag">Paper</span></div>
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
@@ -274,21 +291,6 @@ section { position: relative; z-index: 1; }
         <p class="card-desc t-en">A robotic arm that plays Connect Four: mechanical design, computer vision and the Minimax algorithm. A school project that went to EUCYS in Riga in 2025, where it won the CERN European Prize.</p>
         <p class="card-desc t-fr">Un bras robotique qui joue au Puissance 4 : conception mécanique, vision par ordinateur et algorithme Minimax. Un projet de lycée présenté à l'EUCYS à Riga en 2025, où il a reçu le Prix européen du CERN.</p>
         <div class="card-tags"><span class="tag">Minimax AI</span><span class="tag">Computer Vision</span><span class="tag">Arduino</span><span class="tag">Python</span></div>
-        <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
-      </div>
-    </a>
-    <a class="proj-card cdp-scraper" data-cat="engineering" href="/project/cdp-scraper">
-      <div class="card-visual">
-        <div class="card-stripe"></div>
-        <span class="card-visual-lbl">CLI tool · Python</span>
-        <div class="card-accent"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta"><span class="card-year">2026</span><span class="card-type t-en">Engineering</span><span class="card-type t-fr">Ingénierie</span></div>
-        <h2 class="card-name">cdp-scraper</h2>
-        <p class="card-desc t-en">A command line tool to back up personal course documents from cahier-de-prepa.fr, with a local viewer to browse them offline afterward.</p>
-        <p class="card-desc t-fr">Un outil en ligne de commande pour sauvegarder ses cours depuis cahier-de-prepa.fr, avec un visualiseur local pour les parcourir hors ligne ensuite.</p>
-        <div class="card-tags"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">Local-first</span></div>
         <span class="card-arrow"><span class="t-en">View project</span><span class="t-fr">Voir le projet</span></span>
       </div>
     </a>
@@ -478,20 +480,50 @@ window.addEventListener('load', () => {
   });
 });
 
-/* ── FILTERS ── */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    const f = this.dataset.filter;
-    document.querySelectorAll('.proj-card').forEach(c => {
-      const show = f === 'all' || c.dataset.cat === f;
-      c.style.transition = 'opacity 0.35s, transform 0.35s';
-      c.style.opacity = show ? '1' : '0.15';
-      c.style.pointerEvents = show ? 'auto' : 'none';
+/* ── FILTERS ──
+   The cards of the chosen category glide to the top of the grid, the others slide down and
+   fade. Positions are animated with the FLIP technique (measure, reorder, play from the old spot). */
+(function () {
+  const grid = document.querySelector('.projects-grid');
+  const cards = Array.from(grid.querySelectorAll('.proj-card'));
+  const original = cards.slice();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 'all';
+
+  function applyFilter(f) {
+    if (f === current) return;
+    current = f;
+    cards.forEach(c => { c.style.transitionDelay = '0s'; });
+    const before = new Map(cards.map(c => [c, c.getBoundingClientRect()]));
+    const match = c => f === 'all' || c.dataset.cat === f;
+    const ordered = f === 'all' ? original : original.filter(match).concat(original.filter(c => !match(c)));
+    ordered.forEach(c => grid.appendChild(c));
+    cards.forEach(c => c.classList.toggle('dim', !match(c)));
+    if (reduce) return;
+    ordered.forEach((c, i) => {
+      const a = before.get(c), z = c.getBoundingClientRect();
+      const dx = a.left - z.left, dy = a.top - z.top;
+      if (!dx && !dy) return;
+      const rank = match(c) ? i : i * 0.4;           // chosen cards leave first
+      c.getAnimations().forEach(an => { if (an.id === 'flip') an.cancel(); });
+      const an = c.animate(
+        [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0, 0)' }],
+        { duration: 750, delay: Math.min(rank, 8) * 55, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'backwards' }
+      );
+      an.id = 'flip';
+    });
+    const top = grid.getBoundingClientRect().top;
+    if (top < 60) window.scrollTo({ top: window.scrollY + top - 140, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      applyFilter(this.dataset.filter);
     });
   });
-});
+})();
 
 /* ── BACK TRANSITION ── */
 document.getElementById('back-btn').addEventListener('click', e => {

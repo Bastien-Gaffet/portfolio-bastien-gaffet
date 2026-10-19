@@ -163,6 +163,7 @@ main { position: relative; z-index: 1; }
 .proj-card.tourny   { border-left: 2px solid hsl(245 75% 65%); }
 .proj-card.glacify  { border-left: 2px solid hsl(190 75% 55%); }
 .proj-card.cobblekit { border-left: 2px solid hsl(120 45% 50%); }
+.proj-card.cdp-scraper { border-left: 2px solid hsl(150 55% 58%); }
 .proj-card.equiliz { border-left: 2px solid hsl(160 60% 50%); }
 .proj-card.kairoo { border-left: 2px solid hsl(38 75% 62%); }
 
@@ -239,18 +240,24 @@ main { position: relative; z-index: 1; }
 }
 .memory-words { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .mem-word {
-  position: absolute; top: 28%;
+  position: absolute; left: 0; top: 0; white-space: nowrap;
   font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  color: transparent; user-select: none;
+  font-size: var(--fs, 3rem);
+  color: hsl(265 60% 80% / 0); user-select: none; will-change: transform, color;
+  transform: translate(var(--x, 0px), var(--y, 0px));
 }
-.mem-word.play { animation: memFloat 6s ease-in-out forwards; }
-@keyframes memFloat {
-  0%   { color: hsl(265 60% 80% / 0);   transform: translateY(40px); }
-  20%  { color: hsl(265 60% 80% / 0.28); }
-  75%  { color: hsl(265 60% 80% / 0.28); }
-  100% { color: hsl(265 60% 80% / 0);   transform: translateY(-70px); }
+.mem-word.play {
+  animation: memIn 2.4s ease-out forwards, memDrift var(--dur, 9s) ease-in-out 2.4s infinite alternate;
 }
+@keyframes memIn {
+  0%   { color: hsl(265 60% 80% / 0);    transform: translate(var(--x), calc(var(--y) + 26px)) scale(0.96); }
+  100% { color: hsl(265 60% 80% / 0.3);  transform: translate(var(--x), var(--y)) scale(1); }
+}
+@keyframes memDrift {
+  from { transform: translate(var(--x), var(--y)); }
+  to   { transform: translate(calc(var(--x) + var(--dx, 10px)), calc(var(--y) + var(--dy, 8px))); }
+}
+@media (prefers-reduced-motion: reduce) { .mem-word.play { animation: memIn 0.01s forwards; } }
 .reality-content { position: relative; z-index: 10; }
 .reality-eyebrow {
   font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
@@ -331,8 +338,6 @@ main { position: relative; z-index: 1; }
   .portal-title { font-size: 2.2rem; }
   .portal-sub { font-size: 0.6rem; letter-spacing: 0.2em; }
 
-  /* Spread the floating project names across the narrower viewport */
-  .mem-word { font-size: clamp(1.6rem, 9vw, 3rem); }
 }
 </style>
 </head>
@@ -406,51 +411,12 @@ main { position: relative; z-index: 1; }
       <p class="act-quote reveal reveal-delay-1 t-fr">« Puis j'ai commencé à construire des applications. »</p>
     </div>
     <div class="cards-wrap">
-      <div class="proj-card tourny reveal reveal-delay-1">
+      <div class="proj-card equiliz reveal reveal-delay-1">
         <span class="proj-num">01</span>
         <div class="proj-content">
-          <h3 class="proj-name">Tourny</h3>
-          <p class="proj-narrative t-en">"My first attempt to organize chaos into structure."</p>
-          <p class="proj-narrative t-fr">« Ma première tentative d'organiser le chaos en structure. »</p>
-          <div class="proj-tags">
-            <span class="tag">Sport Tournament System</span>
-            <span class="tag">Data Architecture</span>
-            <span class="tag">Dashboard UI</span>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card glacify reveal reveal-delay-2">
-        <span class="proj-num">02</span>
-        <div class="proj-content">
-          <h3 class="proj-name">Glacify</h3>
-          <p class="proj-narrative t-en">"Then I tried to design something more human, something felt, not just calculated."</p>
-          <p class="proj-narrative t-fr">« Puis j'ai essayé de concevoir quelque chose de plus humain, quelque chose de ressenti, pas seulement calculé. »</p>
-          <div class="proj-tags">
-            <span class="tag">Ice Cream App</span>
-            <span class="tag">UX Design</span>
-            <span class="tag">Playful Interface</span>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card kairoo reveal reveal-delay-3">
-        <span class="proj-num">03</span>
-        <div class="proj-content">
-          <h3 class="proj-name">Kairoo</h3>
-          <p class="proj-narrative t-en">"And I wondered what an app could do with moments like 11:11. It is still a prototype."</p>
-          <p class="proj-narrative t-fr">« Et je me suis demandé ce qu'une application pouvait faire de moments comme 11h11. C'est encore un prototype. »</p>
-          <div class="proj-tags">
-            <span class="tag">Mirror Hours</span>
-            <span class="tag">React Native</span>
-            <span class="tag">Prototype</span>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card equiliz reveal reveal-delay-3">
-        <span class="proj-num">04</span>
-        <div class="proj-content">
           <h3 class="proj-name">Equiliz</h3>
-          <p class="proj-narrative t-en">"Then one of them went online: an app to split expenses, now in closed beta."</p>
-          <p class="proj-narrative t-fr">« Puis l'un d'eux est sorti : une application pour partager les dépenses, aujourd'hui en bêta fermée. »</p>
+          <p class="proj-narrative t-en">"The one I work on the most: an app to split expenses, now in closed beta."</p>
+          <p class="proj-narrative t-fr">« Celui qui m'occupe le plus : une application pour partager les dépenses, aujourd'hui en bêta fermée. »</p>
           <div class="proj-tags">
             <span class="tag">Shared Expenses</span>
             <span class="tag">Web &amp; Android</span>
@@ -458,16 +424,55 @@ main { position: relative; z-index: 1; }
           </div>
         </div>
       </div>
-      <div class="proj-card cobblekit reveal reveal-delay-3">
-        <span class="proj-num">05</span>
+      <div class="proj-card cobblekit reveal reveal-delay-2">
+        <span class="proj-num">02</span>
         <div class="proj-content">
           <h3 class="proj-name">Cobblekit</h3>
-          <p class="proj-narrative t-en">"And lately, the biggest one: a toolbox of free Minecraft tools for players and admins."</p>
-          <p class="proj-narrative t-fr">« Et dernièrement, le plus gros : une boîte à outils gratuits pour les joueurs et les admins Minecraft. »</p>
+          <p class="proj-narrative t-en">"And the biggest: free tools for Minecraft players and admins, already online."</p>
+          <p class="proj-narrative t-fr">« Et le plus gros : des outils gratuits pour les joueurs et les admins Minecraft, déjà en ligne. »</p>
           <div class="proj-tags">
             <span class="tag">Minecraft Tools</span>
             <span class="tag">TypeScript</span>
             <span class="tag">11 Tools Online</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card cdp-scraper reveal reveal-delay-3">
+        <span class="proj-num">03</span>
+        <div class="proj-content">
+          <h3 class="proj-name">cdp-scraper</h3>
+          <p class="proj-narrative t-en">"A small tool I use all the time in prépa: back up my own course documents."</p>
+          <p class="proj-narrative t-fr">« Un petit outil dont je me sers tout le temps en prépa : sauvegarder mes propres cours. »</p>
+          <div class="proj-tags">
+            <span class="tag">Python</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Local-first</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card tourny reveal reveal-delay-1">
+        <span class="proj-num">04</span>
+        <div class="proj-content">
+          <h3 class="proj-name">Tourny</h3>
+          <p class="proj-narrative t-en">"Some projects wait. Tourny, a tournament app born in a volleyball club, is on hold."</p>
+          <p class="proj-narrative t-fr">« Certains projets attendent. Tourny, une application de tournois née dans un club de volley, est en pause. »</p>
+          <div class="proj-tags">
+            <span class="tag">Sport Tournaments</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">On Hold</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card kairoo reveal reveal-delay-2">
+        <span class="proj-num">05</span>
+        <div class="proj-content">
+          <h3 class="proj-name">Kairoo</h3>
+          <p class="proj-narrative t-en">"And some are still just an idea: Kairoo, built around mirror hours like 11:11."</p>
+          <p class="proj-narrative t-fr">« Et certains ne sont encore qu'une idée : Kairoo, autour des heures miroir comme 11h11. »</p>
+          <div class="proj-tags">
+            <span class="tag">Mirror Hours</span>
+            <span class="tag">React Native</span>
+            <span class="tag">Idea</span>
           </div>
         </div>
       </div>
@@ -719,30 +724,62 @@ function animateConstellation() {
 }
 animateConstellation();
 
-/* ══ MEMORY WORDS — add a project name here to include it in the Reality Shift animation ══ */
-const MEMORY_WORDS = ['Tourny', 'Glacify', 'Kairoo', 'Krino', 'cdp-scraper', 'PrepaTrack', 'Equiliz', 'Cobblekit', 'reveilleur'];
+/* ══ MEMORY WORDS — add a project name here to include it in the Reality Shift animation ══
+   Every name is scattered at random all around the central text (never on top of it, never
+   overlapping another name) and they all fade in together with a small random offset. */
+const MEMORY_WORDS = ['Equiliz', 'Cobblekit', 'Krino', 'cdp-scraper', 'Robot J4', 'Kairoo', 'Tourny', 'Glacify', 'PrepaTrack', 'reveilleur', 'Hiveheart', 'Onde'];
 const memWrap = document.getElementById('memory-words');
-// Narrower viewports get a tighter spread, otherwise the last names start
-// beyond the right edge and never actually show up.
-const _memNarrow = window.matchMedia('(max-width:700px)').matches;
-const _memStart  = _memNarrow ? 3 : 6;
-const _memSpread = _memNarrow ? 45 : 80;
-MEMORY_WORDS.forEach((word, i) => {
-  const span = document.createElement('span');
-  span.className = 'mem-word';
-  const left = MEMORY_WORDS.length > 1 ? _memStart + i * (_memSpread / (MEMORY_WORDS.length - 1)) : 46;
-  span.style.left = left + '%';
-  span.textContent = word;
-  memWrap.appendChild(span);
-});
+
+function placeMemoryWords() {
+  memWrap.innerHTML = '';
+  const W = memWrap.clientWidth, H = memWrap.clientHeight;
+  if (!W || !H) return;
+  const box = memWrap.getBoundingClientRect();
+  const c = document.querySelector('.reality-content').getBoundingClientRect();
+  const pad = 22;
+  const forbidden = { x: c.left - box.left - pad, y: c.top - box.top - pad, w: c.width + pad * 2, h: c.height + pad * 2 };
+  const hit = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+  let fs = W < 700 ? Math.max(17, W * 0.052) : Math.min(60, Math.max(28, W * 0.036));
+  for (let attempt = 0; attempt < 6; attempt++) {
+    memWrap.innerHTML = '';
+    const placed = [], spans = [];
+    let ok = true;
+    for (const word of MEMORY_WORDS) {
+      const span = document.createElement('span');
+      span.className = 'mem-word';
+      span.textContent = word;
+      span.style.setProperty('--fs', fs + 'px');
+      memWrap.appendChild(span);
+      const w = span.offsetWidth, h = span.offsetHeight;
+      let spot = null;
+      for (let t = 0; t < 400 && !spot; t++) {
+        const r = { x: Math.random() * (W - w - 16) + 8, y: Math.random() * (H - h - 16) + 8, w, h };
+        const g = { x: r.x - 12, y: r.y - 8, w: w + 24, h: h + 16 };
+        if (hit(g, forbidden) || placed.some(p => hit(g, p))) continue;
+        spot = r;
+      }
+      if (!spot) { ok = false; break; }
+      placed.push({ x: spot.x - 12, y: spot.y - 8, w: w + 24, h: h + 16 });
+      span.style.setProperty('--x', spot.x + 'px');
+      span.style.setProperty('--y', spot.y + 'px');
+      span.style.setProperty('--dx', (Math.random() * 24 - 12) + 'px');
+      span.style.setProperty('--dy', (Math.random() * 18 - 9) + 'px');
+      span.style.setProperty('--dur', (7 + Math.random() * 6) + 's');
+      spans.push(span);
+    }
+    if (ok) return;
+    fs *= 0.88;   // not enough room: try a slightly smaller size
+  }
+}
 
 new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     const sec = document.getElementById('act-reality');
     sec.classList.add('grid-on');
     sec.querySelectorAll('.blur-reveal').forEach(el => el.classList.add('visible'));
-    document.querySelectorAll('.mem-word').forEach((el, i) => {
-      setTimeout(() => el.classList.add('play'), i * 1200);
+    placeMemoryWords();
+    document.querySelectorAll('.mem-word').forEach(el => {
+      setTimeout(() => el.classList.add('play'), Math.random() * 900);
     });
   }
 }, { threshold: 0.25 }).observe(document.getElementById('act-reality'));
