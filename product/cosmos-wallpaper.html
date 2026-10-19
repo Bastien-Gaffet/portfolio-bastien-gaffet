@@ -42,16 +42,27 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 
 /* Carousel */
 #carousel { margin-bottom: 3rem; }
-.car-stage { width: 100%; height: 400px; border-radius: 12px; background: hsl(265 18% 7%); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; margin-bottom: 1rem; }
-@media(max-width: 600px) { .car-stage { height: 260px; } }
-.car-stage img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; transition: opacity 0.2s ease; }
-.car-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(5,6,10,0.78); border: 1px solid var(--glass-border); color: var(--dim2); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; z-index: 2; transition: color 0.2s, border-color 0.2s, background 0.2s; }
-.car-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); background: rgba(5,6,10,0.95); }
-#car-prev { left: 0.7rem; } #car-next { right: 0.7rem; }
+#col-left, #col-right { min-width: 0; }
+#carousel { position: relative; min-width: 0; max-width: 100%; }
+.car-viewport {
+  position: relative; height: clamp(260px, 40vw, 430px); overflow: hidden; margin-bottom: 1.2rem;
+  cursor: grab; touch-action: pan-y; user-select: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.car-viewport:active { cursor: grabbing; }
+.car-track { display: flex; align-items: center; height: 100%; gap: 20px; will-change: transform; transition: transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.car-slide { flex: 0 0 auto; display: flex; align-items: center; opacity: 0.3; transform: scale(0.9); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.car-slide.active { opacity: 1; transform: scale(1); }
+.car-slide img { display: block; max-width: none; border-radius: 12px; box-shadow: 0 18px 50px rgba(0,0,0,0.45); -webkit-user-drag: none; pointer-events: none; }
+.car-btn { position: absolute; top: calc(clamp(260px, 40vw, 430px) / 2); transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border-radius: 50%; background: rgba(5,6,10,0.7); border: 1px solid var(--glass-border); color: var(--dim2); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+.car-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.25); background: rgba(5,6,10,0.92); }
+#car-prev { left: 0.4rem; } #car-next { right: 0.4rem; }
 .car-dots { display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
 .car-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dim); opacity: 0.35; cursor: pointer; transition: all 0.3s; border: none; padding: 0; flex-shrink: 0; }
 .car-dot.active { width: 18px; border-radius: 3px; background: var(--violet); opacity: 1; }
 .car-dot:hover:not(.active) { opacity: 0.6; }
+@media (prefers-reduced-motion: reduce) { .car-track, .car-slide { transition: none; } }
 
 /* Description */
 #description { font-size: 0.84rem; color: var(--dim2); line-height: 1.88; }
@@ -102,10 +113,10 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <!-- LEFT: carousel + features + description -->
     <div id="col-left">
       <div id="carousel">
-        <div class="car-stage">
-          <button class="car-btn" id="car-prev">&#8592;</button>
-          <button class="car-btn" id="car-next">&#8594;</button>
-          <img id="car-img" src="" alt="">
+        <button class="car-btn" id="car-prev" aria-label="Previous">&#8592;</button>
+        <button class="car-btn" id="car-next" aria-label="Next">&#8594;</button>
+        <div class="car-viewport" id="car-viewport">
+          <div class="car-track" id="car-track"></div>
         </div>
         <div class="car-dots" id="car-dots"></div>
       </div>
@@ -174,10 +185,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
         <span class="price-note t-en">or more, pay what you want</span>
         <span class="price-note t-fr">ou plus, payez ce que vous voulez</span>
       </div>
-      <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" class="btn-buy">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="t-en">Buy on Ko-fi</span><span class="t-fr">Acheter sur Ko-fi</span>
-      </a>
+      <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" rel="noopener" class="kofi-button block"><img src="/img/logos/kofi-cup.png" alt="" width="20" height="16"><span class="t-en">Buy on Ko-fi</span><span class="t-fr">Acheter sur Ko-fi</span></a>
       <a href="/cosmos-demo" target="_blank" class="btn-demo"><span class="t-en">Try the demo</span><span class="t-fr">Essayer la démo</span></a>
       <p class="secure-note t-en">Sold via <a href="https://ko-fi.com/bastiengft" target="_blank">Ko-fi</a>. Instant download after payment.</p>
       <p class="secure-note t-fr">Vendu via <a href="https://ko-fi.com/bastiengft" target="_blank">Ko-fi</a>. Téléchargement immédiat après paiement.</p>
@@ -189,37 +197,68 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 
 <script>
 const IMAGES = [
-  { src: '/img/cosmos/cosmos-galaxy_spiral-desktop4k-9407.webp', alt: 'Spiral galaxy wallpaper' },
-  { src: '/img/cosmos/presentation-screenshot.webp',             alt: 'Generator interface' },
-  { src: '/img/cosmos/cosmos-blackhole-desktop-2985.webp',       alt: 'Black hole wallpaper' },
-  { src: '/img/cosmos/cosmos-galaxy_edge-mobile-3139.webp',      alt: 'Edge-on galaxy mobile' },
-  { src: '/img/cosmos/cosmos-supernova-desktop-5234.webp',       alt: 'Supernova wallpaper' },
-  { src: '/img/cosmos/cosmos-comet-desktop-3770.webp',           alt: 'Comet wallpaper' },
-  { src: '/img/cosmos/cosmos-system-mobile-884.webp',            alt: 'Star system mobile' },
+  { src: '/img/cosmos/cosmos-galaxy_spiral-desktop4k-9407.webp', alt: 'Spiral galaxy wallpaper', w: 1600, h: 900 },
+  { src: '/img/cosmos/presentation-screenshot.webp',             alt: 'Generator interface',     w: 1600, h: 762 },
+  { src: '/img/cosmos/cosmos-blackhole-desktop-2985.webp',       alt: 'Black hole wallpaper',    w: 1600, h: 900 },
+  { src: '/img/cosmos/cosmos-galaxy_edge-mobile-3139.webp',      alt: 'Edge-on galaxy mobile',   w: 675,  h: 1200 },
+  { src: '/img/cosmos/cosmos-supernova-desktop-5234.webp',       alt: 'Supernova wallpaper',     w: 1600, h: 900 },
+  { src: '/img/cosmos/cosmos-comet-desktop-3770.webp',           alt: 'Comet wallpaper',         w: 1600, h: 900 },
+  { src: '/img/cosmos/cosmos-system-mobile-884.webp',            alt: 'Star system mobile',      w: 675,  h: 1200 },
 ];
-const carImg = document.getElementById('car-img');
+/* Film strip: every image keeps its own ratio (no fixed frame). The track slides so that the
+   current image is centred, the neighbours stay visible but dimmed. */
+const viewport = document.getElementById('car-viewport');
+const track = document.getElementById('car-track');
 const dotsEl = document.getElementById('car-dots');
 let carIdx = 0;
-IMAGES.forEach((_, i) => {
+const slides = IMAGES.map((im, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'car-slide';
+  const img = document.createElement('img');
+  img.src = im.src; img.alt = im.alt; img.width = im.w; img.height = im.h; img.draggable = false;
+  slide.appendChild(img);
+  slide.addEventListener('click', () => { if (i !== carIdx) carShow(i); });
+  track.appendChild(slide);
   const dot = document.createElement('button');
-  dot.className = 'car-dot' + (i === 0 ? ' active' : '');
+  dot.className = 'car-dot'; dot.setAttribute('aria-label', 'Image ' + (i + 1));
   dot.addEventListener('click', () => carShow(i));
   dotsEl.appendChild(dot);
+  return slide;
 });
-function carShow(idx) {
+function layout() {
+  const vw = viewport.clientWidth, H = viewport.clientHeight;
+  slides.forEach((slide, i) => {
+    const r = IMAGES[i].w / IMAGES[i].h;
+    let h = H, w = h * r;
+    if (w > vw * 0.86) { w = vw * 0.86; h = w / r; }
+    const img = slide.firstChild;
+    img.style.width = w + 'px'; img.style.height = h + 'px';
+  });
+  carShow(carIdx, false);
+}
+function carShow(idx, animate = true) {
   carIdx = ((idx % IMAGES.length) + IMAGES.length) % IMAGES.length;
-  carImg.style.opacity = '0';
-  setTimeout(() => { carImg.src = IMAGES[carIdx].src; carImg.alt = IMAGES[carIdx].alt; carImg.style.opacity = '1'; }, 180);
+  const slide = slides[carIdx];
+  const x = viewport.clientWidth / 2 - (slide.offsetLeft + slide.offsetWidth / 2);
+  if (!animate) track.style.transition = 'none';
+  track.style.transform = 'translateX(' + x + 'px)';
+  if (!animate) { track.offsetWidth; track.style.transition = ''; }
+  slides.forEach((s, i) => s.classList.toggle('active', i === carIdx));
   dotsEl.querySelectorAll('.car-dot').forEach((d, i) => d.classList.toggle('active', i === carIdx));
 }
 document.getElementById('car-prev').addEventListener('click', () => carShow(carIdx - 1));
 document.getElementById('car-next').addEventListener('click', () => carShow(carIdx + 1));
-let txStart = 0;
-const stage = document.querySelector('.car-stage');
-stage.addEventListener('touchstart', e => { txStart = e.touches[0].clientX; }, { passive: true });
-stage.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - txStart; if(d<-40)carShow(carIdx+1);else if(d>40)carShow(carIdx-1); }, { passive: true });
-window.addEventListener('keydown', e => { if(e.key==='ArrowRight')carShow(carIdx+1); if(e.key==='ArrowLeft')carShow(carIdx-1); });
-carShow(0);
+// swipe or drag
+let startX = null;
+viewport.addEventListener('pointerdown', e => { startX = e.clientX; });
+window.addEventListener('pointerup', e => {
+  if (startX === null) return;
+  const d = e.clientX - startX; startX = null;
+  if (d < -40) carShow(carIdx + 1); else if (d > 40) carShow(carIdx - 1);
+});
+window.addEventListener('keydown', e => { if (e.key === 'ArrowRight') carShow(carIdx + 1); if (e.key === 'ArrowLeft') carShow(carIdx - 1); });
+window.addEventListener('resize', layout);
+layout();
 </script>
 <script src="/components.js"></script>
 </body>

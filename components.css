@@ -205,3 +205,22 @@ html.lang-fr .t-en { display: none !important; }
 }
 .lang-opt.active { color: rgba(255,255,255,0.92); }
 .lang-opt:not(.active):hover { color: rgba(255,255,255,0.55); }
+
+
+/* ── KO-FI BUTTON (same look as the official Ko-fi widget, no external script) ── */
+.kofi-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-width: 150px; line-height: 36px; padding: 2px 16px;
+  background: #8833ff; color: #fff !important; border: 0; border-radius: 7px;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  font-family: 'Quicksand', Helvetica, 'Century Gothic', sans-serif; font-weight: 700; font-size: 14px;
+  text-decoration: none; text-shadow: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.25s, filter 0.2s;
+}
+.kofi-button:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(136,51,255,0.38); }
+.kofi-button img { height: 15px; width: auto; display: block; flex-shrink: 0; }
+.kofi-button.block { display: flex; width: 100%; }
+
+/* small Ko-fi cup in text links, and the planet logo in the footer */
+.kofi-cup-inline { height: 11px; width: auto; vertical-align: -1px; margin-right: 0.35rem; }
+.footer-logo { width: 30px; height: 30px; border-radius: 50%; display: block; margin-bottom: 0.7rem; }

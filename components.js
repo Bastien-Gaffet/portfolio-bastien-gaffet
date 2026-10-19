@@ -290,6 +290,7 @@ if (!config.noFooter) {
   footer.innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand">
+        <img class="footer-logo" src="/img/logos/planet-small.png" alt="" width="30" height="30">
         <span class="footer-sig">Bastien Gaffet</span>
         <p class="footer-tagline t-en">Student in prépa. I build apps, games and websites for fun.</p>
         <p class="footer-tagline t-fr">Étudiant en prépa. Je crée des applications, des jeux et des sites pour le plaisir.</p>
@@ -328,7 +329,7 @@ if (!config.noFooter) {
           <li><a href="https://cobblekit.bastiengaffet.fr/" target="_blank" rel="noopener">Cobblekit</a></li>
           <li><a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener">Equiliz</a></li>
           <li><a href="https://webtouraine.bastiengaffet.fr/" target="_blank" rel="noopener">Webtouraine</a></li>
-          <li><a href="https://ko-fi.com/bastiengft" target="_blank" rel="noopener">Ko-fi</a></li>
+          <li><a href="https://ko-fi.com/bastiengft" target="_blank" rel="noopener"><img class="kofi-cup-inline" src="/img/logos/kofi-cup.png" alt="" width="14" height="11">Ko-fi</a></li>
         </ul>
       </div>
     </div>

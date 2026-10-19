@@ -63,6 +63,10 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; font-size: 1rem;
 }
+.avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.link-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; display: block; }
+.link-icon.logo { background: none; border: none; padding: 0; overflow: hidden; }
+.link-card.kofi .link-icon img { width: 22px; height: auto; border-radius: 0; }
 .link-icon svg { width: 18px; height: 18px; }
 
 .link-text { flex: 1; }
@@ -89,8 +93,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
 
   <!-- Avatar -->
   <div class="avatar">
-    <!-- Replace with: <img src="photo.jpg" alt="Bastien Gaffet" style="width:100%;height:100%;object-fit:cover;"> -->
-    <span class="avatar-placeholder">B</span>
+    <img src="/img/logos/planet.png" alt="Bastien Gaffet" width="96" height="96">
   </div>
 
   <p class="links-name">Bastien <em>Gaffet</em></p>
@@ -100,13 +103,11 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   <!-- WEBSITE -->
   <span class="links-section">Portfolio</span>
   <a href="https://bastiengaffet.fr" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/planet-small.png" alt="" width="36" height="36"></div>
     <div class="link-text">
-      <p class="link-label">bastiengaffet.fr</p>
-      <p class="link-sub t-en">Portfolio, projects and photography</p>
-      <p class="link-sub t-fr">Portfolio, projets et photographie</p>
+      <p class="link-label">Bastien Gaffet</p>
+      <p class="link-sub t-en">bastiengaffet.fr: portfolio, projects and notes</p>
+      <p class="link-sub t-fr">bastiengaffet.fr : portfolio, projets et notes</p>
     </div>
     <span class="link-arrow">›</span>
   </a>
@@ -114,9 +115,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   <!-- SITES -->
   <span class="links-section t-en">My sites</span><span class="links-section t-fr">Mes sites</span>
   <a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/equiliz.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Equiliz</p>
       <p class="link-sub t-en">Shared expenses app, closed beta</p>
@@ -125,9 +124,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <span class="link-arrow">›</span>
   </a>
   <a href="https://cobblekit.bastiengaffet.fr/" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/cobblekit.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Cobblekit</p>
       <p class="link-sub t-en">Free Minecraft tools</p>
@@ -136,9 +133,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <span class="link-arrow">›</span>
   </a>
   <a href="https://webtouraine.bastiengaffet.fr/" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/webtouraine.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Webtouraine</p>
       <p class="link-sub t-en">Websites for craftspeople in Tours</p>
@@ -147,9 +142,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <span class="link-arrow">›</span>
   </a>
   <a href="https://krino.netlify.app/" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/krino.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Krino</p>
       <p class="link-sub t-en">Photo sorting app for Windows</p>
@@ -158,9 +151,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <span class="link-arrow">›</span>
   </a>
   <a href="https://robot-j4.web.app/" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/robotj4.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Robot J4</p>
       <p class="link-sub t-en">The website of the Connect Four robot</p>
@@ -168,24 +159,11 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     </div>
     <span class="link-arrow">›</span>
   </a>
-  <a href="/lab" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
-    <div class="link-text">
-      <p class="link-label">Lab</p>
-      <p class="link-sub t-en">Small projects and experiments</p>
-      <p class="link-sub t-fr">Petits projets et expériences</p>
-    </div>
-    <span class="link-arrow">›</span>
-  </a>
 
   <!-- SHOP -->
   <span class="links-section t-en">Shop</span><span class="links-section t-fr">Boutique</span>
   <a href="https://ko-fi.com/s/9d2de59f24" target="_blank" rel="noopener" class="link-card kofi">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.591-4.859-4.591H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.918zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
-    </div>
+    <div class="link-icon "><img src="/img/logos/kofi-cup.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Cosmos Wallpaper Generator</p>
       <p class="link-sub t-en">Digital product on Ko-fi, from €4</p>
@@ -194,9 +172,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
     <span class="link-arrow">›</span>
   </a>
   <a href="https://ko-fi.com/bastiengft" target="_blank" rel="noopener" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    </div>
+    <div class="link-icon "><img src="/img/logos/kofi-cup.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label t-en">Support on Ko-fi</p>
       <p class="link-label t-fr">Soutenir sur Ko-fi</p>
@@ -221,9 +197,7 @@ body { background: var(--black); color: var(--white); font-family: 'Inter', sans
   <!-- PROJECTS -->
   <span class="links-section t-en">Projects</span><span class="links-section t-fr">Projets</span>
   <a href="https://bastiengaffet.fr/project/robotj4" class="link-card">
-    <div class="link-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/></svg>
-    </div>
+    <div class="link-icon logo"><img src="/img/logos/robotj4.png" alt="" width="36" height="36"></div>
     <div class="link-text">
       <p class="link-label">Robot J4</p>
       <p class="link-sub t-en">Robotic arm, Minimax AI, EUCYS 2025</p>

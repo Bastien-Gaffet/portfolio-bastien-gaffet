@@ -164,6 +164,7 @@ main { position: relative; z-index: 1; }
 .proj-card.glacify  { border-left: 2px solid hsl(190 75% 55%); }
 .proj-card.cobblekit { border-left: 2px solid hsl(120 45% 50%); }
 .proj-card.cdp-scraper { border-left: 2px solid hsl(150 55% 58%); }
+.proj-card.krino { border-left: 2px solid hsl(227 80% 68%); }
 .proj-card.equiliz { border-left: 2px solid hsl(160 60% 50%); }
 .proj-card.kairoo { border-left: 2px solid hsl(38 75% 62%); }
 
@@ -450,29 +451,16 @@ main { position: relative; z-index: 1; }
           </div>
         </div>
       </div>
-      <div class="proj-card tourny reveal reveal-delay-1">
+      <div class="proj-card krino reveal reveal-delay-1">
         <span class="proj-num">04</span>
         <div class="proj-content">
-          <h3 class="proj-name">Tourny</h3>
-          <p class="proj-narrative t-en">"Some projects wait. Tourny, a tournament app born in a volleyball club, is on hold."</p>
-          <p class="proj-narrative t-fr">« Certains projets attendent. Tourny, une application de tournois née dans un club de volley, est en pause. »</p>
+          <h3 class="proj-name">Krino</h3>
+          <p class="proj-narrative t-en">"And one that is out in the world: a desktop app to sort my photo library."</p>
+          <p class="proj-narrative t-fr">« Et un qui est sorti : une application de bureau pour trier ma photothèque. »</p>
           <div class="proj-tags">
-            <span class="tag">Sport Tournaments</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">On Hold</span>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card kairoo reveal reveal-delay-2">
-        <span class="proj-num">05</span>
-        <div class="proj-content">
-          <h3 class="proj-name">Kairoo</h3>
-          <p class="proj-narrative t-en">"And some are still just an idea: Kairoo, built around mirror hours like 11:11."</p>
-          <p class="proj-narrative t-fr">« Et certains ne sont encore qu'une idée : Kairoo, autour des heures miroir comme 11h11. »</p>
-          <div class="proj-tags">
-            <span class="tag">Mirror Hours</span>
-            <span class="tag">React Native</span>
-            <span class="tag">Idea</span>
+            <span class="tag">Desktop App</span>
+            <span class="tag">Tauri</span>
+            <span class="tag">Windows</span>
           </div>
         </div>
       </div>
@@ -727,7 +715,7 @@ animateConstellation();
 /* ══ MEMORY WORDS — add a project name here to include it in the Reality Shift animation ══
    Every name is scattered at random all around the central text (never on top of it, never
    overlapping another name) and they all fade in together with a small random offset. */
-const MEMORY_WORDS = ['Equiliz', 'Cobblekit', 'Krino', 'cdp-scraper', 'Robot J4', 'Kairoo', 'Tourny', 'Glacify', 'PrepaTrack', 'reveilleur', 'Hiveheart', 'Onde'];
+const MEMORY_WORDS = ['Equiliz', 'Cobblekit', 'Krino', 'cdp-scraper', 'Robot J4', 'PrepaTrack', 'reveilleur', 'Hiveheart', 'Onde'];
 const memWrap = document.getElementById('memory-words');
 
 function placeMemoryWords() {
