@@ -121,6 +121,12 @@ section { position: relative; z-index: 1; }
 .concept-body { font-size: 0.83rem; color: var(--dim); line-height: 1.88; }
 
 .hero-title em { font-style: italic; color: hsl(227 80% 72%); }
+.shots { display: grid; gap: 1.4rem; align-items: start; }
+.shots.two { grid-template-columns: 1fr 1fr; }
+.shots.phone { grid-template-columns: 2fr 1fr; }
+@media (max-width: 700px) { .shots.two, .shots.phone { grid-template-columns: 1fr; } }
+.shots img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--glass-bg); }
+.shots figcaption { font-size: 0.72rem; color: var(--dim); margin-top: 0.6rem; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -161,6 +167,20 @@ section { position: relative; z-index: 1; }
           <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year released</div><div class="stat-lbl t-fr">Année de sortie</div></div>
           <div class="stat-item"><div class="stat-num t-en">Published</div><div class="stat-num t-fr">Publié</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Screenshots</p>
+      <p class="section-label reveal t-fr">Captures d'écran</p>
+      <div class="shots two">
+        <figure class="reveal">
+          <img src="/img/shots/krino-home.webp" alt="Krino website home page" loading="lazy" width="960" height="600">
+          <figcaption class="t-en">The Krino website. The app itself runs on Windows.</figcaption>
+          <figcaption class="t-fr">Le site de Krino. L'application elle-même tourne sous Windows.</figcaption>
+        </figure>
       </div>
     </div>
   </section>

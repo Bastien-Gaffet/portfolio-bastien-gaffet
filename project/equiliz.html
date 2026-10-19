@@ -124,6 +124,12 @@ section { position: relative; z-index: 1; }
 .hero-cta { margin-top: 1.6rem; }
 .cta-link { display: inline-block; padding: 0.7rem 1.7rem; border: 1px solid hsl(265 75% 60% / 0.4); border-radius: 40px; background: var(--violet-glow); color: var(--white); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, transform 0.25s; }
 .cta-link:hover { background: hsl(265 75% 60% / 0.3); transform: translateY(-2px); }
+.shots { display: grid; gap: 1.4rem; align-items: start; }
+.shots.two { grid-template-columns: 1fr 1fr; }
+.shots.phone { grid-template-columns: 2fr 1fr; }
+@media (max-width: 700px) { .shots.two, .shots.phone { grid-template-columns: 1fr; } }
+.shots img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--glass-bg); }
+.shots figcaption { font-size: 0.72rem; color: var(--dim); margin-top: 0.6rem; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -165,6 +171,25 @@ section { position: relative; z-index: 1; }
           <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl t-en">Year started</div><div class="stat-lbl t-fr">Année de départ</div></div>
           <div class="stat-item"><div class="stat-num t-en">Closed beta</div><div class="stat-num t-fr">Bêta fermée</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap">
+    <div class="inner">
+      <p class="section-label reveal t-en">Screenshots</p>
+      <p class="section-label reveal t-fr">Captures d'écran</p>
+      <div class="shots phone">
+        <figure class="reveal">
+          <img src="/img/shots/equiliz-home.webp" alt="Equiliz home page with a phone showing balances between friends" loading="lazy" width="960" height="600">
+          <figcaption class="t-en">The home page. You can try it without an account.</figcaption>
+          <figcaption class="t-fr">La page d'accueil. On peut l'essayer sans compte.</figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="/img/shots/equiliz-mobile.webp" alt="Equiliz on a phone" loading="lazy" width="480" height="1039">
+          <figcaption class="t-en">On a phone.</figcaption>
+          <figcaption class="t-fr">Sur un téléphone.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
