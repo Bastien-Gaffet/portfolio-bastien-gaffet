@@ -247,10 +247,10 @@ main { position: relative; z-index: 1; }
   transform: translate(var(--x, 0px), var(--y, 0px));
 }
 .mem-word.play {
-  animation: memIn 2.4s ease-out forwards, memDrift var(--dur, 9s) ease-in-out 2.4s infinite alternate;
+  animation: memIn 4.2s ease-in-out forwards, memDrift var(--dur, 9s) ease-in-out 4.2s infinite alternate;
 }
 @keyframes memIn {
-  0%   { color: hsl(265 60% 80% / 0);    transform: translate(var(--x), calc(var(--y) + 26px)) scale(0.96); }
+  0%   { color: hsl(265 60% 80% / 0);    transform: translate(var(--x), calc(var(--y) + 34px)) scale(0.95); }
   100% { color: hsl(265 60% 80% / 0.3);  transform: translate(var(--x), var(--y)) scale(1); }
 }
 @keyframes memDrift {
@@ -779,7 +779,7 @@ new IntersectionObserver(entries => {
     sec.querySelectorAll('.blur-reveal').forEach(el => el.classList.add('visible'));
     placeMemoryWords();
     document.querySelectorAll('.mem-word').forEach(el => {
-      setTimeout(() => el.classList.add('play'), Math.random() * 900);
+      setTimeout(() => el.classList.add('play'), 400 + Math.random() * 4200);
     });
   }
 }, { threshold: 0.25 }).observe(document.getElementById('act-reality'));
