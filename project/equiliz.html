@@ -130,6 +130,11 @@ section { position: relative; z-index: 1; }
 @media (max-width: 700px) { .shots.two, .shots.phone { grid-template-columns: 1fr; } }
 .shots img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--glass-bg); }
 .shots figcaption { font-size: 0.72rem; color: var(--dim); margin-top: 0.6rem; line-height: 1.6; }
+.tool-link { color: var(--white); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.45); word-break: break-word; }
+.tool-link:hover { border-bottom-color: var(--violet); }
+.page-note { font-size: 0.78rem; color: var(--dim); line-height: 1.8; margin-top: 2rem; max-width: 640px; }
+#beta { scroll-margin-top: 2rem; }
+html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
@@ -148,7 +153,7 @@ section { position: relative; z-index: 1; }
       <p class="hero-desc reveal d2 t-en">An app to split expenses between people who live, travel or party together. It works without an account and it is free during the closed beta.</p>
       <p class="hero-desc reveal d2 t-fr">Une application pour partager les dépenses entre personnes qui vivent, voyagent ou font la fête ensemble. Elle marche sans compte et elle est gratuite pendant la bêta fermée.</p>
       <div class="hero-tags reveal d3"><span class="tag">Web app</span><span class="tag">Android</span><span class="tag">TypeScript</span><span class="tag t-en">Closed beta</span><span class="tag t-fr">Bêta fermée</span></div>
-      <p class="hero-cta reveal d3"><a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener" class="cta-link"><span class="t-en">Try Equiliz</span><span class="t-fr">Essayer Equiliz</span></a></p>
+      <p class="hero-cta reveal d3"><a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener" class="cta-link"><span class="t-en">Try Equiliz</span><span class="t-fr">Essayer Equiliz</span></a> <a href="#beta" class="cta-link" style="margin-left:.6rem"><span class="t-en">Join the Android beta</span><span class="t-fr">Rejoindre la bêta Android</span></a></p>
     </div>
   </section>
 
@@ -172,6 +177,35 @@ section { position: relative; z-index: 1; }
           <div class="stat-item"><div class="stat-num t-en">Closed beta</div><div class="stat-num t-fr">Bêta fermée</div><div class="stat-lbl t-en">Stage</div><div class="stat-lbl t-fr">Étape</div></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section-wrap" id="beta">
+    <div class="inner">
+      <p class="section-label reveal t-en">Join the beta</p>
+      <p class="section-label reveal t-fr">Rejoindre la bêta</p>
+      <p class="body-text reveal t-en" style="max-width:640px;margin-bottom:2rem;">I am looking for testers. The Android test goes through Google Play and needs a Google account. On iPhone or a computer, the web app works right away, without an account. There is no iOS app yet.</p>
+      <p class="body-text reveal t-fr" style="max-width:640px;margin-bottom:2rem;">Je cherche des testeurs. Le test Android passe par Google Play et demande un compte Google. Sur iPhone ou ordinateur, l'application web fonctionne tout de suite, sans compte. Il n'y a pas encore d'application iOS.</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body">
+          <h3 class="t-en">Join the testers group</h3><h3 class="t-fr">Rejoindre le groupe de testeurs</h3>
+          <p class="t-en">With the Google account of your Play Store: <a class="tool-link" href="https://groups.google.com/g/equiliz-testeurs" target="_blank" rel="noopener">groups.google.com/g/equiliz-testeurs</a></p>
+          <p class="t-fr">Avec le compte Google de ton Play Store : <a class="tool-link" href="https://groups.google.com/g/equiliz-testeurs" target="_blank" rel="noopener">groups.google.com/g/equiliz-testeurs</a></p>
+        </div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body">
+          <h3 class="t-en">Become a tester</h3><h3 class="t-fr">Devenir testeur</h3>
+          <p class="t-en">Wait a little for the access to be taken into account, then open <a class="tool-link" href="https://play.google.com/apps/testing/app.equiliz.android" target="_blank" rel="noopener">the test page</a> with the same account and tap "Become a tester". If it does not work right away, try again later.</p>
+          <p class="t-fr">Attends un peu que l'accès soit pris en compte, puis ouvre <a class="tool-link" href="https://play.google.com/apps/testing/app.equiliz.android" target="_blank" rel="noopener">la page du test</a> avec le même compte et clique sur « Devenir testeur ». Si ça ne marche pas tout de suite, réessaie plus tard.</p>
+        </div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body">
+          <h3 class="t-en">Install and try</h3><h3 class="t-fr">Installer et essayer</h3>
+          <p class="t-en">Install Equiliz from the Play Store, try a few expenses and tell me what does not work or is unclear. You can start without creating an account.</p>
+          <p class="t-fr">Installe Equiliz depuis le Play Store, teste quelques dépenses et dis-moi ce qui fonctionne mal ou te paraît peu clair. Tu peux commencer sans créer de compte.</p>
+        </div></div>
+      </div>
+      <p class="page-note reveal t-en">Please stay in the test and in the group for at least 14 days, and open the app several times: it helps me prepare the release. Free during the beta.</p>
+      <p class="page-note reveal t-fr">Merci de rester inscrit au test et dans le groupe pendant au moins 14 jours, et d'ouvrir l'application à plusieurs reprises : ça m'aide à préparer sa sortie. Gratuit pendant la bêta.</p>
+      <p class="hero-cta reveal"><a href="https://equiliz.bastiengaffet.fr/" target="_blank" rel="noopener" class="cta-link"><span class="t-en">Or try the web app, no account needed</span><span class="t-fr">Ou essayer l'application web, sans compte</span></a></p>
     </div>
   </section>
 
