@@ -53,6 +53,9 @@ body {
 }
 .cv-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; }
 .cv-name em { font-style: italic; color: hsl(265 60% 80%); }
+.cv-id { display: flex; align-items: center; gap: 1.6rem; }
+.cv-photo { width: 104px; height: 104px; border-radius: 50%; border: 1px solid var(--violet); flex-shrink: 0; }
+@media (max-width: 600px) { .cv-id { flex-direction: column; align-items: flex-start; gap: 1rem; } .cv-photo { width: 84px; height: 84px; } }
 .cv-role { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet); margin-top: 0.8rem; }
 .cv-actions { display: flex; flex-direction: column; gap: 0.7rem; align-items: flex-end; }
 .btn-dl {
@@ -156,10 +159,13 @@ body {
 
   <!-- HEADER -->
   <header id="cv-header">
-    <div>
-      <h1 class="cv-name reveal">Bastien <em>Gaffet</em></h1>
-      <p class="cv-role reveal d1 t-en">Prépa student / Maker</p>
-      <p class="cv-role reveal d1 t-fr">Étudiant en prépa / Créateur</p>
+    <div class="cv-id">
+      <img class="cv-photo reveal" src="/img/portrait.webp" alt="Portrait of Bastien Gaffet" width="104" height="104">
+      <div>
+        <h1 class="cv-name reveal">Bastien <em>Gaffet</em></h1>
+        <p class="cv-role reveal d1 t-en">Prépa student / Maker</p>
+        <p class="cv-role reveal d1 t-fr">Étudiant en prépa / Créateur</p>
+      </div>
     </div>
     <div class="cv-actions reveal d2">
       <a href="/cv-bastien-gaffet-en.pdf" download class="btn-dl">
@@ -225,18 +231,21 @@ body {
           <div class="entry-header">
             <h2 class="entry-title t-en">Classroom Construction, <em>Ourika Valley</em></h2>
             <h2 class="entry-title t-fr">Construction d'une salle de classe, <em>vallée de l'Ourika</em></h2>
-            <span class="entry-date">2024 / 2025</span>
+            <span class="entry-date t-en">Nov 2024 &amp; Feb 2025</span>
+            <span class="entry-date t-fr">Nov. 2024 et févr. 2025</span>
           </div>
           <p class="entry-sub t-en">Humanitarian Project / Morocco</p>
           <p class="entry-sub t-fr">Projet humanitaire / Maroc</p>
           <ul class="entry-bullets t-en">
             <li>Volunteered in a village near Chicker to build an additional classroom for a school unable to self-fund construction.</li>
+            <li>Two stays on site: 5 to 12 November 2024, then 18 to 22 February 2025.</li>
             <li>Since 2016, Moroccan law requires school access from age 4. The existing room housed 40 primary students across 4 year levels simultaneously.</li>
             <li>On-site tasks: fabricating rebar from raw steel, stone-laying for foundations, trenching for toilet drainage, manual concrete mixing and slab pouring.</li>
             <li>Produced the initial architectural plans for the new classroom in collaboration with the local development association.</li>
           </ul>
           <ul class="entry-bullets t-fr">
             <li>Bénévolat dans un village près de Chicker pour construire une salle de classe supplémentaire pour une école incapable d'autofinancer la construction.</li>
+            <li>Deux séjours sur place : du 5 au 12 novembre 2024, puis du 18 au 22 février 2025.</li>
             <li>Depuis 2016, la loi marocaine impose la scolarisation dès 4 ans. La salle existante accueillait 40 élèves de primaire répartis sur 4 niveaux simultanément.</li>
             <li>Tâches sur site : ferraillage à partir d'acier brut, pose de pierres pour les fondations, creusement de tranchées pour l'évacuation des sanitaires, malaxage manuel du béton et coulage de dalle.</li>
             <li>Élaboration des plans architecturaux initiaux de la nouvelle salle de classe en collaboration avec l'association de développement locale.</li>
@@ -254,8 +263,8 @@ body {
           <div class="entry-header">
             <h2 class="entry-title t-en">Sports Club <em>Board Member</em></h2>
             <h2 class="entry-title t-fr">Membre du bureau <em>d'un club sportif</em></h2>
-            <span class="entry-date t-en">2023 / Present</span>
-            <span class="entry-date t-fr">2023 / Aujourd'hui</span>
+            <span class="entry-date t-en">2024 / July 2026</span>
+            <span class="entry-date t-fr">2024 / juillet 2026</span>
           </div>
           <p class="entry-sub t-en">Volunteering / Association Management</p>
           <p class="entry-sub t-fr">Bénévolat / Gestion associative</p>
@@ -377,6 +386,10 @@ body {
           <span class="contact-label">GitHub</span>
           <span class="contact-value"><a href="https://github.com/Bastien-Gaffet" target="_blank">github.com/Bastien-Gaffet</a></span>
         </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value"><a href="https://www.linkedin.com/in/bastien-gaffet-b3a598445" target="_blank" rel="noopener">linkedin.com/in/bastien-gaffet</a></span>
+        </div>
       </div>
 
       <!-- SKILLS -->
@@ -426,12 +439,11 @@ body {
         <span class="section-label t-en">Interests</span><span class="section-label t-fr">Centres d'intérêt</span>
         <div class="section-line"></div>
         <div class="tag-list">
-          <span class="tag">Astrophotography</span>
-          <span class="tag">Guitar</span>
+          <span class="tag t-en">Photography</span><span class="tag t-fr">Photographie</span>
+          <span class="tag t-en">Guitar</span><span class="tag t-fr">Guitare</span>
           <span class="tag">Volleyball</span>
-          <span class="tag">Video Games</span>
-          <span class="tag">Reading</span>
-          <span class="tag">Astronomy</span>
+          <span class="tag t-en">Reading</span><span class="tag t-fr">Lecture</span>
+          <span class="tag t-en">Astronomy</span><span class="tag t-fr">Astronomie</span>
         </div>
       </div>
 

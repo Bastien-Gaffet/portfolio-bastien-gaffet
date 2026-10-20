@@ -67,6 +67,7 @@ section { position: relative; z-index: 1; }
 }
 .hero-title em { font-style: italic; color: hsl(265 60% 80%); }
 .hero-desc { max-width: 520px; font-size: 0.88rem; line-height: 1.85; color: var(--dim); }
+.hero-portrait { display: block; width: 132px; height: 132px; border-radius: 50%; border: 1px solid var(--violet); box-shadow: 0 0 40px var(--violet-glow); margin-bottom: 2rem; }
 
 .hero-line {
   position: absolute; bottom: 0; left: 3rem;
@@ -177,6 +178,7 @@ section { position: relative; z-index: 1; }
   <section id="hero" style="position:relative;z-index:1;">
     <div class="hero-line"></div>
     <div class="inner">
+      <img class="hero-portrait reveal" src="/img/portrait.webp" alt="Portrait of Bastien Gaffet" width="132" height="132">
       <p class="hero-eyebrow reveal t-en">About</p>
       <p class="hero-eyebrow reveal t-fr">À propos</p>
       <h1 class="hero-title">
@@ -285,8 +287,8 @@ section { position: relative; z-index: 1; }
         <div class="now-card">
           <p class="now-card-label t-en">Research</p><p class="now-card-label t-fr">Recherche</p>
           <p class="now-card-title t-en">TIPE / Epoxy Resin</p><p class="now-card-title t-fr">TIPE / Résine époxy</p>
-          <p class="now-card-body t-en">Finding the right amount of hardener for an epoxy resin, measured with Shore D hardness. A new TIPE, on the LowTech theme, is starting.</p>
-          <p class="now-card-body t-fr">Trouver la bonne quantité de durcisseur pour une résine époxy, mesurée par la dureté Shore D. Un nouveau TIPE, sur le thème LowTech, commence.</p>
+          <p class="now-card-body t-en">Finding the right amount of hardener for an epoxy resin, measured with Shore D hardness. For the 2027 theme, "Sobriety, efficiency, optimisation".</p>
+          <p class="now-card-body t-fr">Trouver la bonne quantité de durcisseur pour une résine époxy, mesurée par la dureté Shore D. Pour le thème 2027, « Sobriété, efficacité, optimisation ».</p>
         </div>
         <div class="now-card">
           <p class="now-card-label t-en">Project</p><p class="now-card-label t-fr">Projet</p>
@@ -353,6 +355,13 @@ section { position: relative; z-index: 1; }
             <span>
               <span class="contact-link-label">GitHub</span><br>
               github.com/Bastien-Gaffet
+            </span>
+            <span class="contact-arrow">→</span>
+          </a>
+          <a href="https://www.linkedin.com/in/bastien-gaffet-b3a598445" target="_blank" rel="noopener" class="contact-link">
+            <span>
+              <span class="contact-link-label">LinkedIn</span><br>
+              linkedin.com/in/bastien-gaffet
             </span>
             <span class="contact-arrow">→</span>
           </a>

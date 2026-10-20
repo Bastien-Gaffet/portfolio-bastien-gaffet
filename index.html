@@ -161,7 +161,6 @@ main { position: relative; z-index: 1; }
 .proj-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .tag { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--glass-border); border-radius: 20px; color: var(--dim); }
 .proj-card.tourny   { border-left: 2px solid hsl(245 75% 65%); }
-.proj-card.glacify  { border-left: 2px solid hsl(190 75% 55%); }
 .proj-card.cobblekit { border-left: 2px solid hsl(120 45% 50%); }
 .proj-card.cdp-scraper { border-left: 2px solid hsl(150 55% 58%); }
 .proj-card.krino { border-left: 2px solid hsl(227 80% 68%); }
@@ -179,8 +178,8 @@ main { position: relative; z-index: 1; }
 #act-06 { flex-direction: column; }
 .gallery-grid {
   display: grid; grid-template-columns: repeat(3,1fr);
-  grid-template-rows: repeat(2,160px); grid-auto-rows: 160px;
-  gap: 1rem; max-width: 720px; width: 100%; margin-top: 2rem;
+  grid-template-rows: repeat(2,220px); grid-auto-rows: 220px;
+  gap: 1rem; max-width: 840px; width: 100%; margin-top: 2rem;
 }
 .gallery-item {
   border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border);
@@ -192,8 +191,9 @@ main { position: relative; z-index: 1; }
 .gallery-item:nth-child(1) { grid-column: span 2; }
 .gallery-item:nth-child(4) { grid-column: span 2; }
 .gallery-item:nth-child(5) { grid-column: span 3; } /* full width bottom strip */
-.gallery-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); text-align: center; }
-.gallery-stripe { position: absolute; inset: 0; background: repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(255,255,255,0.015) 6px,rgba(255,255,255,0.015) 12px); }
+.gallery-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.35s; }
+.gallery-item:hover img { opacity: 1; }
+
 
 /* ── ACT 07 — NOW ── */
 #act-07 { flex-direction: column; }
@@ -328,7 +328,7 @@ main { position: relative; z-index: 1; }
   .identity-grid { gap: 0.7rem; }
 
   /* Three columns left ~93px per cell, too narrow for labels like "Photographie mobile" */
-  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: 120px; grid-auto-rows: 120px; }
+  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: 160px; grid-auto-rows: 160px; }
   .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: auto; }
   .gallery-item:nth-child(5) { grid-column: span 2; }
 
@@ -492,11 +492,11 @@ main { position: relative; z-index: 1; }
       <p class="act-quote reveal reveal-delay-1 t-fr">« Je lève aussi les yeux de l'écran. »</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal reveal-delay-1"><div class="gallery-stripe"></div><span class="gallery-label t-en">Mobile Photography</span><span class="gallery-label t-fr">Photographie mobile</span></div>
-      <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label t-en">Guitar</span><span class="gallery-label t-fr">Guitare</span></div>
-      <div class="gallery-item reveal reveal-delay-2"><div class="gallery-stripe"></div><span class="gallery-label">Volleyball</span></div>
-      <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label t-en">Astronomy</span><span class="gallery-label t-fr">Astronomie</span></div>
-      <div class="gallery-item reveal reveal-delay-3"><div class="gallery-stripe"></div><span class="gallery-label">Exploration</span></div>
+      <a class="gallery-item reveal reveal-delay-1" href="/photography"><img src="/img/photos/thumb/moissanite.webp" alt="Raw moissanite, close up" loading="lazy"></a>
+      <a class="gallery-item reveal reveal-delay-2" href="/universe"><img src="/img/story/guitare.webp" alt="Bastien playing the electric guitar on stage" loading="lazy" style="object-position:center 12%"></a>
+      <a class="gallery-item reveal reveal-delay-2" href="/photography"><img src="/img/photos/thumb/venise-ballons-verre.webp" alt="Glass balloons in Venice" loading="lazy"></a>
+      <a class="gallery-item reveal reveal-delay-3" href="/photography"><img src="/img/photos/thumb/eclipse.webp" alt="A partial solar eclipse, August 2026" loading="lazy" style="object-position:center 60%"></a>
+      <a class="gallery-item reveal reveal-delay-3" href="/photography"><img src="/img/photos/chicker-panorama.webp" alt="Panorama of Chicker village in the Atlas mountains, Morocco" loading="lazy" style="object-position:85% center"></a>
     </div>
   </section>
 

@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex">
-<meta name="description" content="Bastien Gaffet — engineering student, maker and astrophotographer.">
+<meta name="description" content="Photos by Bastien Gaffet, taken with what I have: light, places and small details.">
 <meta name="author" content="Bastien Gaffet">
 <meta property="og:site_name" content="Bastien Gaffet">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bastien Gaffet">
-<meta property="og:description" content="Engineering student. Building at the intersection of software, hardware and design.">
+<meta property="og:description" content="Photos by Bastien Gaffet, taken with what I have: light, places and small details.">
 <meta property="og:image" content="https://bastiengaffet.fr/og-image.png">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
@@ -270,16 +269,42 @@ body {
 <script>
 // ══════════════════════════════════════════════════════════════════════════════
 // PHOTOS DATA
-// src      : path to image, e.g. 'photos/sunset.jpg' or full URL
-// title    : displayed in caption and lightbox
-// location : city or place
-// date     : year or full date
+// src      : full-size image, shown in the lightbox
+// thumb    : smaller copy (900 px) for the carousel and the grid
+// title    : { en, fr }, displayed in caption and lightbox
+// location : { en, fr } or null when the place is not given
+// date     : { en, fr }
 // span     : 'landscape' | 'portrait' | 'square' | 'wide' | 'tall' | 'feature'
 //            Controls the grid cell size. Match to your photo's actual ratio.
 // featured : true = appears in carousel (pick your best ones)
 // ══════════════════════════════════════════════════════════════════════════════
 (function () {
-const PHOTOS = [];
+const PHOTOS = [
+  { src: '/img/photos/maroc-4x4.webp', thumb: '/img/photos/thumb/maroc-4x4.webp', title: { en: '4x4 in Morocco', fr: '4x4 au Maroc' }, location: { en: 'Morocco', fr: 'Maroc' }, date: { en: 'Feb 2025', fr: 'févr. 2025' }, span: 'landscape' },
+  { src: '/img/photos/maroc-coucher-soleil.webp', thumb: '/img/photos/thumb/maroc-coucher-soleil.webp', title: { en: 'Sunset over the mountains', fr: 'Soleil couchant sur la montagne' }, location: { en: 'Morocco', fr: 'Maroc' }, date: { en: 'Nov 2024', fr: 'nov. 2024' }, span: 'portrait', featured: true },
+  { src: '/img/photos/eclipse.webp', thumb: '/img/photos/thumb/eclipse.webp', title: { en: 'Eclipse', fr: 'Éclipse' }, location: null, date: { en: 'Aug 2026', fr: 'août 2026' }, span: 'portrait', featured: true },
+  { src: '/img/photos/venise-ballons-verre.webp', thumb: '/img/photos/thumb/venise-ballons-verre.webp', title: { en: 'Glass balloons', fr: 'Ballons de verre' }, location: { en: 'Venice', fr: 'Venise' }, date: { en: 'Jul 2025', fr: 'juil. 2025' }, span: 'portrait' },
+  { src: '/img/photos/venise-pont-des-soupirs.webp', thumb: '/img/photos/thumb/venise-pont-des-soupirs.webp', title: { en: 'View from the Bridge of Sighs', fr: 'Vue depuis le pont des Soupirs' }, location: { en: 'Venice', fr: 'Venise' }, date: { en: 'Jul 2025', fr: 'juil. 2025' }, span: 'portrait', featured: true },
+  { src: '/img/photos/pins-lueurs-du-soir.webp', thumb: '/img/photos/thumb/pins-lueurs-du-soir.webp', title: { en: 'Evening glow under the pines', fr: 'Lueurs du soir sous les pins' }, location: null, date: { en: 'Jul 2025', fr: 'juil. 2025' }, span: 'portrait' },
+  { src: '/img/photos/avion.webp', thumb: '/img/photos/thumb/avion.webp', title: { en: 'Plane', fr: 'Avion' }, location: null, date: { en: 'Jul 2025', fr: 'juil. 2025' }, span: 'portrait' },
+  { src: '/img/photos/plage-nuit-pose-longue.webp', thumb: '/img/photos/thumb/plage-nuit-pose-longue.webp', title: { en: 'Beach at night, long exposure', fr: 'Plage de nuit, pose longue' }, location: null, date: { en: 'Jul 2025', fr: 'juil. 2025' }, span: 'portrait' },
+  { src: '/img/photos/moissanite.webp', thumb: '/img/photos/thumb/moissanite.webp', title: { en: 'Raw moissanite', fr: 'Moissanite brute' }, location: null, date: { en: 'Jan 2025', fr: 'janv. 2025' }, span: 'landscape' },
+  { src: '/img/photos/herisson-lumiere-rouge.webp', thumb: '/img/photos/thumb/herisson-lumiere-rouge.webp', title: { en: 'Hedgehog in red light', fr: 'Hérisson en lumière rouge' }, location: null, date: { en: 'Aug 2025', fr: 'août 2025' }, span: 'portrait', featured: true },
+  { src: '/img/photos/plage-couchant.webp', thumb: '/img/photos/thumb/plage-couchant.webp', title: { en: 'Beach at sunset', fr: 'Plage au couchant' }, location: null, date: { en: 'Aug 2025', fr: 'août 2025' }, span: 'portrait' },
+  { src: '/img/photos/tour-de-cailloux.webp', thumb: '/img/photos/thumb/tour-de-cailloux.webp', title: { en: 'Stone stack', fr: 'Tour de cailloux' }, location: null, date: { en: 'Aug 2025', fr: 'août 2025' }, span: 'portrait' },
+  { src: '/img/photos/nuage-massif-central.webp', thumb: '/img/photos/thumb/nuage-massif-central.webp', title: { en: 'Cloud over the Massif Central', fr: 'Nuage sur le Massif central' }, location: { en: 'Massif Central', fr: 'Massif central' }, date: { en: 'Jul 2025', fr: 'juil. 2025' }, span: 'portrait' },
+  { src: '/img/photos/golem-de-bois.webp', thumb: '/img/photos/thumb/golem-de-bois.webp', title: { en: 'Wooden golem', fr: 'Golem de bois' }, location: { en: 'Terra Botanica', fr: 'Terra Botanica' }, date: { en: 'Oct 2025', fr: 'oct. 2025' }, span: 'portrait' },
+  { src: '/img/photos/riziere-grue-origami.webp', thumb: '/img/photos/thumb/riziere-grue-origami.webp', title: { en: 'Rice field and origami crane', fr: 'Rizière et grue en origami' }, location: null, date: { en: 'Oct 2025', fr: 'oct. 2025' }, span: 'portrait', featured: true },
+  { src: '/img/photos/orchidees.webp', thumb: '/img/photos/thumb/orchidees.webp', title: { en: 'Orchids', fr: 'Orchidées' }, location: null, date: { en: 'Oct 2025', fr: 'oct. 2025' }, span: 'portrait' },
+  { src: '/img/photos/chicker-panorama.webp', thumb: '/img/photos/thumb/chicker-panorama.webp', title: { en: 'Chicker village', fr: 'Village de Chicker' }, location: { en: 'Morocco', fr: 'Maroc' }, date: { en: 'Feb 2025', fr: 'févr. 2025' }, span: 'landscape' },
+  { src: '/img/photos/lever-de-soleil.webp', thumb: '/img/photos/thumb/lever-de-soleil.webp', title: { en: 'Red and orange sunrise', fr: 'Lever de soleil rouge orangé' }, location: null, date: { en: 'Nov 2025', fr: 'nov. 2025' }, span: 'portrait' },
+  { src: '/img/photos/telephone-photo.webp', thumb: '/img/photos/thumb/telephone-photo.webp', title: { en: 'A phone taking a photo', fr: 'Un téléphone qui prend une photo' }, location: null, date: { en: 'Dec 2025', fr: 'déc. 2025' }, span: 'portrait' },
+  { src: '/img/photos/booknook-japon.webp', thumb: '/img/photos/thumb/booknook-japon.webp', title: { en: 'Japanese book nook', fr: 'Booknook japonais' }, location: null, date: { en: 'Dec 2025', fr: 'déc. 2025' }, span: 'portrait' },
+  { src: '/img/photos/renarnaud-neige.webp', thumb: '/img/photos/thumb/renarnaud-neige.webp', title: { en: 'Renarnaud in the snow', fr: 'Renarnaud dans la neige' }, location: null, date: { en: 'Jan 2026', fr: 'janv. 2026' }, span: 'portrait' },
+  { src: '/img/photos/renarnaud-tram.webp', thumb: '/img/photos/thumb/renarnaud-tram.webp', title: { en: 'Renarnaud on the tram at night', fr: 'Renarnaud dans le tram, la nuit' }, location: null, date: { en: 'Jan 2026', fr: 'janv. 2026' }, span: 'portrait' },
+  { src: '/img/photos/affiche-chat-ramen.webp', thumb: '/img/photos/thumb/affiche-chat-ramen.webp', title: { en: 'Ramen cat poster', fr: 'Affiche chat ramen' }, location: null, date: { en: 'Feb 2026', fr: 'févr. 2026' }, span: 'portrait' },
+  { src: '/img/photos/cerisier.webp', thumb: '/img/photos/thumb/cerisier.webp', title: { en: 'Cherry blossoms', fr: 'Cerisier en fleurs' }, location: null, date: { en: 'Mar 2026', fr: 'mars 2026' }, span: 'portrait', featured: true },
+];
 if (!PHOTOS.length) {
   ["carousel-section", "grid-section", "lightbox"].forEach(function (id) { var e = document.getElementById(id); if (e) e.remove(); });
   document.getElementById("empty-state").hidden = false;
@@ -288,10 +313,15 @@ if (!PHOTOS.length) {
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function titleHTML(t) {
-  const w = t.split(' ');
-  return w.length > 1 ? `${w[0]} <em>${w.slice(1).join(' ')}</em>` : `<em>${t}</em>`;
+function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function oneTitle(t) {
+  const w = esc(t).split(' ');
+  return w.length > 1 ? `${w[0]} <em>${w.slice(1).join(' ')}</em>` : `<em>${w[0]}</em>`;
 }
+function titleHTML(t) { return `<span class="t-en">${oneTitle(t.en)}</span><span class="t-fr">${oneTitle(t.fr)}</span>`; }
+function both(o) { return `<span class="t-en">${esc(o.en)}</span><span class="t-fr">${esc(o.fr)}</span>`; }
+function metaHTML(p, sep) { return (p.location ? both(p.location) + sep : '') + both(p.date); }
+function altText(p) { return document.documentElement.classList.contains('lang-fr') ? p.title.fr : p.title.en; }
 
 function makePlaceholder(label) {
   const d = document.createElement('div');
@@ -329,7 +359,7 @@ function makeCard(p, dataIdx, isClone) {
   card.dataset.real = dataIdx;
   if (p.src) {
     const img = document.createElement('img');
-    img.src = p.src; img.alt = p.title; img.draggable = false;
+    img.src = p.thumb; img.alt = altText(p); img.draggable = false;
     card.appendChild(img);
   } else {
     card.appendChild(makePlaceholder(String(dataIdx+1).padStart(2,'0')));
@@ -391,7 +421,7 @@ function carouselUpdate(animate = true) {
   dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
   const p = featured[current];
   capTitle.innerHTML = titleHTML(p.title);
-  capMeta.textContent = `${p.location} · ${p.date}`;
+  capMeta.innerHTML = metaHTML(p, ' · ');
   cCount.textContent = `${String(current+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
 
   let off = 0;
@@ -436,7 +466,7 @@ function carouselStep(dir) {
   dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
   const p = featured[current];
   capTitle.innerHTML = titleHTML(p.title);
-  capMeta.textContent = `${p.location} · ${p.date}`;
+  capMeta.innerHTML = metaHTML(p, ' · ');
   cCount.textContent = `${String(current+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
 
   // Update card classes
@@ -501,7 +531,7 @@ PHOTOS.forEach((p, i) => {
 
   if (p.src) {
     const img = document.createElement('img');
-    img.src = p.src; img.alt = p.title; img.loading = 'lazy';
+    img.src = p.thumb; img.alt = altText(p); img.loading = 'lazy';
     item.appendChild(img);
   } else {
     const ph = document.createElement('div'); ph.className = 'bento-placeholder';
@@ -510,7 +540,7 @@ PHOTOS.forEach((p, i) => {
   }
 
   const ov = document.createElement('div'); ov.className = 'bento-overlay';
-  ov.innerHTML = `<p class="bento-title">${titleHTML(p.title)}</p><p class="bento-meta">${p.location} &nbsp;·&nbsp; ${p.date}</p>`;
+  ov.innerHTML = `<p class="bento-title">${titleHTML(p.title)}</p><p class="bento-meta">${metaHTML(p, ' &nbsp;·&nbsp; ')}</p>`;
   item.appendChild(ov);
   item.addEventListener('click', () => openLightbox(i));
   bento.appendChild(item);
@@ -544,9 +574,9 @@ function closeLightbox() { lb.classList.remove('open'); document.body.style.over
 function renderLightbox() {
   const p = PHOTOS[lbIdx], n = PHOTOS.length;
   lbImg.style.display = p.src ? 'block' : 'none';
-  if (p.src) { lbImg.src = p.src; lbImg.alt = p.title; }
+  if (p.src) { lbImg.src = p.src; lbImg.alt = altText(p); }
   lbTitle.innerHTML = titleHTML(p.title);
-  lbMeta.textContent = `${p.location} · ${p.date}`;
+  lbMeta.innerHTML = metaHTML(p, ' · ');
   lbCount.textContent = `${String(lbIdx+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}`;
 }
 function lbNav(dir) { const n=PHOTOS.length; lbIdx=((lbIdx+dir)%n+n)%n; renderLightbox(); }

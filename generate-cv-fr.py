@@ -22,7 +22,7 @@ DIM_LIGHT  = colors.HexColor('#AAAACC')
 LINE       = colors.HexColor('#E4E2F0')
 
 # Remplace None par le chemin de ta photo carree, ex: 'photo.jpg'
-PHOTO_PATH = None
+PHOTO_PATH = 'img/portrait.webp'
 PHOTO_R    = 18*mm
 
 
@@ -65,10 +65,16 @@ def make_cv():
         path.circle(SB_CX, ph_cy, PHOTO_R)
         c.clipPath(path, stroke=0)
         diam = PHOTO_R * 2
-        c.drawImage(PHOTO_PATH,
+        # Flatten the transparent portrait onto the sidebar colour: some PDF viewers skip soft masks
+        from PIL import Image
+        from reportlab.lib.utils import ImageReader
+        src = Image.open(PHOTO_PATH).convert('RGBA')
+        bg = Image.new('RGBA', src.size, tuple(int(SIDEBAR_BG.hexval()[i:i+2], 16) for i in (2, 4, 6)) + (255,))
+        flat = Image.alpha_composite(bg, src).convert('RGB')
+        c.drawImage(ImageReader(flat),
                     SB_CX - PHOTO_R, ph_cy - PHOTO_R,
                     width=diam, height=diam,
-                    preserveAspectRatio=True, mask='auto')
+                    preserveAspectRatio=True)
         c.restoreState()
     else:
         c.setFillColor(colors.HexColor('#1A1730'))
@@ -134,6 +140,7 @@ def make_cv():
     sb_y = sb_title('Contact', sb_y)
     sb_y = sb_kv('Email',    'contact@bastiengaffet.fr',      sb_y)
     sb_y = sb_kv('GitHub',   'github.com/Bastien-Gaffet',      sb_y)
+    sb_y = sb_kv('LinkedIn', 'linkedin.com/in/bastien-gaffet', sb_y)
     sb_y = sb_kv('Site web', 'bastiengaffet.fr',              sb_y)
     sb_y -= 5*mm
 
@@ -157,7 +164,7 @@ def make_cv():
 
     # INTERETS
     sb_y = sb_title('Interets', sb_y)
-    for s in ['Jeux vidéo', 'Guitare', 'Volleyball',
+    for s in ['Photographie', 'Guitare', 'Volleyball',
               'Astronomie', 'Lecture']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 5*mm
@@ -247,15 +254,15 @@ def make_cv():
             'Liaison serie Arduino UART entre le moteur de decision Python et le bras physique.',
         ], my)
     my = entry(
-        'Bureau du Club Sportif', 'Benevolat / Gestion associative', '2023 / Present',
+        'Bureau du Club Sportif', 'Benevolat / Gestion associative', '2024 / juil. 2026',
         [
             'Membre du bureau d\'un club sportif. Gestion administrative, organisation d\'evenements et coordination entre membres et instances.',
             'Responsabilites collectives dans un cadre associatif benevole.',
         ], my)
     my = entry(
-        'Construction salle de classe, Vallee de l\'Ourika', 'Projet humanitaire / Maroc', '2024 / 2025',
+        'Construction salle de classe, Vallee de l\'Ourika', 'Projet humanitaire / Maroc', 'Nov. 2024, fev. 2025',
         [
-            'Construction d\'une classe dans un village pres de Chicker ou 40 eleves du primaire partageaient une salle sur 4 niveaux. Travaux realises : ferraillage, fondations en pierres, malaxage manuel du beton et coulage de la dalle.',
+            'Construction d\'une classe dans un village pres de Chicker ou 40 eleves du primaire partageaient une salle sur 4 niveaux, en deux sejours (5 au 12 novembre 2024, 18 au 22 fevrier 2025). Travaux realises : ferraillage, fondations en pierres, malaxage manuel du beton et coulage de la dalle.',
             'Elaboration des premiers plans de la salle en lien avec l\'association de developpement locale.',
         ], my)
 

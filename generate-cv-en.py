@@ -22,7 +22,7 @@ DIM_LIGHT  = colors.HexColor('#AAAACC')
 LINE       = colors.HexColor('#E4E2F0')
 
 # Replace None with the path to your square photo, e.g. 'photo.jpg'
-PHOTO_PATH = None
+PHOTO_PATH = 'img/portrait.webp'
 PHOTO_R    = 18*mm
 
 
@@ -65,10 +65,16 @@ def make_cv():
         path.circle(SB_CX, ph_cy, PHOTO_R)
         c.clipPath(path, stroke=0)
         diam = PHOTO_R * 2
-        c.drawImage(PHOTO_PATH,
+        # Flatten the transparent portrait onto the sidebar colour: some PDF viewers skip soft masks
+        from PIL import Image
+        from reportlab.lib.utils import ImageReader
+        src = Image.open(PHOTO_PATH).convert('RGBA')
+        bg = Image.new('RGBA', src.size, tuple(int(SIDEBAR_BG.hexval()[i:i+2], 16) for i in (2, 4, 6)) + (255,))
+        flat = Image.alpha_composite(bg, src).convert('RGB')
+        c.drawImage(ImageReader(flat),
                     SB_CX - PHOTO_R, ph_cy - PHOTO_R,
                     width=diam, height=diam,
-                    preserveAspectRatio=True, mask='auto')
+                    preserveAspectRatio=True)
         c.restoreState()
     else:
         c.setFillColor(colors.HexColor('#1A1730'))
@@ -134,6 +140,7 @@ def make_cv():
     sb_y = sb_title('Contact', sb_y)
     sb_y = sb_kv('Email',    'contact@bastiengaffet.fr',      sb_y)
     sb_y = sb_kv('GitHub',   'github.com/Bastien-Gaffet',      sb_y)
+    sb_y = sb_kv('LinkedIn', 'linkedin.com/in/bastien-gaffet', sb_y)
     sb_y = sb_kv('Website',  'bastiengaffet.fr',              sb_y)
     sb_y -= 5*mm
 
@@ -157,7 +164,7 @@ def make_cv():
 
     # INTERESTS
     sb_y = sb_title('Interests', sb_y)
-    for s in ['Video Games', 'Guitar', 'Volleyball',
+    for s in ['Photography', 'Guitar', 'Volleyball',
               'Astronomy', 'Reading']:
         sb_y = sb_dot(s, sb_y)
     sb_y -= 5*mm
@@ -246,15 +253,15 @@ def make_cv():
             'Arduino UART serial link between the Python decision engine and the physical arm.',
         ], my)
     my = entry(
-        'Sports Club Board Member', 'Volunteering / Association Management', '2023 / Present',
+        'Sports Club Board Member', 'Volunteering / Association Management', '2024 / Jul 2026',
         [
             'Member of a sports club board. Administrative management, event organisation and coordination between members and governing bodies.',
             'Collective responsibilities in a voluntary associative setting.',
         ], my)
     my = entry(
-        'Classroom Construction, Ourika Valley', 'Humanitarian Project / Morocco', '2024 / 2025',
+        'Classroom Construction, Ourika Valley', 'Humanitarian Project / Morocco', 'Nov 2024, Feb 2025',
         [
-            'Built an additional classroom in a village near Chicker where 40 primary students across 4 year levels shared a single room. On-site work included rebar fabrication, stone foundations, concrete mixing and slab pouring.',
+            'Built an additional classroom in a village near Chicker where 40 primary students across 4 year levels shared a single room, over two stays (5 to 12 November 2024, 18 to 22 February 2025). On-site work included rebar fabrication, stone foundations, concrete mixing and slab pouring.',
             'Produced the initial architectural plans in collaboration with the local development association.',
         ], my)
 

@@ -13,13 +13,13 @@
     "profiles": [
       {
         "network": "GitHub",
-        "username": "votre-username",
+        "username": "bastien-gaffet-b3a598445",
         "url": "https://github.com/votre-username"
       },
       {
         "network": "LinkedIn",
-        "username": "votre-username",
-        "url": "https://linkedin.com/in/votre-username"
+        "username": "bastien-gaffet-b3a598445",
+        "url": "https://www.linkedin.com/in/bastien-gaffet-b3a598445"
       }
     ]
   },

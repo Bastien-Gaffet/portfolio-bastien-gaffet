@@ -37,7 +37,6 @@ const PAGE_CONFIG = {
   // The language toggle rides along inside .back-nav on these.
   'project/robotj4':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/tourny':           { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
-  'project/glacify':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/equiliz':          { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/prepatrack':       { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
   'project/cobblekit':        { backNav: { href: '/work', label: 'Work', labelFr: 'Projets' } },
@@ -63,7 +62,6 @@ const PAGES = [
   { group:'Notes',    name:'At CERN, I found a society', desc:'A week at CERN, EUCYS prize', href:'/notes/cern' },
   { group:'Projects', name:'Robot J4',    desc:'Robotic arm, Minimax AI, EUCYS 2025',  href:'/project/robotj4' },
   { group:'Projects', name:'Tourny',      desc:'Sport tournament management platform', href:'/project/tourny' },
-  { group:'Projects', name:'Glacify',     desc:'Ice cream ordering app, playful UX',   href:'/project/glacify' },
   { group:'Projects', name:'Equiliz',     desc:'Shared expenses app, closed beta',       href:'/project/equiliz' },
   { group:'Projects', name:'PrepaTrack',  desc:'Rank simulator for prépa students (on hold)', href:'/project/prepatrack' },
   { group:'Projects', name:'Cobblekit',  desc:'Free Minecraft tools for players and admins', href:'/project/cobblekit' },
@@ -93,7 +91,7 @@ const PAGE_NAMES = {
   'photography':'Photography','blog':'Notes','contact':'Contact',
   'cv':'CV','uses':'Uses','links':'Links','shop':'Shop',
   'product/cosmos-wallpaper':'Cosmos Generator','project/robotj4':'Robot J4',
-  'project/tourny':'Tourny','project/glacify':'Glacify',
+  'project/tourny':'Tourny',
   'project/kairoo':'Kairoo','project/cobblekit':'Cobblekit','lab':'Lab','project/equiliz':'Equiliz','project/prepatrack':'PrepaTrack','project/krino':'Krino',
   'project/cdp-scraper':'cdp-scraper','tipe':'TIPE','timeline':'Timeline',
   'press':'Press','changelog':'Changelog','now':'Now',
@@ -213,14 +211,13 @@ if (currentPath === '' || currentPath === 'index' || currentPath === 'about') {
     "@id":"https://bastiengaffet.fr/#bastien",
     "name":"Bastien Gaffet", "url":"https://bastiengaffet.fr/",
     "description":"Student in CPGE PC* at Lycée Descartes, Tours. Builds apps, games and websites for fun.",
-    "sameAs":["https://github.com/Bastien-Gaffet"] });
+    "sameAs":["https://github.com/Bastien-Gaffet","https://www.linkedin.com/in/bastien-gaffet-b3a598445"] });
 }
 
 // BreadcrumbList schema — project and product pages
 const _crumbs = {
   'project/robotj4':          { parent:'/work',  parentName:'Work',  name:'Robot J4' },
   'project/tourny':           { parent:'/work',  parentName:'Work',  name:'Tourny' },
-  'project/glacify':          { parent:'/work',  parentName:'Work',  name:'Glacify' },
   'project/equiliz':          { parent:'/work',  parentName:'Work',  name:'Equiliz' },
   'project/prepatrack':       { parent:'/work',  parentName:'Work',  name:'PrepaTrack' },
   'project/cobblekit':        { parent:'/work',  parentName:'Work',  name:'Cobblekit' },

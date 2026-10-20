@@ -127,8 +127,8 @@ Story is the narrative centerpiece and the homepage, served at `/`. Full-screen,
 
 ## Open items
 
-- **LinkedIn and Instagram**: the accounts do not exist yet, so there are NO links to them anywhere. Add them back (about, contact, cv, links) when the accounts are created.
-- **Photography**: `photography.html` shows an honest empty state (and is `noindex`, left out of the sitemap) until real photos are added to the `PHOTOS` array.
+- **LinkedIn** (`https://www.linkedin.com/in/bastien-gaffet-b3a598445`) is linked on about, contact, cv, links, the CV PDFs and the Person JSON-LD. **Instagram** does not exist yet: no link to it anywhere until it is created.
+- **Photography**: `photography.html` reads the `PHOTOS` array (bilingual title/location/date, full size in `img/photos/`, 900 px copies in `img/photos/thumb/`). Only the owner's own photos go there; photos of Robot J4 live on its project page (`img/robotj4/`).
 - **Bilingual**: every page carries both languages (`t-en` / `t-fr`, see `traductions.md`). French is the source written by the owner, English is the translation.
 - **Private on purpose**: the Cosmos Wallpaper Generator itself (only its sales page and a limited demo are public), the `pp/` brand assets, class data and school panels never go in this repository.
 

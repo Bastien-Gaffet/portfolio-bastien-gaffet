@@ -127,7 +127,8 @@ section { position: relative; z-index: 1; }
 .shots { display: grid; gap: 1.4rem; align-items: start; }
 .shots.two { grid-template-columns: 1fr 1fr; }
 .shots.phone { grid-template-columns: 2fr 1fr; }
-@media (max-width: 700px) { .shots.two, .shots.phone { grid-template-columns: 1fr; } }
+.shots.phones { grid-template-columns: 1fr 1fr; max-width: 620px; margin: 2.4rem auto 0; }
+@media (max-width: 700px) { .shots.two, .shots.phone { grid-template-columns: 1fr; } .shots.phones { gap: 0.9rem; } }
 .shots img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--glass-bg); }
 .shots figcaption { font-size: 0.72rem; color: var(--dim); margin-top: 0.6rem; line-height: 1.6; }
 .tool-link { color: var(--white); text-decoration: none; border-bottom: 1px solid hsl(265 75% 60% / 0.45); word-break: break-word; }
@@ -213,16 +214,28 @@ html { scroll-behavior: smooth; }
     <div class="inner">
       <p class="section-label reveal t-en">Screenshots</p>
       <p class="section-label reveal t-fr">Captures d'écran</p>
-      <div class="shots phone">
+      <div class="shots two">
         <figure class="reveal">
-          <img src="/img/shots/equiliz-home.webp" alt="Equiliz home page with a phone showing balances between friends" loading="lazy" width="960" height="600">
+          <span class="t-en"><img src="/img/shots/equiliz-home.webp" alt="Equiliz home page: shared expenses without the hassle" loading="lazy" width="1600" height="763"></span><span class="t-fr"><img src="/img/shots/equiliz-home-fr.webp" alt="Page d'accueil d'Equiliz : les dépenses communes, sans les prises de tête" loading="lazy" width="1600" height="759"></span>
           <figcaption class="t-en">The home page. You can try it without an account.</figcaption>
           <figcaption class="t-fr">La page d'accueil. On peut l'essayer sans compte.</figcaption>
         </figure>
+        <figure class="reveal d1">
+          <span class="t-en"><img src="/img/shots/equiliz-stats.webp" alt="Equiliz statistics on a computer: spending by group, category and month" loading="lazy" width="1600" height="763"></span><span class="t-fr"><img src="/img/shots/equiliz-stats-fr.webp" alt="Statistiques d'Equiliz sur ordinateur : dépenses par groupe, catégorie et mois" loading="lazy" width="1600" height="759"></span>
+          <figcaption class="t-en">Statistics: who spends what, by group, category and month.</figcaption>
+          <figcaption class="t-fr">Les statistiques : qui dépense quoi, par groupe, catégorie et mois.</figcaption>
+        </figure>
+      </div>
+      <div class="shots phones">
         <figure class="reveal">
-          <img src="/img/shots/equiliz-mobile.webp" alt="Equiliz on a phone" loading="lazy" width="480" height="1039">
-          <figcaption class="t-en">On a phone.</figcaption>
-          <figcaption class="t-fr">Sur un téléphone.</figcaption>
+          <span class="t-en"><img src="/img/shots/equiliz-mobile.webp" alt="Equiliz on a phone: the list of groups" loading="lazy" width="495" height="844"></span><span class="t-fr"><img src="/img/shots/equiliz-mobile-fr.webp" alt="Equiliz sur un téléphone : la liste des groupes" loading="lazy" width="499" height="839"></span>
+          <figcaption class="t-en">On a phone: all your groups.</figcaption>
+          <figcaption class="t-fr">Sur un téléphone : tous tes groupes.</figcaption>
+        </figure>
+        <figure class="reveal d1">
+          <span class="t-en"><img src="/img/shots/equiliz-group.webp" alt="A shared flat group in Equiliz, with an expense" loading="lazy" width="500" height="838"></span><span class="t-fr"><img src="/img/shots/equiliz-group-fr.webp" alt="Un groupe de colocation dans Equiliz, avec une dépense" loading="lazy" width="498" height="838"></span>
+          <figcaption class="t-en">Inside a group: expenses, balances and payments.</figcaption>
+          <figcaption class="t-fr">Dans un groupe : dépenses, soldes et remboursements.</figcaption>
         </figure>
       </div>
     </div>

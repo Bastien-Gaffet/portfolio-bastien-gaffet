@@ -26,8 +26,8 @@ one of the designers of the Robot J4 robotic arm. Robot J4 was presented at EUCY
   https://bastiengaffet.fr/project/kairoo
 - **cdp-scraper**: command line tool to back up your own course documents from cahier-de-prepa.fr.
   https://bastiengaffet.fr/project/cdp-scraper
-- **On hold**: Tourny (https://bastiengaffet.fr/project/tourny), Glacify
-  (https://bastiengaffet.fr/project/glacify), PrepaTrack (https://bastiengaffet.fr/project/prepatrack)
+- **On hold**: Tourny (https://bastiengaffet.fr/project/tourny),
+  PrepaTrack (https://bastiengaffet.fr/project/prepatrack)
 - **Lab**: smaller projects and experiments, code on GitHub: https://bastiengaffet.fr/lab
 - **Cosmos Wallpaper Generator**: generative cosmos wallpaper tool sold on Ko-fi.
   https://bastiengaffet.fr/product/cosmos-wallpaper
